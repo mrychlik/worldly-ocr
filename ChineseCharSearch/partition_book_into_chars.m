@@ -23,7 +23,8 @@ Display='off';
 savefile=fullfile('.','Cache','CharSeq.mat');
 
 if exist(savefile,'file') 
-    load(savefile)
+    warn('Using cached result');
+    load(savefile);
 else 
     B=imread(book_strip_image);
     P=sum(B,2)>.3.*max(B(:)).*size(B,2);
