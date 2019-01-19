@@ -1,7 +1,8 @@
 function char_seq = partition_book_into_chars(book_strip_image)
 % CHAR_SEQ = PARTITION_BOOK_INTO_CHARS(BOOK_STRIP_IMAGE) takes the image
 % BOOK_STRIP_IMAGE which contains stacked columns of all pages of a book,
-% and it outputs the sequence of characters contained in the image.
+% and it outputs the sequence CHAR_SEQ of characters contained in the
+% image.
 %
 % As this computation is rather expensive, we cache the result in directory
 % Cache, file CharSeq.mat. The user must wipe out this file manually if the
