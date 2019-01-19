@@ -1,1 +1,3 @@
-The master script is find_occurrences.m
+The master script is find_occurrences.m.
+
+The result can be seen in this Youtube video: (https://youtu.be/L2YxqLnzATg)
