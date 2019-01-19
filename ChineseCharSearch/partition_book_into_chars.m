@@ -1,8 +1,3 @@
-%
-% File: make_book_strip.m
-% Author: Marek Rychlik (rychlik@email.arizona.edu)
-%
-
 function char_seq = partition_book_into_chars(book_strip_image)
 %  CHAR_SEQ = PARTITION_BOOK_INTO_CHARS(BOOK_STRIP_IMAGE)
 % takes the image BOOK_STRIP_IMAGE which contains stacked
