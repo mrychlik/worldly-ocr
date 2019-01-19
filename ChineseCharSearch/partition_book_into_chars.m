@@ -8,7 +8,14 @@ function char_seq = partition_book_into_chars(book_strip_image)
 % stacked columns of all pages, and it outputs the sequence
 % of characters contained in the image.
 %
-
+% As this computation is rather expensive, we cache the result in directory
+% Cache, file CharSeq.mat. The user must wipe out this file manually if the
+% input file BOOK_STRIP_IMAGE changes.
+%
+nargchk(nargin, 0, 1);
+if nargin < 1
+    strip_image = 'BookStrip.png'
+end
 
 
 Display='off';
