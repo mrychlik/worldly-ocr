@@ -8,7 +8,7 @@ function char_seq = partition_book_into_chars(book_strip_image)
 % Cache, file CharSeq.mat. The user must wipe out this file manually if the
 % input file BOOK_STRIP_IMAGE changes.
 %
-nargchk(nargin, 1);
+nargchk(nargin, 1, 1);
 
 Display='off';
 
