@@ -14,7 +14,7 @@ function char_seq = partition_book_into_chars(book_strip_image)
 %
 nargchk(nargin, 0, 1);
 if nargin < 1
-    strip_image = 'BookStrip.png'
+    book_strip_image = 'BookStrip.png'
 end
 
 
@@ -25,7 +25,7 @@ savefile=fullfile('.','Cache','CharSeq.mat');
 if exist(savefile,'file') 
     load(savefile)
 else 
-    B=imread('BookStrip.png');
+    B=imread(book_strip_image);
     P=sum(B,2)>.3.*max(B(:)).*size(B,2);
     Q=diff([0;P]);
     Up=Q==1;
