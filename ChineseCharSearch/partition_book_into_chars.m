@@ -2,13 +2,14 @@
 % File: make_book_strip.m
 % Author: Marek Rychlik (rychlik@email.arizona.edu)
 %
-% Script Inputs: image file BookStrip.png (output of make_book_strip)
-% Script Output: structure CharSeq, containing character objects
-%
-% This script takes the image BookStrip.png which contains 
+
+function char_seq = partition_book_into_chars(book_strip_image)
+% This function takes the image BookStrip.png which contains 
 % stacked columns of all pages, and it outputs the sequence
 % of characters contained in the image.
 %
+
+
 
 Display='off';
 
@@ -91,3 +92,4 @@ else
     save(savefile,'CharSeqRough','CharSeq');
 end
 
+char_seq = CharSeq;
