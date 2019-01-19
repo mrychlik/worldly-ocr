@@ -82,4 +82,4 @@ for page=10:117;
     I=255-I;
     I=im2bw(I);
     [Where,RunningCount]=find_char_in_image(RefChar,I,RunningCount);
-endo
+end
