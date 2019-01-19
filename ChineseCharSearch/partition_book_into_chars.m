@@ -4,9 +4,11 @@
 %
 
 function char_seq = partition_book_into_chars(book_strip_image)
-% This function takes the image BookStrip.png which contains 
-% stacked columns of all pages, and it outputs the sequence
-% of characters contained in the image.
+%
+% CHAR_SEQ = PARTITION_BOOK_INTO_CHARS(BOOK_STRIP_IMAGE)
+% takes the image BOOK_STRIP_IMAGE which contains stacked
+% columns of all pages of a book, and it outputs the sequence of characters
+% contained in the image.
 %
 % As this computation is rather expensive, we cache the result in directory
 % Cache, file CharSeq.mat. The user must wipe out this file manually if the
@@ -23,7 +25,7 @@ Display='off';
 savefile=fullfile('.','Cache','CharSeq.mat');
 
 if exist(savefile,'file') 
-    warn('Using cached result');
+    warning('Using cached result');
     load(savefile);
 else 
     B=imread(book_strip_image);
