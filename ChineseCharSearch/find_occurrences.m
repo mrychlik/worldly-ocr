@@ -11,11 +11,16 @@
 %
 
 
+% Directory containing individual pages of the book
 pagedir='Pages';
+
+% Image holding stacked columns of all pages of the book
+% in the order a person reads the columns.
+book_strip_image = 'BookStrip.png';
 
 %% Illustrate the method to determine the shift
 %% of an image in 2 dimensions, using FFT.
-partition_book_into_chars;
+CharSeq = partition_book_into_chars(book_strip_image);
 
 Padding=[6,6];
 
