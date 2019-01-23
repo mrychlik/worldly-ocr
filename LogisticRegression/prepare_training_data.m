@@ -1,6 +1,6 @@
 function [X,T,H,W] = prepare_training_data(varargin)
 %[I,T]=decode_images;
-data_file=fullfile('..','..','Homework','H2','digit_data.mat');
+data_file=fullfile('.','digit_data.mat');
 load(data_file);
 
 % Digits to analyze
