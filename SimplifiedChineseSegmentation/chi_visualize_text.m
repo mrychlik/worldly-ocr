@@ -10,9 +10,11 @@ whitebg('black');
 hold on;
 for l=1:l_cnt
     % Line objects
+    disp(['Line',num2str(l)]);
     l_objs=lines{l};
     rng=numel(l_objs):-1:1;
     for j=rng
+        disp(['Object',num2str(j)]);
         if isempty(l_objs{j})
             continue;
         end
