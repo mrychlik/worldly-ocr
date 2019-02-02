@@ -27,7 +27,7 @@ if exist(savefile,'file')
     load(savefile)
 else 
     objects=[];
-    I=imread(file);                         % Note: the image is BW
+    I=imread(filepath);                 % Note: the image is BW
     BW=im2bw(I,.7);
     BW=~BW;
     lines=chi_bounding_boxes(BW,...
