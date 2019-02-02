@@ -6,12 +6,14 @@
 %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Where to put objects found in pages
-%file=fullfile('.','images', 'Img_0322.jpg');
-%file=fullfile('.','images', '02348.jpg');
-file=fullfile('.','images', '02351.jpg');
 % Where to find pages of scanned text
 imagedir=fullfile('.','images');
+
+%file=fullfile(imagedir, 'Img_0322.jpg');
+file=fullfile(imagedir, '02348.jpg');
+%file=fullfile(imagedir, '02351.jpg');
+
+
 
 
 %% Build a cache of objects in the image
