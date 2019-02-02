@@ -8,20 +8,21 @@
 
 % Where to find pages of scanned text
 imagedir=fullfile('.','images');
+cachedir=fullfile('.','Cache');
 
 imagefile='Img_0322.jpg');
 imagefile='02348.jpg';
 imagefile='02351.jpg';
 
 
-file=fullfile(imagedir,imagefile);
+filepath=fullfile(imagedir,imagefile);
 
 
 
 %% Build a cache of objects in the image
 % Strings identifying page numbers in image files
 % Where to save objects
-savefile=fullfile('.','Cache','chi_sim_objects.mat');
+savefile=fullfile(cachedir,[file,'.mat']);
 if exist(savefile,'file') 
     load(savefile)
 else 
