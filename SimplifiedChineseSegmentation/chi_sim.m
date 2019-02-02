@@ -22,7 +22,7 @@ filepath=fullfile(imagedir,imagefile);
 %% Build a cache of objects in the image
 % Strings identifying page numbers in image files
 % Where to save objects
-savefile=fullfile(cachedir,[file,'.mat']);
+savefile=fullfile(cachedir,[imagefile,'.mat']);
 if exist(savefile,'file') 
     load(savefile)
 else 
