@@ -9,10 +9,12 @@
 % Where to find pages of scanned text
 imagedir=fullfile('.','images');
 
-%file=fullfile(imagedir, 'Img_0322.jpg');
-file=fullfile(imagedir, '02348.jpg');
-%file=fullfile(imagedir, '02351.jpg');
+imagefile='Img_0322.jpg');
+imagefile='02348.jpg';
+imagefile='02351.jpg';
 
+
+file=fullfile(imagedir,imagefile);
 
 
 
