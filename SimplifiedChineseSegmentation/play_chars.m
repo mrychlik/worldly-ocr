@@ -33,7 +33,7 @@ for n=0:NUM
     ob = L==n;
     ob_cropped = imautocrop(ob);
     ob_cropped_and_paded = padarray(ob_cropped, pading, 0);
-    imagesc(ob_cropped_and_padded);
+    imagesc(ob_cropped_and_paded);
     drawnow;
     pause(.1);
 end
