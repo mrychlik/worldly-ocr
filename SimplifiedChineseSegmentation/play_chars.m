@@ -13,7 +13,7 @@ imagedir=fullfile('.','images');
 % imagefile='02348.jpg';
 imagefile='02351.jpg';
 
-padding = 20;
+pading = 20;
 
 filepath=fullfile(imagedir,imagefile);
 
@@ -31,8 +31,9 @@ conn=4;
 disp(sprintf('Found %d objects',NUM));
 for n=0:NUM
     ob = L==n;
-    ob_cropped = imautocrop(ob, padding);
-    imagesc(ob_cropped);
+    ob_cropped = imautocrop(ob);
+    ob_cropped_and_paded = padarray(ob_cropped, pading, 0);
+    imagesc(ob_cropped_and_padded);
     drawnow;
     pause(.1);
 end
