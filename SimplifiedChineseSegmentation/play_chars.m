@@ -30,9 +30,8 @@ conn=4;
 [L,NUM] = bwlabel(BW,conn);
 disp(sprintf('Found %d objects',NUM));
 for n=0:NUM
-    ob0 = L==n;
+    ob = L==n;
     ob_cropped = imautocrop(ob);
-    ob = I .* ob0;
     ob_cropped_and_paded = padarray(ob_cropped, pading, 0);
     imagesc(ob_cropped_and_paded);
     drawnow;
