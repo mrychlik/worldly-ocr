@@ -13,7 +13,7 @@ imagedir=fullfile('.','images');
 % imagefile='02348.jpg';
 imagefile='02351.jpg';
 
-pading = 20;
+pading = [20, 20];
 
 filepath=fullfile(imagedir,imagefile);
 
