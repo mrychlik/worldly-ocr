@@ -14,7 +14,7 @@ cachedir=fullfile('.','Cache');
 % imagefile='02348.jpg';
 imagefile='02351.jpg';
 
-threshold = 0.5;
+threshold = 0.7;
 
 filepath=fullfile(imagedir,imagefile);
 
