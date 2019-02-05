@@ -14,6 +14,7 @@ cachedir=fullfile('.','Cache');
 % imagefile='02348.jpg';
 imagefile='02351.jpg';
 
+threshold = 0.5;
 
 filepath=fullfile(imagedir,imagefile);
 
@@ -28,10 +29,10 @@ if exist(savefile,'file')
 else 
     objects=[];
     I=imread(filepath);                 % Note: the image is BW
-    BW=im2bw(I,.7);
+    BW=im2bw(I,threshold);
     BW=~BW;
     lines=chi_bounding_boxes(BW,...
-                             'Display','off',...
+                             'Display','on',...
                              'DiacriticalMarks','on',...
                              'Method','lloyds');
     save(savefile,'lines')
