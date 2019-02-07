@@ -32,8 +32,6 @@ for l=1:l_cnt
         if is_diacritical(l_objs(j))
             Z=zeros(size(J));
             J=[J;Z;Z];
-        else
-            J=[J;~J;~J];
         end
         image([x,x+w],[y,y+h],J),drawnow;
         % Plot character bounding boxes only
