@@ -31,4 +31,6 @@ else
     save(savefile,'objects','lines')
 end
 
-visualize_text(objects,lines,true);
+is_diacritical=@(ob)ob.FilledArea<10;
+
+visualize_text(objects,lines,true, is_diacritical);
