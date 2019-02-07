@@ -30,13 +30,14 @@ for l=1:l_cnt
         % Plot characters
         J=get_image(l_objs(j));
         if is_diacritical(l_objs(j))
-            Z=zeros(size(J));
-            J=[J;Z;Z];
+            display('diacritical found');
+        else
+            image([x,x+w],[y,y+h],J),drawnow;
         end
-        image([x,x+w],[y,y+h],J),drawnow;
+
         % Plot character bounding boxes only
         rectangle('Position',[x,y,w,h],'EdgeColor','green');
-        colormap hot;
+        %colormap winter;
     end
 end
 hold off;
