@@ -15,13 +15,12 @@ else
 end
 
 
-len = length(objects)
+len = length(objects);
 
 D = zeros(len,len);
-for i = 1:(len-1)
-    for j=(i+1):len
-        D(i,j) = dist(objects(i),objects(j));
-    end
+parfor i = 1:(len-1)
+    D(i,:) = arrayfun(@(ob)dist(objects(i),ob), objects);
+    disp(i);
 end
 
 
