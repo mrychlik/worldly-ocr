@@ -34,7 +34,6 @@ for l=1:l_cnt
             K(:,:,1)=J;
             bbox_color = 'red';
         else
-
             K = J;
             bbox_color = 'green';
         end
