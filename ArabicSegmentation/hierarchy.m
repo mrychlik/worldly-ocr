@@ -15,13 +15,15 @@ else
 end
 
 
+len = length(objects)
 
-
-
-
-
-
-
-function d = dist(ob1,ob2)
-d = min(pdist2(ob1.PixelList, ob2.PixelList))
+D = zeros(len,len);
+for i = 1:(len-1)
+    for j=(i+1):len
+        D(i,j) = dist(objects(i),objects(j));
+    end
 end
+
+
+
+
