@@ -1,8 +1,9 @@
 # Arabic page segmentation experiments
 
-Arabic as a cursive language presents a number of challenges.
-Most OCR algorithms use the BW ("binarized") form of page image.
-One can break up the page into connected components (4-connected or 8-connected, for example).
+Arabic as a cursive language presents a number of challenges.  Most
+OCR algorithms use the BW ("binarized") form of page image.  One can
+break up the page into connected components (4-connected or
+8-connected, for example).
 
 This does not identify characters. A larger unit is ligature. However,
 ligatures consist of component characters and the diacritical marks
