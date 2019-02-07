@@ -11,10 +11,10 @@ end
 
 function d = ival_dist(i1, i2)
     if i1(1) > i2(2)
-        d = i2(2) - i1(1)
+        d = i2(2) - i1(1);
     elseif i1(2) < i2(1)
-        d = i2(1) - i1(2)
+        d = i2(1) - i1(2);
     else
-        d = 0
+        d = 0;
     end
 end
