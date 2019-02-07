@@ -32,6 +32,7 @@ for l=1:l_cnt
         if is_diacritical(l_objs(j))
             K=zeros([size(J),3]);
             K(:,:,1)=J;
+            K(:,:,2)=J;
             bbox_color = 'red';
         else
             K = J;
