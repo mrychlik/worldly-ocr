@@ -26,4 +26,4 @@ lines of text, but also includes images and oddly formatted text.
 
 ## Sample Result
 
-![Segmented page example](file:://./SegmentedPageSample1.png)
+![Segmented page example](file::///SegmentedPageSample1.png)
