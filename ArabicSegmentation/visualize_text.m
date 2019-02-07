@@ -31,7 +31,7 @@ for l=1:l_cnt
         J=get_image(l_objs(j));
         image([x,x+w],[y,y+h],J),drawnow;
         % Plot character bounding boxes only
-        if is_diacritical(l_obj(j))
+        if is_diacritical(l_objs(j))
             color='yellow';
         else
             color='green';
