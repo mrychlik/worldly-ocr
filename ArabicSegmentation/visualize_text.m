@@ -33,12 +33,14 @@ for l=1:l_cnt
             K=zeros([size(J),3]);
             K(:,:,1)=J;
             image([x,x+w],[y,y+h],K),drawnow;
+            bbox_color = 'red';
         else
             image([x,x+w],[y,y+h],J),drawnow;
+            bbox_color = 'green';
         end
 
         % Plot character bounding boxes only
-        rectangle('Position',[x,y,w,h],'EdgeColor','green');
+        rectangle('Position',[x,y,w,h],'EdgeColor',bbox_color);
         %colormap winter;
     end
 end
