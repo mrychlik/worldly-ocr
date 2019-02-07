@@ -13,7 +13,7 @@ imagedir=fullfile('.','images');
 % imagefile='02348.jpg';
 imagefile='02351.jpg';
 
-pading = [20, 20];
+pading = [10, 10];
 
 filepath=fullfile(imagedir,imagefile);
 
@@ -33,7 +33,7 @@ for n=0:NUM
     ob = L==n;
     ob_cropped = imautocrop(ob);
     ob_cropped_and_paded = padarray(ob_cropped, pading, 0);
-    imagesc(ob_cropped_and_paded);
+    image(ob_cropped_and_paded.*255);
     drawnow;
     pause(.1);
 end
