@@ -1,5 +1,5 @@
 function visualize_text(objects,lines,right_to_left,get_image, is_diacritical)
-narginchk(2,4);
+narginchk(2,5);
 if nargin < 5
     is_diacritical=@(obj)false;
 elseif nargin < 4
