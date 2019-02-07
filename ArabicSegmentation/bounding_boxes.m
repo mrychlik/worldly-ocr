@@ -54,9 +54,6 @@ for opt=1:num_options
           otherwise
             error('''DiacriticalMarks'' option value is invalid.');
         end
-      case 'DiacriticalMarkMaxSize'
-        assert(isa(val,'numeric');
-        DiacriticalMarkMaxSize=val;
       otherwise
         error('Invalid option: key=%s, value=%s',key,val);
     end
