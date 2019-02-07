@@ -23,3 +23,7 @@ of each basic character (see file:://../Data-basic-arabic-letterforms.jpg).
 In this folder we also have an algorithm for breaking up text into
 lines.  This algorithm fails if a page does not consist of purely
 lines of text, but also includes images and oddly formatted text.
+
+## Sample Result
+
+See file://./SegmentedPageSample1.png
