@@ -41,7 +41,7 @@ for l=1:l_cnt
 
         % Plot character bounding boxes only
         rectangle('Position',[x,y,w,h],'EdgeColor',bbox_color);
-        %colormap winter;
+        colormap hot;
     end
 end
 hold off;
