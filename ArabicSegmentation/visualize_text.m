@@ -32,7 +32,7 @@ for l=1:l_cnt
         if is_diacritical(l_objs(j))
             K=zeros([size(J),3]);
             K(:,:,1)=J;
-            bbox_color = 'red';
+            bbox_color = 'yellow';
         else
             K = J;
             bbox_color = 'green';
