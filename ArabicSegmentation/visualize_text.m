@@ -30,7 +30,6 @@ for l=1:l_cnt
         % Plot characters
         J=get_image(l_objs(j));
         if is_diacritical(l_objs(j))
-            display('diacritical found');
             K=zeros([size(J),3]);
             K(:,:,1)=J;
             image([x,x+w],[y,y+h],K),drawnow;
