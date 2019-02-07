@@ -26,12 +26,12 @@ else
     BW=~BW;
     [objects,lines]=bounding_boxes(BW,...
                                    'Display','off',...
-                                   'DiacriticalMarks','on',...
+                                   'DiacriticalMarks','off',...
                                    'Method','kmeans');
     save(savefile,'objects','lines')
 end
 
 get_image=@(obj)uint8(255.*obj.bwimage);
-is_diacritical=@(ob)ob.FilledArea<15;
+is_diacritical=@(ob)ob.FilledArea<1000;
 
 visualize_text(objects,lines,true, get_image, is_diacritical);
