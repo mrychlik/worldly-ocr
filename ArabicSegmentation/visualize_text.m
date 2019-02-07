@@ -29,14 +29,15 @@ for l=1:l_cnt
         x=r(1);y=r(2);w=r(3);h=r(4);
         % Plot characters
         J=get_image(l_objs(j));
+        if is_diacritical(l_objs(j))
+            Z=zeros(size(J));
+            J=[J;Z;Z];
+        else
+            J=[J;~J;~J];
+        end
         image([x,x+w],[y,y+h],J),drawnow;
         % Plot character bounding boxes only
-        if is_diacritical(l_objs(j))
-            color='yellow';
-        else
-            color='green';
-        end
-        rectangle('Position',[x,y,w,h],'EdgeColor',color);
+        rectangle('Position',[x,y,w,h],'EdgeColor','green');
         colormap hot;
     end
 end
