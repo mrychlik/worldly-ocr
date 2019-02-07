@@ -1,6 +1,8 @@
-function visualize_text(objects,lines,right_to_left,get_image)
+function visualize_text(objects,lines,right_to_left,get_image, is_diacritical)
 narginchk(2,4);
-if nargin < 4
+if nargin < 5
+    is_diacritical=@(obj)false;
+elseif nargin < 4
     get_image=@(obj)uint8(255.*obj.bwimage);
 elseif nargin < 3
     right_to_left=false;
