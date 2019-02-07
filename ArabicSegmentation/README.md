@@ -14,6 +14,18 @@ separate objects by image processing. Therefore, a good algorithm
 (based on proper heuristic) is needed to assign diacritical marks to
 the major parts of ligatures.
 
+In this example we applied a simple heuristic, that characters
+with sufficiently small filled area are diacritical marks.
+This does not always work:
+
+ * it picks up punctuation;
+ * it picks up speckles (isolated groups of random pixels).
+
+Further refinement of this idea can be implemented. It is not clear how
+to automate the threshhold for the area of a diacritical mark.
+One could perhaps examine curated ligatures and determine this number.
+
+
 ## Isolated, Initial, Medial and Final Forms
 Connecting Arabic characters into ligatures happens by using 3 forms
 of each basic character (see file:://../Data-basic-arabic-letterforms.jpg).
