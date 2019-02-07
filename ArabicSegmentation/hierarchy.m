@@ -17,6 +17,7 @@ end
 
 len = length(objects);
 
+%% Compute mutual distances of objects
 D = zeros(len,len);
 parfor i = 1:(len-1)
     D(i,:) = arrayfun(@(ob)dist(objects(i),ob), objects);
