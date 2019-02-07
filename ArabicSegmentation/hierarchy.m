@@ -4,7 +4,7 @@ file=fullfile('.','images', 'sinat-074.png');
 imagedir=fullfile('.','images');
 
 
-%% Build a cache of objects in the image
+%% Load objects from cache
 % Strings identifying page numbers in image files
 % Where to save objects
 savefile=fullfile('.','Cache','ara_sinat_objects.mat');
