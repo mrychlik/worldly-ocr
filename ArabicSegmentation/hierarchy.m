@@ -25,5 +25,9 @@ parfor i = 1:(len-1)
 end
 
 
+%% Do some form of hierarchical clustering
+Z = linkage(D);
+T = cluster(Z,'Cutoff',1,'Depth',2);
+%C = cophenet(Z, D);
 
-
+dendrogram(Z);
