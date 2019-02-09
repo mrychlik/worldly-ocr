@@ -39,3 +39,7 @@ lines of text, but also includes images and oddly formatted text.
 ## Sample Result
 
 ![Segmented page example](./SegmentedPageSample1.png)
+
+The original Arabic text is:
+
+![Arabic page](./images/sinat-074.png)
