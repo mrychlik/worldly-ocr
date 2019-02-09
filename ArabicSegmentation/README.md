@@ -46,4 +46,7 @@ The original Arabic text is:
 ![Arabic page](./images/sinat-074.png)
 
 ## References
+
 * https://en.wikipedia.org/wiki/Arabic_diacritics
+* https://blogs.transparent.com/arabic/arabic-diacritics-important-but-neglected/
+* http://www.arabion.net/lesson4.html
