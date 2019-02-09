@@ -44,3 +44,6 @@ lines of text, but also includes images and oddly formatted text.
 The original Arabic text is:
 
 ![Arabic page](./images/sinat-074.png)
+
+## References
+(https://en.wikipedia.org/wiki/Arabic_diacritics)
