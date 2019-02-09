@@ -28,7 +28,7 @@ One could perhaps examine curated ligatures and determine this number.
 
 ## Isolated, Initial, Medial and Final Forms
 Connecting Arabic characters into ligatures happens by using 3 forms
-of each basic character (see
+of each basic character:
 ![Arabic letterforms](../Data/basic-arabic-letterforms.jpg).
 
 
