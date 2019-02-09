@@ -49,4 +49,5 @@ The original Arabic text is:
 
 * https://en.wikipedia.org/wiki/Arabic_diacritics
 * https://blogs.transparent.com/arabic/arabic-diacritics-important-but-neglected/
+* http://www.arabion.net/lesson1.html
 * http://www.arabion.net/lesson4.html
