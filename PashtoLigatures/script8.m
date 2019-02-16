@@ -27,7 +27,7 @@ for idx=1:nsamples
     sparse_ligatures(idx).image = sparse(I);
 end
 for idx=1:nsamples
-    sparse_ligatures(idx).image = sparse_ligatures(id).image(max_bottom:min_top,:);
+    sparse_ligatures(idx).image = sparse_ligatures(idx).image(max_bottom:min_top,:);
 end
 
 
