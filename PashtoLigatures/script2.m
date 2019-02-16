@@ -5,7 +5,7 @@ end
 max_levels=3;
 
 for idx=1:size(ligatures,3)
-    I=ligatures(:,:,idx)
+    I=ligatures(:,:,idx);
     I=255-I;
     [xmin,xmax]=bounds(find(sum(I,1)));
     [ymin,ymax]=bounds(find(sum(I,2)));
