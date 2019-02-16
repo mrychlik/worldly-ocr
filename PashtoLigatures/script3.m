@@ -1,3 +1,8 @@
+%
+% Apply varous wavelest to ligatures, visualize results
+%
+
+
 if ~exist('ligatures','var')
     load('ligatures.m');
 end
