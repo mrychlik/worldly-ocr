@@ -4,12 +4,12 @@
 % Ouptuts:
 %      cropped.mat - a file with variables cropped, w, h, nsamples
 % where:
-%      cropped     - a structure array with fields
-%                    image - the image
-%                    bbox  - the bounding box
-%      w           - the original image width (400)
-%      h           - the original image height (400)
-%      nsamples    - number of ligatures (3999)
+%      sparse_ligatures - a structure array with fields
+%                         image - the image
+%                         bbox  - the bounding box
+%      w                - the original image width (400)
+%      h                - the original image height (400)
+%      nsamples         - number of ligatures (3999)
 
 if ~exist('ligatures','var');
     load('ligatures.mat');
