@@ -17,27 +17,23 @@ I0 = 255 - I0;
 I = sparse_ligatures(idx).image;
 I = 255 - I;
 
-% Scale both to the same size
-[I_scaled,I0_scaled] = scale_both(I,I0);
 % Make an RGB version of I
+J0 = zeros([size(I0),3]);
+J0(:,:,1) =I0;
+J0(:,:,2) =I0;
+J0(:,:,3) =I0;
 
-J0=zeros([size(I0_scaled),3]);
-J0(:,:,1)=I0_scaled;
-J0(:,:,2)=I0_scaled;        
-J0(:,:,3)=I0_scaled;                
-
-
-J=zeros([size(I_scaled),3]);
-J(:,:,1)=I_scaled;
-J(:,:,2)=I_scaled;        
-J(:,:,3)=I_scaled;                
+J = zeros([size(I),3]);
+J(:,:,1) = I;
+J(:,:,2) = I;
+J(:,:,3) = I;
 
 clf;
 
 
 for x = (size(I_scaled,2)-win):-1:0
-    col0 = double( I0_scaled(:,(x+1):(x+win)) )./255;
-    col  = double( I_scaled(:,(x+1):(x+win)))./255;
+    col0 = double( I0(:,(x+1):(x+win)) )./255;
+    col  = double( I(:,(x+1):(x+win)))./255;
 
     K0=J0;
     K0(:,(x+1):(x+win),1) = 255;
