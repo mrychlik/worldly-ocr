@@ -16,9 +16,15 @@ if ~exist('ligatures','var');
 end
 [h, w, nsamples] = size(ligatures);
 
+min_top = 0;
+max_bottom = 400;
+
 for idx=1:nsamples
-    I = sparse(squeeze(ligatures(:,:,idx)));
-    sparse_ligatures(idx).image = I;
+    I = squeeze(ligatures(:,:,idx));
+    [top,bottom] = vert_size(I);
+    min_top = min(top, min_top);
+    max_bottom = max(bottom, max_bottom);
+    sparse_ligatures(idx).image = I = sparse(I);
 end
 
 save('sparse.mat','sparse_ligatures','w','h','nsamples','-v7');
