@@ -7,8 +7,9 @@ epsilon=1e-2;                           % epsilon
 
 % First image
 idx0 = 100;
+
 % Second image
-idx = 102;
+idx = 100;                              % Use the same image as demo
 
 I0 = cropped(idx0).image;
 I0 = 255 - I0;
