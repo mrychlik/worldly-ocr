@@ -31,7 +31,7 @@ J(:,:,3) = I;
 clf;
 
 
-for x = (size(I_scaled,2)-win):-1:0
+for x = (size(I,2)-win):-1:0
     col0 = double( I0(:,(x+1):(x+win)) )./255;
     col  = double( I(:,(x+1):(x+win)))./255;
 
