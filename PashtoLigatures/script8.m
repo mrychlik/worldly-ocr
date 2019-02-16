@@ -17,6 +17,7 @@ end
 [h, w, nsamples] = size(ligatures);
 
 for idx=1:nsamples
+    I = ligatures(idx);
     sparse_ligatures(idx).image = sparse(I);
 end
 
