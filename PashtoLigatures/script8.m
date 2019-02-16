@@ -14,6 +14,7 @@
 if ~exist('ligatures','var');
     load('ligatures.mat');
 end
+
 [h, w, nsamples] = size(ligatures);
 
 min_top = 1;
