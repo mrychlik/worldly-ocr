@@ -21,7 +21,7 @@ max_bottom = 400;
 
 for idx=1:nsamples
     I = squeeze(ligatures(:,:,idx));
-    [top,bottom] = vert_size(I);
+    [bottom, top] = vert_size(I);
     min_top = min(top, min_top);
     max_bottom = max(bottom, max_bottom);
     sparse_ligatures(idx).image = I = sparse(I);
