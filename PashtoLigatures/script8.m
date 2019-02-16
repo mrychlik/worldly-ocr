@@ -17,8 +17,8 @@ end
 [h, w, nsamples] = size(ligatures);
 
 for idx=1:nsamples
-    I = ligatures(idx);
-    sparse_ligatures(idx).image = sparse(I);
+    I = sparse(squeeze(ligatures(:,:,idx)));
+    sparse_ligatures(idx).image = I;
 end
 
 save('sparse.mat','sparse_ligatures','w','h','nsamples','-v7');
