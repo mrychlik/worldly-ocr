@@ -16,7 +16,7 @@ if ~exist('ligatures','var');
 end
 [h, w, nsamples] = size(ligatures);
 
-min_top = 0;
+min_top = 1;
 max_bottom = 400;
 
 for idx=1:nsamples
