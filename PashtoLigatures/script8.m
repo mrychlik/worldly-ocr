@@ -20,4 +20,4 @@ for idx=1:nsamples
     sparse_ligatures(idx).image = sparse(I);
 end
 
-save('sparse.mat','sparseligatures','w','h','nsamples','-v7');
+save('sparse.mat','sparse_ligatures','w','h','nsamples','-v7');
