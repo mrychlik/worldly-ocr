@@ -6,7 +6,7 @@ win=5;                                  % Window
 epsilon=1e-2;                           % epsilon
 
 % First image
-idx0 = 100;
+idx0 = 1;
 I0 = sparse_ligatures(idx0).image;
 I0 = 255 - I0;
 
