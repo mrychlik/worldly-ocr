@@ -2,7 +2,7 @@
 % Apply Haar wavelet to ligatures, visualize results
 %
 if ~exist('ligatures','var')
-    load('ligatures.m');
+    load('ligatures.mat');
 end
 
 max_levels=3;

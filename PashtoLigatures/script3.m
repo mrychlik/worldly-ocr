@@ -4,7 +4,7 @@
 
 
 if ~exist('ligatures','var')
-    load('ligatures.m');
+    load('ligatures.mat');
 end
 
 %% Presents DWT of ligatures

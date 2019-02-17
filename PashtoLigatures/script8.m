@@ -36,7 +36,7 @@ for idx=1:nsamples
 end
 
 for idx=1:nsamples
-    image(sparse_ligatures(idx).image);
+    image(sparse_ligatures(idx).image), drawnow;
 end
 
 
