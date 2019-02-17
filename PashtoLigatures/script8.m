@@ -23,11 +23,14 @@ max_bottom = 400;
 for idx=1:nsamples
     I = squeeze(ligatures(:,:,idx));
     [bottom, top] = vert_size(I);
+    [left, right] = hor_size(I);
     min_top = max(top, min_top);
     max_bottom = min(bottom, max_bottom);
     sparse_ligatures(idx).image = sparse(I);
     sparse_ligatures(idx).top = top;
     sparse_ligatures(idx).bottom = bottom;
+    sparse_ligatures(idx).left = left;
+    sparse_ligatures(idx).right = right;
 end
 
 for idx=1:nsamples
