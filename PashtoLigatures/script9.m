@@ -16,7 +16,6 @@ J0(:,:,1) =I0;
 J0(:,:,2) =I0;
 J0(:,:,3) =I0;
 
-
 for idx = 1:nsamples
 
     I = sparse_ligatures(idx).image;
@@ -36,11 +35,11 @@ for idx = 1:nsamples
         col0 = I0(:,(x+1):(x+win)) );
         col  = I(:,(x+1):(x+win))) );
 
+
         K0=J0;
         K0(:,(x+1):(x+win),1) = 255;
         K0(:,(x+1):(x+win),2) = 0;        
         K0(:,(x+1):(x+win),3) = 0;        
-
 
         K=J;
         K(:,(x+1):(x+win),1) = 255;
