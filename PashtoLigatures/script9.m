@@ -7,10 +7,11 @@ epsilon=1e-2;                           % epsilon
 
 % First image
 idx0 = 100;
+I0 = sparse_ligatures(idx0).image;
+I0 = 255 - I0;
+
 
 for idx = 1:nsamples
-    I0 = sparse_ligatures(idx0).image;
-    I0 = 255 - I0;
 
     I = sparse_ligatures(idx).image;
     I = 255 - I;
