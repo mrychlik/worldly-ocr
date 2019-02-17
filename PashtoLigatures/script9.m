@@ -30,16 +30,17 @@ for idx = 1:nsamples
     clf;
 
 
-    M = min(size(I,2),size(I0,2));
-    for x = (M-win):-1:0
-        col0 = I0(:,(x+1):(x+win));
+    for u = 0:(M-win)
+        x0 = size(I0,2)-u- win;
+        col0 = I0(:,(x0+1):(x0+win));
+        x = size(I,2)-u-win;
         col  = I(:,(x+1):(x+win));
 
 
         K0=J0;
-        K0(:,(x+1):(x+win),1) = 255;
-        K0(:,(x+1):(x+win),2) = 0;        
-        K0(:,(x+1):(x+win),3) = 0;        
+        K0(:,(x0+1):(x0+win),1) = 255;
+        K0(:,(x0+1):(x0+win),2) = 0;        
+        K0(:,(x0+1):(x0+win),3) = 0;        
 
         K=J;
         K(:,(x+1):(x+win),1) = 255;
