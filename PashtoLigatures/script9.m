@@ -29,7 +29,6 @@ for idx = 1:nsamples
 
     clf;
 
-
     for u = 0:(M-win)
         x0 = size(I0,2)-u- win;
         col0 = I0(:,(x0+1):(x0+win));
