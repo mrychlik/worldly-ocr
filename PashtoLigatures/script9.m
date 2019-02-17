@@ -33,7 +33,7 @@ for idx = 1:nsamples
     M = min(size(I,2),size(I0,2));
     for x = (M-win):-1:0
         col0 = I0(:,(x+1):(x+win));
-        col  = I(:,(x+1):(x+win)));
+        col  = I(:,(x+1):(x+win));
 
 
         K0=J0;
