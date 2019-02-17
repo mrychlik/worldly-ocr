@@ -9,7 +9,7 @@ epsilon=1e-2;                           % epsilon
 idx0 = 100;
 
 % Second image
-idx = 100;                              % Use the same image as demo
+idx = 101;                              % Use the same image as demo
 
 I0 = sparse_ligatures(idx0).image;
 I0 = 255 - I0;
