@@ -48,8 +48,8 @@ for idx = 1:nsamples
         K(:,(x+1):(x+win),3) = 0;        
 
 
-        subplot(2,3,1), imagesc(K0), colormap(gray);
-        subplot(2,3,4), imagesc(K), colormap(gray);
+        subplot(2,3,1), imshow(K0), colormap(gray);
+        subplot(2,3,4), imshow(K), colormap(gray);
 
         subplot(2,3,2), imagesc(col0);
         subplot(2,3,5), imagesc(col);
