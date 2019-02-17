@@ -59,6 +59,6 @@ for x = (M-win):-1:0
     M = abs( ifft2( (L .* conj(L0)) ./( epsilon + abs(L).*abs(L0) ) ) ...
              );
     M = circshift(M,round(size(M)/2));
-    subplot(2,3,[3,6]), imshow(M), colormap(hot);
+    subplot(2,3,[3,6]), imagesc(M), colormap(hot);
     drawnow;
 end
