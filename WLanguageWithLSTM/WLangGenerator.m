@@ -90,6 +90,7 @@ classdef WLangGenerator
         end
 
         function out = main(ob)
+        % Write a test sequence
             out = [write(ob, '_', 1);
                    write(ob, 'X', 1);
                    write(ob, 'O', 2);
@@ -100,6 +101,7 @@ classdef WLangGenerator
         end
 
         function out = write_str(ob, str)
+            
             out = [];
             out = [out; write(ob, '_', 1)];
             out = [out; write(ob, '_', 1)];            
