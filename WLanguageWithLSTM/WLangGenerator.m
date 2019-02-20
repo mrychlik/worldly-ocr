@@ -90,24 +90,24 @@ classdef WLangGenerator
         end
 
         function out = main(ob)
-            out = [write(ob, 'Z', 1);
+            out = [write(ob, '_', 1);
                    write(ob, 'X', 1);
                    write(ob, 'O', 2);
                    write(ob, 'X', 1);
                    write(ob, 'X', 2);
                    write(ob, 'O', 3);
-                   write(ob, 'Z', 1)];
+                   write(ob, '_', 1)];
         end
 
         function out = write_str(ob, str)
             out = [];
-            out = [out; write(ob, 'Z', 1)];
-            out = [out; write(ob, 'Z', 1)];            
+            out = [out; write(ob, '_', 1)];
+            out = [out; write(ob, '_', 1)];            
             for i = 1:length(str)
                 out = [out; write(ob, str(i), 1)];
             end
-            out = [out; write(ob, 'Z', 1)];
-            out = [out; write(ob, 'Z', 1)];            
+            out = [out; write(ob, '_', 1)];
+            out = [out; write(ob, '_', 1)];            
         end
 
         function response = decode(ob, out)
