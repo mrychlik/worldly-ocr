@@ -17,7 +17,7 @@ function [XTrain, YTrain] = prepareDataTrain(num_samples,sample_length, max_stre
 nargchk(0, 3, nargin);
 
 if nargin < 1; num_samples = 1000; end;
-if nargin < 2; sample_length = 3; end;
+if nargin < 2; sample_length = 5; end;
 if nargin < 3; max_stretch = 1; end;
     
 X = cell(num_samples, 1);
