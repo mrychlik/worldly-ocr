@@ -25,6 +25,10 @@ classdef WLangGenerator
 
     methods
         function ob = WLangGenerator(max_stretch)
+        %Constructor
+        % OB = WLANGGENERATOR(MAX_STRETCH) returns a new WLangGenerator
+        % object for generalized W-language with maximum number of
+        % repetitions of each pixel MAX_STRETCH.
             nargchk(0,1, nargin);
             if nargin < 1
                 max_stretch = 1;
