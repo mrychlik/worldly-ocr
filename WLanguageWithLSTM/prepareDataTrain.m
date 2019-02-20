@@ -11,7 +11,7 @@ function [XTrain, YTrain] = prepareDataTrain(num_samples,sample_length, max_stre
 %
 %      Deductron - A Recurrent Neural Network
 %
-% published at https://arxiv.org/abs/1806.09038. The underscore '_' means
+% published at <https://arxiv.org/abs/1806.09038>. The underscore '_' means
 % that there was no emission at the corresponding time point.
 % 
 nargchk(0, 3, nargin);
