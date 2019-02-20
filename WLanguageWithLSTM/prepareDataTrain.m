@@ -25,7 +25,7 @@ X = cell(num_samples, 1);
 
 % Map random strings to W-language
 for j = 1:num_samples
-    String{j} = randsample('XOZ', sample_length, true);
+    String{j} = randsample('XO_', sample_length, true);
     [X, Y] = W(String{j}, max_stretch);
     XTrain{j} = X';
     YTrain{j} = categorical(cellstr(Y))';
