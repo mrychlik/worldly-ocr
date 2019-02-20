@@ -119,8 +119,12 @@ classdef WLangGenerator
         end
 
         function response = decode(ob, out)
-            % Padd to the same length as data
-            response = ['_'];
+        %A W-language decoder
+        % RESPONSE = DECODE(OB, OUT) takes any potential encoded string OUT,
+        % which is a pattern in the W-language, and it returns a RESPONSE,
+        % which is a string of {'X','O','_'} representing a potential input
+        % that resulted in pattern OUT.
+            response = ['_'];           % Padd to the same length as data
 
             z(1) = 0;
             z(2) = 0;
