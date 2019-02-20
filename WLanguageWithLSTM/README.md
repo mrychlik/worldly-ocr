@@ -16,3 +16,11 @@ The main script is WTrain.m.
 
 # Sample training session
 ![Training session](./images/Training.png)
+
+
+# TODO
+
+* Use samples of different length in training and testing
+* Explain why 'Accuracy' stays around 80% in training, while the
+  'Loss' goes to 0. The confusion is 0, so the loss is indeed 0 in the
+  limit. Requires looking into what MATLAB plots as 'Accuracy'.
