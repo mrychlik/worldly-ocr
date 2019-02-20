@@ -14,10 +14,11 @@ function [XTrain, YTrain] = prepareDataTrain(num_samples,sample_length, max_stre
 % published at https://arxiv.org/abs/1806.09038. The underscore '_' means
 % that there was no emission at the corresponding time point.
 % 
-nargchk(0, 3)
-if nargin < 1; num_samples = 1000; end
-if nargin < 2; sample_length = 3;
-if nargin < 3; max_stretch = 1;
+nargchk(0, 3, nargin);
+
+if nargin < 1; num_samples = 1000; end;
+if nargin < 2; sample_length = 3; end;
+if nargin < 3; max_stretch = 1; end;
     
 X = cell(num_samples, 1);
 
