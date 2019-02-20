@@ -51,9 +51,13 @@ classdef WLangGenerator
             v = [ ob.L; ob.M; ob.H; ob.M; ob.L];
         end
 
-
-
         function out = write_seq(ob, seq, count)
+        %Writes a random generalized W-language pattern.
+        % OUT = WRITE_SEQ(OB, SEQ, COUNT) writes an M-by-3 matrix  of 0-1
+        % in which rows represent parts of the characters of the
+        % W-language representing sequence SEQ of characters
+        % in the set {'X', 'O'}. If COUNT is provided, this many copies
+        % of the string are produced.
             nargchk(2, 3, nargin);
             if nargin < 3
                 count = 1;
