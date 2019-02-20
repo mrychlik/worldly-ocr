@@ -13,3 +13,6 @@ Like in the original paper, where a new kind of RNN called Deductron, we achieve
 # Entry point
 
 The main script is WTrain.m.
+
+# Sample training session
+![Training session](./images/Training.png)
