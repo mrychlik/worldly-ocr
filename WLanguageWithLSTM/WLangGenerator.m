@@ -23,14 +23,8 @@ classdef WLangGenerator
 
     end
 
-    method(Access=Private)
+    methods(Access = private)
         function out = write_seq(ob, seq, count)
-        %Writes a random generalized W-language pattern.
-        % OUT = WRITE_SEQ(OB, SEQ, COUNT) writes an M-by-3 matrix  of 0-1
-        % in which rows represent parts of the characters of the
-        % W-language representing sequence SEQ of characters
-        % in the set {'X', 'O'}. If COUNT is provided, this many copies
-        % of the string are produced.
             nargchk(2, 3, nargin);
             if nargin < 3
                 count = 1;
@@ -77,8 +71,14 @@ classdef WLangGenerator
         end
 
         function out = write(ob, symbol, count) 
+        %Writes a random generalized W-language pattern for a symbol.
+        % OUT = WRITE_SEQ(OB, SYMBOL, COUNT) writes an M-by-3 matrix  of 0-1
+        % in which rows represent parts of the characters of the
+        % W-language representing sequence SEQ of characters
+        % in the set {'X', 'O', '_'}. If COUNT is provided, this many copies
+        % of the string are produced.
             switch symbol
-              case 'Z'
+              case '_'
                 out = write_seq(ob, ob.seq_Z, count);
               case 'X'
                 out = write_seq(ob, ob.seq_X, count);
