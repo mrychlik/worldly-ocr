@@ -4,7 +4,7 @@ classdef WLangGenerator
 %
 %       Deductron - A Recurrent Neural Network
 %
-% published at <https://arxiv.org/abs/1806.09038>   
+% published at <https://arxiv.org/abs/1806.09038>.
 
     properties
         H = [0, 0, 1];                  % High pixel
