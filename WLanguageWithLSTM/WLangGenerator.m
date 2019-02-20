@@ -23,6 +23,31 @@ classdef WLangGenerator
 
     end
 
+    method(Access=Private)
+        function out = write_seq(ob, seq, count)
+        %Writes a random generalized W-language pattern.
+        % OUT = WRITE_SEQ(OB, SEQ, COUNT) writes an M-by-3 matrix  of 0-1
+        % in which rows represent parts of the characters of the
+        % W-language representing sequence SEQ of characters
+        % in the set {'X', 'O'}. If COUNT is provided, this many copies
+        % of the string are produced.
+            nargchk(2, 3, nargin);
+            if nargin < 3
+                count = 1;
+            end
+            out = [];
+            for c=1:count
+                % Determine the random number of repetitions
+                % of each segment
+                for i=1:size(seq, 1)
+                    rowrep(i) = randi(ob.max_stretch);
+                    out = [out; repmat(seq(i,:),[rowrep(i),1])];
+                end
+            end
+        end
+    end
+
+
     methods
         function ob = WLangGenerator(max_stretch)
         %Constructor
@@ -50,29 +75,6 @@ classdef WLangGenerator
         % Sequence for 'O'
             v = [ ob.L; ob.M; ob.H; ob.M; ob.L];
         end
-
-        function out = write_seq(ob, seq, count)
-        %Writes a random generalized W-language pattern.
-        % OUT = WRITE_SEQ(OB, SEQ, COUNT) writes an M-by-3 matrix  of 0-1
-        % in which rows represent parts of the characters of the
-        % W-language representing sequence SEQ of characters
-        % in the set {'X', 'O'}. If COUNT is provided, this many copies
-        % of the string are produced.
-            nargchk(2, 3, nargin);
-            if nargin < 3
-                count = 1;
-            end
-            out = [];
-            for c=1:count
-                % Determine the random number of repetitions
-                % of each segment
-                for i=1:size(seq, 1)
-                    rowrep(i) = randi(ob.max_stretch);
-                    out = [out; repmat(seq(i,:),[rowrep(i),1])];
-                end
-            end
-        end
-
 
         function out = write(ob, symbol, count) 
             switch symbol
