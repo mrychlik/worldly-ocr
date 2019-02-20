@@ -1,7 +1,9 @@
 classdef WLangGenerator
 % W-Language generator. It contains methods for encoding and decoding
 % strings in the W-language described in the paper:
-% Deductron - A Recurrent Neural Network
+%
+%       Deductron - A Recurrent Neural Network
+%
 % published at <https://arxiv.org/abs/1806.09038>   
 
     properties
