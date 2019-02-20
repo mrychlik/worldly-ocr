@@ -107,7 +107,7 @@ classdef WLangGenerator
         % OUT = WRITE_STR(OB, STR) takes a string written using
         % characters {'X','O','_'} and outputs a pattern in W-language.
         % The string is padded with two '_' at each end to eliminate
-        % ambiguity.
+        % ambiguity upon decoding.
             out = [];
             out = [out; write(ob, '_', 1)];
             out = [out; write(ob, '_', 1)];            
