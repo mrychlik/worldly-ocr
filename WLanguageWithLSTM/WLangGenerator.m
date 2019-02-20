@@ -90,7 +90,9 @@ classdef WLangGenerator
         end
 
         function out = main(ob)
-        % Write a test sequence
+        %Write a test sequence
+        % OUT = MAIN(OB) outputs an M-by-3 matrix of 0-1 representing
+        % the sequence '_XOXXO_'.
             out = [write(ob, '_', 1);
                    write(ob, 'X', 1);
                    write(ob, 'O', 2);
@@ -101,7 +103,11 @@ classdef WLangGenerator
         end
 
         function out = write_str(ob, str)
-            
+        %Write a string in W-language
+        % OUT = WRITE_STR(OB, STR) takes a string written using
+        % characters {'X','O','_'} and outputs a pattern in W-language.
+        % The string is padded with two '_' at each end to eliminate
+        % ambiguity.
             out = [];
             out = [out; write(ob, '_', 1)];
             out = [out; write(ob, '_', 1)];            
