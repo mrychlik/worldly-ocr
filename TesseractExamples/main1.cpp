@@ -3,6 +3,7 @@
 
 //const char LANGUAGE[] = "eng";
 //const char LANGUAGE[] = "chi_sim";
+const char LANGUAGE[] = "chi_tra";
 
 
 int main()
