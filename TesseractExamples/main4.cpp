@@ -6,7 +6,7 @@
  * @brief  Detect orientation, direction, deskew angle, line order
  * 
  * Explanation for result codes are in publictypes.h
- * NOTE: On some examples, LEAK message results.
+ * NOTE: On some examples, "LEAK" error message results.
  */
 
 
