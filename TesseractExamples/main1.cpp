@@ -30,7 +30,7 @@ int main()
 
     // Open input image with leptonica library
     // Pix *image = pixRead("/home/marek/Repos/Pashto/trunk/ReadingMicrofilm/images/Paragraph.tif");
-    Pix *image = pixRead("/home/marek/Repos/Pashto/trunk/Samples/Chinese/chinese-tra-testdata_1/chinese-tradition-0pic.png");
+    Pix *image = pixRead("./images/chinese-tradition-0pic.png");
 
 
 
