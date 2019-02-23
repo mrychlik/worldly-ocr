@@ -35,3 +35,20 @@ bool ocr(const char *const language, const char* const imagePath, const char *ou
 
   return true;
 }
+
+
+int main()
+{
+  // Open input image with leptonica library
+  ocr("eng",
+      "./images/Paragraph.tif",
+      "./outputs/Paragraph_osd.txt") || die();
+
+  ocr("chi_tra",
+      "./images/chinese-tradition-0pic.png",
+      "./outputs/chinese-tradition-0pic-chi_tra_osd.txt") || die();
+
+  ocr("chi_sim",
+      "./images/chinese-tradition-0pic.png",
+      "./outputs/chinese-tradition-0pic-chi_sim_osd.txt") || die();
+}
