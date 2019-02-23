@@ -17,7 +17,7 @@
 const char LANGUAGE[] = "chi_tra";
 
 
-int ocr(const char *const language, const char* const imagePath, const char *outPath)
+bool ocr(const char *const language, const char* const imagePath, const char *outPath)
 {
   printf("Doing %s\n", imagePath);
   char *outText;
@@ -38,13 +38,13 @@ int ocr(const char *const language, const char* const imagePath, const char *out
   outText = api->GetUTF8Text();
     
   FILE *outFile;
-  int status;
+  bool status = true;
 
   if((outFile = fopen(outPath,"r")) != NULL) {
     fprintf(outFile, "OCR output for image %s:\n%s", imagePath, outText);
     fclose(outFile);
   } else {
-    status = 1;
+    status = false;
   }
 
   // Destroy used object and release memory
