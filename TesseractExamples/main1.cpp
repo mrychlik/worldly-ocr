@@ -1,3 +1,14 @@
+/**
+ * @file   main1.cpp
+ * @author Marek Rychlik <marek@cannonball.lan>
+ * @date   Fri Feb 22 19:48:12 2019
+ * 
+ * @brief  This example illustrates the use of Tesseract API.
+ * 
+ * 
+ */
+
+
 #include <tesseract/baseapi.h>
 #include <leptonica/allheaders.h>
 
