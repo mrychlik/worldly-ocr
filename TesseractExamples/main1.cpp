@@ -68,7 +68,7 @@ int main()
   // Open input image with leptonica library
   ocr("eng",
       "./images/Paragraph.tif",
-      "./outputs/Paragraph.txt") == 0 || die();
+      "./outputs/Paragraph.txt") || die();
 
   ocr("chi_tra",
       "./images/chinese-tradition-0pic.png",
