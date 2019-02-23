@@ -58,6 +58,7 @@ bool ocr(const char *const language, const char* const imagePath, const char *ou
 
 int die()
 {
+  printf("Dead!!!");
   exit(EXIT_FAILURE);
 }
 
