@@ -1,0 +1,43 @@
+OCR output for image ./images/chinese-tradition-0pic.png:
+Box[0]: x=89, y=89, w=412, h=18, confidence: 65, text: 李新非典型的政冶人物 y 直到年近四十葳才正式踏入
+
+Box[1]: x=89, y=116, w=412, h=18, confidence: 67, text: 政厘 《〉 他罡外省第二代 y 因不满国民熹 Y 追随郁幕明
+
+Box[2]: x=89, y=143, w=415, h=18, confidence: 62, text: 等人 y 儋任郁的特助 y 帼驯年新熹成立 y 李新逗罡副
+
+Box[3]: x=89, y=170, w=412, h=18, confidence: 62, text: 熹窖起人之一 y 他在国台捂都相富流利 y 一直在北市
+
+Box[4]: x=89, y=197, w=416, h=18, confidence: 65, text: 菖新熹鲤彗基居 Y 帼驼年他才徒幕後走到幕前 Y 代表
+
+Box[5]: x=89, y=224, w=419, h=18, confidence: 61, text: 新熹参遴国大代表 y 此峙他已43葳 Y 1996年 y 他辖载
+
+Box[6]: x=90, y=251, w=334, h=18, confidence: 64, text: 台北市熹冒 y 眶利菖新熹再搪下一席熹熹 《〉
+
+Box[7]: x=89, y=308, w=416, h=18, confidence: 63, text: 2001 年辐民熹成立後 Y 李新改波载袍 y 代表辐民熹参
+
+Box[8]: x=89, y=335, w=416, h=18, confidence: 66, text: 逵 Y 2oo2年逗儋任台北市熹冒副熹畏 Y 罡他熹昌生涯
+
+Box[9]: x=89, y=362, w=398, h=18, confidence: 83, text: 高峰 Y 2008年国辐合作 Y 李新也重回国民熹 Y 不遇
+
+Box[10]: x=89, y=389, w=384, h=18, confidence: 60, text: 2014年国民莫九合一遴叟大取 ` 201s年更交出政
+
+Box[11]: x=89, y=416, w=412, h=18, confidence: 79, text: 模 Y 李新再度展琨他想改革的强势作圆 Y 重炮抨孽尾
+
+Box[12]: x=89, y=443, w=394, h=18, confidence: 82, text: 英九 Y 去年逗耦自出尾参蕨熹主席 Y 只可惜未能成
+
+Box[13]: x=89, y=471, w=29, h=16, confidence: 73, text: 功 。
+
+Box[14]: x=89, y=527, w=412, h=18, confidence: 78, text: 李新友人崩 Y 李新侗性嫉惠如仇 ` 爱恨分明 Y 勤於看
+
+Box[15]: x=89, y=554, w=412, h=18, confidence: 82, text: 不倡的事就想要改革 Y 雕匡深蔫 Y 但他敢蔫洪秀柱的
+
+Box[16]: x=100, y=581, w=401, h=18, confidence: 77, text: 「一中同表」 嘛跑中圃逵民 Y 也敢蔫熹英九太涸自我
+
+Box[17]: x=89, y=608, w=412, h=18, confidence: 84, text: 威寅艮好 Y 舆基居脘箭 Y 才露国民熹渝蔫至此 Y 只可
+
+Box[18]: x=89, y=635, w=412, h=18, confidence: 80, text: 惜光靠李新一人力量仍摊以改革 Y 心顶意冷 Y 诀定交
+
+Box[19]: x=89, y=662, w=417, h=20, confidence: 77, text: 棒眙克子 Y 甚至逗辖束自 己生命 Y 露人浠嘘 《〉 (政冶中
+
+Box[20]: x=89, y=689, w=99, h=20, confidence: 67, text: 心/台北毅荨)
+

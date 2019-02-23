@@ -1,0 +1,43 @@
+OCR output for image ./images/chinese-tradition-0pic.png:
+Box[0]: x=89, y=89, w=412, h=18, confidence: 69, text: 李新非輿型的政冶人物 7 頁到年近四十歲才正式踏入
+
+Box[1]: x=89, y=116, w=412, h=18, confidence: 70, text: 政壇 《〉 他罡外省第二代 ﹡ 因不滿固民冥 7 追隨郁幕明
+
+Box[2]: x=89, y=143, w=415, h=18, confidence: 63, text: 等人 ﹡ 儋任郁的特助 7 1994年新冥成立 7 李新遺罡副
+
+Box[3]: x=89, y=170, w=412, h=18, confidence: 68, text: 冥發起人之_ 7 他在固台語都相富流利 7 一頁在北巿
+
+Box[4]: x=89, y=197, w=416, h=18, confidence: 67, text: 睾新冥經營基層 7 …96年他才從幕後走到幕前 7 代表
+
+Box[5]: x=89, y=224, w=419, h=18, confidence: 66, text: 新冥參選國大代表 7 此時他巳43歲 7 199S年 7 他轉戰
+
+Box[6]: x=90, y=251, w=334, h=18, confidence: 68, text: 台北巿議會 7 順利睾新冥再搪下一席議員 〈〉
+
+Box[7]: x=89, y=308, w=416, h=18, confidence: 64, text: 2001年親民冥成立後 7 李新改波戰袍 ﹡ 代表親民冥參
+
+Box[8]: x=89, y=335, w=416, h=18, confidence: 70, text: 選 7 2002年遺儋任台北市議會副議長 ﹡ 罡他議員生涯
+
+Box[9]: x=89, y=362, w=398, h=18, confidence: 70, text: 高峰 ﹡ 2008年固親合作 ﹡ 李新也菫回固民冥 ﹡ 不過
+
+Box[10]: x=89, y=389, w=384, h=18, confidence: 59, text: 2014年固民冥九合一選舉大敗 ‵ 2016年更交出政
+
+Box[11]: x=89, y=416, w=412, h=18, confidence: 67, text: 權 ﹡ 李新再度展現他想改革的強勢作風 7 菫炮抨孽馬
+
+Box[12]: x=89, y=443, w=394, h=18, confidence: 69, text: 英九 7 去年遺親自出馬參選冥主席 ﹡ 只可懵未能成
+
+Box[13]: x=89, y=471, w=29, h=16, confidence: 73, text: 功 。
+
+Box[14]: x=89, y=527, w=412, h=18, confidence: 71, text: 李新友人說 ﹡ 李新個性嫉惡如仇 ‵ 愛恨分明 7 對於看
+
+Box[15]: x=89, y=554, w=412, h=18, confidence: 68, text: 不慣的辜就想要改革 ﹡ 雖屬深藍 7 但他敢罵洪秀柱的
+
+Box[16]: x=100, y=581, w=401, h=18, confidence: 70, text: 「-中同表」 嘛跑中問選民 ﹡ 也敢罵馬英九太過自我
+
+Box[17]: x=89, y=608, w=412, h=18, confidence: 68, text: 戴覺艮好 ﹡ 與基層脫節 ﹡ 才讓固民冥淪落至此 ﹡ 只可
+
+Box[18]: x=89, y=635, w=412, h=18, confidence: 67, text: 懵光靠李新一人力量仍難以改革 7 心茯慧冷 7 決定交
+
+Box[19]: x=89, y=662, w=417, h=20, confidence: 70, text: 樺給兒子 ﹡ 甚至遺結束自 己生命 7 讓人唏噓 《〉 (政冶中
+
+Box[20]: x=89, y=689, w=99, h=20, confidence: 72, text: 心/台北報導﹚
+

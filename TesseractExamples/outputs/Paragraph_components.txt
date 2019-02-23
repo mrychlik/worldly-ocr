@@ -1,0 +1,31 @@
+OCR output for image ./images/Paragraph.tif:
+Box[0]: x=1075, y=0, w=16, h=19, confidence: 96, text: l
+
+Box[1]: x=61, y=25, w=1227, h=45, confidence: 85, text: The University’s decision to join the University Athletic Associ-
+
+Box[2]: x=25, y=69, w=1263, h=43, confidence: 83, text: ation is, at first glance, an exciting venture; It seems more
+
+Box[3]: x=24, y=114, w=1262, h=44, confidence: 86, text: appropriate for the U of C to compete athletically against uni-
+
+Box[4]: x=25, y=157, w=1262, h=45, confidence: 77, text: vgrsities they compete with intellectually. More meaningful riv-
+
+Box[5]: x=24, y=200, w=1262, h=46, confidence: 83, text: airies_cah be built around schools with which the student—body is
+
+Box[6]: x=24, y=244, w=1260, h=44, confidence: 86, text: already familiar. And if the concept of a rival athletic school
+
+Box[7]: x=23, y=288, w=1261, h=46, confidence: 84, text: c_atches out the quality of student life on campus will be improved by
+
+Box[8]: x=23, y=331, w=1261, h=43, confidence: 83, text: this new diversion. More high school students will beer of the
+
+Box[9]: x=22, y=376, w=1262, h=44, confidence: 88, text: University of Chicago. This leads to more and better applicants to
+
+Box[10]: x=22, y=419, w=1261, h=41, confidence: 81, text: the college, and a larger class size. Alumni Associationsiwill be able
+
+Box[11]: x=21, y=463, w=1261, h=44, confidence: 87, text: t9 show off a new crop of bright, promising student-athletes to
+
+Box[12]: x=18, y=506, w=1264, h=44, confidence: 85, text: alumni hungry for contact with their Old college. This leads to more
+
+Box[13]: x=17, y=549, w=1264, h=45, confidence: 86, text: donations to the school. And with more studehts paying tuition and
+
+Box[14]: x=16, y=593, w=317, h=33, confidence: 87, text: more donations...
+
