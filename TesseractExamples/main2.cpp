@@ -59,10 +59,10 @@ int main()
 
   ocr("chi_tra",
       "./images/chinese-tradition-0pic.png",
-      "./outputs/chinese-tradition-0pic-chi_tra.txt") || die();
+      "./outputs/chinese-tradition-0pic-chi_tra_components.txt") || die();
 
   ocr("chi_sim",
       "./images/chinese-tradition-0pic.png",
-      "./outputs/chinese-tradition-0pic-chi_sim.txt") || die();
+      "./outputs/chinese-tradition-0pic-chi_sim_components.txt") || die();
 }
 
