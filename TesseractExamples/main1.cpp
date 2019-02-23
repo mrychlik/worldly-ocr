@@ -58,6 +58,6 @@ int ocr(const char *const language, const char* const imagePath, const char *out
 int main()
 {
   // Open input image with leptonica library
-  // Pix *image = pixRead("./images/Paragraph.tif");
+  ocr("eng", "./images/Paragraph.tif", "./outputs/Paragraph.txt");
   ocr("chi_tra", "./images/chinese-tradition-0pic.png", "./outputs/chinese-tradition-0pic-chi_tra.txt");
 }
