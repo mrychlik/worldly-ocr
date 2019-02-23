@@ -4,6 +4,7 @@
 
 bool ocr(const char *const language, const char* const imagePath, const char *outPath)
 {
+  printf("Doing %s\n", imagePath);
 
   FILE *outFile;
   bool status = true;
