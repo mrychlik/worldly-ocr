@@ -22,7 +22,8 @@ bool ocr(const char *const language, const char* const imagePath, const char *ou
 
   PIX *image = pixRead(imagePath);
   tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
-  api->Init("/usr/src/tesseract/", "eng");
+  //api->Init("/usr/src/tesseract/", "eng");
+  api->Init(NULL, language);
   api->SetPageSegMode(tesseract::PSM_AUTO_OSD);
   api->SetImage(image);
   api->Recognize(0);
