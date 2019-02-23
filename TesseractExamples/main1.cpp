@@ -73,4 +73,8 @@ int main()
   ocr("chi_tra",
       "./images/chinese-tradition-0pic.png",
       "./outputs/chinese-tradition-0pic-chi_tra.txt") || die();
+
+  ocr("chi_sim",
+      "./images/chinese-tradition-0pic.png",
+      "./outputs/chinese-tradition-0pic-chi_sim.txt") || die();
 }
