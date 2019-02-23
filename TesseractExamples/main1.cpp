@@ -1,13 +1,17 @@
 #include <tesseract/baseapi.h>
 #include <leptonica/allheaders.h>
 
+//const char LANGUAGE[] = "eng";
+//const char LANGUAGE[] = "chi_sim";
+
+
 int main()
 {
     char *outText;
 
     tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
     // Initialize tesseract-ocr with English, without specifying tessdata path
-    if (api->Init(NULL, "eng")) {
+    if (api->Init(NULL, LANGUAGE)) {
         fprintf(stderr, "Could not initialize tesseract.\n");
         exit(1);
     }
