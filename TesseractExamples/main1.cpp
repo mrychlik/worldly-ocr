@@ -5,7 +5,14 @@
  * 
  * @brief  This example illustrates the use of Tesseract API.
  * 
- * 
+ * From the Wiki:
+ *
+ * If you want to restrict recognition to a sub-rectangle of the image
+ * - call SetRectangle(left, top, width, height) after SetImage. Each
+ * SetRectangle clears the recogntion results so multiple rectangles
+ * can be recognized with the same image. E.g.
+ *
+ *         api->SetRectangle(30, 86, 590, 100);
  */
 
 
