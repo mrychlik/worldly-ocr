@@ -1,0 +1,59 @@
+/**
+ * @file   main2.cpp
+ * @author Marek Rychlik <marek@cannonball.lan>
+ * @date   Sat Feb 23 09:03:03 2019
+ * 
+ * @brief  This example calls GetComponentImages
+ * 
+ * 
+ */
+
+#include <tesseract/baseapi.h>
+#include <leptonica/allheaders.h>
+
+
+bool ocr(const char *const language, const char* const imagePath, const char *outPath)
+{
+  bool status = true;
+
+  Pix *image = pixRead("/usr/src/tesseract/testing/phototest.tif");
+  tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
+  api->Init(NULL, language);
+  api->SetImage(image);
+  Boxa* boxes = api->GetComponentImages(tesseract::RIL_TEXTLINE, true, NULL, NULL);
+  printf("Found %d textline image components.\n", boxes->n);
+  for (int i = 0; i < boxes->n; i++) {
+    BOX* box = boxaGetBox(boxes, i, L_CLONE);
+    api->SetRectangle(box->x, box->y, box->w, box->h);
+    char* ocrResult = api->GetUTF8Text();
+    int conf = api->MeanTextConf();
+    fprintf(stdout, "Box[%d]: x=%d, y=%d, w=%d, h=%d, confidence: %d, text: %s",
+	    i, box->x, box->y, box->w, box->h, conf, ocrResult);
+  }
+  return status;
+}
+
+
+int die()
+{
+  printf("Dead!!!");
+  exit(EXIT_FAILURE);
+}
+
+
+int main()
+{
+  // Open input image with leptonica library
+  ocr("eng",
+      "./images/Paragraph.tif",
+      "./outputs/Paragraph.txt") || die();
+
+  ocr("chi_tra",
+      "./images/chinese-tradition-0pic.png",
+      "./outputs/chinese-tradition-0pic-chi_tra.txt") || die();
+
+  ocr("chi_sim",
+      "./images/chinese-tradition-0pic.png",
+      "./outputs/chinese-tradition-0pic-chi_sim.txt") || die();
+}
+
