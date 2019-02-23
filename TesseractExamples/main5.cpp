@@ -5,7 +5,7 @@
  * 
  * @brief  Example of single symbol API.
  * 
- * NOTE: The API prints some spurious newlines somewhere.
+ * NOTE: The API prints to stdout some spurious newlines somewhere.
  */
 
 
