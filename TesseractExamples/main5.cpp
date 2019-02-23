@@ -1,3 +1,14 @@
+/**
+ * @file   main5.cpp
+ * @author Marek Rychlik <marek@cannonball.lan>
+ * @date   Sat Feb 23 10:07:02 2019
+ * 
+ * @brief  Example of single symbol API.
+ * 
+ * NOTE: The API prints some spurious newlines somewhere.
+ */
+
+
 #include <tesseract/baseapi.h>
 #include <leptonica/allheaders.h>
 
