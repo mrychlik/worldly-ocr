@@ -34,10 +34,14 @@ bool ocr(const char *const language, const char* const imagePath, const char *ou
       fprintf(outFile, "Box[%d]: x=%d, y=%d, w=%d, h=%d, confidence: %d, text: %s",
 	      i, box->x, box->y, box->w, box->h, conf, ocrResult);
     }
+
     fclose(outFile);
   } else {
     status = false;
   }
+
+  api->End();
+  pixDestroy(&image);
 
   return status;
 }
@@ -55,7 +59,7 @@ int main()
   // Open input image with leptonica library
   ocr("eng",
       "./images/Paragraph.tif",
-      "./outputs/Paragraph.txt") || die();
+      "./outputs/Paragraph_components.txt") || die();
 
   ocr("chi_tra",
       "./images/chinese-tradition-0pic.png",
