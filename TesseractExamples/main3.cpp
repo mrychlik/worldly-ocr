@@ -20,7 +20,7 @@ bool ocr(const char *const language, const char* const imagePath, const char *ou
   bool status = true;
 
 
-  // Initialize tesseract-ocr with English, without specifying tessdata path
+  // Initialize tesseract-ocr with language, without specifying tessdata path
   if (api->Init(NULL, language)) {
     fprintf(stderr, "Could not initialize tesseract.\n");
     return false;
@@ -59,7 +59,7 @@ bool ocr(const char *const language, const char* const imagePath, const char *ou
   api->End();
   pixDestroy(&image);
 
-  return status;
+  return true;
 }
 
 
@@ -75,13 +75,13 @@ int main()
   // Open input image with leptonica library
   ocr("eng",
       "./images/Paragraph.tif",
-      "./outputs/Paragraph.txt") || die();
+      "./outputs/Paragraph_boxes.txt") || die();
 
   ocr("chi_tra",
       "./images/chinese-tradition-0pic.png",
-      "./outputs/chinese-tradition-0pic-chi_tra.txt") || die();
+      "./outputs/chinese-tradition-0pic-chi_tra_boxes.txt") || die();
 
   ocr("chi_sim",
       "./images/chinese-tradition-0pic.png",
-      "./outputs/chinese-tradition-0pic-chi_sim.txt") || die();
+      "./outputs/chinese-tradition-0pic-chi_sim_boxes.txt") || die();
 }
