@@ -41,7 +41,7 @@ int ocr(const char *const language, const char* const imagePath, const char *out
 
     if((outFile = fopen(outPath,"r")) != NULL) {
       fprintf(outFile, "OCR output for image %s:\n%s", imagePath, outText);
-      close(outFile);
+      fclose(outFile);
     } else {
       status = 1;
     }
