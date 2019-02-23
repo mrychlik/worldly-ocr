@@ -38,24 +38,24 @@ bool ocr(const char *const language, const char* const imagePath, const char *ou
   tesseract::ResultIterator* ri = api->GetIterator();
   tesseract::PageIteratorLevel level = tesseract::RIL_SYMBOL;
   if(ri != 0) {
-      do {
-          const char* symbol = ri->GetUTF8Text(level);
-          float conf = ri->Confidence(level);
-          if(symbol != 0) {
-	    fprintf(outFile, "symbol %s, conf: %f", symbol, conf);
-              bool indent = false;
-              tesseract::ChoiceIterator ci(*ri);
-              do {
-                  if (indent) printf("\t\t ");
-                  fprintf(outFile, "\t- ");
-                  const char* choice = ci.GetUTF8Text();
-                  fprintf(outFile, "%s conf: %f\n", choice, ci.Confidence());
-                  indent = true;
-              } while(ci.Next());
-          }
-          fprintf(outFile, "---------------------------------------------\n");
-          delete[] symbol;
-      } while((ri->Next(level)));
+    do {
+      const char* symbol = ri->GetUTF8Text(level);
+      float conf = ri->Confidence(level);
+      if(symbol != 0) {
+	fprintf(outFile, "symbol %s, conf: %f", symbol, conf);
+	bool indent = false;
+	tesseract::ChoiceIterator ci(*ri);
+	do {
+	  if (indent) printf("\t\t ");
+	  fprintf(outFile, "\t- ");
+	  const char* choice = ci.GetUTF8Text();
+	  fprintf(outFile, "%s conf: %f\n", choice, ci.Confidence());
+	  indent = true;
+	} while(ci.Next());
+      }
+      fprintf(outFile, "---------------------------------------------\n");
+      delete[] symbol;
+    } while((ri->Next(level)));
   }
 
   return true;
