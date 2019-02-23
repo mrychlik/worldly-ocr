@@ -1,3 +1,14 @@
+/**
+ * @file   main4.cpp
+ * @author Marek Rychlik <marek@cannonball.lan>
+ * @date   Sat Feb 23 09:45:11 2019
+ * 
+ * @brief  Detect orientation, direction, deskew angle, line order
+ * 
+ * Explanation for result codes are in publictypes.h
+ */
+
+
 #include <tesseract/baseapi.h>
 #include <leptonica/allheaders.h>
 
