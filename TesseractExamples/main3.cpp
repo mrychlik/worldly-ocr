@@ -16,8 +16,6 @@ bool ocr(const char *const language, const char* const imagePath, const char *ou
   printf("Doing %s\n", imagePath);
 
   tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
-  FILE *outFile;
-  bool status = true;
 
 
   // Initialize tesseract-ocr with language, without specifying tessdata path
@@ -26,6 +24,8 @@ bool ocr(const char *const language, const char* const imagePath, const char *ou
     return false;
   }
 
+  FILE *outFile;
+  bool status = true;
   if((outFile = fopen(outPath,"w")) == NULL) {
     fprintf(stderr, "Could not open output file.\n");
     return false;
