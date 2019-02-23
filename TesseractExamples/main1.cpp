@@ -40,7 +40,7 @@ bool ocr(const char *const language, const char* const imagePath, const char *ou
   FILE *outFile;
   bool status = true;
 
-  if((outFile = fopen(outPath,"r")) != NULL) {
+  if((outFile = fopen(outPath,"w")) != NULL) {
     fprintf(outFile, "OCR output for image %s:\n%s", imagePath, outText);
     fclose(outFile);
   } else {
