@@ -33,7 +33,7 @@ bool ocr(const char *const language, const char* const imagePath, const char *ou
   // Initialize tesseract-ocr with English, without specifying tessdata path
   if (api->Init(NULL, language)) {
     fprintf(stderr, "Could not initialize tesseract.\n");
-    exit(1);
+    return false;
   }
 
   // Open input image with leptonica library
