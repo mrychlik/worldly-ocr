@@ -17,6 +17,12 @@ bool ocr(const char *const language, const char* const imagePath, const char *ou
   bool status = true;
 
   Pix *image = pixRead(imagePath);
+  if(image == NULL) {
+    fprintf(stderr, "Could not read image: %s\n", imagePath);
+    api->End();
+    return false;
+  }
+
   tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
   api->Init(NULL, language);
   api->SetImage(image);
