@@ -37,7 +37,6 @@ bool ocr(const char *const language, const char* const imagePath, const char *ou
     return false;
   }
 
-
   tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
   // Initialize tesseract-ocr with English, without specifying tessdata path
   if (api->Init(NULL, language)) {
