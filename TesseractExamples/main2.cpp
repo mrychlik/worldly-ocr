@@ -24,7 +24,11 @@ bool ocr(const char *const language, const char* const imagePath, const char *ou
   }
 
   tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
-  api->Init(NULL, language);
+  if(api->Init(NULL, language)) {
+    fprintf(stderr, "Could not initialize tesseract.\n");
+    return false;
+  }
+
   api->SetImage(image);
   Boxa* boxes = api->GetComponentImages(tesseract::RIL_TEXTLINE, true, NULL, NULL);
   printf("Found %d textline image components.\n", boxes->n);
