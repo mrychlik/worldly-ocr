@@ -28,7 +28,6 @@ bool ocr(const char *const language, const char* const imagePath, const char *ou
   // Initialize tesseract-ocr with language, without specifying tessdata path
   if (api->Init(NULL, language)) {
     fprintf(stderr, "Could not initialize tesseract.\n");
-    api->End();
     return false;
   }
 
