@@ -1,0 +1,17 @@
+OCR output for image ./images/phototest.tif:
+Box[0]: x=36, y=92, w=544, h=30, confidence: 90, text: This is a lot of 12 point text to test the
+
+Box[1]: x=36, y=126, w=582, h=31, confidence: 91, text: ocr code and see if it works on all types
+
+Box[2]: x=36, y=160, w=187, h=24, confidence: 90, text: of file format.
+
+Box[3]: x=36, y=194, w=549, h=31, confidence: 91, text: The quick brown dog jumped over the
+
+Box[4]: x=37, y=228, w=548, h=31, confidence: 91, text: lazy fox. The quick brown dog jumped
+
+Box[5]: x=36, y=262, w=561, h=31, confidence: 92, text: over the lazy fox. The quick brown dog
+
+Box[6]: x=43, y=296, w=518, h=31, confidence: 92, text: jumped over the lazy fox. The quick
+
+Box[7]: x=37, y=330, w=524, h=31, confidence: 90, text: brown dog jumped over the lazy fox.
+
