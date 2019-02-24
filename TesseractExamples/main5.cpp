@@ -19,15 +19,21 @@ bool ocr(const char *const language, const char* const imagePath, const char *ou
 
   FILE *outFile;
   bool status = true;
+
+  fprintf(outFile, "OCR output for image %s:\n", imagePath);
+
+  Pix *image = pixRead(imagePath);
+  if(image == NULL) {
+    fprintf(stderr, "Could not read image: %s\n", imagePath);
+    api->End();
+    return false;
+  }
+
   if((outFile = fopen(outPath,"w")) == NULL) {
     fprintf(stderr, "Could not open output file.\n");
     return false;
   }
 
-  fprintf(outFile, "OCR output for image %s:\n", imagePath);
-
-
-  Pix *image = pixRead(imagePath);
   tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
   api->Init(NULL, language);
   api->SetImage(image);
