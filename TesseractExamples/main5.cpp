@@ -73,6 +73,11 @@ int main()
 {
   // Open input image with leptonica library
   ocr("eng",
+      "./images/phototest.tif",
+      "./outputs/phototest_symbol.txt") || die();
+
+
+  ocr("eng",
       "./images/Paragraph.tif",
       "./outputs/Paragraph_symbol.txt") || die();
 
