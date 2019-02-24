@@ -35,6 +35,7 @@ bool ocr(const char *const language, const char* const imagePath, const char *ou
   bool status = true;
   if((outFile = fopen(outPath,"w")) == NULL) {
     fprintf(stderr, "Could not open output file.\n");
+    api->End();
     return false;
   }
 
