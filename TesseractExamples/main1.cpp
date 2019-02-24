@@ -83,7 +83,6 @@ int main()
       "./images/phototest.tif",
       "./outputs/phototest.txt") || die();
 
-
   ocr("eng",
       "./images/Paragraph.tif",
       "./outputs/Paragraph.txt") || die();
