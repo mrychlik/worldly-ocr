@@ -29,6 +29,15 @@ bool ocr(const char *const language, const char* const imagePath, const char *ou
   printf("Doing %s\n", imagePath);
   char *outText;
 
+  // Open input image with leptonica library
+  // Pix *image = pixRead("./images/Paragraph.tif");
+  Pix *image = pixRead(imagePath);
+  if(image == NULL) {
+    fprintf(stderr, "Could not read image: %s\n", imagePath);
+    return false;
+  }
+
+
   tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
   // Initialize tesseract-ocr with English, without specifying tessdata path
   if (api->Init(NULL, language)) {
@@ -37,14 +46,6 @@ bool ocr(const char *const language, const char* const imagePath, const char *ou
     return false;
   }
 
-  // Open input image with leptonica library
-  // Pix *image = pixRead("./images/Paragraph.tif");
-  Pix *image = pixRead(imagePath);
-  if(image == NULL) {
-    fprintf(stderr, "Could not read image: %s\n", imagePath);
-    api->End();
-    return false;
-  }
 
   api->SetImage(image);
   // Get OCR result
