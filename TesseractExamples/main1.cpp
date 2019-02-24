@@ -39,6 +39,11 @@ bool ocr(const char *const language, const char* const imagePath, const char *ou
   // Open input image with leptonica library
   // Pix *image = pixRead("./images/Paragraph.tif");
   Pix *image = pixRead(imagePath);
+  if(image == NULL) {
+    fprintf(stderr, "Could not read image: %s\n", imagePath);
+    api->End();
+    return false;
+  }
 
   api->SetImage(image);
   // Get OCR result
