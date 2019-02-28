@@ -17,7 +17,7 @@ for l = 1:length(lines)
         obj = objects(lines{l}(j));
         b = obj.BoundingBox;
         x=floor(b(1)); y=floor(b(2)); w=ceil(b(3)); h=ceil(b(4));
-        fprintf(fh, '%c %d %d %d %d %d\n', 'X', x, ph - y, x+w, ph-(y+h), l-1);
+        fprintf(fh, '%c %d %d %d %d %d\n', 'X', x, ph-(y+h), x+w, ph - y, l-1);
     end
     % Mark the end of the line
     fprintf(fh, '\t%d %d %d %d %d\n', '\t', x, ph-y, x+w, ph-(y+h),l-1);
