@@ -19,7 +19,7 @@ for j=1:length(objects)
 end
 
 for j=1:length(objects)
-    J = zeros([w,h],'uint8');
+    J = zeros([max_h,max_w],'uint8');
     BW = objects(j).bwimage;
     [h,w] = size(BW);
     x = round((max_w - w)/2);
