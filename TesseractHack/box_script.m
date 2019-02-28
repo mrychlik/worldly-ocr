@@ -2,7 +2,9 @@
 % File: box-script.m
 % Author: Marek Rychlik
 %
-% This file builds a box file from matlab
+% This file builds a box file from MATLAB.
+% The numbers appear consistent with automated Tesseract script up to 1 pixel.
+%
 
 [I,cmap]=imread('BoxFileExample/39097174-8ee9c5d4-4676-11e8-9023-a9657006eabc.png');
 [ph,pw] = size(I);
