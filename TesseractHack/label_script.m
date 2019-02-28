@@ -17,11 +17,6 @@ for j=1:length(objects)
     max_h = max(max_h, h);
     max_w = max(max_w, w);
 end
-    
-    
-
-
-
 
 for j=1:length(objects)
     J = zeros([w,h],'uint8');
