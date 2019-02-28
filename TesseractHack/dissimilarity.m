@@ -3,5 +3,5 @@ function Dis = dissimilarity(obj1, obj2)
     F2 = fft2(obj2.grayscaleimage);
     G = (F1 .* conj(F2)) ./ (eps + abs(F1) .* abs(F2));
     H = abs(ifft2(G));
-    Dis = max(H(:));
+    Dis = entropy(round(H(:)));
 end
