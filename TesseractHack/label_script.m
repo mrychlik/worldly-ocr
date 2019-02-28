@@ -7,6 +7,7 @@ else
     save(savefile,'objects','lines');
 end
 
+
 for j=1:length(objects)
     objects(j).grayscaleimage = objects(j).bwimage .* 255;
     objects(j).char = ' ';
