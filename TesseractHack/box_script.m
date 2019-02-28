@@ -18,7 +18,9 @@ else
     save(savefile,'objects','lines');
 end
 
-fh = fopen('box_file.txt','w');
+boxfile=fullfile('Cache','box_file.txt');
+
+fh = fopen(boxfile,'w');
 
 page=0;
 for l = 1:length(lines)
