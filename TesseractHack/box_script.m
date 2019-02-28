@@ -18,6 +18,7 @@ for l = 1:length(lines)
         fprintf(fh, '%c %d %d %d %d 0\n', 'X', x, y, x+w, y+h);
     end
     % Mark the end of the line
+    fprintf(fh, '%c %d %d %d %d 0\n', '\t', x, y, x+w, y+h);
 end
 
 fclose(fh);
