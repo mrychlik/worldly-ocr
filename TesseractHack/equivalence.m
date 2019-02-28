@@ -39,7 +39,7 @@ classified = zeros(1,n);
 for j = 1:(n-1)
     classified(j)=1;
     for k = (j+1):n
-        D = dissimilarity(object(j), object(k));
+        D = dissimilarity(objects(j), objects(k));
         if classified(k)
             continue;
         end
