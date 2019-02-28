@@ -26,11 +26,11 @@ for l = 1:length(lines)
         obj = objects(lines{l}(j));
         b = obj.BoundingBox;
         x=floor(b(1)); y=floor(b(2)); w=ceil(b(3)); h=ceil(b(4));
-        fprintf(fh, '%c %d %d %d %d %d\n', 'X', x, ph-(y+h), x+w, ph - y, page);
+        fprintf(fh, '%c %d %d %d %d %d\n', 'X', x, ph-(y+h), x+w, ph - (y+h), page);
     end
     % Mark the end of the line, except for the last line
     if l < length(lines)
-        fprintf(fh, '\t%d %d %d %d %d\n', x+w, ph-(y+h), x+w, ph-y, page);
+        fprintf(fh, '\t%d %d %d %d %d\n', x+w, ph-(y+h), x+w, ph-(y+h), page);
     end
 end
 
