@@ -149,3 +149,4 @@ for ob=1:num_objects
     objects(ob).bwimage=imcrop(and(BW,mask),r);
 end;
 close(h);
+end
