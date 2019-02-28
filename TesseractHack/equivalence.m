@@ -50,7 +50,7 @@ for j = 1:(n-1)
         if classified(k)
             continue;
         end
-        if D > threshold
+        if D < threshold
             Q(j,k)=1;
             classified(k) = 1;
         end
