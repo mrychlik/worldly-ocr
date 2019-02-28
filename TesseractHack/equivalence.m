@@ -35,7 +35,7 @@ n = length(objects);
 Q = zeros(n,n);
 threshold = 0.5;
 classified = zeros(1,n);
-class_rep = zeros(1,n);
+class_reps = zeros(1,n);
 
 
 for j = 1:(n-1)
@@ -43,7 +43,7 @@ for j = 1:(n-1)
         continue;
     end;
     classified(j)=1;
-    class_rep(j)=1;
+    class_reps(j)=1;
     for k = (j+1):n
         D = dissimilarity(objects(j), objects(k));
         if classified(k)
