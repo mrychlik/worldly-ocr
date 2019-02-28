@@ -5,5 +5,6 @@ for j=1:n
     for k=j:n
         D(j,k) = dissimilarity(objects(j),objects(k));
     end
+    imagesc(D),drawnow;
 end
 D = D + D';
