@@ -56,7 +56,7 @@ for j = 1:(n-1)
         end
     end
 end
-imagesc(Q);
+imagesc(Q),drawnow;
             
 reps = objects(find(class_reps));
 label_objects(reps);
