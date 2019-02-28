@@ -30,7 +30,7 @@ for l = 1:length(lines)
     end
     % Mark the end of the line, except for the last line
     if l < length(lines)
-        fprintf(fh, '\t%d %d %d %d %d\n', x+w, ph-(y+h), x+w, ph-(y+h), page);
+        fprintf(fh, '\t%d %d %d %d %d\n', x+w, ph-y, x+w, ph-y, page);
     end
 end
 
