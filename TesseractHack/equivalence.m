@@ -33,7 +33,7 @@ end
 
 n = length(objects);
 Q = zeros(n,n);
-threshold = 0.6;
+threshold = 0.1;
 classified = zeros(1,n);
 class_reps = zeros(1,n);
 
@@ -50,7 +50,7 @@ for j = 1:(n-1)
         if classified(k)
             continue;
         end
-        if D > threshold
+        if D < threshold
             Q(j,k)=1;
             classified(k) = 1;
         end
