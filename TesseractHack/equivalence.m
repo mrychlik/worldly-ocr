@@ -44,6 +44,7 @@ for j = 1:(n-1)
     end;
     classified(j)=1;
     class_reps(j)=1;
+    disp([j,length(find(class_reps))]);
     for k = (j+1):n
         D = dissimilarity(objects(j), objects(k));
         if classified(k)
@@ -54,6 +55,7 @@ for j = 1:(n-1)
             classified(k) = 1;
         end
     end
-    imagesc(Q),drawnow;
 end
             
+reps = objects(find(class_reps));
+label_objects(reps);
