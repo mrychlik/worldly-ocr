@@ -48,5 +48,6 @@ for j = 1:(n-1)
             classified(k) = 1;
         end
     end
+    imagesc(Q),drawnow;
 end
             
