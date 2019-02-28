@@ -13,7 +13,7 @@ max_h = 0;
 max_w = 0;
 
 for j=1:length(objects)
-    [h,w] = size(objects(j).bwimage)
+    [h,w] = size(objects(j).bwimage);
     max_h = max(max_h, h);
     max_w = max(max_w, w);
 end
