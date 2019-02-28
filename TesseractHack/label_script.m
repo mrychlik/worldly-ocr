@@ -25,7 +25,7 @@ for j=1:length(objects)
     x = (max_w - w)/2;
     y = (max_h - h)/2;
     J((y+1):(y+h),(x+1):(x+w)) = BW .* 255;
-    objects(j).grayscaleimage = 
+    objects(j).grayscaleimage = J;
     objects(j).char = ' ';
 end
 
