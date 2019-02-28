@@ -14,7 +14,8 @@ Each line in the box file matches a 'character' (glyph) in the tiff image.
 
 <symbol> <left> <bottom> <right> <top> <page>
 
-To mark an end-of-textline, a special line must be inserted after a series of lines.
+To mark an end-of-textline, a special line must be inserted after a
+series of lines.
 
 <tab> <left> <bottom> <right> <top> <page>
 
