@@ -20,7 +20,7 @@ for l = 1:length(lines)
         fprintf(fh, '%c %d %d %d %d %d\n', 'X', x, ph-(y+h), x+w, ph - y, l-1);
     end
     % Mark the end of the line
-    fprintf(fh, '\t%d %d %d %d %d\n', x+w, ph-(y+h), x+w+1, ph-y, l-1);
+    fprintf(fh, '\t%d %d %d %d %d\n', x+w, ph-(y+h), x+w, ph-y, l-1);
 end
 
 fclose(fh);
