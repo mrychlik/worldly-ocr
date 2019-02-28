@@ -6,7 +6,9 @@ As with base Tesseract, there is a choice between rendering synthetic
 training data from fonts, or labeling some pre-existing images (like
 ancient manuscripts for example).
 
-In either case, the required format is still the tiff/box file pair, except that the boxes only need to cover a textline instead of individual characters.
+In either case, the required format is still the tiff/box file pair,
+except that the boxes only need to cover a textline instead of
+individual characters.
 
 Each line in the box file matches a 'character' (glyph) in the tiff image.
 
