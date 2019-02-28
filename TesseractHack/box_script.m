@@ -15,10 +15,10 @@ for l = 1:length(lines)
         obj = objects(lines{l}(j));
         b = obj.BoundingBox;
         x=floor(b(1)); y=floor(b(2)); w=ceil(b(3)); h=ceil(b(4));
-        fprintf(fh, '%c %d %d %d %d 0\n', 'X', x, y, x+w, y+h);
+        fprintf(fh, '%c %d %d %d %d %d\n', 'X', x, y, x+w, y+h, l-1);
     end
     % Mark the end of the line
-    fprintf(fh, '%c %d %d %d %d 0\n', '\t', x, y, x+w, y+h);
+    fprintf(fh, '\t%d %d %d %d 0\n', '\t', x, y, x+w, y+h,l-1);
 end
 
 fclose(fh);
