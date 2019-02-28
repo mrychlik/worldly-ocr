@@ -63,12 +63,13 @@ for j = 1:n
     if class_reps(j)
         idx = find(Q(j,:));
         s = length(idx);
-        t = ceil(sqrt(s));
+        t = ceil(sqrt(s+1));
+        subplot(t,t,1), imagesc(objects(idx(j)).grayscaleimage);
         for k=1:s
-            subplot(t,t,k), imagesc(objects(idx(k)).grayscaleimage);
+            subplot(t,t,k+1), imagesc(objects(idx(k)).grayscaleimage);
         end
         drawnow, pause(2);
-        clf
+        clf;
     end
 end
 
