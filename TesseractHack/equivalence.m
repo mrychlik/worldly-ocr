@@ -37,6 +37,9 @@ threshold = 0.5;
 classified = zeros(1,n);
 
 for j = 1:(n-1)
+    if classified(j)
+        continue;
+    end;
     classified(j)=1;
     for k = (j+1):n
         D = dissimilarity(objects(j), objects(k));
