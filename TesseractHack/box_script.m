@@ -12,6 +12,7 @@ end
 
 fh = fopen('box_file.txt','w');
 
+page=0;
 for l = 1:length(lines)
     for j=1:length(lines{l})
         obj = objects(lines{l}(j));
@@ -19,8 +20,10 @@ for l = 1:length(lines)
         x=floor(b(1)); y=floor(b(2)); w=ceil(b(3)); h=ceil(b(4));
         fprintf(fh, '%c %d %d %d %d %d\n', 'X', x, ph-(y+h), x+w, ph - y, l-1);
     end
-    % Mark the end of the line
-    fprintf(fh, '\t%d %d %d %d %d\n', x+w, ph-(y+h), x+w, ph-y, l-1);
+    % Mark the end of the line, except for the last line
+    if l < length(lines)
+        fprintf(fh, '\t%d %d %d %d %d\n', x+w, ph-(y+h), x+w, ph-y, l-1);
+    end
 end
 
 fclose(fh);
