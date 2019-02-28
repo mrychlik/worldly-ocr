@@ -67,7 +67,7 @@ for j = 1:n
         for k=1:s
             subplot(t,t,k), imagesc(objects(idx(k)).grayscaleimage);
         end
-        drawnow, pause(2);
+        drawnow, pause(0.1);
         clf;
     end
 end
