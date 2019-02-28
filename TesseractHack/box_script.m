@@ -1,3 +1,9 @@
+%
+% File: box-script.m
+% Author: Marek Rychlik
+%
+% This file builds a box file from matlab
+
 [I,cmap]=imread('BoxFileExample/39097174-8ee9c5d4-4676-11e8-9023-a9657006eabc.png');
 [ph,pw] = size(I);
 
