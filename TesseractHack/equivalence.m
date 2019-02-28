@@ -33,7 +33,7 @@ end
 
 n = length(objects);
 Q = zeros(n,n);
-threshold = 0.4;
+threshold = 0.5;
 classified = zeros(1,n);
 class_reps = zeros(1,n);
 
@@ -56,7 +56,20 @@ for j = 1:(n-1)
         end
     end
 end
+
 imagesc(Q),drawnow;
             
+for j = 1:n
+    if class_reps(j)
+        idx = find(Q(j,:));
+        s = length(idx);
+        t = ceil(sqrt(s));
+        for k=1:s
+            subplot(t,t,k), imagesc(objects(idx(k)).grayscaleimage);
+        end
+        drawnow, pause(10)
+    end
+end
+
 reps = objects(find(class_reps));
 label_objects(reps);
