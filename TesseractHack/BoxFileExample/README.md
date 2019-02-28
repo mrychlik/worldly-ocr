@@ -1,6 +1,6 @@
 # From Tesseract Wiki
 
-# Making Box Files
+## Making Box Files
 
 As with base Tesseract, there is a choice between rendering synthetic
 training data from fonts, or labeling some pre-existing images (like
