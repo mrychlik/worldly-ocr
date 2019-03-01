@@ -33,7 +33,7 @@ end
 
 n = length(objects);
 Q = zeros(n,n);
-threshold = .8;
+threshold = .85;
 classified = zeros(1,n);
 class_reps = zeros(1,n);
 
