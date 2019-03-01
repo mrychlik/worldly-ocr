@@ -11,11 +11,10 @@
 
 imagefile = fullfile('BoxFileExample','Paragraph.tif');
 boxfile=fullfile('Cache','ParagraphBoxFile.txt');
+savefile=fullfile('Cache','Paragraph.mat');
 
 [I,cmap]=imread(imagefile);
 [ph,pw] = size(I);
-
-savefile=fullfile('Cache','objects.mat');
 
 if exist(savefile,'file') == 2
     load(savefile)
