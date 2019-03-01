@@ -33,7 +33,7 @@ end
 
 n = length(objects);
 Q = zeros(n,n);
-threshold = .85;
+threshold = .9;
 classified = zeros(1,n);
 class_reps = zeros(1,n);
 
@@ -67,7 +67,7 @@ for j = 1:n
         for k=1:s
             subplot(t,t,k), imagesc(objects(idx(k)).grayscaleimage);
         end
-        drawnow, pause(0.1);
+        drawnow, pause(1);
         clf;
     end
 end
