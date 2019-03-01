@@ -69,5 +69,6 @@ for j = 1:n
     end
 end
 
+% Label class representatives
 reps = objects(find(class_reps));
 reps = label_objects(reps);
