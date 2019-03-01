@@ -9,6 +9,7 @@ function Dis = dissimilarity(obj1, obj2)
     F(1:2,(end-1):end) = 1;
     F((end-1):end,1:2) = 1;
     F((end-1):end,(end-1):end) = 1;
+    F = F./4;
     % Apply filter in a circular fashion
     K = ifft2(fft2(H) .* fft2(F));
     Dis=max(abs(K(:)));
