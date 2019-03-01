@@ -33,10 +33,9 @@ end
 
 n = length(objects);
 Q = zeros(n,n);
-threshold = .7;
+threshold = .5;
 classified = zeros(1,n);
 class_reps = zeros(1,n);
-num_modes = 2;
 
 
 for j = 1:(n-1)
@@ -47,7 +46,7 @@ for j = 1:(n-1)
     class_reps(j)=1;
     disp([j,length(find(class_reps))]);
     for k = (j+1):n
-        D = dissimilarity(objects(j), objects(k), num_modes);
+        D = dissimilarity(objects(j), objects(k));
         if classified(k)
             continue;
         end
