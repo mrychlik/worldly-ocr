@@ -9,5 +9,5 @@ function Dis = dissimilarity(obj1, obj2, k)
     F((end-1):end,1:2) = 1;
     F((end-1):end,(end-1):end) = 1;
     K = ifft2(fft2(H) .* fft(F));
-    Dis=max(K(:));
+    Dis=max(abs(K(:)));
 end
