@@ -6,7 +6,10 @@
 % The numbers appear consistent with automated Tesseract script up to 1 pixel.
 %
 
-[I,cmap]=imread('BoxFileExample/39097174-8ee9c5d4-4676-11e8-9023-a9657006eabc.png');
+%imagefile = fullfile('BoxFileExample','39097174-8ee9c5d4-4676-11e8-9023-a9657006eabc.png');
+imagefile = fullfile('BoxFileExample','Paragraph.tif');
+
+[I,cmap]=imread(imagefile);
 [ph,pw] = size(I);
 
 savefile=fullfile('Cache','objects.mat');
@@ -18,7 +21,7 @@ else
     save(savefile,'objects','lines');
 end
 
-boxfile=fullfile('Cache','box_file.txt');
+boxfile=fullfile('Cache','ParagraphBoxFile.txt');
 
 fh = fopen(boxfile,'w');
 
