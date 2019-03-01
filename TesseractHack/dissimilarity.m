@@ -4,5 +4,5 @@ function Dis = dissimilarity(obj1, obj2)
     G = (F1 .* conj(F2)) ./ (eps + abs(F1) .* abs(F2));
     H = abs(ifft2(G));
     K = sort(H(:));
-    Dis = sum(K(1:10)) ./ sum(K);
+    Dis=sum(K((end-7):end));
 end
