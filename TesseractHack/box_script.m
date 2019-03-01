@@ -7,7 +7,10 @@
 %
 
 %imagefile = fullfile('BoxFileExample','39097174-8ee9c5d4-4676-11e8-9023-a9657006eabc.png');
+
+
 imagefile = fullfile('BoxFileExample','Paragraph.tif');
+boxfile=fullfile('Cache','ParagraphBoxFile.txt');
 
 [I,cmap]=imread(imagefile);
 [ph,pw] = size(I);
@@ -20,8 +23,6 @@ else
     [objects,lines]=bounding_boxes(~I);
     save(savefile,'objects','lines');
 end
-
-boxfile=fullfile('Cache','ParagraphBoxFile.txt');
 
 fh = fopen(boxfile,'w');
 
