@@ -3,13 +3,6 @@ function Dis = dissimilarity(obj1, obj2)
     F2 = fft2(obj2.grayscaleimage);
     G = (F1 .* conj(F2)) ./ (eps + abs(F1) .* abs(F2));
     H = abs(ifft2(G));
-    % Make a filter
-    F = zeros(size(H));
-    F(1:2,1:2) = 1;
-    F(1:2,(end-1):end) = 1;
-    F((end-1):end,1:2) = 1;
-    F((end-1):end,(end-1):end) = 1;
-    % Apply filter in a circular fashion
-    K = ifft2(fft2(H) .* fft2(F));
+    K = H + circshift(H,1,1) + circshift(H,1,2) + circshift(H,-1,1) + circshift(H,-1,2);
     Dis=max(abs(K(:)));
 end
