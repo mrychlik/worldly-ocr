@@ -30,7 +30,6 @@ for j=1:length(objects)
 end
 
 % Find equivalent objects
-
 n = length(objects);
 Q = zeros(n,n);
 threshold = .9;
@@ -73,4 +72,4 @@ for j = 1:n
 end
 
 reps = objects(find(class_reps));
-label_objects(reps);
+reps = label_objects(reps);
