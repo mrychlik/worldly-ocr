@@ -14,6 +14,7 @@ boxfile=fullfile('Cache','ParagraphBoxFile.txt');
 savefile=fullfile('Cache','Paragraph.mat');
 
 [I,cmap]=imread(imagefile);
+I = im2bw(rgb2gray(I(:,:,1:3)));
 [ph,pw] = size(I);
 
 if exist(savefile,'file') == 2
