@@ -35,8 +35,6 @@ Q = zeros(n,n);
 threshold = .9;
 classified = zeros(1,n);
 class_reps = zeros(1,n);
-
-
 for j = 1:(n-1)
     if classified(j)
         continue;
@@ -56,8 +54,8 @@ for j = 1:(n-1)
     end
 end
 
+% Visualize classes
 imagesc(Q),drawnow;
-            
 for j = 1:n
     if class_reps(j)
         idx = [j,find(Q(j,:))];
