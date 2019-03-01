@@ -33,7 +33,7 @@ end
 % Find equivalent objects
 n = length(objects);
 Q = zeros(n,n);
-threshold = .9;
+threshold = .85;
 classified = zeros(1,n);
 class_reps = zeros(1,n);
 for j = 1:(n-1)
