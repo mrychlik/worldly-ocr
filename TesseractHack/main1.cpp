@@ -76,8 +76,10 @@ bool ocr(const char *const language, const char* const imagePath, const char *ou
     return false;
   }
 
-  BOXA* bb = pixConnCompBB(image, 8); // to find bounding boxes of all connected components on the image
+  Pix* pixb = pixConvertTo1(image, 128);
+  BOXA* bb = pixConnCompBB(pixb, 8); // to find bounding boxes of all connected components on the image
 
+  fprintf(stderr, "In %s found %d objects.\n", imagePath, bb->n);
 
   api->SetImage(image);
 
