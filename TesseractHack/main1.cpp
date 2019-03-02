@@ -44,6 +44,10 @@
  *
  * pixDestroy(&pix);
  *
+ * How to binarize image with Leptonica:
+ * (https://tpgit.github.io/Leptonica/pixconv_8c_source.html)
+ *
+ * PIX *pixConvertTo1(PIX *pixs, l_int32 threshold);
  */
 
 
@@ -72,7 +76,11 @@ bool ocr(const char *const language, const char* const imagePath, const char *ou
     return false;
   }
 
+  BOXA* bb = pixConnCompBB(image, 8); // to find bounding boxes of all connected components on the image
+
+
   api->SetImage(image);
+
   // Get OCR result
   outText = api->GetUTF8Text();
     
