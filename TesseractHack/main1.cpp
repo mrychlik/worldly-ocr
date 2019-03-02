@@ -38,11 +38,11 @@
  * BOX* box = boxCreate(startX, startY, width, height);
  * PIX* pixd= pixClipRectangle(pixs, box, NULL);
  * boxDestroy(&box);
-
+ *
  * and for PIX* there's
-
+ *
  * pixDestroy(&pix);
-
+ *
  */
 
 
