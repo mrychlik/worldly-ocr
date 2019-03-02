@@ -54,6 +54,30 @@
 #include <tesseract/baseapi.h>
 #include <leptonica/allheaders.h>
 
+/** 
+ * Get box containing all boxes in the array boxas.
+ * 
+ * @param boxas Source array of boxes.
+ * 
+ * @return A box containing all source boxes.
+ */
+BOX *combineBoxes(BOXA *boxas)
+{
+  if(boxas->n == 0) {
+    return NULL;
+  }
+
+  BOX *box = boxaGetBox(boxas, 0, L_CLONE), *boxt;
+  l_int32 i;
+  for (i = 1; i < boxas->n; i++) {
+    boxt = boxaGetBox(boxas, i, L_CLONE);
+    box = boxBoundingRegion(box, boxt);
+    boxDestroy(&boxt);
+  }
+
+  return box;
+}
+
 bool ocr(const char *const language, const char* const imagePath, const char *outPath)
 {
   printf("Doing %s\n", imagePath);
@@ -80,10 +104,12 @@ bool ocr(const char *const language, const char* const imagePath, const char *ou
   Pix* pixb = pixConvertTo1(image, 128);
   // Find 8-connected bounding boxes of components
   BOXA* bb = pixConnCompBB(pixb, 8); 
+  BOX *box = combineBoxes(bb);
 
   fprintf(stderr, "In %s found %d objects.\n", imagePath, bb->n);
 
   api->SetImage(image);
+  api->SetRectangle(box->x, box->y, box->w, box->h);
 
   // Get OCR result
   outText = api->GetUTF8Text();
