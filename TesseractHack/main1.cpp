@@ -34,6 +34,7 @@
  * BOXA* bil = boxaIntersectsBox(bb, b);
  *
  * Cropping image with Leptonica:
+ * (http://tpgit.github.io/Leptonica/croptext_8c_source.html)
  *
  * BOX* box = boxCreate(startX, startY, width, height);
  * PIX* pixd= pixClipRectangle(pixs, box, NULL);
