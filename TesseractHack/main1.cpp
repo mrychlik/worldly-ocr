@@ -126,6 +126,7 @@ bool ocr(const char *const language, const char* const imagePath, const char *ou
 
   // Destroy used object and release memory
   api->End();
+
   delete [] outText;
 
   pixDestroy(&image);
