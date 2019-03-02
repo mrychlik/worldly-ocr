@@ -28,9 +28,21 @@
  * As of C++17, std::filesystem is part of the standard library and
  * can be found in the <filesystem> header (no longer "experimental").
  *
- * Using leptonica:
+ * Using Leptonica library:
+ *
  * BOXA* bb = pixConnCompBB(pixb, 8); // to find bounding boxes of all connected components on the image
  * BOXA* bil = boxaIntersectsBox(bb, b);
+ *
+ * Cropping image with Leptonica:
+ *
+ * BOX* box = boxCreate(startX, startY, width, height);
+ * PIX* pixd= pixClipRectangle(pixs, box, NULL);
+ * boxDestroy(&box);
+
+ * and for PIX* there's
+
+ * pixDestroy(&pix);
+
  */
 
 
