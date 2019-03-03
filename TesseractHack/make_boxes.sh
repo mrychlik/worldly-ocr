@@ -11,10 +11,22 @@ FONTDIR=/home/marek/.wine/drive_c/windows/Fonts
 # specified relative to this directory
 TESSERACT_HOME=/home/marek/TESSERACT/tesseract
 
+# Language data directory, relative to TESSERACT_HOME
+LANGDATA_DIR='../langdata'
+
+# Where tessdata was installed. NOTE: put file eng.traineddata there.
+# This file does not come with the tesseract distribution. It must be
+# manually added after downloading from one of these repositories:
+#
+#    https://github.com/tesseract-ocr/tessdata_best
+#    https://github.com/tesseract-ocr/tessdata_fast
+#    https://github.com/tesseract-ocr/tessdata
+#
+TESSDATA_DIR='/usr/local/share/tessdata'
+
+
 cd $TESSERACT_HOME
 
-LANGDATA_DIR='../langdata'
-TESSDATA_DIR='/usr/local/share/tessdata'
 
 
 
