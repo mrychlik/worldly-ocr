@@ -1,4 +1,17 @@
-function [cluster_idx, cluster_num, cluster_reps] = fourier_clustering(objects)
+function [cluster_idx, num_clusters, cluster_reps] = fourier_clustering(objects)
+%Cluster by Fourier method (motion compensation)
+% [CLUSTER_IDX, NUM_CLUSTERS, CLUSTER_REPS] = FOURIER_CLUSTERING(OBJECTS)
+% accepts an array of structures OBJECTS, which contains a field
+% 'GRAYSCALEIMAGE', which should be an intensity image. The images are
+% cropped and centered in a box of uniform size. Then it is determined
+% whether the objects are obtained by translation from each other,
+% subject to noise.
+% Objects are divided into approximate equivalence classes (clusters).
+% The output value NUM_CLUSTERS is the number of clusters, and CLUSTER_IDX
+% is a vector of integers 1:LENGTH(OBJECTS) which contains the assignment
+% of objects to clusters (i.e. a number in the range 1:NUM_CLUSTERS.
+% Additionally, CLUSTER_REPS 
+
 fprintf('Determining maximum object size...')
 max_h = 0;
 max_w = 0;
@@ -8,22 +21,6 @@ for j=1:length(objects)
     max_w = max(max_w, w);
 end
 fprintf('Max. height: %g, max. width: %g', max_h, max_w);
-
-
-wb = waitbar(0, 'Cropping/centering objects and converting to grayscale...');
-num_objects = length(objects);
-for j=1:num_objects;
-    waitbar(j/num_objects, wb);
-    J = zeros([max_h,max_w],'uint8');
-    BW = objects(j).bwimage;
-    [h,w] = size(BW);
-    x = round((max_w - w)/2);
-    y = round((max_h - h)/2);
-    J( (y+1):(y+h), (x+1):(x+w) ) = BW .* 255;
-    objects(j).grayscaleimage = J;
-    objects(j).char = ' ';
-end
-close(wb);
 
 % Find equivalent objects
 n = length(objects);
@@ -53,12 +50,12 @@ end
 % Visualize classes
 imagesc(Q),drawnow;
 cluster_idx = zeros(1,n);
-cluster_num = 0;
+num_clusters = 0;
 for j = 1:n
     if cluster_reps(j)
         idx = [j,find(Q(j,:))];
-        cluster_num = cluster_num + 1;
-        class_idx(idx) = cluster_num;
+        num_clusters = num_clusters + 1;
+        class_idx(idx) = num_clusters;
         s = length(idx);
         t = ceil(sqrt(s));
         for k=1:s
@@ -68,3 +65,4 @@ for j = 1:n
         clf;
     end
 end
+cluster_reps=find(cluster_reps);
