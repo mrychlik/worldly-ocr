@@ -1,4 +1,7 @@
 % File: fourier_clustering_script.m
+% Author: Marek Rychlik
+% Date: 3-3-2019 3:33:14 PM
+%
 % In this script we implement an unsupervised learning strategy for
 % labeling characters in a file, followed by a supervised strategy
 % (manual labeling of cluster representatives).
