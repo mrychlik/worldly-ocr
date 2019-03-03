@@ -1,4 +1,4 @@
-function [class_idx, class_num, class_reps] = fourier_clustering(objects)
+function [cluster_idx, cluster_num, class_reps] = fourier_clustering(objects)
 fprintf('Determining maximum object size...')
 max_h = 0;
 max_w = 0;
