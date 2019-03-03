@@ -19,5 +19,5 @@ for f = 1:num_files
     subplot(1,2,1), t=text(0,0,native2unicode(bytes, enc)), set(t,'FontSize',20);
     I=imread(fpath);
     subplot(1,2,2),imshow(I), drawnow;
-    pause(5);
+    pause(.2);
 end
