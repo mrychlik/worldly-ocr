@@ -4,6 +4,7 @@ text_dir=fullfile('Outputs');
 
 num_files = length(ligature_files);
 enc = 'UTF8';                           % Encoding
+fontsz=50;
 
 for f = 1:num_files
     fname = ligature_files(f).name;
@@ -16,7 +17,7 @@ for f = 1:num_files
     bytes=fread(fd,'uint8')';
     fclose(fd);
     clf;
-    subplot(1,2,1), t=text(0,0,native2unicode(bytes, enc)), set(t,'FontSize',20);
+    subplot(1,2,1), t=text(0,0,native2unicode(bytes, enc)), set(t,'FontSize',fontsz);
     I=imread(fpath);
     subplot(1,2,2),imshow(I), drawnow;
     pause(1);
