@@ -76,7 +76,7 @@ for j = 1:n
     if cluster_reps(j)
         idx = [j,find(Q(j,:))];
         num_clusters = num_clusters + 1;
-        class_idx(idx) = num_clusters;
+        cluster_idx(idx) = num_clusters;
         if strcmp(visualize,'on')
             s = length(idx);
             t = ceil(sqrt(s));
