@@ -12,7 +12,7 @@ for f = 1:num_files
     fpath = fullfile(ligature_dir, fname);
     [~,fbase,ext] = fileparts(fname);
     tfpath = fullfile(text_dir,[fbase,'.txt']);subplot(2,1,1),
-    disp(tfpath);
+    %disp(tfpath);
     fd=fopen(tfpath,'r');
     bytes=fread(fd,'uint8')';
     fclose(fd);
