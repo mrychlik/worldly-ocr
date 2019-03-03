@@ -39,3 +39,6 @@ cd java
   --train_listfile ~/tesstutorial/engtrain/eng.training_files.txt \
   --eval_listfile ~/tesstutorial/engtrain/eng.training_files.txt \
   --max_iterations 5000 >& ~/tesstutorial/engoutput/basetrain.log
+
+# Watch logfile from another window
+# tail -f ~/tesstutorial/engoutput/basetrain.log
