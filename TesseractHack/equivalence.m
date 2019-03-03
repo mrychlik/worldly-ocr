@@ -12,13 +12,19 @@ end
 max_h = 0;
 max_w = 0;
 
+fprintf('Determining maximum object size...')
 for j=1:length(objects)
     [h,w] = size(objects(j).bwimage);
     max_h = max(max_h, h);
     max_w = max(max_w, w);
 end
+fprintf('Max. height: %g, max. width: %g', max_h, max_w);
 
-for j=1:length(objects)
+
+h = waitbar(0, 'Cropping/centering objects and converting to grayscale...');
+num_objects = length(objects);
+for j=1:num_objects;
+    waitbar(j/num_objects)
     J = zeros([max_h,max_w],'uint8');
     BW = objects(j).bwimage;
     [h,w] = size(BW);
@@ -28,6 +34,7 @@ for j=1:length(objects)
     objects(j).grayscaleimage = J;
     objects(j).char = ' ';
 end
+
 
 % Find equivalent objects
 n = length(objects);
