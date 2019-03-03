@@ -6,7 +6,9 @@
 % The numbers appear consistent with automated Tesseract script up to 1 pixel.
 %
 
-%imagefile = fullfile('BoxFileExample','39097174-8ee9c5d4-4676-11e8-9023-a9657006eabc.png');
+imagefile = fullfile('BoxFileExample','39097174-8ee9c5d4-4676-11e8-9023-a9657006eabc.png');
+boxfile=fullfile('Cache','objects.txt');
+savefile=fullfile('Cache','objects.mat');
 
 
 imagefile = fullfile('BoxFileExample','Paragraph.tif');
