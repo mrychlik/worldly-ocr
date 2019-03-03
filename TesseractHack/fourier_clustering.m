@@ -65,22 +65,24 @@ for j = 1:(n-1)
     end
 end
 
-% Visualize classes
-imagesc(Q),drawnow;
-cluster_idx = zeros(1,n);
-num_clusters = 0;
-for j = 1:n
-    if cluster_reps(j)
-        idx = [j,find(Q(j,:))];
-        num_clusters = num_clusters + 1;
-        class_idx(idx) = num_clusters;
-        s = length(idx);
-        t = ceil(sqrt(s));
-        for k=1:s
-            subplot(t,t,k), imagesc(objects(idx(k)).grayscaleimage);
+if strcmp(visualize,'on')
+    % Visualize classes
+    imagesc(Q),drawnow;
+    cluster_idx = zeros(1,n);
+    num_clusters = 0;
+    for j = 1:n
+        if cluster_reps(j)
+            idx = [j,find(Q(j,:))];
+            num_clusters = num_clusters + 1;
+            class_idx(idx) = num_clusters;
+            s = length(idx);
+            t = ceil(sqrt(s));
+            for k=1:s
+                subplot(t,t,k), imagesc(objects(idx(k)).grayscaleimage);
+            end
+            drawnow, pause(1);
+            clf;
         end
-        drawnow, pause(1);
-        clf;
     end
 end
 cluster_reps=find(cluster_reps);
