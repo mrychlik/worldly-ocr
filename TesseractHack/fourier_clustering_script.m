@@ -1,3 +1,11 @@
+% File: fourier_clustering_script.m
+% In this script we implement an unsupervised learning strategy for
+% labeling characters in a file, followed by a supervised strategy
+% (manual labeling of cluster representatives).
+
+% In the final step, we label all characters in the file, possibly
+% correcting mistakes from the first two steps.
+
 %savefile=fullfile('Cache','objects.mat');
 savefile=fullfile('Cache','Paragraph.mat');
 
