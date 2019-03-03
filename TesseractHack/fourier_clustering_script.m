@@ -35,8 +35,8 @@ end
 close(wb);
 
 
-[class_idx, class_num, class_reps] = fourier_clustering(objects);
+[cluster_idx, cluster_num, cluster_reps] = fourier_clustering(objects);
 
-% Label class representatives
-reps = objects(class_reps);
+% Label cluster representatives
+reps = objects(cluster_reps);
 reps = label_objects(reps);
