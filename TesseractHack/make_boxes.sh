@@ -4,9 +4,6 @@ TESSDATA_DIR=/home/marek/TESSERACT/tesseract/tessdata
 
 # List of fonts to train on
 FONTS=(
-    "Arial Bold" \
-    "Arial Bold Italic" \
-    "Arial Italic" \
     "Courier New Bold" \
     "Courier New Bold Italic" \
     "Courier New Italic" \
