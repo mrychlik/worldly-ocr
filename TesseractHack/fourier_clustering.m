@@ -1,4 +1,4 @@
-function [class_idx, class_num] = fourier_clustering(objects)
+function [class_idx, class_num, class_reps] = fourier_clustering(objects)
 fprintf('Determining maximum object size...')
 max_h = 0;
 max_w = 0;
@@ -52,13 +52,13 @@ end
 
 % Visualize classes
 imagesc(Q),drawnow;
-class_idx = zeros(1,n);
-class_num = 0;
+cluster_idx = zeros(1,n);
+cluster_num = 0;
 for j = 1:n
     if class_reps(j)
         idx = [j,find(Q(j,:))];
-        class_num = clus_num + 1;
-        class_idx(idx) = class_num;
+        cluster_num = cluster_num + 1;
+        class_idx(idx) = cluster_num;
         s = length(idx);
         t = ceil(sqrt(s));
         for k=1:s
