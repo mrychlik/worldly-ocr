@@ -22,8 +22,8 @@ function [cluster_idx, num_clusters, cluster_reps] = fourier_clustering(objects,
 
 % Parse optional arguments
 p = inputParser;
-valid_objects = @(x) isstruct(x) && isfield(x,'bwimage') && isfield(x, 'grayscaleimage');
-addRequired(p,'objects',valid_objects);
+validObjects = @(x) isstruct(x) && isfield(x,'bwimage') && isfield(x, 'grayscaleimage');
+addRequired(p,'objects',validObjects);
 
 defaultDisplay = 'on'; 
 valiDisplay = @(x) isnumeric(x) && isscalar(x) && (x > 0);
