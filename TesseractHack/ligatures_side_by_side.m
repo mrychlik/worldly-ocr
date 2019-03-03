@@ -21,6 +21,6 @@ for f = 1:num_files
     plot([],[]);
     t=text(0,0,native2unicode(bytes, enc)); set(t,'FontSize',fontsz);
     I=imread(fpath);
-    subplot(1,2,2),imagesc(I), drawnow;
+    subplot(1,2,2),imagesc(I), colormap(gray),drawnow;
     pause(1);
 end
