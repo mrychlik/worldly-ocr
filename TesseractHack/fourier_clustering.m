@@ -1,18 +1,7 @@
-%savefile=fullfile('Cache','objects.mat');
-savefile=fullfile('Cache','Paragraph.mat');
-
-if exist(savefile,'file') == 2
-    fprintf('Loading savefile %s', savefile);
-    load(savefile)
-else
-    [objects,lines]=bounding_boxes(~I);
-    save(savefile,'objects','lines');
-end
-
+function [class_idx, class_num] = fourier_clustering(objects)
+fprintf('Determining maximum object size...')
 max_h = 0;
 max_w = 0;
-
-fprintf('Determining maximum object size...')
 for j=1:length(objects)
     [h,w] = size(objects(j).bwimage);
     max_h = max(max_h, h);
@@ -63,9 +52,13 @@ end
 
 % Visualize classes
 imagesc(Q),drawnow;
+class_idx = zeros(1,n);
+class_num = 0;
 for j = 1:n
     if class_reps(j)
         idx = [j,find(Q(j,:))];
+        class_num = clus_num + 1;
+        class_idx(idx) = class_num;
         s = length(idx);
         t = ceil(sqrt(s));
         for k=1:s
@@ -75,7 +68,3 @@ for j = 1:n
         clf;
     end
 end
-
-% Label class representatives
-reps = objects(find(class_reps));
-reps = label_objects(reps);
