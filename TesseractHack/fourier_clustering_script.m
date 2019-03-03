@@ -1,5 +1,5 @@
 % File: fourier_clustering_script.m
-% Author: Marek Rychlik
+% Author: Marek Rychlik (rychlik@email.arizona.edu)
 % Date: 3-3-2019 3:33:14 PM
 %
 % In this script we implement an unsupervised learning strategy for
