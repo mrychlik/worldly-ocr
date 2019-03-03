@@ -10,7 +10,7 @@ for f = 1:num_files
     disp(fname);
     fpath = fullfile(ligature_dir, fname);
     [~,fbase,ext] = fileparts(fname)
-    tfpath = fullfile(text_dir,[fbase,'.txt']);
+    tfpath = fullfile(text_dir,[fbase,'.txt']);subplot(2,1,1),
     disp(tfpath);
     fd=fopen(tfpath,'r');
     bytes=fread(fd,'uint8')';
@@ -19,5 +19,5 @@ for f = 1:num_files
     subplot(1,2,1), t=text(0,0,native2unicode(bytes, enc)), set(t,'FontSize',20);
     I=imread(fpath);
     subplot(1,2,2),imshow(I), drawnow;
-    pause(.2);
+    pause(1);
 end
