@@ -17,7 +17,8 @@ for f = 1:num_files
     bytes=fread(fd,'uint8')';
     fclose(fd);
     clf;
-    subplot(1,2,1), t=text(0,0,native2unicode(bytes, enc)); set(t,'FontSize',fontsz);
+    subplot(1,2,1), t=text(0,0,native2unicode(bytes, enc)); set(t, ...
+                                                      'FontSize',fontsz);
     I=imread(fpath);
     subplot(1,2,2),imshow(I), drawnow;
     pause(1);
