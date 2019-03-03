@@ -38,4 +38,4 @@ cd java
   --model_output ~/tesstutorial/engoutput/base --learning_rate 20e-4 \
   --train_listfile ~/tesstutorial/engtrain/eng.training_files.txt \
   --eval_listfile ~/tesstutorial/engtrain/eng.training_files.txt \
-  --max_iterations 5000 |tee ~/tesstutorial/engoutput/basetrain.log
+  --max_iterations 5000 >& ~/tesstutorial/engoutput/basetrain.log
