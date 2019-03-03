@@ -1,6 +1,7 @@
 function [cluster_idx, num_clusters, cluster_reps] = fourier_clustering(objects, varargin)
 %Cluster by Fourier method (motion compensation)
-%  [CLUSTER_IDX, NUM_CLUSTERS, CLUSTER_REPS] = FOURIER_CLUSTERING(OBJECTS)
+%
+%   [CLUSTER_IDX, NUM_CLUSTERS, CLUSTER_REPS] = FOURIER_CLUSTERING(OBJECTS)
 % accepts an array of structures OBJECTS, which contains a field
 % 'GRAYSCALEIMAGE', which should be an intensity image. The images are
 % cropped and centered in a box of uniform size. Then it is determined
@@ -13,6 +14,7 @@ function [cluster_idx, num_clusters, cluster_reps] = fourier_clustering(objects,
 % Additionally, CLUSTER_REPS lists indices of selected representatives
 % for each class (a vector of length 1:NUM_CLUSTERS). Additionally, the
 % following optional arguments are recognized:
+%
 %    Display       - display clusters ('on' or 'off'; default 'on')
 %    Threshold     - threshold for the dissimilarity (a number in the
 %                    range from 0 to 1; default: 0.75)
