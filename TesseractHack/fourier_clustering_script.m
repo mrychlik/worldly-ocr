@@ -35,7 +35,7 @@ end
 close(wb);
 
 
-[cluster_idx, num_clusters, cluster_reps] = fourier_clustering(objects);
+[cluster_idx, num_clusters, cluster_reps] = fourier_clustering(objects,'Display','off');
 
 % Label cluster representatives
 reps = objects(cluster_reps);
