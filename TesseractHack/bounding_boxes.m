@@ -320,12 +320,12 @@ visualize_gap_centers(BW, gap_centers, Display);
 end
 
 function visualize_gap_centers(BW, gap_centers, Display)
-disp('Visualizing gap centers');
 BW_lines=double(BW);
 BW_lines(gap_centers+1,:)=1;
 BW_lines(gap_centers,:)=1;
 BW_lines(gap_centers-1,:)=1;
 if strcmp(Display,'on')
+    disp('Visualizing gap centers');
     figure;
     imshow(BW_lines);
     title('Gap center lines');
