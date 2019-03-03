@@ -27,7 +27,7 @@ validObjects = @(x) isstruct(x) && isfield(x,'bwimage') && isfield(x, 'grayscale
 addRequired(p,'objects',validObjects);
 
 defaultDisplay = 'on'; 
-validDisplay = @(x) isnumeric(x) && isscalar(x) && (x > 0);
+validDisplay = @(x) strcmp(x,'on') || strcmp(x, 'off');
 addParameter(p, 'Display', defaultDisplay, validDisplay);
 
 defaulThreshold = .75;
