@@ -7,7 +7,7 @@
 # We train with some Windows fonts
 FONTDIR=/home/marek/.wine/drive_c/windows/Fonts
 
-# Where is my tesseract installation; certain paths are
+# Where is my tesseract clone from GitHub; certain paths are
 # specified relative to this directory
 TESSERACT_HOME=/home/marek/TESSERACT/tesseract
 
