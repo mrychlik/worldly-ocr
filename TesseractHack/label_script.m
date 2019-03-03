@@ -2,6 +2,7 @@ savefile=fullfile('Cache','objects.mat');
 %savefile=fullfile('Cache','Paragraph.mat');
 
 if exist(savefile,'file') == 2
+    fprintf('Loading savefile %s', savefile);
     load(savefile)
 else
     [objects,lines]=bounding_boxes(~I);
