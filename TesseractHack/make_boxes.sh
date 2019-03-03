@@ -4,7 +4,7 @@
 # launches Tesseract 4.0 LSTM training
 #
 
-# We train with some Windows fonts
+# We train with some Windows fonts from the Wine distribution
 FONTDIR=/home/marek/.wine/drive_c/windows/Fonts
 
 # List of fonts to train on. 
