@@ -1,6 +1,8 @@
 !/bin/bash
+# 
 # This script is a minimalistic script that
 # launches Tesseract 4.0 LSTM training
+#
 
 # We train with some Windows fonts
 FONTDIR=/home/marek/.wine/drive_c/windows/Fonts
