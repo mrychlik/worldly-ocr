@@ -18,9 +18,9 @@ for f = 1:num_files
     fclose(fd);
     clf;
     subplot(1,2,1),
-    plot(null);
+    plot([],[]);
     t=text(0,0,native2unicode(bytes, enc)); set(t,'FontSize',fontsz);
     I=imread(fpath);
-    subplot(1,2,2),imshow(I), drawnow;
+    subplot(1,2,2),imagesc(I), drawnow;
     pause(1);
 end
