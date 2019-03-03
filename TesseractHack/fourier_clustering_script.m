@@ -17,7 +17,7 @@ for j=1:length(objects)
     max_h = max(max_h, h);
     max_w = max(max_w, w);
 end
-fprintf('Max. height: %g, max. width: %g', max_h, max_w);
+fprintf('Max. height: %g, max. width: %g\n', max_h, max_w);
 
 wb = waitbar(0, 'Cropping/centering objects and converting to grayscale...');
 num_objects = length(objects);
