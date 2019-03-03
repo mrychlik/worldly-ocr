@@ -1,4 +1,4 @@
-function [cluster_idx, cluster_num, class_reps] = fourier_clustering(objects)
+function [cluster_idx, cluster_num, cluster_reps] = fourier_clustering(objects)
 fprintf('Determining maximum object size...')
 max_h = 0;
 max_w = 0;
@@ -30,14 +30,14 @@ n = length(objects);
 Q = zeros(n,n);
 threshold = .75;
 classified = zeros(1,n);
-class_reps = zeros(1,n);
+cluster_reps = zeros(1,n);
 for j = 1:(n-1)
     if classified(j)
         continue;
     end;
     classified(j)=1;
-    class_reps(j)=1;
-    fprintf('New object: %d, Number of classes: %d\n', j, length(find(class_reps)));
+    cluster_reps(j)=1;
+    fprintf('New object: %d, Number of classes: %d\n', j, length(find(cluster_reps)));
     for k = (j+1):n
         D = dissimilarity(objects(j), objects(k));
         if classified(k)
@@ -55,7 +55,7 @@ imagesc(Q),drawnow;
 cluster_idx = zeros(1,n);
 cluster_num = 0;
 for j = 1:n
-    if class_reps(j)
+    if cluster_reps(j)
         idx = [j,find(Q(j,:))];
         cluster_num = cluster_num + 1;
         class_idx(idx) = cluster_num;
