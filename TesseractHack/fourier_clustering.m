@@ -10,8 +10,8 @@ function [cluster_idx, num_clusters, cluster_reps] = fourier_clustering(objects)
 % The output value NUM_CLUSTERS is the number of clusters, and CLUSTER_IDX
 % is a vector of integers 1:LENGTH(OBJECTS) which contains the assignment
 % of objects to clusters (i.e. a number in the range 1:NUM_CLUSTERS.
-% Additionally, CLUSTER_REPS 
-
+% Additionally, CLUSTER_REPS lists indices of selected representatives
+% for each class (a vector of length 1:NUM_CLUSTERS).
 fprintf('Determining maximum object size...')
 max_h = 0;
 max_w = 0;
