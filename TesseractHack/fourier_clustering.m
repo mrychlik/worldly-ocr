@@ -34,7 +34,7 @@ defaultThreshold = .75;
 validThreshold = @(x) isnumeric(x) && isscalar(x) && (x > 0);
 addParameter(p, 'Threshold', defaultThreshold, validThreshold);
 
-parse(p, d, varargin{:});
+parse(p, objects, varargin{:});
 
 
 % Find equivalent objects
