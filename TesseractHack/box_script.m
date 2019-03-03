@@ -6,14 +6,16 @@
 % The numbers appear consistent with automated Tesseract script up to 1 pixel.
 %
 
+% Tesseract example
 imagefile = fullfile('BoxFileExample','39097174-8ee9c5d4-4676-11e8-9023-a9657006eabc.png');
 boxfile=fullfile('Cache','objects.txt');
 savefile=fullfile('Cache','objects.mat');
 
 
-imagefile = fullfile('BoxFileExample','Paragraph.tif');
-boxfile=fullfile('Cache','ParagraphBoxFile.txt');
-savefile=fullfile('Cache','Paragraph.mat');
+% Microfilm of campus newspaper example
+%imagefile = fullfile('BoxFileExample','Paragraph.tif');
+%boxfile=fullfile('Cache','ParagraphBoxFile.txt');
+%savefile=fullfile('Cache','Paragraph.mat');
 
 [I,cmap]=imread(imagefile);
 I = im2bw(rgb2gray(I(:,:,1:3)));
