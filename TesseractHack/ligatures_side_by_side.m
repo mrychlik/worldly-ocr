@@ -19,7 +19,7 @@ for f = 1:num_files
     clf;
     subplot(1,2,1),
     plot([],[]);
-    t=text(0,0,native2unicode(bytes, enc)); set(t,'FontSize',fontsz);
+    t=text(0.5,0.5,native2unicode(bytes, enc)); set(t,'FontSize',fontsz);
     I=imread(fpath);
     subplot(1,2,2),imagesc(I), colormap(gray),drawnow;
     pause(1);
