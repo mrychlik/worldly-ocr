@@ -1,6 +1,5 @@
 function [cluster_idx, num_clusters, cluster_reps] = fourier_clustering(objects, varargin)
 %Cluster by Fourier method (motion compensation)
-%
 %   [CLUSTER_IDX, NUM_CLUSTERS, CLUSTER_REPS] = FOURIER_CLUSTERING(OBJECTS)
 % accepts an array of structures OBJECTS, which contains a field
 % 'GRAYSCALEIMAGE', which should be an intensity image. The images are
