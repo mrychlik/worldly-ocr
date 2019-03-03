@@ -30,7 +30,7 @@ defaultDisplay = 'on';
 validDisplay = @(x) strcmp(x,'on') || strcmp(x, 'off');
 addParameter(p, 'Display', defaultDisplay, validDisplay);
 
-defaulThreshold = .75;
+defaultThreshold = .75;
 validThreshold = @(x) isnumeric(x) && isscalar(x) && (x > 0);
 addParameter(p, 'Threshold', defaultThreshold, validThreshold);
 
