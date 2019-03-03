@@ -27,3 +27,13 @@ MYFONTS=(
 		 --fontlist $MYFONTS \
 		 --noextract_font_properties --langdata_dir $LANGDATA_DIR \
 		 --tessdata_dir  $TESSDATA_DIR --output_dir ~/tesstutorial/engtrain
+
+mkdir -p ~/tesstutorial/engoutput
+
+./src/training/lstmtraining --debug_interval 100 \
+  --traineddata ~/tesstutorial/engtrain/eng/eng.traineddata \
+  --net_spec '[1,36,0,1 Ct3,3,16 Mp3,3 Lfys48 Lfx96 Lrx96 Lfx256 O1c111]' \
+  --model_output ~/tesstutorial/engoutput/base --learning_rate 20e-4 \
+  --train_listfile ~/tesstutorial/engtrain/eng.training_files.txt \
+  --eval_listfile ~/tesstutorial/engeval/eng.training_files.txt \
+  --max_iterations 5000 &>~/tesstutorial/engoutput/basetrain.log
