@@ -18,7 +18,7 @@ else
 end
 
 [ph,pw] = size(I);
-fprintf('Processing box file: %s\n', boxfile);
+fprintf('Building box file: %s\n', boxfile);
 fh = fopen(boxfile,'w');
 
 page=0;
