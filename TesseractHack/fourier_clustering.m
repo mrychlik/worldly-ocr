@@ -37,7 +37,7 @@ addParameter(p, 'Threshold', defaultThreshold, validThreshold);
 parse(p, objects, varargin{:});
 
 threshold = p.Results.Threshold;
-visualize = p.results.Display;
+visualize = p.Results.Display;
 
 % Find equivalent objects
 n = length(objects);
