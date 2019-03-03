@@ -35,8 +35,13 @@ end
 close(wb);
 
 
-[cluster_idx, cluster_num, cluster_reps] = fourier_clustering(objects);
+[cluster_idx, num_clusters, cluster_reps] = fourier_clustering(objects);
 
 % Label cluster representatives
 reps = objects(cluster_reps);
 reps = label_objects(reps);
+
+% Assign same labels to equivalent objects
+for j=1:num_clusters
+    objects(cluster_idx==j).char = reps.char
+end
