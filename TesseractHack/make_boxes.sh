@@ -9,7 +9,7 @@ TESSERACT_HOME=/home/marek/TESSERACT/tesseract
 cd $TESSERACT_HOME
 
 LANGDATA_DIR='../langdata'
-TESSDATA_DIR='/usr/share/tesseract/tessdata'
+TESSDATA_DIR='/usr/local/share/tessdata'
 
 
 
