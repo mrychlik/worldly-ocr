@@ -20,6 +20,22 @@ function [cluster_idx, num_clusters, cluster_reps] = fourier_clustering(objects,
 %                    range from 0 to 1; default: 0.75)
 %
 
+% Parse optional arguments
+p = inputParser;
+valid_objects = @(x) isstruct(x) && isfield(x,'bwimage') && isfield(x, 'grayscaleimage');
+addRequired(p,'objects',valid_objects);
+
+defaultDisplay = 'on'; 
+valiDisplay = @(x) isnumeric(x) && isscalar(x) && (x > 0);
+addParameter(p, 'Display', defaultDisplay, validDisplay);
+
+defaulThreshold = .75;
+validThreshold = @(x) isnumeric(x) && isscalar(x) && (x > 0);
+addParameter(p, 'Theshold', defaultTheshold, validTheshold);
+
+parse(p, d, varargin{:});
+
+
 % Find equivalent objects
 n = length(objects);
 Q = zeros(n,n);
