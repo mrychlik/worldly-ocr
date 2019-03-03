@@ -7,6 +7,13 @@
 # We train with some Windows fonts
 FONTDIR=/home/marek/.wine/drive_c/windows/Fonts
 
+# List of fonts to train on. 
+MYFONTS=(
+    "Arial"
+    "Verdana"
+)
+
+
 # Where is my tesseract clone from GitHub; certain paths are
 # specified relative to this directory
 TESSERACT_HOME=/home/marek/TESSERACT/tesseract
@@ -25,16 +32,14 @@ LANGDATA_DIR='../langdata'
 TESSDATA_DIR='/usr/local/share/tessdata'
 
 
+
+
+
 cd $TESSERACT_HOME
 
 
 
 
-# List of fonts to train on
-MYFONTS=(
-    "Arial"
-    "Verdana"
-)
 
 
 
