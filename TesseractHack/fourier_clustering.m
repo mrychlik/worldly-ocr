@@ -36,11 +36,14 @@ addParameter(p, 'Threshold', defaultThreshold, validThreshold);
 
 parse(p, objects, varargin{:});
 
+threshold = p.Results.Threshold;
+visualize = p.results.Display;
 
 % Find equivalent objects
 n = length(objects);
 Q = zeros(n,n);
-threshold = .75;
+
+
 classified = zeros(1,n);
 cluster_reps = zeros(1,n);
 for j = 1:(n-1)
