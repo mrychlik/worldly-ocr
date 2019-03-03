@@ -29,4 +29,4 @@ for j=1:length(objects)
     objects(j).char = '';
 end
 
-label_objects(objects);
+objects = label_objects(objects);
