@@ -7,7 +7,6 @@ FONTS=(
     "Arial Bold" \
     "Arial Bold Italic" \
     "Arial Italic" \
-    "Arial" \
     "Courier New Bold" \
     "Courier New Bold Italic" \
     "Courier New Italic" \
