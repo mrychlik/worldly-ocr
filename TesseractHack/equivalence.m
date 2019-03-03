@@ -48,7 +48,7 @@ for j = 1:(n-1)
     end;
     classified(j)=1;
     class_reps(j)=1;
-    disp([j,length(find(class_reps))]);
+    fprintf('New object: %d, Number of classes: %d\n', j, length(find(class_reps))]);
     for k = (j+1):n
         D = dissimilarity(objects(j), objects(k));
         if classified(k)
