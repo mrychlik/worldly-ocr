@@ -7,16 +7,18 @@
 %
 
 %[I, boxfile, savefile] = read_microfilm_example
-[I, boxfile, savefile] = read_english_example
+[I, boxfile, savefile] = read_english_example;
 
 if exist(savefile,'file') == 2
-    load(savefile)
+    fprintf('Loading savefile %s', savefile);
+    load(savefile);
 else
     [objects,lines]=bounding_boxes(~I);
     save(savefile,'objects','lines');
 end
 
 [ph,pw] = size(I);
+fprintf('Processing box file: %s', boxfile);
 fh = fopen(boxfile,'w');
 
 page=0;
