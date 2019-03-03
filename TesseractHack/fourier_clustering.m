@@ -32,7 +32,7 @@ addParameter(p, 'Display', defaultDisplay, validDisplay);
 
 defaulThreshold = .75;
 validThreshold = @(x) isnumeric(x) && isscalar(x) && (x > 0);
-addParameter(p, 'Threshold', defaultTheshold, validThreshold);
+addParameter(p, 'Threshold', defaultThreshold, validThreshold);
 
 parse(p, d, varargin{:});
 
