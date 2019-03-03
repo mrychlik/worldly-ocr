@@ -10,7 +10,7 @@
 [I, boxfile, savefile] = read_english_example;
 
 if exist(savefile,'file') == 2
-    fprintf('Loading savefile %s', savefile);
+    fprintf('Loading savefile %s\n', savefile);
     load(savefile);
 else
     [objects,lines]=bounding_boxes(~I);
@@ -18,7 +18,7 @@ else
 end
 
 [ph,pw] = size(I);
-fprintf('Processing box file: %s', boxfile);
+fprintf('Processing box file: %s\n', boxfile);
 fh = fopen(boxfile,'w');
 
 page=0;
