@@ -10,7 +10,7 @@ for f = 1:num_files
     fname = ligature_files(f).name;
     disp(fname);
     fpath = fullfile(ligature_dir, fname);
-    [~,fbase,ext] = fileparts(fname)
+    [~,fbase,ext] = fileparts(fname);
     tfpath = fullfile(text_dir,[fbase,'.txt']);subplot(2,1,1),
     disp(tfpath);
     fd=fopen(tfpath,'r');
