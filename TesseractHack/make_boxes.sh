@@ -32,18 +32,12 @@ LANGDATA_DIR='../langdata'
 TESSDATA_DIR='/usr/local/share/tessdata'
 
 
-
+#----------------------------------------------------------------
+# No settable parameters below this line
+#----------------------------------------------------------------
 
 
 cd $TESSERACT_HOME
-
-
-
-
-
-
-
-
 
 ./src/training/tesstrain.sh --fonts_dir $FONTDIR --lang eng --linedata_only \
 		 --fontlist $MYFONTS \
