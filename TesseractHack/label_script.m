@@ -8,8 +8,6 @@ else
     save(savefile,'objects','lines');
 end
 
-
-
 max_h = 0;
 max_w = 0;
 
