@@ -1,11 +1,12 @@
 function [cluster_idx, num_clusters, cluster_reps] = fourier_clustering(objects, varargin)
 %Cluster graphical objects by Fourier method (motion compensation).
 %   [CLUSTER_IDX, NUM_CLUSTERS, CLUSTER_REPS] = FOURIER_CLUSTERING(OBJECTS)
-% accepts an array of structures OBJECTS, which contains a field
-% 'GRAYSCALEIMAGE', which should be an intensity image. The images are
-% cropped and centered in a box of uniform size. Then it is determined
-% whether the objects are obtained by translation from each other,
-% subject to noise.
+% accepts an array of structures OBJECTS, which contains fields 'BWIMAGE'
+% and 'GRAYSCALEIMAGE', which should be a binary and an intensity image. The
+% images are cropped and centered in a box of uniform size. Then it is
+% determined whether the objects are obtained by translation from each
+% other, subject to noise.
+%
 % Objects are divided into approximate equivalence classes (clusters).
 % The output value NUM_CLUSTERS is the number of clusters, and CLUSTER_IDX
 % is a vector of integers 1:LENGTH(OBJECTS) which contains the assignment
