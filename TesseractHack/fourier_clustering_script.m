@@ -47,3 +47,6 @@ for j=1:num_clusters
         objects(k).char = reps(j).char;
     end
 end
+
+% Relabel all objects
+objects = label_objects(objects);
