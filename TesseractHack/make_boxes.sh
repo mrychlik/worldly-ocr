@@ -9,6 +9,9 @@
 #
 # https://wiki.winehq.org/Winetricks
 #
+# NOTE: For some reason, I (M.R) could not make this work with the
+# standard distribution of Unix fonts in the Fedora installation.
+#
 FONTDIR=/home/marek/.wine/drive_c/windows/Fonts
 
 # List of fonts to train on. 
