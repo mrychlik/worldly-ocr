@@ -5,6 +5,10 @@
 #
 
 # We train with some Windows fonts from the Wine distribution
+# Requires Wine to be installed and the fonts to be updated via 'winetricks' script:
+#
+# https://wiki.winehq.org/Winetricks
+#
 FONTDIR=/home/marek/.wine/drive_c/windows/Fonts
 
 # List of fonts to train on. 
