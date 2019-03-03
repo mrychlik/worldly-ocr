@@ -43,7 +43,7 @@ reps = label_objects(reps);
 
 % Assign same labels to equivalent objects
 for j=1:num_clusters
-    for k=find(cluster==j)
-        objects(k).char = reps(j).char
+    for k=find(cluster_idx==j)
+        objects(k).char = reps(j).char;
     end
 end
