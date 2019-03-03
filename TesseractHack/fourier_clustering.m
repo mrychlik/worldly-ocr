@@ -1,4 +1,4 @@
-function [cluster_idx, num_clusters, cluster_reps] = fourier_clustering(objects)
+function [cluster_idx, num_clusters, cluster_reps] = fourier_clustering(objects, varargin)
 %Cluster by Fourier method (motion compensation)
 %  [CLUSTER_IDX, NUM_CLUSTERS, CLUSTER_REPS] = FOURIER_CLUSTERING(OBJECTS)
 % accepts an array of structures OBJECTS, which contains a field
@@ -11,7 +11,12 @@ function [cluster_idx, num_clusters, cluster_reps] = fourier_clustering(objects)
 % is a vector of integers 1:LENGTH(OBJECTS) which contains the assignment
 % of objects to clusters (i.e. a number in the range 1:NUM_CLUSTERS.
 % Additionally, CLUSTER_REPS lists indices of selected representatives
-% for each class (a vector of length 1:NUM_CLUSTERS).
+% for each class (a vector of length 1:NUM_CLUSTERS). Additionally, the
+% following optional arguments are recognized:
+%    Display       - display clusters ('on' or 'off'; default 'on')
+%    Threshold     - threshold for the dissimilarity (a number in the
+%                    range from 0 to 1; default: 0.75)
+%
 fprintf('Determining maximum object size...')
 max_h = 0;
 max_w = 0;
