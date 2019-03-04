@@ -33,7 +33,7 @@ function [objects,changed]=label_objects(objects)
         myhandles=guidata(hObject);
         changed=myhandles.objects_changed;
         if changed
-            disp('Assigning new objects');
+            disp('Objects changed, assigning new objects');
             objects=myhandles.objects;
         end
         delete(hObject);
