@@ -38,7 +38,7 @@ function [objects,changed]=label_objects(objects)
         end
         delete(hObject);
     end
-
+    
     populate_gui_with_objects(fig);
     set(fig,'Visible','on');
     % Block until GUI is closed
