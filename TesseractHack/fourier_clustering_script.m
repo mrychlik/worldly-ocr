@@ -57,9 +57,9 @@ close(wb);
 
 % Label cluster representatives
 reps = objects(cluster_reps);
-[reps,changed] = label_objects(reps);
+[reps,reps_changed] = label_objects(reps);
 
-if changed
+if reps_changed
     fprintf('Cluster reps were edited.\n');
 end
 
