@@ -86,4 +86,6 @@ end
 if changed || changed_after
     fprintf('Some object labels changed, saving new objects.\n');
     save(savefile,'objects','lines');
+else
+    fprintf('No labels changed, savefile unchanged.');
 end
