@@ -59,7 +59,9 @@ close(wb);
 reps = objects(cluster_reps);
 [reps,changed] = label_objects(reps);
 
-fprintf('Cluster reps were edited.\n');
+if changed
+    fprintf('Cluster reps were edited.\n');
+end
 
 % Assign same labels to equivalent objects
 changed = false;
