@@ -20,7 +20,7 @@ else
     save(savefile,'objects','lines');
 end
 
-labeled = isfield(objects,'char');
+is_labeled = isfield(objects,'char');
 
 fprintf('Determining maximum object size...')
 max_h = 0;
@@ -43,7 +43,7 @@ for j=1:num_objects;
     y = round((max_h - h)/2);
     J( (y+1):(y+h), (x+1):(x+w) ) = BW .* 255;
     objects(j).grayscaleimage = J;
-    if ~labeled
+    if ~is_labeled
         objects(j).char = '';
     end
 end
