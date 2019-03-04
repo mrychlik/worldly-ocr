@@ -53,7 +53,9 @@ cd $TESSERACT_HOME
 
 mkdir -p ~/tesstutorial/engoutput
 
-typeset -x SCROLLVIEW_PATH=$PWD/java
+
+typeset -x SCROLLVIEW_PATH=$TESSERACT_HOME/java
+
 
 ../src/training/lstmtraining --debug_interval 100 \
   --traineddata ~/tesstutorial/engtrain/eng/eng.traineddata \
