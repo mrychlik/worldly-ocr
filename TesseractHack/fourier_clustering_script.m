@@ -65,6 +65,6 @@ end
 [objects,changed] = label_objects(objects);
 
 if changed
-    fprintf('Objects changed, saving.');
+    fprintf('Objects changed, saving new objects.');
     save(savefile,'objects','lines');
 end
