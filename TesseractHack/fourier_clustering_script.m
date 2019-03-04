@@ -9,8 +9,8 @@
 % In the final step, we label all characters in the file, possibly
 % correcting mistakes from the first two steps.
 
-%savefile=fullfile('Cache','objects.mat');
-savefile=fullfile('Cache','Paragraph.mat');
+savefile=fullfile('Cache','objects.mat');
+%savefile=fullfile('Cache','Paragraph.mat');
 
 if exist(savefile,'file') == 2
     fprintf('Loading savefile %s', savefile);
