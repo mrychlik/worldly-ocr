@@ -60,7 +60,7 @@ reps = objects(cluster_reps);
 [reps,reps_changed] = label_objects(reps);
 
 if reps_changed
-    fprintf('Cluster reps were edited.\n');
+    fprintf('Cluster rep labels changed.\n');
 end
 
 % Assign same labels to equivalent objects
