@@ -1,4 +1,4 @@
-function new_objects=label_objects(objects)
+function [new_objects,changed]=label_objects(objects)
 %LABEL_OBJECTS labels images of characters with letters
 % NEW_OBJECTS=LABEL_OBJECTS(OBJECTS) accepts OBJECTS, which should be an
 % array of structures containing 
@@ -32,6 +32,7 @@ function new_objects=label_objects(objects)
         myhandles=guidata(hObject);
         disp('Assigning new objects');
         new_objects=myhandles.objects;
+        changed=myhandles.objects_changed;
         delete(hObject);
     end
 
