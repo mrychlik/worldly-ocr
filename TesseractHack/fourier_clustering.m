@@ -52,7 +52,7 @@ for j = 1:n
     end;
     classified(j)=1;
     cluster_reps(j)=1;
-    fprintf('New object: %d, Number of classes: %d\n', j, length(find(cluster_reps)));
+    fprintf('New cluster leader: %d, number of clusters: %d\n', j, length(find(cluster_reps)));
     for k = (j+1):n
         D = dissimilarity(objects(j), objects(k));
         if classified(k)
