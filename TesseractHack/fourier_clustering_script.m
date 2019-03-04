@@ -63,4 +63,4 @@ end
 objects = label_objects(objects);
 
 % Save relabeled objects
-%save(savefile,'objects','lines');
+save(savefile,'objects','lines');
