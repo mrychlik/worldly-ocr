@@ -28,7 +28,7 @@ function [objects,changed]=label_objects(objects)
     % CLOSEREQ_CALLBACK(hObject, ~, ~) currently assigns the output value
     % OBJECTS to the result of editing the input variable OBJECTS.
     % Note that CLOSEREQ_CALLBACK must be defined in the scope of the
-    % main GUI function, so that the output variable NEW_OBJECTS is 
+    % main GUI function, so that the output variable OBJECTS is 
     % accessible.
         myhandles=guidata(hObject);
         changed=myhandles.objects_changed;
