@@ -56,19 +56,29 @@ close(wb);
 
 % Label cluster representatives
 reps = objects(cluster_reps);
-reps = label_objects(reps);
+[reps,changed] = label_objects(reps);
+
+fprintf('Cluster reps were edited.');
 
 % Assign same labels to equivalent objects
+changed = false;
 for j=1:num_clusters
     for k=find(cluster_idx==j)
-        objects(k).char = reps(j).char;
+        if ~strcmp(objects(k).char, reps(j).char)
+            objects(k).char = reps(j).char;
+            changed = true;
+        end
     end
 end
+if changed
+    fprintf('Some labels were changed');
+end
 
+fprintf('Post-editing all labels...');
 % Relabel all objects
 [objects,changed] = label_objects(objects);
 
 if changed
-    fprintf('Saving new objects.');
+    fprintf('Some object labels changed, Saving new objects.');
     save(savefile,'objects','lines');
 end
