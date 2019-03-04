@@ -63,4 +63,6 @@ end
 objects = label_objects(objects);
 
 % Save relabeled objects
+[savefilepath,savefilename,ext] = fileparts(savefile);
+savefile_w_labels=fullfile(savefilepath,[savefilename,'_with_labels',ext]);
 save(savefile,'objects','lines');
