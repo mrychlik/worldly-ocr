@@ -9,6 +9,7 @@
 % In the final step, we label all characters in the file, possibly
 % correcting mistakes from the first two steps.
 
+% Load a file previously created by box_script.m
 savefile=fullfile('Cache','objects.mat');
 %savefile=fullfile('Cache','Paragraph.mat');
 
