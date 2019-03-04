@@ -194,18 +194,12 @@ function edit_Callback(hObject, eventdata, handles)
 % str2double(get(hObject,'String')) returns contents as a double
     idx=get(hObject,'UserData');
     input = get(hObject,'string');
-    if length(input)==1
-        myhandles=guidata(gcbo);
-        if myhandles.objects(idx).char ~= input
-            myhandles.objects(idx).char=input;
-            myhandles.objects_changed=true;
-        end
-        guidata(gcbo,myhandles);
-    else
-        uiwait(msgbox('Input should be a single character.',...
-                      'Invalid input',...
-                      'modal'));        
+    myhandles=guidata(gcbo);
+    if ~strcmp(myhandles.objects(idx).char,input)
+        myhandles.objects(idx).char=input;
+        myhandles.objects_changed=true;
     end
+    guidata(gcbo,myhandles);
 end
 
 function range_Callback(hObject, eventdata, delta)
