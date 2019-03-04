@@ -194,8 +194,10 @@ function edit_Callback(hObject, eventdata, handles)
     input = get(hObject,'string');
     if length(input)==1
         myhandles=guidata(gcbo);
-        myhandles.objects(idx).char=input;
-        myhandles.objects_changed=true;
+        if myhandles.objects(idx).char ~= input
+            myhandles.objects(idx).char=input;
+            myhandles.objects_changed=true;
+        end
         guidata(gcbo,myhandles);
     else
         uiwait(msgbox('Input should be a single character.',...
