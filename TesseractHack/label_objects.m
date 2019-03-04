@@ -1,6 +1,6 @@
 function [new_objects,changed]=label_objects(objects)
 %LABEL_OBJECTS labels images of characters with letters
-% NEW_OBJECTS=LABEL_OBJECTS(OBJECTS) accepts OBJECTS, which should be an
+% [NEW_OBJECTS,CHANGED]=LABEL_OBJECTS(OBJECTS) accepts OBJECTS, which should be an
 % array of structures containing 
 %   - a field 'grayscaleimage', holding an image of a character;
 %   - a field 'char', holding the name of the character (a letter).
@@ -8,7 +8,8 @@ function [new_objects,changed]=label_objects(objects)
 % along with text edit controls which allow to attach a character to each
 % image. The character is stored in the CHAR field of the structure. Upont
 % closing of the GUI by the user, the function returns the labeled objects
-% in variable NEW_OBJECTS.
+% in variable NEW_OBJECTS. The return value CHANGED, if set to true,
+% signals that at least one of the objects received a different label.
 %
 % The display is a 7-by-5 grid which displays images and text edit boxes.
 % For a large number of characters (35 or more), the objects are divided
