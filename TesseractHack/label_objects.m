@@ -1,6 +1,6 @@
-function [new_objects,changed]=label_objects(objects)
+function [objects,changed]=label_objects(objects)
 %LABEL_OBJECTS labels images of characters with letters
-% [NEW_OBJECTS,CHANGED]=LABEL_OBJECTS(OBJECTS) accepts OBJECTS, which should be an
+% [OBJECTS,CHANGED]=LABEL_OBJECTS(OBJECTS) accepts OBJECTS, which should be an
 % array of structures containing 
 %   - a field 'grayscaleimage', holding an image of a character;
 %   - a field 'char', holding the name of the character (a letter).
@@ -8,7 +8,7 @@ function [new_objects,changed]=label_objects(objects)
 % along with text edit controls which allow to attach a character to each
 % image. The character is stored in the CHAR field of the structure. Upont
 % closing of the GUI by the user, the function returns the labeled objects
-% in variable NEW_OBJECTS. The return value CHANGED, if set to true,
+% in return value OBJECTS. The return value CHANGED, if set to true,
 % signals that at least one of the objects received a different label.
 %
 % The display is a 7-by-5 grid which displays images and text edit boxes.
@@ -26,14 +26,16 @@ function [new_objects,changed]=label_objects(objects)
     function closereq_Callback(hObject, ~, ~)
     %CLOSEREQ_CALLBACK is responsible for actions upon closing of the GUI
     % CLOSEREQ_CALLBACK(hObject, ~, ~) currently assigns the output value
-    % NEW_OBJECTS to the result of editing the input variable OBJECTS.
+    % OBJECTS to the result of editing the input variable OBJECTS.
     % Note that CLOSEREQ_CALLBACK must be defined in the scope of the
     % main GUI function, so that the output variable NEW_OBJECTS is 
     % accessible.
         myhandles=guidata(hObject);
-        disp('Assigning new objects');
-        new_objects=myhandles.objects;
         changed=myhandles.objects_changed;
+        if changed
+            disp('Assigning new objects');
+            objects=myhandles.objects;
+        end
         delete(hObject);
     end
 
