@@ -58,7 +58,7 @@ close(wb);
 reps = objects(cluster_reps);
 [reps,changed] = label_objects(reps);
 
-fprintf('Cluster reps were edited.');
+fprintf('Cluster reps were edited.\n');
 
 % Assign same labels to equivalent objects
 changed = false;
@@ -74,11 +74,11 @@ if changed
     fprintf('Some labels were changed');
 end
 
-fprintf('Post-editing all labels...');
+fprintf('Post-editing all labels...\n');
 % Relabel all objects
 [objects,changed_after] = label_objects(objects);
 
 if changed || changed_after
-    fprintf('Some object labels changed, Saving new objects.');
+    fprintf('Some object labels changed, Saving new objects.\n');
     save(savefile,'objects','lines');
 end
