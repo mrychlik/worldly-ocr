@@ -78,6 +78,11 @@ fprintf('Post-editing all labels...\n');
 % Relabel all objects
 [objects,changed_after] = label_objects(objects);
 
+if changed_after
+    fprintf('Some labels changed during post-editing.\n');
+end
+
+
 if changed || changed_after
     fprintf('Some object labels changed, Saving new objects.\n');
     save(savefile,'objects','lines');
