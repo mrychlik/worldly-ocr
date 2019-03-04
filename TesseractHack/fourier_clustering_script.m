@@ -71,7 +71,7 @@ for j=1:num_clusters
     end
 end
 if changed
-    fprintf('Some labels were changed');
+    fprintf('Some labels were changed.\n');
 end
 
 fprintf('Post-editing all labels...\n');
