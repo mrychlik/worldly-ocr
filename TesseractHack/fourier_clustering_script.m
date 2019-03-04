@@ -62,9 +62,9 @@ for j=1:num_clusters
 end
 
 % Relabel all objects
-objects = label_objects(objects);
+[objects,changed] = label_objects(objects);
 
-% Save relabeled objects
-[savefilepath,savefilename,ext] = fileparts(savefile);
-savefile_w_labels=fullfile(savefilepath,[savefilename,'_with_labels',ext]);
-save(savefile_w_labels,'objects','lines');
+if changed
+    fprintf('Objects changed, saving.');
+    save(savefile,'objects','lines');
+end
