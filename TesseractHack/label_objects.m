@@ -54,6 +54,7 @@ function create_Callback(hObject,~,objects)
     % Number of objects GUI can display at a time
     myhandles.num_objects=myhandles.num_rows*myhandles.num_cols;
     myhandles.objects=objects;
+    myhandles.objects_changed=false;
     % Offset to the first displayed character
     myhandles.offset=0;
 
@@ -192,6 +193,7 @@ function edit_Callback(hObject, eventdata, handles)
     if length(input)==1
         myhandles=guidata(gcbo);
         myhandles.objects(idx).char=input;
+        myhandles.objects_changed=true;
         guidata(gcbo,myhandles);
     else
         uiwait(msgbox('Input should be a single character.',...
