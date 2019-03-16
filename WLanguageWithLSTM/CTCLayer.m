@@ -35,8 +35,13 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
 
         % Layer forward loss function goes here.
             loss = 0;
-            numTimeSteps = size(Y,2);
-            for n = 1 : numTimeSteps
+            % For sequence to sequence mapping, Y and T is a 3-D array
+            % with K-by-N-by-D dimensions, where K is the number
+            % of classes, N is the minibatch size and D is the number
+            % of time steps
+            [K, N, D] = size(Y)
+
+            for n = 1 : D
                 l = toIndex(layer,T{n});
                 
                 lPrime = layer.paddWithBlanks(l)
@@ -76,6 +81,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
         %         dLdY  - Derivative of the loss with respect to the predictions Y
 
         % Layer backward loss function goes here.
+            dLdY = zeros(size(Y),'single');
         end
 
         function layer = set.AlphabetLength(layer)
