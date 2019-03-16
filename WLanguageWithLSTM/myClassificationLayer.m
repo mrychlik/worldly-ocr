@@ -29,6 +29,7 @@ classdef myClassificationLayer < nnet.layer.ClassificationLayer
         %         loss  - Loss between Y and T
 
         % Layer forward loss function goes here.
+            display('Entering forwardLoss...');
             1;
             % Y should be KxN, where K is the number of classes
             % from the soft-max layer, and N is the value of
@@ -39,6 +40,7 @@ classdef myClassificationLayer < nnet.layer.ClassificationLayer
 
             % Trivial loss
             loss = single(0);
+            display('Exiting forwardLoss...');
         end
         
         function dLdY = backwardLoss(layer, Y, T)
@@ -53,10 +55,12 @@ classdef myClassificationLayer < nnet.layer.ClassificationLayer
         %         dLdY  - Derivative of the loss with respect to the predictions Y
 
         % Layer backward loss function goes here.
+            display('Entering backwardLoss...');
             display(Y);
             display(T);
             pause(5);
             dLdY = zeros(size(Y),'single');
+            display('Exiting backwardLoss...');
         end
     end
 end
