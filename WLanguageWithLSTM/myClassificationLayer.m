@@ -1,4 +1,6 @@
 classdef myClassificationLayer < nnet.layer.ClassificationLayer
+% A layer to test what is passed on from previous layers
+% Implements zero loss function.
         
     properties
         % (Optional) Layer properties.
@@ -26,7 +28,7 @@ classdef myClassificationLayer < nnet.layer.ClassificationLayer
             %         loss  - Loss between Y and T
 
             % Layer forward loss function goes here.
-                loss = 0;
+                loss = single(0);
         end
         
         function dLdY = backwardLoss(layer, Y, T)
