@@ -29,7 +29,7 @@ classdef myClassificationLayer < nnet.layer.ClassificationLayer
         %         loss  - Loss between Y and T
 
         % Layer forward loss function goes here.
-            1;    
+            1;
             % Y should be KxN, where K is the number of classes
             % from the soft-max layer, and N is the value of
             % the 'MiniBatchSize' parameter.
