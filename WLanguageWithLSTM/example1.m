@@ -1,4 +1,6 @@
 %
+% An exploration of the Deep Learning framework.
+%
 % This script uses a custom classification layer
 % which shows data passed from the softmax layer.
 %
