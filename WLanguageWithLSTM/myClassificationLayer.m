@@ -13,6 +13,7 @@ classdef myClassificationLayer < nnet.layer.ClassificationLayer
             % (Optional) Create a myClassificationLayer.
 
             % Layer constructor function goes here.
+                layer.Name = 'Dummy Classification Layer'
         end
 
         function loss = forwardLoss(layer, Y, T)
@@ -28,6 +29,8 @@ classdef myClassificationLayer < nnet.layer.ClassificationLayer
             %         loss  - Loss between Y and T
 
             % Layer forward loss function goes here.
+                display(Y);
+                pause(5);
                 loss = single(0);
         end
         
