@@ -57,7 +57,7 @@ mkdir -p ~/tesstutorial/engoutput
 typeset -x SCROLLVIEW_PATH=$TESSERACT_HOME/java
 
 
-../src/training/lstmtraining --debug_interval 100 \
+./src/training/lstmtraining --debug_interval 100 \
   --traineddata ~/tesstutorial/engtrain/eng/eng.traineddata \
   --net_spec '[1,36,0,1 Ct3,3,16 Mp3,3 Lfys48 Lfx96 Lrx96 Lfx256 O1c111]' \
   --model_output ~/tesstutorial/engoutput/base --learning_rate 20e-4 \

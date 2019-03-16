@@ -39,10 +39,11 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
             % with K-by-N-by-D dimensions, where K is the number
             % of classes, N is the minibatch size and D is the number
             % of time steps
-            [K, N, D] = size(Y)
+            [K, N, D] = size(Y);
 
-            for n = 1 : D
-                l = toIndex(layer,T{n});
+            for n = 1 : N
+                for t = 1:D
+                label = layer.Alphabet(T(:,n,t));
                 
                 lPrime = layer.paddWithBlanks(l)
                 alpha(1,1) = Y(1, layer.BlankIndex);
@@ -85,6 +86,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
         end
 
         function layer = set.AlphabetLength(layer)
+            layer.AlphabetLength = length(layer.Alphabet);
         end
 
         function AlphabetLength = get.AlphabetLength(layer)
