@@ -26,6 +26,7 @@ classdef myClassificationLayer < nnet.layer.ClassificationLayer
             %         loss  - Loss between Y and T
 
             % Layer forward loss function goes here.
+                loss = 0;
         end
         
         function dLdY = backwardLoss(layer, Y, T)
@@ -40,6 +41,7 @@ classdef myClassificationLayer < nnet.layer.ClassificationLayer
             %         dLdY  - Derivative of the loss with respect to the predictions Y
 
             % Layer backward loss function goes here.
+                dLdY = zeros(size(Y),'single');
         end
     end
 end
