@@ -1,0 +1,106 @@
+classdef CTCLayer < nnet.layer.ClassificationLayer
+    
+    properties
+        % (Optional) Layer properties.
+        % Layer properties go here.
+        Alphabet='XO';                  % Alphabet
+        Blank='-';                      % Symbol for the blank
+    end
+    
+    properties(Dependent)
+        AlphabetLength;                 % Number of symbols in the alphabet
+        BlankIndex;                     % The index of the blank element
+    end
+    
+    methods
+        function layer = CTCLayer()
+        % (Optional) Create a CTCLayer.
+            layer.Name = 'CTCLayer';
+        end
+
+        function loss = forwardLoss(layer, Y, T)
+        % Return the loss between the predictions Y and the 
+        % training targets T.
+        %
+        % For CTC layer, the loss is the log-likelihood
+        % of all training targets, which are label sequences.
+        %
+        % Inputs:
+        %         layer - Output layer
+        %         Y     – Predictions made by network
+        %         T     – Training targets
+        %
+        % Output:
+        %         loss  - Loss between Y and T
+
+        % Layer forward loss function goes here.
+            loss = 0;
+            numTimeSteps = size(Y,2);
+            for n = 1 : numTimeSteps
+                l = toIndex(layer,T{n});
+                
+                lPrime = layer.paddWithBlanks(l)
+                alpha(1,1) = Y(1, layer.BlankIndex);
+                alpha(1,2) = Y(1, lPrime(1));
+                for s = 2 : length(lPrime)
+                    alpha(1,s) = 0;
+                end
+                for t = 2 : numTimeSteps
+                    for s = 1 : length(lPrime)
+                        temp = alpha(t-1,s) + alpha(t-1,s-1);
+                        if lPrime(s) == layer.BlankIndex || ...
+                                      s == 2 || ...
+                                      lPrime(s) == lPrime(s-2)
+                            alpha(t,s) = Y(t, lPrime(s)) * temp;
+                        else
+                            alpha(t,s) = Y(t, lPrime(s)) * (temp + alpha(t-1, s-2));
+                        end
+                    end
+                end
+                p = alpha(numTimeSteps, length(lprime)) + ...
+                    alpha(numTimeSteps, length(lprime) - 1);
+
+                loss = loss - log2(p);
+            end
+        end
+
+        function dLdY = backwardLoss(layer, Y, T)
+        % Backward propagate the derivative of the loss function.
+        %
+        % Inputs:
+        %         layer - Output layer
+        %         Y     – Predictions made by network
+        %         T     – Training targets
+        %
+        % Output:
+        %         dLdY  - Derivative of the loss with respect to the predictions Y
+
+        % Layer backward loss function goes here.
+        end
+
+        function layer = set.AlphabetLength(layer)
+        end
+
+        function AlphabetLength = get.AlphabetLength(layer)
+            AlphabetLength = length(layer.Alphabet);
+        end
+
+        function BlankIndex = get.BlankIndex(layer)
+            BlankIndex = layer.AlphabetLength + 1;
+        end
+
+        function idx = toIndex(layer, l)
+            idx = zeros(size(l));
+            for j=1:length(idx);
+                idx(j) = find(l(j)==layer.Alphabet, 1);
+            end
+        end
+    end
+
+    methods(Static)
+        function lPrime = paddWithBlanks(l)
+            lPrime = zeros(1,2*length(l)+1);
+            lPrime(2:2:2*length(l)) = l;
+        end
+    end
+end
