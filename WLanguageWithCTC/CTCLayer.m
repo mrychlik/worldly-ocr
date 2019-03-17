@@ -51,30 +51,30 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
 
             for n = 1 : N
                 [label, blank] = CTCLayer.target2label(squeeze(T(:,n,:)))
-                for t = 1:S
-                    lPrime = layer.paddWith(l, blank)
-                    alpha(1,1) = Y(1, blank);
-                    alpha(1,2) = Y(1, lPrime(1));
-                    for s = 2 : length(lPrime)
-                        alpha(1,s) = 0;
-                    end
-                    for t = 2 : numTimeSteps
-                        for s = 1 : length(lPrime)
-                            temp = alpha(t-1,s) + alpha(t-1,s-1);
-                            if lPrime(s) == blank || ...
-                                          s == 2 || ...
-                                          lPrime(s) == lPrime(s-2)
-                                alpha(t,s) = Y(t, lPrime(s)) * temp;
-                            else
-                                alpha(t,s) = Y(t, lPrime(s)) * (temp + alpha(t-1, s-2));
-                            end
+                
+                lPrime = CTCLayer.paddWith(label, blank)
+                alpha(1,1) = Y(blank, 1);
+                alpha(1,2) = Y(lPrime(1),1);
+                for s = 2 : length(lPrime)
+                    alpha(1,s) = 0;
+                end
+                    
+                for t = 2 : S
+                    for s = 1 : length(lPrime)
+                        temp = alpha(t-1,s) + alpha(t-1,s-1);
+                        if lPrime(s) == blank || ...
+                                      s == 2 || ...
+                                      lPrime(s) == lPrime(s-2)
+                            alpha(t,s) = Y(lPrime(s),t) * temp;
+                        else
+                            alpha(t,s) = Y(lPrime(s),t) * (temp + alpha(t-1, s-2));
                         end
                     end
-                    p = alpha(numTimeSteps, length(lprime)) + ...
-                        alpha(numTimeSteps, length(lprime) - 1);
-
-                    loss = loss - log2(p);
                 end
+                p = alpha(numTimeSteps, length(lprime)) + ...
+                    alpha(numTimeSteps, length(lprime) - 1);
+                
+                loss = loss - log2(p);
             end
         end
 
