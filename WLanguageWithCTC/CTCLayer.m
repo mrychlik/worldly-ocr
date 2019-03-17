@@ -173,7 +173,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                 % the derivative is d loss / dp = -log(p) -1 + log(1-p) +
                 % 1 = log(1-p)/p)
 
-                dLdY = dLdY - dp .* log(p./(1-p));
+                dLdY = dLdY - dp ./ p;
             end
             dLdY = dLdY ./ N;
         end
