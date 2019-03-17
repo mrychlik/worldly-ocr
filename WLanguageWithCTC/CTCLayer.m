@@ -78,6 +78,8 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                 if length(lPrime) > 1
                     p = p + alpha(S, length(lPrime) - 1);
                 end
+                p = (1-2.*eps).*p + eps;
+        
                 loss = loss - p.*log(p) - (1-p).*log(1-p);
             end
             loss = loss ./ N;
