@@ -6,11 +6,11 @@
 %
 % NOTE: The loss is set to 0, so nothing useful happens in regard to training.
 %
-[XTrain, YTrain] = prepareDataTrain(1000, 16, 1);
+[XTrain, YTrain] = prepareDataTrain(1000, 6, 1);
 
-numFeatures = 4;
+numFeatures = 3;
 numHiddenUnits = 32;
-numClasses = 4;
+numClasses = 3;
 
 ctcLayer = CTCLayer;
 
