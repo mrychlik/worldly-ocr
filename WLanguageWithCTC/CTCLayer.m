@@ -85,8 +85,8 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
             for n = 1 : N
                 T1 = squeeze(T(:,n,:);
 
-                alpha = update_alpha(Y, T1));
-                alpha = update_alpha(Y, T1));
+                alpha = CTCLayer.update_alpha(Y, T1));
+                alpha = CTCLayer.update_alpha(Y, T1));
                 
                 p = alpha(S, length(lPrime)); 
                 if length(lPrime) > 1
