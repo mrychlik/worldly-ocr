@@ -158,7 +158,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
         function beta = update_beta(Y, T)
             [~, S] = size(T);
 
-            [label, period, blank] = CTCLayer.target2label(T);
+            [label, period, blank, len] = CTCLayer.target2label(T);
             lPrime = CTCLayer.paddWith(label, blank);
 
             beta = zeros([S,length(lPrime)],'single');
@@ -194,7 +194,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
 
 
     methods(Static)
-        function [label, period, blank] = target2label(T)
+        function [label, period, blank, len] = target2label(T)
         %Translate targets to label indices (with respect to the alphabet)
         % [LABEL, PERIOD, BLANK] = TARGET2LABEL(T) returns the label
         % matrix with the same number of columns as T and each column
@@ -210,6 +210,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
             blank = n-1;
             assert(all(label ~= blank));
             r = find(label==period,1);
+            len = r - 1;
             assert(all(label(r:end) == period));
         end
 
