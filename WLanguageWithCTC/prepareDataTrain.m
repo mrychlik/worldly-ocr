@@ -28,13 +28,14 @@ valueset = {'X','O','_'};
 for j = 1:num_samples
     String{j} = randsample('XO_', sample_length, true);
     [X, Y] = W(String{j}, max_stretch);
+    assert(size(X,1)==length(Y));
     XTrain{j} = X';
-    len=size(X,2);
-    % Remove blanks
+    len=size(X,1);
+    % Remove blanks from the target label
     Y = Y(Y~='_');
-    % Padd with blanks on the right
-    P = repmat('_',len-length(Y),1);
-    YTrain{j} = categorical(cellstr([Y;P]),valueset)';
+    % Padd with blanks on the right to the duration of the sample
+    Z = pad(Y',len,'_')';
+    YTrain{j} = categorical(cellstr(Z),valueset)';
 end
 
 
@@ -64,3 +65,10 @@ end
 %     P=repmat('.',S-length(Y),1);
 %     YTrain{j} = categorical(cellstr([Y;P]),valueset)';
 % end
+
+assert(length(XTrain)==length(YTrain));
+for j = 1:num_samples
+    X=XTrain{j};
+    Y=YTrain{j};
+    assert(size(X,2)==length(Y));
+end
