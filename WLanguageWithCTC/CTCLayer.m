@@ -115,7 +115,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
         end
     end
 
-    methods(Access=private)
+    methods(Access=private,Static)
         function alpha = update_alpha(Y, T)
             [K, S] = size(T);
 
