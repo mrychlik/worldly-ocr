@@ -92,7 +92,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                 alpha = CTCLayer.update_alpha(Y1, T1);
                 beta = CTCLayer.update_beta(Y1, T1);
                 
-                [label, ~, blank] = CTCLayer.target2label(T1);
+                [label, period, blank, ~] = CTCLayer.target2label(T1);
                 lPrime = CTCLayer.paddWith(label, blank);
                 p = alpha(S, length(lPrime)); 
                 if length(lPrime) > 1
@@ -102,7 +102,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
 
                 dp = zeros(size(Y),'single');
                 for t = 1:S
-                    for k=1:blank
+                    for k=1:period
                         for s=1:length(lPrime)
                             if lPrime(s) == k
                                 dp(k,t) = dp(k,t) + alpha(t,s) .* ...
@@ -125,7 +125,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
         function alpha = update_alpha(Y, T)
             [~, S] = size(T);
 
-            [label, period, blank] = CTCLayer.target2label(T);
+            [label, period, blank, len] = CTCLayer.target2label(T);
             lPrime = CTCLayer.paddWith(label, blank);
             
             alpha = zeros([S,length(lPrime)],'single');
