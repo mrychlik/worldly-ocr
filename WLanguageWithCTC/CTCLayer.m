@@ -29,7 +29,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
         % encoding), with the last vector [0 0 0 ... 1] expressing the
         % blank. Blanks in the target are used for padding, so that the
         % targets can be expressed as a matrix.  Thus, in CTC calculations,
-        % the padding is dropped.
+        % this padding should be dropped.
         % 
         % For sequence-to-sequence mapping, the documentation says that T is
         % 3-D array of size K-by-N-by-S, where K is the number of classes, N
