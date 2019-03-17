@@ -53,7 +53,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                 Y1 = squeeze(Y(:,n,:));
                 alpha = CTCLayer.update_alpha(Y1, T1);
 
-                [label, ~, blank] = CTCLayer.target2label(T1);
+                [label, blank] = CTCLayer.target2label(T1);
                 lPrime = CTCLayer.paddWith(label, blank);
                 p = alpha(S, length(lPrime)); 
                 if length(lPrime) > 1
@@ -194,19 +194,19 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
 
 
     methods(Static)
-        function [label, blank, len] = target2label(T)
+        function [label, blank] = target2label(T)
         %Translate targets to label indices (with respect to the alphabet)
         % [LABEL, BLANK, LEN] = TARGET2LABEL(T) returns the label
         % matrix with the same number of columns as T and each column
         % (which is a one-hot encoded symbol) to the symbol index.
         % Additionally BLANK is the highest index, corresponding to
         % Grave's blank.
-            [label, n] = vec2ind(T);
+            [ind, n] = vec2ind(T);
             blank = n;
-            assert(all(label ~= blank));
-            r = find(label==blank,1);
+            r = find(ind==blank,1);
             len = r - 1;
-            assert(all(label(r:end) == blank));
+            assert(all(ind(r:end) == blank));
+            label = ind(1:len);
         end
 
         function lPrime = paddWith(l, blank)
