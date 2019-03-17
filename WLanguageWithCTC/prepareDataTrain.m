@@ -48,3 +48,12 @@ for j = 1:num_samples
     P=repmat('.',M-length(Y),1);
     YTrain{j} = categorical(cellstr([Y;P]),valueset)';
 end
+
+% Maximum time length of the inputs
+S=cellfun(@(x)size(x,2),XTrain);
+D=size(XTrain{1},1);
+for j = 1:num_samples
+    X=XTrain{j};
+    P=zeros([D,S-size(X,2)],'single');
+    XTrain{j} = [X,P];
+end
