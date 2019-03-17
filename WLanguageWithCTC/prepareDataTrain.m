@@ -30,7 +30,12 @@ for j = 1:num_samples
     XTrain{j} = X';
     len=length(Y);
     Y = Y(Y~='_');
-    Y = [Y;repmat('_',len-len(Y),1)];
+    % Padd to the oritinal length with blanks
+    % NOTE: MATLAB does not allow targets to have variable length
+    % as they are delivered to the classification layer as matrices
+    % of the same size as inputs. Therefore, we padd all vectors to
+    % the same length
+    Y = [Y;repmat('_',len-length(Y),1)];
     YTrain{j} = categorical(cellstr(Y))';
 end
 
