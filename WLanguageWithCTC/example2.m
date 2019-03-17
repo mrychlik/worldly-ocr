@@ -39,3 +39,18 @@ options = trainingOptions('adam', ...
 net = trainNetwork(XTrain,YTrain,layers,options);
 
 
+% Test prediction
+[XTest, YTest] = prepareDataTrain;
+
+YPred = classify(net, XTest, 'MiniBatchSize', 1);
+
+
+count = 0;
+for j=1:length(YPred)
+    if ~all(YPred{j} == YTest{j})
+        count = count + 1;
+    end
+end
+
+Confusion = count / length(YPred);
+Confusion
