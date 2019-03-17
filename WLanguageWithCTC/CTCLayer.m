@@ -150,7 +150,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                         beta(t,s) = Y(lPrime(s), n, t) * tmp;
                     end
                 end
-
+                
                 p = alpha(S, length(lPrime)); 
                 if length(lPrime) > 1
                     p = p + alpha(S, length(lPrime) - 1);
