@@ -90,7 +90,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                 alpha = CTCLayer.update_alpha(Y1, T1);
                 beta = CTCLayer.update_beta(Y1, T1);
                 
-                [label, ~, blank] = CTCLayer.target2label(T);
+                [label, ~, blank] = CTCLayer.target2label(T1);
                 lPrime = CTCLayer.paddWith(label, blank);
                 p = alpha(S, length(lPrime)); 
                 if length(lPrime) > 1
