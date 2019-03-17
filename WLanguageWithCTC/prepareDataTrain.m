@@ -31,6 +31,7 @@ for j = 1:num_samples
     XTrain{j} = X';
     len=length(Y);
     Y = Y(Y~='_');
+    P = rep('_',len-length(Y),1);
     YTrain{j} = Y;
 end
 
