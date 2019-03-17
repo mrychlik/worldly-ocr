@@ -105,54 +105,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
             dLdY = zeros(size(Y),'single');
 
             for n = 1 : N
-                [label, period, blank] = CTCLayer.target2label(squeeze(T(:,n,:)));
-                lPrime = CTCLayer.paddWith(label, blank);
-                
-                alpha = zeros([S,length(lPrime)],'single');
-
-                alpha(1,1) = Y(blank, n, 1);
-                alpha(1,2) = Y(lPrime(1), n, 1);
-
-                for s = 2 : length(lPrime)
-                    alpha(1,s) = 0;
-                end
-                    
-                for t = 2 : S
-                    for s = 1 : length(lPrime)
-                        if s == 1 
-                            tmp = alpha(t-1,s);
-                        elseif lPrime(s) == blank || s == 2 || lPrime(s) == lPrime(s-2)
-                            tmp = alpha(t-1, s) + alpha(t-1,s-1);
-                        else
-                            tmp = alpha(t-1, s) + (alpha(t-1,s) + alpha(t-1,s-1) + alpha(t-1, s-2));
-                        end
-                        alpha(t,s) = Y(lPrime(s), n, t) * tmp;
-                    end
-                end
-
-                beta = zeros([S,length(lPrime)],'single');
-
-                beta(S,length(lPrime)) = Y(blank, n, S);
-                if ~isempty(label)
-                    beta(S,length(lPrime)-1) = Y(label(end), n, S);
-                end
-
-                for s=1:(length(lPrime)-2)
-                    beta(S,s) = 0;
-                end
-                    
-                for t = (S-1):-1:1
-                    for s = 1 : length(lPrime)
-                        if s == length(lPrime)
-                            tmp = beta(t+1,s);
-                        elseif lPrime(s) == blank || s == length(lPrime)-1 || lPrime(s) == lPrime(s+2)
-                            tmp = beta(t+1, s) + beta(t+1,s+1);
-                        else
-                            tmp = beta(t+1, s) + (beta(t+1,s) + beta(t+1,s+1) + beta(t+1, s+2));
-                        end
-                        beta(t,s) = Y(lPrime(s), n, t) * tmp;
-                    end
-                end
+                alpha = update_alpha(Y, squeeze(T(:,n,:)));
                 
                 p = alpha(S, length(lPrime)); 
                 if length(lPrime) > 1
@@ -210,8 +163,38 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                 end
             end
         end
-    end
 
+        function beta = update_beta(Y, T)
+            [K, S] = size(T);
+
+            [label, period, blank] = CTCLayer.target2label(T));
+            lPrime = CTCLayer.paddWith(label, blank);
+
+            beta = zeros([S,length(lPrime)],'single');
+
+            beta(S,length(lPrime)) = Y(blank, n, S);
+            if ~isempty(label)
+                beta(S,length(lPrime)-1) = Y(label(end), n, S);
+            end
+
+            for s=1:(length(lPrime)-2)
+                beta(S,s) = 0;
+            end
+            
+            for t = (S-1):-1:1
+                for s = 1 : length(lPrime)
+                    if s == length(lPrime)
+                        tmp = beta(t+1,s);
+                    elseif lPrime(s) == blank || s == length(lPrime)-1 || lPrime(s) == lPrime(s+2)
+                        tmp = beta(t+1, s) + beta(t+1,s+1);
+                    else
+                        tmp = beta(t+1, s) + (beta(t+1,s) + beta(t+1,s+1) + beta(t+1, s+2));
+                    end
+                    beta(t,s) = Y(lPrime(s), n, t) * tmp;
+                end
+            end
+        end
+    end
 
 
     methods(Static)
