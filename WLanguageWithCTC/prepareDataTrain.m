@@ -31,12 +31,19 @@ for j = 1:num_samples
     XTrain{j} = X';
     len=length(Y);
     Y = Y(Y~='_');
-    % Padd to the oritinal length with blanks
-    % NOTE: MATLAB does not allow targets to have variable length
-    % as they are delivered to the classification layer as matrices
-    % of the same size as inputs. Therefore, we padd all vectors to
-    % the same length.
-    YTrain{j} = categorical(cellstr(Y),valueset)';
+    YTrain{j} = Y;
 end
 
 
+% Padd to the oritinal length with periods ('certain endmark' symbols).
+% NOTE: MATLAB does not allow targets to have variable length
+% as they are delivered to the classification layer as matrices
+% of the same size as inputs. Therefore, we padd all vectors to
+% the same length.
+
+% Maximum length of a label
+M = max(cellfun(@length,YTrain));
+for j = 1:num_samples
+    Y = Y),valueset)';
+    YTrain{j} = categorical(cellstr([YTrain{j},repmat('.',M-length(Y),1)]),valueset)'
+end
