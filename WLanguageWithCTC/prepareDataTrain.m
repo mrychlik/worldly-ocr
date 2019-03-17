@@ -41,13 +41,6 @@ end
 % of the same size as inputs. Therefore, we padd all vectors to
 % the same length.
 
-% Maximum length of a label
-M = max(cellfun(@length,YTrain));
-for j = 1:num_samples
-    Y=YTrain{j};
-    P=repmat('.',M-length(Y),1);
-    YTrain{j} = categorical(cellstr([Y;P]),valueset)';
-end
 
 % Maximum time length of the inputs
 S=max(cellfun(@(x)size(x,2),XTrain));
@@ -56,4 +49,13 @@ for j = 1:num_samples
     X=XTrain{j};
     P=zeros([D,S-size(X,2)],'single');
     XTrain{j} = [X,P];
+end
+
+% Maximum length of a label
+M = max(cellfun(@length,YTrain));
+assert(M <= S);
+for j = 1:num_samples
+    Y=YTrain{j};
+    P=repmat('.',S-length(Y),1);
+    YTrain{j} = categorical(cellstr([Y;P]),valueset)';
 end
