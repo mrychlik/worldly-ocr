@@ -29,7 +29,7 @@ for j = 1:num_samples
     String{j} = randsample('XO_', sample_length, true);
     [X, Y] = W(String{j}, max_stretch);
     XTrain{j} = X';
-    len=length(Y);
+    len=length(X);
     Y = Y(Y~='_');
     P = repmat('_',len-length(Y),1);
     YTrain{j} = [Y;P];
@@ -44,21 +44,21 @@ end
 
 
 % Maximum time length of the inputs
-S=max(cellfun(@(x)size(x,2),XTrain));
-D=size(XTrain{1},1);
-for j = 1:num_samples
-    X=XTrain{j};
-    P=zeros([D,S-size(X,2)],'single');
-    X=padarray(X,[1,0],0,'post');
-    P=padarray(P,[1,0],1,'post');
-    XTrain{j} = [X,P];
-end
+% S=max(cellfun(@(x)size(x,2),XTrain));
+% D=size(XTrain{1},1);
+% for j = 1:num_samples
+%     X=XTrain{j};
+%     P=zeros([D,S-size(X,2)],'single');
+%     X=padarray(X,[1,0],0,'post');
+%     P=padarray(P,[1,0],1,'post');
+%     XTrain{j} = [X,P];
+% end
 
-% Maximum length of a label
-M = max(cellfun(@length,YTrain));
-assert(M <= S);
-for j = 1:num_samples
-    Y=YTrain{j};
-    P=repmat('.',S-length(Y),1);
-    YTrain{j} = categorical(cellstr([Y;P]),valueset)';
-end
+% % Maximum length of a label
+% M = max(cellfun(@length,YTrain));
+% assert(M <= S);
+% for j = 1:num_samples
+%     Y=YTrain{j};
+%     P=repmat('.',S-length(Y),1);
+%     YTrain{j} = categorical(cellstr([Y;P]),valueset)';
+% end
