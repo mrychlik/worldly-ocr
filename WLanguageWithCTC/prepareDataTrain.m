@@ -22,6 +22,7 @@ if nargin < 3; max_stretch = 1; end;
     
 X = cell(num_samples, 1);
 
+valueset = {'X','O','-'};
 
 % Map random strings to W-language
 for j = 1:num_samples
@@ -36,7 +37,7 @@ for j = 1:num_samples
     % of the same size as inputs. Therefore, we padd all vectors to
     % the same length.
     Y = [Y;repmat('_',len-length(Y),1)];
-    YTrain{j} = categorical(cellstr(Y))';
+    YTrain{j} = categorical(cellstr(Y),valueset)';
 end
 
 
