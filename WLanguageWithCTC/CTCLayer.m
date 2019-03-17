@@ -146,7 +146,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                         tmp = alpha(t-1, s) + alpha(t-1,s-1);
                         alpha(t,s) = Y(lPrime(s), t) * tmp;
                     elseif lPrime(s) == period && lPrime(s-2) == period
-                        alpha(t, s) = alpha(t, s-2);
+                        alpha(t, s) = Y(lPrime(s), t) * alpha(t, s-2);
                     else
                         tmp = alpha(t-1, s) + (alpha(t-1,s) + alpha(t-1,s-1) + alpha(t-1, s-2));
                         alpha(t,s) = Y(lPrime(s), t) * tmp;
