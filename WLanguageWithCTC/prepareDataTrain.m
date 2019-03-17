@@ -50,8 +50,8 @@ for j = 1:num_samples
 end
 
 % Maximum time length of the inputs
-S=cellfun(@(x)size(x,2),XTrain);
-D=size(XTrain{1},1);
+S=max(cellfun(@(x)size(x,2),XTrain));
+D=size(XTrain{1},1)
 for j = 1:num_samples
     X=XTrain{j};
     P=zeros([D,S-size(X,2)],'single');
