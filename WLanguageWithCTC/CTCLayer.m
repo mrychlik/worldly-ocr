@@ -171,6 +171,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                 end
                 dLdY = dLdY - dp ./ p;
             end
+            dLdY = dLdY ./ N;
         end
     end
 
