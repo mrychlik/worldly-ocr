@@ -22,7 +22,7 @@ if nargin < 3; max_stretch = 1; end;
     
 X = cell(num_samples, 1);
 
-valueset = {'X','O','_','.'};
+valueset = {'X','O','_'};
 
 % Map random strings to W-language
 for j = 1:num_samples
