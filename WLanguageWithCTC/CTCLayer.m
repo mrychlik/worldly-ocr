@@ -49,31 +49,10 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
             [K, N, S] = size(T);
 
             for n = 1 : N
-                [label, period, blank] = CTCLayer.target2label(squeeze(T(:,n,:)));
-                lPrime = CTCLayer.paddWith(label, blank);
-                alpha = zeros([S,length(lPrime)],'single');
-                
+                T1 = squeeze(T(:,n,:);
 
-                alpha(1,1) = Y(blank, n, 1);
-                alpha(1,2) = Y(lPrime(1), n, 1);
+                alpha = update_alpha(Y, T1));
 
-                for s = 2 : length(lPrime)
-                    alpha(1,s) = 0;
-                end
-                    
-                for t = 2 : S
-                    for s = 1 : length(lPrime)
-                        if s == 1 
-                            tmp = alpha(t-1,s);
-                        elseif lPrime(s) == blank || s == 2 || lPrime(s) == lPrime(s-2)
-                            tmp = alpha(t-1, s) + alpha(t-1,s-1);
-                        else
-                            tmp = alpha(t-1, s) + (alpha(t-1,s) + alpha(t-1,s-1) + alpha(t-1, s-2));
-                        end
-                        alpha(t,s) = Y(lPrime(s), n, t) * tmp;
-                    end
-                end
-                
                 p = alpha(S, length(lPrime)); 
                 if length(lPrime) > 1
                     p = p + alpha(S, length(lPrime) - 1);
