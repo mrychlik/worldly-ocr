@@ -182,7 +182,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
     end
 
     methods(Access=private)
-        function update_alpha(Y, T)
+        function alpha = update_alpha(Y, T)
             [K, S] = size(T);
 
             [label, period, blank] = CTCLayer.target2label(T));
