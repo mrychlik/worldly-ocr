@@ -15,7 +15,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
             layer.Name = 'CTCLayer';
         end
 
-        function loss = forwardLoss(layer, Y, T)
+        function loss = forwardLoss(~, Y, T)
         % Return the loss between the predictions Y and the 
         % training targets T.
         %
@@ -46,7 +46,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
             loss = 0;
             assert(all(size(Y) == size(T)));
 
-            [K, N, S] = size(T);
+            [~, N, S] = size(T);
 
             for n = 1 : N
                 T1 = squeeze(T(:,n,:));
@@ -67,7 +67,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
             loss = loss ./ N;
         end
 
-        function dLdY = backwardLoss(layer, Y, T)
+        function dLdY = backwardLoss(~, Y, T)
         % Backward propagate the derivative of the loss function.
         %
         % Inputs:
@@ -123,9 +123,9 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
 
     methods(Access=private,Static)
         function alpha = update_alpha(Y, T)
-            [K, S] = size(T);
+            [~, S] = size(T);
 
-            [label, period, blank] = CTCLayer.target2label(T);
+            [label, ~, blank] = CTCLayer.target2label(T);
             lPrime = CTCLayer.paddWith(label, blank);
             
             alpha = zeros([S,length(lPrime)],'single');
@@ -141,20 +141,24 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                 for s = 1 : length(lPrime)
                     if s == 1 
                         tmp = alpha(t-1,s);
+                        alpha(t,s) = Y(lPrime(s), t) * tmp;
                     elseif lPrime(s) == blank || s == 2 || lPrime(s) == lPrime(s-2)
                         tmp = alpha(t-1, s) + alpha(t-1,s-1);
+                        alpha(t,s) = Y(lPrime(s), t) * tmp;
+                    elseif lPrime(s) == period && lPrime(s-2) == period
+                        alpha(t, s) = alpha(t, s-2);
                     else
                         tmp = alpha(t-1, s) + (alpha(t-1,s) + alpha(t-1,s-1) + alpha(t-1, s-2));
+                        alpha(t,s) = Y(lPrime(s), t) * tmp;
                     end
-                    alpha(t,s) = Y(lPrime(s), t) * tmp;
                 end
             end
         end
 
         function beta = update_beta(Y, T)
-            [K, S] = size(T);
+            [~, S] = size(T);
 
-            [label, period, blank] = CTCLayer.target2label(T);
+            [label, ~, blank] = CTCLayer.target2label(T);
             lPrime = CTCLayer.paddWith(label, blank);
 
             beta = zeros([S,length(lPrime)],'single');
