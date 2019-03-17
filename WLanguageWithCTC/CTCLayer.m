@@ -23,13 +23,17 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
         % For CTC layer, the loss is the log-likelihood
         % of all training targets, which are label sequences.
         % 
-        % Due to the pecularity of MATLAB Deep Learning Toolkit,
-        % We receive targets as vectors of dimension equal to the
-        % size of the extended alphabet. The columns are vectors
-        % of the standard basis, with the last vector [0 0 0 ... 1]
-        % expressing the blank. Blanks in the target are used for
-        % padding, so that the targets can be expressed as a matrix.
-        % Thus, in CTC calculations, the padding is dropped.
+        % Due to the pecularity of MATLAB Deep Learning Toolkit, We receive
+        % targets as vectors of dimension equal to the size of the extended
+        % alphabet. The columns are vectors of the standard basis (one-hot
+        % encoding), with the last vector [0 0 0 ... 1] expressing the
+        % blank. Blanks in the target are used for padding, so that the
+        % targets can be expressed as a matrix.  Thus, in CTC calculations,
+        % the padding is dropped.
+        % 
+        % For sequence-to-sequence mapping, the documentation says that T is
+        % 3-D array of size K-by-N-by-S, where K is the number of classes, N
+        % is the mini-batch size, and S is the sequence length.
         %
         % Inputs:
         %         layer - Output layer
@@ -45,7 +49,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
             % with K-by-N-by-D dimensions, where K is the number
             % of classes, N is the minibatch size and D is the number
             % of time steps
-            [K, N, D] = size(Y);
+            [K, N, S] = size(Y);
 
             for n = 1 : N
                 for t = 1:D
