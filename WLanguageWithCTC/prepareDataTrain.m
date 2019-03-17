@@ -32,7 +32,7 @@ for j = 1:num_samples
     len=length(X);
     Y = Y(Y~='_');
     P = repmat('_',len-length(Y),1);
-    YTrain{j} = [Y;P]';
+    YTrain{j} = categorical(cellstr([Y;P]),valueset)';
 end
 
 
