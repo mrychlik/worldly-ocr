@@ -82,7 +82,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
         
                 loss = loss - log(p);
             end
-            %loss = loss ./ N;
+            loss = loss ./ N;
         end
 
         function dLdY = backwardLoss(layer, Y, T)
@@ -175,7 +175,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
 
                 dLdY = dLdY - dp ./ p;
             end
-            %dLdY = dLdY ./ N;
+            dLdY = dLdY ./ N;
         end
     end
 
