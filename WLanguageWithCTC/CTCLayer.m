@@ -75,7 +75,6 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                     end
                 end
                 p = alpha(S, length(lprime)) + alpha(S, length(lprime) - 1);
-                
                 loss = loss - log2(p);
             end
         end
