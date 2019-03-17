@@ -102,7 +102,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
 
                 dp = zeros(size(Y),'single');
                 for t = 1:S
-                    for k=1:period
+                    for k=1:blank
                         for s=1:length(lPrime)
                             if lPrime(s) == k
                                 dp(k,t) = dp(k,t) + alpha(t,s) .* ...
