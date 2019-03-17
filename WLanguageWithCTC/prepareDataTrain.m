@@ -29,8 +29,10 @@ for j = 1:num_samples
     String{j} = randsample('XO_', sample_length, true);
     [X, Y] = W(String{j}, max_stretch);
     XTrain{j} = X';
-    len=length(X);
+    len=size(X,2);
+    % Remove blanks
     Y = Y(Y~='_');
+    % Padd with blanks on the right
     P = repmat('_',len-length(Y),1);
     YTrain{j} = categorical(cellstr([Y;P]),valueset)';
 end
