@@ -194,7 +194,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
 
 
     methods(Static)
-        function [label, blank] = target2label(T)
+        function [label, blank, len] = target2label(T)
         %Translate targets to label indices (with respect to the alphabet)
         % [LABEL, BLANK, LEN] = TARGET2LABEL(T) returns the label
         % matrix with the same number of columns as T and each column
