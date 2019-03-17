@@ -97,12 +97,14 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
             assert(all(size(Y) == size(T)));
 
             [K, N, S] = size(T);
+            
+            dLdY = zeros(size(Y),'single');
 
             for n = 1 : N
                 [label, blank] = CTCLayer.target2label(squeeze(T(:,n,:)));
                 lPrime = CTCLayer.paddWith(label, blank);
-                alpha = zeros([S,length(lPrime)],'single');
                 
+                alpha = zeros([S,length(lPrime)],'single');
 
                 alpha(1,1) = Y(blank, n, 1);
                 alpha(1,2) = Y(lPrime(1), n, 1);
@@ -147,7 +149,6 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                 end
             end
 
-            dLdY = zeros(size(Y),'single');
             for t = 1:S
                 for k=1:blank
                     for s=1:length(lPrime)
