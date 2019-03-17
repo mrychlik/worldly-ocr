@@ -50,7 +50,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
             [K, N, S] = size(T);
 
             for n = 1 : N
-                [label, blank] = CTCLayer.target2label(squeeze(T(:,n,:)))
+                [label, blank] = CTCLayer.target2label(squeeze(T(:,n,:)));
                 lPrime = CTCLayer.paddWith(label, blank);
                 alpha = zeros([S,length(lPrime)],'single');
                 
@@ -64,18 +64,21 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                     
                 for t = 2 : S
                     for s = 1 : length(lPrime)
-                        temp = alpha(t-1,s) + alpha(t-1,s-1);
-                        if lPrime(s) == blank || ...
-                                      s == 2 || ...
-                                      lPrime(s) == lPrime(s-2)
-                            alpha(t,s) = Y(lPrime(s),t) * temp;
+                        if s == 1 
+                            tmp = alpha(t-1,s);
+                        elseif lPrime(s) == blank || s == 2 || lPrime(s) == lPrime(s-2)
+                            tmp = alpha(t-1, s) + alpha(t-1,s-1);
                         else
-                            alpha(t,s) = Y(lPrime(s),t) * (temp + alpha(t-1, s-2));
+                            tmp = alpha(t-1, s) + (alpha(t-1,s) + alpha(t-1,s-1) + alpha(t-1, s-2));
                         end
+                        alpha(t,s) = Y(lPrime(s),t) * tmp;
                     end
                 end
-
-                p = alpha(S, length(lprime)) + alpha(S, length(lprime) - 1);
+                
+                p = alpha(S, length(lPrime)); 
+                if length(lPrime) > 1
+                    p = p + alpha(S, length(lPrime) - 1);
+                end
                 loss = loss - log2(p);
             end
         end
@@ -92,7 +95,69 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
         %         dLdY  - Derivative of the loss with respect to the predictions Y
 
         % Layer backward loss function goes here.
+            assert(all(size(Y) == size(T)));
+
+            [K, N, S] = size(T);
+
+            for n = 1 : N
+                [label, blank] = CTCLayer.target2label(squeeze(T(:,n,:)));
+                lPrime = CTCLayer.paddWith(label, blank);
+                alpha = zeros([S,length(lPrime)],'single');
+                
+
+                alpha(1,1) = Y(blank, 1);
+                alpha(1,2) = Y(lPrime(1),1);
+
+                for s = 2 : length(lPrime)
+                    alpha(1,s) = 0;
+                end
+                    
+                for t = 2 : S
+                    for s = 1 : length(lPrime)
+                        if s == 1 
+                            tmp = alpha(t-1,s);
+                        elseif lPrime(s) == blank || s == 2 || lPrime(s) == lPrime(s-2)
+                            tmp = alpha(t-1, s) + alpha(t-1,s-1);
+                        else
+                            tmp = alpha(t-1, s) + (alpha(t-1,s) + alpha(t-1,s-1) + alpha(t-1, s-2));
+                        end
+                        alpha(t,s) = Y(lPrime(s),t) * tmp;
+                    end
+                end
+
+                beta = zeros([S,length(lPrime)],'single');
+
+                beta(S,length(lPrime)) = Y(blank, S);
+                beta(S,length(lPrime)-1)) = Y(lPrime(1),label(end));
+
+                for s=1:(length(lPrime)-2)
+                    beta(S,s) = 0;
+                end
+                    
+                for t = (S-1):-1:1
+                    for s = 1 : length(lPrime)
+                        if s == 1 
+                            tmp = beta(t+1,s);
+                        elseif lPrime(s) == blank || s == 2 || lPrime(s) == lPrime(s+2)
+                            tmp = beta(t+1, s) + beta(t+1,s+1);
+                        else
+                            tmp = beta(t+1, s) + (beta(t+1,s) + beta(t+1,s+1) + beta(t+1, s+2));
+                        end
+                        beta(t,s) = Y(lPrime(s),t) * tmp;
+                    end
+                end
+
             dLdY = zeros(size(Y),'single');
+            for t = 1:S
+                for k=1:blank
+                    for s=1:length(lPrime)
+                        if lPrime(s) = k
+                            dLdY(k,T) = dLdY(k,T) + alpha(t,s)*beta(t, ...
+                                                                    s)./y(t,k).^2;
+                        end
+                    end
+                end
+            end
         end
 
         function layer = set.AlphabetLength(layer)
