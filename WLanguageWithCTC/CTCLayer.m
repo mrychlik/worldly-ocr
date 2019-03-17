@@ -206,8 +206,8 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
         % first period are periods, and that no blank is a 
         % target.
             [label, n] = vec2ind(T);
-            period = n-1;
-            blank = n;
+            period = n;
+            blank = n-1;
             assert(all(label < blank));
             r = find(label==period,1);
             assert(all(label(r:end) == period));
