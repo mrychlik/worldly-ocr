@@ -51,10 +51,13 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
 
             for n = 1 : N
                 [label, blank] = CTCLayer.target2label(squeeze(T(:,n,:)))
-                
                 lPrime = CTCLayer.paddWith(label, blank)
+                alpha = zeros([S,length(lPrime)],'single');
+                
+
                 alpha(1,1) = Y(blank, 1);
                 alpha(1,2) = Y(lPrime(1),1);
+
                 for s = 2 : length(lPrime)
                     alpha(1,s) = 0;
                 end
