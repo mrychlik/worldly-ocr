@@ -194,24 +194,19 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
 
 
     methods(Static)
-        function [label, period, blank, len] = target2label(T)
+        function [label, blank] = target2label(T)
         %Translate targets to label indices (with respect to the alphabet)
-        % [LABEL, PERIOD, BLANK] = TARGET2LABEL(T) returns the label
+        % [LABEL, BLANK, LEN] = TARGET2LABEL(T) returns the label
         % matrix with the same number of columns as T and each column
         % (which is a one-hot encoded symbol) to the symbol index.
-        % Additionally PERIOD and BLANK are two highest indicies,
-        % which are assumed to correspond to the character that
-        % ends the sentence and the character used as a blank.
-        % We also validate that all characters following the
-        % first period are periods, and that no blank is a 
-        % target.
+        % Additionally BLANK is the highest index, corresponding to
+        % Grave's blank.
             [label, n] = vec2ind(T);
-            period = n;
-            blank = n-1;
+            blank = n;
             assert(all(label ~= blank));
-            r = find(label==period,1);
+            r = find(label==blank,1);
             len = r - 1;
-            assert(all(label(r:end) == period));
+            assert(all(label(r:end) == blank));
         end
 
         function lPrime = paddWith(l, blank)
