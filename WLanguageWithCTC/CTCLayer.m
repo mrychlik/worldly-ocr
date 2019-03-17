@@ -167,8 +167,6 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                     end
                 end
 
-
-
             end
         end
     end
