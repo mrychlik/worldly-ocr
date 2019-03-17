@@ -129,7 +129,9 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                 beta = zeros([S,length(lPrime)],'single');
 
                 beta(S,length(lPrime)) = Y(blank, n, S);
-                beta(S,length(lPrime)-1) = Y(label(end), n, S);
+                if ~isempty(label)
+                    beta(S,length(lPrime)-1) = Y(label(end), n, S);
+                end
 
                 for s=1:(length(lPrime)-2)
                     beta(S,s) = 0;
