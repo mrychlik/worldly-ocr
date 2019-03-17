@@ -48,6 +48,8 @@ D=size(XTrain{1},1);
 for j = 1:num_samples
     X=XTrain{j};
     P=zeros([D,S-size(X,2)],'single');
+    X=padarray(X,[1,0],0,'post');
+    P=padarray(P,[1,0],1,'post');
     XTrain{j} = [X,P];
 end
 
