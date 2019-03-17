@@ -16,8 +16,8 @@ ctcLayer = CTCLayer;
 
 layers = [ ...
     sequenceInputLayer(numFeatures)
-    bilstmLayer(numHiddenUnits,...
-                'OutputMode','sequence')
+    lstmLayer(numHiddenUnits,...
+              'OutputMode','sequence')
     fullyConnectedLayer(numClasses)
     softmaxLayer
     ctcLayer];
