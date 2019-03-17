@@ -9,7 +9,7 @@
 [XTrain, YTrain] = prepareDataTrain(1000, 10, 1);
 
 numFeatures = 3;
-numHiddenUnits = 9;
+numHiddenUnits = 30;
 numClasses = 3;
 
 ctcLayer = CTCLayer;
