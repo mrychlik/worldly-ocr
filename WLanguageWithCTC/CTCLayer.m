@@ -3,11 +3,10 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
     properties
         % (Optional) Layer properties.
         % Layer properties go here.
-        Alphabet='XO-';                 % Extended alphabet; the last character is blank
     end
     
     properties(Dependent)
-        AlphabetLength;                 % Number of symbols in the alphabet
+
     end
     
     methods
@@ -128,7 +127,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                 beta = zeros([S,length(lPrime)],'single');
 
                 beta(S,length(lPrime)) = Y(blank, S);
-                beta(S,length(lPrime)-1)) = Y(lPrime(1),label(end));
+                beta(S,length(lPrime)-1) = Y(lPrime(1),label(end));
 
                 for s=1:(length(lPrime)-2)
                     beta(S,s) = 0;
@@ -146,26 +145,19 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                         beta(t,s) = Y(lPrime(s),t) * tmp;
                     end
                 end
+            end
 
             dLdY = zeros(size(Y),'single');
             for t = 1:S
                 for k=1:blank
                     for s=1:length(lPrime)
-                        if lPrime(s) = k
+                        if lPrime(s) == k
                             dLdY(k,T) = dLdY(k,T) + ...
                                 alpha(t,s)*beta(t, s) ./ y(t,k).^2;
                         end
                     end
                 end
             end
-        end
-
-        function layer = set.AlphabetLength(layer)
-            layer.AlphabetLength = length(layer.Alphabet);
-        end
-
-        function AlphabetLength = get.AlphabetLength(layer)
-            AlphabetLength = length(layer.Alphabet);
         end
     end
 
