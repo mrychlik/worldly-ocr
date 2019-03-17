@@ -90,6 +90,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                 alpha = CTCLayer.update_alpha(Y1, T1);
                 beta = CTCLayer.update_beta(Y1, T1);
                 
+                lPrime = CTCLayer.paddWith(label, blank);
                 p = alpha(S, length(lPrime)); 
                 if length(lPrime) > 1
                     p = p + alpha(S, length(lPrime) - 1);
@@ -196,14 +197,14 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
             [label, n] = vec2ind(T);
             period = n-1;
             blank = n;
-            assert(label < blank);
+            assert(all(label < blank));
             r = find(label==period,1);
             assert(all(label(r:end) == period));
         end
 
         function lPrime = paddWith(l, blank)
             lPrime = zeros(1,2*length(l)+1);
-            lPrime(:)=blank;
+            lPrime(:) = blank;
             lPrime(2:2:2*length(l)) = l;
         end
     end
