@@ -205,10 +205,10 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
             label = ind(1:len);
         end
 
-        function lPrime = paddWith(l, blank)
-            lPrime = zeros(1,2*length(l)+1);
+        function lPrime = paddWith(label, blank)
+            lPrime = zeros(1,2*length(label)+1);
             lPrime(:) = blank;
-            lPrime(2:2:2*length(l)) = l;
+            lPrime(2:2:2*length(label)) = l;
         end
     end
 end
