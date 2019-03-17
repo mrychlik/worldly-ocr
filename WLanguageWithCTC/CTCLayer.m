@@ -22,6 +22,13 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
         %
         % For CTC layer, the loss is the log-likelihood
         % of all training targets, which are label sequences.
+        % Due to the pecularity of MATLAB Deep Learning Toolkit,
+        % We receive targets as vectors of dimension equal to the
+        % size of the extended alphabet. The columns are vectors
+        % of the standard basis, with the last vector [0 0 0 ... 1]
+        % expressing the blank. Blanks in the target are used for
+        % padding, so that the targets can be expressed as a matrix.
+        % Thus, in CTC calculations, the padding is dropped.
         %
         % Inputs:
         %         layer - Output layer
