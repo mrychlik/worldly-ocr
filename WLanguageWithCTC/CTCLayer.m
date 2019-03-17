@@ -208,7 +208,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
             [label, n] = vec2ind(T);
             period = n;
             blank = n-1;
-            assert(all(label < blank));
+            assert(all(label ~= blank));
             r = find(label==period,1);
             assert(all(label(r:end) == period));
         end
