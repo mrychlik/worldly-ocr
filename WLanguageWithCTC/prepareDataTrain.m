@@ -45,5 +45,6 @@ end
 M = max(cellfun(@length,YTrain));
 for j = 1:num_samples
     Y=YTrain{j};
-    YTrain{j} = categorical(cellstr([Y,repmat('.',1,M-length(Y))]),valueset)';
+    P=repmat('.',M-length(Y),1);
+    YTrain{j} = categorical(cellstr([Y;P]),valueset)';
 end
