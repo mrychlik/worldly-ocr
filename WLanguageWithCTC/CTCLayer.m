@@ -125,7 +125,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
         function alpha = update_alpha(Y, T)
             [~, S] = size(T);
 
-            [label, ~, blank] = CTCLayer.target2label(T);
+            [label, period, blank] = CTCLayer.target2label(T);
             lPrime = CTCLayer.paddWith(label, blank);
             
             alpha = zeros([S,length(lPrime)],'single');
