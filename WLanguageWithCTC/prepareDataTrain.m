@@ -36,7 +36,7 @@ for j = 1:num_samples
     % as they are delivered to the classification layer as matrices
     % of the same size as inputs. Therefore, we padd all vectors to
     % the same length.
-    Y = [Y;repmat('_',len-length(Y),1)];
+    Y = [Y;repmat('.',len-length(Y),1)];
     YTrain{j} = categorical(cellstr(Y),valueset)';
 end
 
