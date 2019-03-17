@@ -44,6 +44,5 @@ end
 % Maximum length of a label
 M = max(cellfun(@length,YTrain));
 for j = 1:num_samples
-    Y = Y),valueset)';
     YTrain{j} = categorical(cellstr([YTrain{j},repmat('.',M-length(Y),1)]),valueset)'
 end
