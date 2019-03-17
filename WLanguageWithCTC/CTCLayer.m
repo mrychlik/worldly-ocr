@@ -100,14 +100,6 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
         function AlphabetLength = get.AlphabetLength(layer)
             AlphabetLength = length(layer.Alphabet);
         end
-
-
-        function idx = toIndex(layer, l)
-            idx = zeros(size(l));
-            for j=1:length(idx);
-                idx(j) = find(l(j)==layer.Alphabet, 1);
-            end
-        end
     end
 
 
