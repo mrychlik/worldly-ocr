@@ -8,6 +8,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
     
     properties(Dependent)
         AlphabetLength;                 % Number of symbols in the alphabet
+        BlankIndex;
     end
     
     methods
@@ -45,18 +46,15 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
 
         % Layer forward loss function goes here.
             loss = 0;
-            % For sequence to sequence mapping, Y and T is a 3-D array
-            % with K-by-N-by-D dimensions, where K is the number
-            % of classes, N is the minibatch size and D is the number
-            % of time steps
-            [K, N, S] = size(Y);
+            assert(all(size(Y) == size(T)));
+
+            [K, N, S] = size(T);
 
             for n = 1 : N
-                for t = 1:D
-                    label = layer.Alphabet(T(:,n,t));
-                    
-                    lPrime = layer.paddWithBlanks(l)
-                    alpha(1,1) = Y(1, layer.BlankIndex);
+                [label, blank] = CTCLayer.target2label(squeeze(T(:,n,:)))
+                for t = 1:S
+                    lPrime = layer.paddWith(l, blank)
+                    alpha(1,1) = Y(1, blank);
                     alpha(1,2) = Y(1, lPrime(1));
                     for s = 2 : length(lPrime)
                         alpha(1,s) = 0;
@@ -116,9 +114,16 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
         end
     end
 
+
     methods(Static)
-        function lPrime = paddWithBlanks(l)
+        function [label, blank] = target2label(T)
+            [label, blank] = vec2ind(T);
+            label = label(label~=blank);
+        end
+
+        function lPrime = paddWith(l, blank)
             lPrime = zeros(1,2*length(l)+1);
+            lPrime(:)=blank;
             lPrime(2:2:2*length(l)) = l;
         end
     end
