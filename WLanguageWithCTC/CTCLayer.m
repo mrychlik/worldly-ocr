@@ -3,13 +3,11 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
     properties
         % (Optional) Layer properties.
         % Layer properties go here.
-        Alphabet='XO';                  % Alphabet
-        Blank='-';                      % Symbol for the blank
+        Alphabet='XO-';                 % Extended alphabet; the last character is blank
     end
     
     properties(Dependent)
         AlphabetLength;                 % Number of symbols in the alphabet
-        BlankIndex;                     % The index of the blank element
     end
     
     methods
