@@ -155,8 +155,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                 if length(lPrime) > 1
                     p = p + alpha(S, length(lPrime) - 1);
                 end
-                p = p + eps;            % Regularize
-                
+
                 dp = zeros(size(Y),'single');
                 for t = 1:S
                     for k=1:blank
