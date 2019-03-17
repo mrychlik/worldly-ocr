@@ -8,7 +8,7 @@
 %
 [XTrain, YTrain] = prepareDataTrain(1000, 16, 1);
 
-numFeatures = 3;
+numFeatures = 4;
 numHiddenUnits = 32;
 numClasses = 4;
 
