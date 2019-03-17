@@ -82,6 +82,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
         
                 loss = loss - log(p);
             end
+
             loss = loss ./ N;
         end
 
