@@ -1,0 +1,37 @@
+function [XTrain, YTrain] = prepareDataTrain(num_samples,sample_length, max_stretch)
+% Create a trainint dataset in W-language
+%  [XTRAIN, YTRAIN] = PREPAREDATATRAIN(NUM_SAMPLES,SAMPLE_LENGTH, MAX_STRETCH) outputs:
+%     XTRAIN - a cell array of NUM_SAMPLES SAMPLE_LENGTH-by-3 matrices of 0-1;
+%     YTRAIN - a cell array of NUM_SAMPLES strings of length
+%              SAMPLE_LENGTH, with characters in the set {'X','O','_'}
+%
+%  The YTRAIN provides the responses to patterns in XTRAIN, which are the 
+%  decoded strings of the W-language, emitted as per the algorithm
+%  described in the paper 
+%
+%      Deductron - A Recurrent Neural Network
+%
+% published at <https://arxiv.org/abs/1806.09038>. The underscore '_' means
+% that there was no emission at the corresponding time point.
+% 
+nargchk(0, 3, nargin);
+
+if nargin < 1; num_samples = 1000; end;
+if nargin < 2; sample_length = 5; end;
+if nargin < 3; max_stretch = 1; end;
+    
+X = cell(num_samples, 1);
+
+
+% Map random strings to W-language
+for j = 1:num_samples
+    String{j} = randsample('XO_', sample_length, true);
+    [X, Y] = W(String{j}, max_stretch);
+    XTrain{j} = X';
+    len=length(Y);
+    Y = Y(Y~='_');
+    Y = [Y;repmat('_',len-len(Y),1)];
+    YTrain{j} = categorical(cellstr(Y))';
+end
+
+
