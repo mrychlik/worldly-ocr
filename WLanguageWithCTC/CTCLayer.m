@@ -8,7 +8,6 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
     
     properties(Dependent)
         AlphabetLength;                 % Number of symbols in the alphabet
-        BlankIndex;
     end
     
     methods
@@ -62,7 +61,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                     for t = 2 : numTimeSteps
                         for s = 1 : length(lPrime)
                             temp = alpha(t-1,s) + alpha(t-1,s-1);
-                            if lPrime(s) == layer.BlankIndex || ...
+                            if lPrime(s) == blank || ...
                                           s == 2 || ...
                                           lPrime(s) == lPrime(s-2)
                                 alpha(t,s) = Y(t, lPrime(s)) * temp;
@@ -102,9 +101,6 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
             AlphabetLength = length(layer.Alphabet);
         end
 
-        function BlankIndex = get.BlankIndex(layer)
-            BlankIndex = layer.AlphabetLength + 1;
-        end
 
         function idx = toIndex(layer, l)
             idx = zeros(size(l));
