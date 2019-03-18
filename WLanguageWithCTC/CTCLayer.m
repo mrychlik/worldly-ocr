@@ -99,7 +99,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                 if length(lPrime) > 1
                     p = p + alpha(S, length(lPrime) - 1);
                 end
-                p = p + eps;
+                p = min(max(eps, p),1-eps);
 
                 for t = 1:S
                     for k=1:blank
