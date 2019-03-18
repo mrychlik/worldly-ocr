@@ -119,9 +119,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
 
     methods(Access=private,Static)
         function alpha = update_alpha(Y, T)
-            [~, S] = size(T);
-
-            [label, blank] = CTCLayer.target2label(T);
+            [label, blank, S] = CTCLayer.target2label(T);
             lPrime = CTCLayer.paddWith(label, blank);
             
             alpha = zeros([S,length(lPrime)],'single');
@@ -148,9 +146,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
         end
 
         function beta = update_beta(Y, T)
-            [~, S] = size(T);
-
-            [label, blank] = CTCLayer.target2label(T);
+            [label, blank, S] = CTCLayer.target2label(T);
             lPrime = CTCLayer.paddWith(label, blank);
 
             beta = zeros([S,length(lPrime)],'single');
