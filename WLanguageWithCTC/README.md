@@ -14,3 +14,14 @@ up to 2.
 # A sample training session
 
 ![Training session](./images/TrainingSession.png)
+
+## Note on accuracy graph
+
+It is not real as in MATLAB accuracy is computed in a fashion which is
+not consistent with the true accuracy of prediction (which is perfect, zero confusion!).
+
+It should be noted that the decoding based on MATLAB classify function
+is that of maximum likelihood path, not most probable label, which can
+be found by Graves's prefix decoding algorithm (a version of
+best-first search).
+
