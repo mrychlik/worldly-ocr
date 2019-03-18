@@ -105,11 +105,12 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                         for s=1:length(lPrime)
                             if lPrime(s) == k
                                 dLdY(k,n,t) = dLdY(k,n,t) - alpha(t,s) .* ...
-                                          beta(t, s)./Y1(k, t).^2 ./ p;
+                                          beta(t, s) ./ Y1(k, t).^2;
                             end
                         end
                     end
                 end
+                dLdY(:,n,:) = dLdY(:,n,:) ./ p;
             end
             dLdY = dLdY ./ N;
         end
