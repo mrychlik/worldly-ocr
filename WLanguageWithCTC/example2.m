@@ -5,7 +5,7 @@
 %
 % NOTE: The loss is set to 0, so nothing useful happens in regard to training.
 %
-[XTrain, YTrain] = prepareDataTrain(2048, 6, 1);
+[XTrain, YTrain] = prepareDataTrain(2048, 6, 2);
 
 numFeatures = size(XTrain{1},1);
 numHiddenUnits = 16;
@@ -45,7 +45,7 @@ net = trainNetwork(XTrain,YTrain,layers,options);
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-[XTest, YTest] = prepareDataTrain(256, 6, 1);
+[XTest, YTest] = prepareDataTrain(256, 6, 2);
 
 [YPred, YScore] = classify(net, XTest, 'MiniBatchSize', 1);
 
