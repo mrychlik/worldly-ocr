@@ -8,7 +8,6 @@ lualatex <<EOF
 \documentclass{article}
 % This is for LuaTeX or XeTeX
 \usepackage{fontspec}
-%\pdfmapfile{+myfont.map}
 \setmainfont{[Lunafreya.ttf]}
 \begin{document}
 % Contains all letters of the English alphabet
