@@ -51,6 +51,7 @@ for j=1:length(YPred)
     Y = Y(Y~='_');
     Z = B(YPred{j});
     if length(Z) ~= length(Y) || ~all(Z == Y)
+        disp('------- Error --------');
         disp(Z);
         disp(Y);
         count = count + 1;
