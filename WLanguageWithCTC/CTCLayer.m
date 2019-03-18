@@ -165,7 +165,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
             end
             
             for t = (S-1):-1:1
-                for s = 1 : length(lPrime)
+                for s = length(lPrime):-1:1
                     if s == length(lPrime)
                         tmp = beta(t+1,s);
                     elseif lPrime(s) == blank || s == length(lPrime)-1 || lPrime(s) == lPrime(s+2)
