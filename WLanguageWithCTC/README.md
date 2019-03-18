@@ -10,3 +10,7 @@ In this folder there is a CTC experiment with W-language. The script [example2.m
 contains parameters to teach a bidirectional LSTM to recognize W-language constructs with 100%
 accuracy. The non-strict W-language example allows random stretching of characters by a factor of
 up to 2.
+
+# A sample training session
+
+![Training session](./images/TrainingSession.png)
