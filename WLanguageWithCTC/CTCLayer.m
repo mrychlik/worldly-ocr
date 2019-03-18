@@ -60,8 +60,6 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                     p = p + alpha(S, length(lPrime) - 1);
                 end
                 p = CTCLayer.clampProbability(p);
-        
-                assert(p>0);assert(p<=1);
                 loss = loss - log(p);
             end
 
