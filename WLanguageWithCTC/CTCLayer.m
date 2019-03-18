@@ -185,7 +185,8 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
         % Additionally BLANK is the highest index, corresponding to
         % Grave's blank.
             [~,cols] = find(T);         % Remove padding with 0 columns
-            T=T(:,1:max(cols));
+            S = max(cols);
+            T=T(:,1:S);
             [ind, n] = vec2ind(T);
             blank = n;
             r = find(ind==blank,1);
