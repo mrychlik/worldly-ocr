@@ -10,6 +10,6 @@ function y = collapse_runs(x)
     elseif x(1) == x(2) 
         y = collapse_runs(x(2:end))
     else 
-        [x(1), collapse_runs(x(2:end))]
+        y = [x(1), collapse_runs(x(2:end))]
     end
 end
