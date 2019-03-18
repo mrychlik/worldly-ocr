@@ -2,7 +2,7 @@
 
 ## Ligature Database
 
-The file ./ligatures.mat contains the database of 3999 Pashto ligatures, as
+The file [ligatures.mat](./ligatures.mat) contains the database of 3999 Pashto ligatures, as
 a matlab matrix LIGATURES of size 400-by-400-by-39999. Thus, the individual ligatures
 are 400-by-400 images with 8 bit depth.
 
