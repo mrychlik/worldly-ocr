@@ -45,7 +45,7 @@ net = trainNetwork(XTrain,YTrain,layers,options);
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-[XTest, YTest] = prepareDataTrain;
+[XTest, YTest] = prepareDataTrain(256, 6, 1);
 
 [YPred, YScore] = classify(net, XTest, 'MiniBatchSize', 1);
 
