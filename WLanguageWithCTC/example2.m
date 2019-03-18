@@ -47,7 +47,10 @@ net = trainNetwork(XTrain,YTrain,layers,options);
 
 count = 0;
 for j=1:length(YPred)
-    if ~all(B(YPred{j}) == B(YTest{j}))
+    Y = YTest{j};
+    Y = Y(Y~='_');
+    Z = YPred{j};
+    if length(Z) ~= length(Y) || (~all(B(Z) == Y)
         count = count + 1;
     end
 end
