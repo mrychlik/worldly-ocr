@@ -181,7 +181,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
     end
 
 
-    methods(Static)
+    methods(Static,Access=private)
         function [label, blank] = target2label(T)
         %Translate targets to label indices (with respect to the alphabet)
         % [LABEL, BLANK, LEN] = TARGET2LABEL(T) returns the label
