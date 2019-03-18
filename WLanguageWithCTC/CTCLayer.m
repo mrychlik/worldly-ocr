@@ -141,14 +141,12 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                 for s = 1 : length(lPrime)
                     if s == 1 
                         tmp = alpha(t-1,s);
-                        alpha(t,s) = Y(lPrime(s), t) * tmp;
                     elseif lPrime(s) == blank || s == 2 || lPrime(s) == lPrime(s-2)
                         tmp = alpha(t-1, s) + alpha(t-1,s-1);
-                        alpha(t,s) = Y(lPrime(s), t) * tmp;
                     else
                         tmp = alpha(t-1, s) + (alpha(t-1,s) + alpha(t-1,s-1) + alpha(t-1, s-2));
-                        alpha(t,s) = Y(lPrime(s), t) * tmp;
                     end
+                    alpha(t,s) = Y(lPrime(s), t) * tmp;
                 end
             end
         end
