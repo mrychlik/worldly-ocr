@@ -9,7 +9,7 @@
 [XTrain, YTrain] = prepareDataTrain(1000, 6, 2);
 
 numFeatures = size(XTrain{1},1);
-numHiddenUnits = 8;
+numHiddenUnits = 16;
 numClasses = length(categories(YTrain{1}));
 
 ctcLayer = CTCLayer;
@@ -52,8 +52,8 @@ for j=1:length(YPred)
     Z = B(YPred{j});
     if length(Z) ~= length(Y) || ~all(Z == Y)
         disp('------- Error --------');
-        disp(Z);
-        disp(Y);
+        display(Z);
+        display(Y);
         count = count + 1;
     end
 end
