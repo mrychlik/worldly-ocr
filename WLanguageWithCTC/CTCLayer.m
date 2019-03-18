@@ -197,6 +197,8 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
         % (which is a one-hot encoded symbol) to the symbol index.
         % Additionally BLANK is the highest index, corresponding to
         % Grave's blank.
+            [~,cols] = find(T);
+            T=T(:,1:max(cols));
             [ind, n] = vec2ind(T);
             blank = n;
             r = find(ind==blank,1);
@@ -208,7 +210,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
         function lPrime = paddWith(label, blank)
             lPrime = zeros(1,2*length(label)+1);
             lPrime(:) = blank;
-            lPrime(2:2:2*length(label)) = l;
+            lPrime(2:2:2*length(label)) = label;
         end
     end
 end
