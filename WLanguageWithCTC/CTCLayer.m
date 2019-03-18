@@ -206,10 +206,10 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
         end
         function p = clampProbability(p)
             if p < 0
-                warn('Negative probability');
+                warning('Negative probability');
             end
             if  p > 1
-                warn('Probability > 1'); 
+                warning('Probability > 1'); 
             end            
             p = min(max(eps, p),1-eps);
         end
