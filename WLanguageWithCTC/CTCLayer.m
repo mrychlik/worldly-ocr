@@ -61,7 +61,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                 end
                 p = p + eps;
         
-                assert(p>0);
+                assert(p>0);assert(p<=1);
                 loss = loss - log(p);
             end
 
