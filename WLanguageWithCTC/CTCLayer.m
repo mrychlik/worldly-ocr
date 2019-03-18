@@ -81,9 +81,9 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
         % Layer backward loss function goes here.
             assert(all(size(Y) == size(T)));
 
-            [~, N, S] = size(T);
+            [K, N, S] = size(T);
             
-            dLdY = zeros(size(Y),'single');
+            dLdY = zeros([K,S],'single');
 
             for n = 1 : N
                 T1 = squeeze(T(:,n,:));
