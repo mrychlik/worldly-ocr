@@ -19,6 +19,6 @@ fi
 input=$1
 output=$2
 
-  gimp -i -b "(crop-ppm \"$input\" \"$output\")" -b "(gimp-quit 0)"
+gimp -i -b "(crop-ppm \"$input\" \"$output\")" -b "(gimp-quit 0)"
 
 
