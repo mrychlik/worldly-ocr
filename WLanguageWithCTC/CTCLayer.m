@@ -59,7 +59,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                 if length(lPrime) > 1
                     p = p + alpha(S, length(lPrime) - 1);
                 end
-                p = min(max(eps, p),1-eps);
+                p = CTCLayer.clampProbability(p);
         
                 assert(p>0);assert(p<=1);
                 loss = loss - log(p);
@@ -99,7 +99,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                 if length(lPrime) > 1
                     p = p + alpha(S, length(lPrime) - 1);
                 end
-                p = min(max(eps, p),1-eps);
+                p = CTCLayer.clampProbability(p);
 
                 for t = 1:S
                     for k=1:blank
@@ -204,5 +204,15 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
             lPrime(:) = blank;
             lPrime(2:2:2*length(label)) = label;
         end
+        function p = clampProbability(p)
+            if p < 0; 
+                warn('Negative probability');
+            end
+            if 
+                p > 1; warn('Probability > 1'); 
+            end            
+            p = min(max(eps, p),1-eps);
+        end
+
     end
 end
