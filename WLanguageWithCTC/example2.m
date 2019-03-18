@@ -50,7 +50,7 @@ for j=1:length(YPred)
     Y = YTest{j};
     Y = Y(Y~='_');
     Z = YPred{j};
-    if length(Z) ~= length(Y) || (~all(B(Z) == Y)
+    if length(Z) ~= length(Y) || ~all(B(Z) == Y)
         count = count + 1;
     end
 end
