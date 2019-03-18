@@ -81,9 +81,12 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
         % Layer backward loss function goes here.
             assert(all(size(Y) == size(T)));
 
+            size(Y)
+            size(T)
+
             [K, N, S] = size(T);
             
-            dLdY = zeros([K,S],'single');
+            dLdY = zeros(size(Y),'single');
 
             for n = 1 : N
                 T1 = squeeze(T(:,n,:));
@@ -115,7 +118,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                 % the derivative is d loss / dp = -log(p) -1 + log(1-p) +
                 % 1 = log(1-p)/p)
 
-                dLdY = dLdY - dp ./ p;
+                dLdY(:,n,:) = dLdY(:,n,:) - dp ./ p;
             end
             dLdY = dLdY ./ N;
         end
