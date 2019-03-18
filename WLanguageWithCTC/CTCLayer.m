@@ -204,6 +204,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
             lPrime(:) = blank;
             lPrime(2:2:2*length(label)) = label;
         end
+
         function p = clampProbability(p)
             if p < 0
                 warning('Negative probability');
