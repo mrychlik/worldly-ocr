@@ -1,4 +1,8 @@
 #!/bin/sh
+# This script produces an image with a sample of text in an available font.
+# The font can be any Linux accessible font. For instance, we installed
+# the font file Lunafreya.ttf in ~/.fonts and now we can typeset documents
+# in it.
 
 #lualatex forpdflatex.tex
 
