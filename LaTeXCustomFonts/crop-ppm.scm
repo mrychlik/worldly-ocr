@@ -9,10 +9,8 @@
   ; crop the image
   (plug-in-zealouscrop RUN-NONINTERACTIVE image drawable)
 
-  (gimp-image-delete-layer RUN-NONINTERACTIVE image 4)
-
-  ; save in original png format
-  (file-ppm-save RUN-NONINTERACTIVE image drawable output-filename output-filename 1)
+  ; save in original TIFF format
+  (file-tiff-save RUN-NONINTERACTIVE image drawable output-filename output-filename 0)
 
   ; clean up the image
   (gimp-image-delete image)
