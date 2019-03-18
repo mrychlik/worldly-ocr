@@ -5,6 +5,7 @@
 # the font file Lunafreya.ttf in ~/.fonts and now we can typeset documents
 # in it.
 
+#We no longer need this, as we are using a heredoc as LaTeX input
 #lualatex forpdflatex.tex
 
 # Run LaTeX (must be lualatex!) on the here document
