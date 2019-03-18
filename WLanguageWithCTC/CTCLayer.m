@@ -103,22 +103,16 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                 end
                 p = p + eps;
 
-                dp = zeros(size(Y1),'single');
                 for t = 1:S
                     for k=1:blank
                         for s=1:length(lPrime)
                             if lPrime(s) == k
-                                dp(k,t) = dp(k,t) + alpha(t,s) .* ...
-                                          beta(t, s)./Y1(k, t).^2;
+                                dLdY(k,n,t) = dLdY(k,n,t) - alpha(t,s) .* ...
+                                          beta(t, s)./Y1(k, t).^2 ./ p;
                             end
                         end
                     end
                 end
-                % Since loss = loss - p*log(p) - (1-p).*log(1-p);
-                % the derivative is d loss / dp = -log(p) -1 + log(1-p) +
-                % 1 = log(1-p)/p)
-
-                dLdY(:,n,:) = dLdY(:,n,:) - dp ./ p;
             end
             dLdY = dLdY ./ N;
         end
