@@ -46,7 +46,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
             loss = 0;
             assert(all(size(Y) == size(T)));
 
-            [~, N, S] = size(T);
+            [~, N, ~] = size(T);
 
             for n = 1 : N
                 T1 = squeeze(T(:,n,:));
