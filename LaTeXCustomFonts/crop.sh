@@ -5,7 +5,7 @@
 
 if [ $# -le 0 ]; then
     echo
-    echo "Usage: $(basename $0) file1.ppm [file2.ppm ...]"
+    echo "Usage: $(basename $0) input.[ppm|pdf|...] output.ppm"
     echo
     echo "  This script uses gimp to autocrop PPM files and"
     echo "  save them to PPM format.  You must have"
