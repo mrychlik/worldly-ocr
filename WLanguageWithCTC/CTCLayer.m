@@ -100,7 +100,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                 end
                 p = p + eps;
 
-                dp = zeros(size(Y),'single');
+                dp = zeros(size(Y1),'single');
                 for t = 1:S
                     for k=1:blank
                         for s=1:length(lPrime)
