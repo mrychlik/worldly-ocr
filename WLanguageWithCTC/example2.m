@@ -5,7 +5,7 @@
 %
 % NOTE: The loss is set to 0, so nothing useful happens in regard to training.
 %
-[XTrain, YTrain] = prepareDataTrain(1024, 10, 1);
+[XTrain, YTrain] = prepareDataTrain(1024, 4, 1);
 
 numFeatures = size(XTrain{1},1);
 numHiddenUnits = 64;
