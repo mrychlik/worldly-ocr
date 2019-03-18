@@ -30,3 +30,7 @@ likelihood path decoding works pretty well on W-language.
 
 
 TODO: Implement prefix search decoding.
+
+# Resources
+
+[A CTC article on distill.com](https://distill.pub/2017/ctc/)
