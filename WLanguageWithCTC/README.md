@@ -24,9 +24,9 @@ It should be noted that the decoding based on MATLAB classify function
 is that of maximum likelihood path, not most probable label, which can
 be found by Graves's prefix decoding algorithm (a version of
 best-first search). According to Alex Graves, the most likely path
-does not always belong to the most likely label, thus the need for prefix search decoding.
-However, we can see that the maximum likelihood path decoding works pretty well
-on W-language.
+does not always belong to the most likely label, thus the need for
+prefix search decoding.  However, we can see that the maximum
+likelihood path decoding works pretty well on W-language.
 
 
 TODO: Implement prefix search decoding.
