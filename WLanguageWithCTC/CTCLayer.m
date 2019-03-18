@@ -178,11 +178,10 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
 
 
     methods(Static,Access=private)
-        function [label, blank] = target2label(T)
+        function [label, blank, S] = target2label(T)
         %Translate targets to label indices (with respect to the alphabet)
-        % [LABEL, BLANK, LEN] = TARGET2LABEL(T) returns the label
-        % matrix with the same number of columns as T and each column
-        % (which is a one-hot encoded symbol) to the symbol index.
+        % [LABEL, BLANK, S] = TARGET2LABEL(T) returns the label sequence
+        % LABEL, and S - the number of time steps.
         % Additionally BLANK is the highest index, corresponding to
         % Grave's blank.
             [~,cols] = find(T);         % Remove padding with 0 columns
