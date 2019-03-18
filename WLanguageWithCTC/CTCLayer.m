@@ -53,7 +53,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                 Y1 = squeeze(Y(:,n,:));
                 alpha = CTCLayer.update_alpha(Y1, T1);
 
-                [label, blank] = CTCLayer.target2label(T1);
+                [label, blank, S] = CTCLayer.target2label(T1);
                 lPrime = CTCLayer.paddWith(label, blank);
                 p = alpha(S, length(lPrime)); 
                 if length(lPrime) > 1
