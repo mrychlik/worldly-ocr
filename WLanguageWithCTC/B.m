@@ -8,8 +8,8 @@ function y = collapse_runs(x)
     if isempty(x) || length(x) == 1 
         y = x;
     elseif x(1) == x(2) 
-        y = collapse_runs(x(2:end))
+        y = collapse_runs(x(2:end));
     else 
-        y = [x(1), collapse_runs(x(2:end))]
+        y = [x(1), collapse_runs(x(2:end))];
     end
 end
