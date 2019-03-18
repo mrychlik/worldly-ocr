@@ -82,7 +82,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
         % Layer backward loss function goes here.
             assert(all(size(Y) == size(T)));
 
-            [K, N, S] = size(T);
+            [K, N, ~] = size(T);
             
             dLdY = zeros(size(Y),'single');
 
@@ -93,7 +93,7 @@ classdef CTCLayer < nnet.layer.ClassificationLayer
                 alpha = CTCLayer.update_alpha(Y1, T1);
                 beta = CTCLayer.update_beta(Y1, T1);
                 
-                [label, blank] = CTCLayer.target2label(T1);
+                [label, blank, S] = CTCLayer.target2label(T1);
                 lPrime = CTCLayer.paddWith(label, blank);
                 p = alpha(S, length(lPrime)); 
                 if length(lPrime) > 1
