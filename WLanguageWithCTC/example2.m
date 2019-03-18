@@ -49,8 +49,8 @@ count = 0;
 for j=1:length(YPred)
     Y = YTest{j};
     Y = Y(Y~='_');
-    Z = YPred{j};
-    if length(Z) ~= length(Y) || ~all(B(Z) == Y)
+    Z = B(YPred{j});
+    if length(Z) ~= length(Y) || ~all(Z == Y)
         count = count + 1;
     end
 end
