@@ -20,7 +20,8 @@ EOF
 
 # Convert the document to PPM
 pdftoppm -r 600 texput.pdf texput
-#The command below does not crop properly
+
+# NOTE: The command below does not crop properly
 #convert -trim forpdflatex-*.ppm forpdflatex_trimmed.ppm
 
 # This implements GIMP zealous crop programmatically
