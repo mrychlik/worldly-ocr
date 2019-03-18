@@ -1,5 +1,5 @@
 ;; A Scheme plugin for GIMP
-(define (crop-ppm input-filename)
+(define (crop-ppm input-filename output-filename)
   (let* 
     (
     (image (car (gimp-file-load RUN-NONINTERACTIVE input-filename input-filename)))
