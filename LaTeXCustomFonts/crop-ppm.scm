@@ -1,3 +1,4 @@
+;; A Scheme plugin for GIMP
 (define (crop-ppm filename)
   (let* 
     (
