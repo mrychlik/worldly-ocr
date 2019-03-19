@@ -13,4 +13,4 @@ The sample below is the result of running the tools, and it creates an English c
 script sample, with some slant. It can be used as the "easy" script sample for experimenting
 with handwriting and script language OCR.
 
-![panagram in Lunafreya font](./images/texput.png)
+![panagram in Lunafreya font](./images/lunafreya.png)
