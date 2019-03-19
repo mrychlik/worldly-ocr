@@ -166,12 +166,13 @@ function [objects,gap_centers]=line_breaks_by_lloyds(BW, objects, Display)
 end
 
 function visualize_gap_centers(BW, gap_centers, Display)
-    if Display; disp('Visualizing gap centers'); end
+    if strcmp('Display','on'); display = true; else display=false;end;
+    if display; disp('Visualizing gap centers'); end
     BW_lines=double(BW);
     BW_lines(gap_centers+1,:)=1;
     BW_lines(gap_centers,:)=1;
     BW_lines(gap_centers-1,:)=1;
-    if strcmp(Display,'on')
+    if display
         figure;
         imshow(BW_lines);
         title('Gap center lines');
