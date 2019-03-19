@@ -31,7 +31,7 @@ function [objects,gap_centers]=line_breaks(BW, objects, varargin)
             assert(isa(val,'char'));
             switch val
               case {'kmeans','lloyds'}
-                Display=val;
+                Method=val;
               otherwise
                 error('''Method'' option value is invalid.');
             end
