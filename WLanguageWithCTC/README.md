@@ -18,7 +18,11 @@ up to 2.
 ## Note on accuracy graph
 
 It is not real as in MATLAB accuracy is computed in a fashion which is
-not consistent with the true accuracy of prediction (which is perfect, zero confusion!).
+not consistent with the true accuracy of prediction (which is perfect,
+zero confusion!).  Interestingly, the accuracy seems to settle on 50%,
+i.e. that of a coin toss!  While further analysis should be done, this
+fact could reflect the decorrelating property of CTC, i.e. in a
+trained network characters should be emitted independently.
 
 It should be noted that the decoding based on MATLAB classify function
 is that of maximum likelihood path, not most probable label, which can
