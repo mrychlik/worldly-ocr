@@ -32,7 +32,7 @@ pdftoppm -r 600 texput.pdf texput
 # This implements GIMP zealous crop programmatically
 #./crop.sh forpdflatex-1.ppm forpdflatex.tiff
 
-# Run GIMP on putput to produce a file texput.tiff (a TIFF file)
+# Run GIMP on texput.ppm to produce a file texput.tiff (a TIFF file)
 input=texput-1.ppm
 output=texput.tiff
 gimp -i -b "(crop-ppm \"$input\" \"$output\")" -b "(gimp-quit 0)"
