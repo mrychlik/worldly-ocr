@@ -38,5 +38,5 @@ output=texput.tiff
 gimp -i -b "(crop-ppm \"$input\" \"$output\")" -b "(gimp-quit 0)"
 
 # Cleanup
-rm texput.pdf texput-1.ppm texput.og texput.aux
+rm texput.pdf texput-1.ppm texput.log texput.aux
 
