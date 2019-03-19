@@ -1,4 +1,7 @@
 ;; A Scheme plugin for GIMP
+;; The following command must be executed to install the GIMP script.
+;; gimptool-2.0 --install-script crop-ppm.scm 
+;; NOTE: gimptool may be installed separately from GIMP.
 (define (crop-ppm input-filename output-filename)
   (let* 
     (
