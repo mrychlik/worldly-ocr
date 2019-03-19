@@ -1,4 +1,4 @@
-# W-lanbuage with LSTM and CTC
+# W-language with LSTM and CTC
 
 Connectionist Temporal Classification (CTC) has been invented by Alex Graves around 2006
 for the purpose of training RNN on the label sequences that are shorter than the number of
