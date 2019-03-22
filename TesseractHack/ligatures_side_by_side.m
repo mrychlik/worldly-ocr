@@ -1,6 +1,7 @@
 ligature_dir=fullfile('Ligatures');
 ligature_files = dir(fullfile(ligature_dir,'*.bmp'));
-text_dir=fullfile('Outputs');
+%text_dir=fullfile('Outputs');
+text_dir=fullfile('OutputsAsWord');
 
 num_files = length(ligature_files);
 enc = 'UTF8';                           % Encoding
