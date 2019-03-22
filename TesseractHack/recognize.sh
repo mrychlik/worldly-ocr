@@ -19,7 +19,12 @@
 
 DATADIR='Ligatures'
 
+OUT='OutputsAsWord'
+
+mkdir -p $OUT
+
 for f in $DATADIR/*
 do
     tesseract -l pus --psm 8 $f ${f%%.bmp}
+    mv ${f%%.bmp}.txt $OUT
 done
