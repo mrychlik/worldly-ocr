@@ -21,5 +21,5 @@ DATADIR='Ligatures'
 
 for f in $DATADIR/*
 do
-    tesseract -l pus --psm 7 $f ${f%%.bmp}
+    tesseract -l pus --psm 8 $f ${f%%.bmp}
 done
