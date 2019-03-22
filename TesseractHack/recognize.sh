@@ -1,4 +1,8 @@
 #!/bin/bash
+# Use tesseract to OCR the images in Ligatures.
+# The output is in OutputAsWord
+# NOTE: Tesseract is run in the 'single word' mode.
+#
 # The meaning of the parameter '--psm' to Tesseract
 #
 #  0    Orientation and script detection (OSD) only.
