@@ -4,6 +4,8 @@
 # launches Tesseract 4.0 LSTM training
 #
 
+typeset -x OMP_NUM_THREADS=32
+
 # We train with some Windows fonts from the Wine distribution
 # Requires Wine to be installed and the fonts to be updated via 'winetricks' script:
 #
@@ -12,21 +14,20 @@
 # NOTE: For some reason, I (M.R) could not make this work with the
 # standard distribution of Unix fonts in the Fedora installation.
 #
-FONTDIR=/home/marek/.wine/drive_c/windows/Fonts
+FONTDIR=$HOME/.fonts
 
 # List of fonts to train on. 
 MYFONTS=(
-    "Arial"
-    "Verdana"
+    Lunafreya
 )
 
 
 # Where is my tesseract clone from GitHub; certain paths are
 # specified relative to this directory
-TESSERACT_HOME=/home/marek/TESSERACT/tesseract
+TESSERACT_HOME=$HOME/TESSERACT/tesseract
 
 # Language data directory, relative to TESSERACT_HOME
-LANGDATA_DIR='../langdata'
+LANGDATA_DIR=$HOME/TESSERACT/langdata
 
 # Where tessdata was installed. NOTE: put file eng.traineddata there.
 # This file does not come with the tesseract distribution. It must be
