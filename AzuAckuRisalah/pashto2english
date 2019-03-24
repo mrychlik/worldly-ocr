@@ -35,7 +35,7 @@ if( $argc == 1 ) {
     $txt = $argv[1];
 } elseif ($argc == 3 and $argv[1] == '-f') {
     $txt = file_get_contents($argv[2]);
-} elseif ($args == 1 and ) {
+} else {
     print($help);
     exit(1);
 }
