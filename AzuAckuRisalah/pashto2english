@@ -18,14 +18,21 @@
 //   https://console.cloud.google.com/apis/credentials/serviceaccountkey
 //
 
-if( $argc ==1 ) {
+$help=<<<EOF
+Usage: $argv[0]
+
+EOF;
+
+
+if( $argc == 1 ) {
     $txt = stream_get_contents(STDIN);
 } elseif ($argc == 2) {
     $txt = $argv[1];
 } elseif ($argc == 3 and $argv[1] == '-f') {
     $txt = file_get_contents($argv[2]);
-} else {
-   throw new Exception('One or two command line arguments expected');
+} elseif ($args == 1 and ($argv[1] == '-h' or $argv[1] == '--help')) {
+    print $help;
+    exit(0);
 }
 
 // Construct the name of the file where Google API Key is
