@@ -1,5 +1,8 @@
 #!/usr/bin/env php 
 <?php
+// This PHP script is a wrapper around libcurl and is derived from the
+// Google example of a Google Cloud API query for the Google Translator app
+
 if( $argc ==1 ) {
     $txt = stream_get_contents(STDIN);
 } elseif ($argc == 2) {
