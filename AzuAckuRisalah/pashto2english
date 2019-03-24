@@ -29,8 +29,9 @@ if( $argc == 1 ) {
     if ( ( $argv[1] == '-h' ) or ( $argv[1] == '--help' ) ) {
         print($help);
         exit("Exiting...");
-    } else
+    } else {
         $txt = stream_get_contents(STDIN);
+    }
 } elseif ($argc == 2) {
     $txt = $argv[1];
 } elseif ($argc == 3 and $argv[1] == '-f') {
