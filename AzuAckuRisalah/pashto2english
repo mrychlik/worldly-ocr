@@ -14,8 +14,9 @@
 // 5. Enabling "Google Translator API for the project".
 //
 // Relevant links:
-// * https://console.cloud.google.com/apis/credentials/serviceaccountkey
-// * https://console.cloud.google.com/apis/credentials/serviceaccountkey
+//   https://console.cloud.google.com/apis/credentials/serviceaccountkey
+//   https://console.cloud.google.com/apis/credentials/serviceaccountkey
+//
 
 if( $argc ==1 ) {
     $txt = stream_get_contents(STDIN);
