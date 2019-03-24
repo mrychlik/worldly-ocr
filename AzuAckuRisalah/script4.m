@@ -1,3 +1,5 @@
+% Tests TesseractRecognizer
+% Performs OCR on a line of text.
 imgfname = fullfile('images','LineOfPashto.png');
 BW = imread(imgfname);
 psm = 7;
