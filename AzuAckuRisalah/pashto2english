@@ -19,7 +19,7 @@
 //
 
 $help=<<<EOF
-Usage: Translate Pashto to English
+Usage: Translate Pashto to English. Use cases:
   1) $argv[0] 'Some text in Pashto'] - translate string from command line
   2) $argv[0] -f filename            - translate text in a file
   3) $argv[0] [-h | --help]          - print this message and exit
