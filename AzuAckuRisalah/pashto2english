@@ -26,14 +26,14 @@ EOF;
 print $help;
 
 if( $argc == 1 ) {
+    $txt = stream_get_contents(STDIN);
+} elseif ($argc == 2) {
     if ( ( $argv[1] == '-h' ) or ( $argv[1] == '--help' ) ) {
         print($help);
         exit("Exiting...");
     } else {
-        $txt = stream_get_contents(STDIN);
+        $txt = $argv[1];
     }
-} elseif ($argc == 2) {
-    $txt = $argv[1];
 } elseif ($argc == 3 and $argv[1] == '-f') {
     $txt = file_get_contents($argv[2]);
 } else {
