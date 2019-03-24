@@ -1,0 +1,44 @@
+#!/usr/bin/env php 
+<?php
+if( $argc ==1 ) {
+    $txt = stream_get_contents(STDIN);
+} elseif ($argc == 2) {
+    $txt = $argv[1];
+} elseif ($argc == 3 and $argv[1] == '-f') {
+    $txt = file_get_contents($argv[2]);
+} else {
+   throw new Exception('One or two command line arguments expected');
+}
+
+// Construct the name of the file where Google API Key is
+$home=getenv('HOME');
+$api_key_filename='.google-api-key';
+$api_key_filename=$home.DIRECTORY_SEPARATOR.$api_key_filename;
+
+$api_key=file_get_contents($api_key_filename);
+
+$handle = curl_init();
+
+if (FALSE === $handle)
+   throw new Exception('failed to initialize');
+
+curl_setopt($handle, CURLOPT_URL,'https://www.googleapis.com/language/translate/v2');
+curl_setopt($handle, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($handle, CURLOPT_POSTFIELDS,
+	    array('key'=> $api_key,
+		  'q' => $txt,
+		  'source' => 'pus',
+		  'target' => 'en')
+	    );
+/* curl_setopt($handle, CURLOPT_HTTPHEADER,
+	    array('X-HTTP-Method-Override: GET')
+	    ); */
+$response = curl_exec($handle);
+$arr = json_decode($response,FALSE);
+print $arr->data->translations[0]->translatedText;
+
+/* Local Variables:  */
+/* mode: php         */
+/* comment-column: 0 */
+/* End:              */
