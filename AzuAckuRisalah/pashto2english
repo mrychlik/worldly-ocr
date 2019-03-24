@@ -1,7 +1,21 @@
 #!/usr/bin/env php 
 <?php
 // This PHP script is a wrapper around libcurl and is derived from the
-// Google example of a Google Cloud API query for the Google Translator app
+// Google example of a Google Cloud API query for the Google Translator app.
+// In order for this script to work, one has to establish a Google Cloud account,
+// which  requires setting up billing with a valid credit card. Then one follows
+// the directions to obtain "Google API key". This requires these steps:
+//
+// 1. Setting up a project (with a name)
+// 2. Creating of a 'serivice account'
+// 3. Generating the API key (valid for all apps/websites; restrict access!)
+// 4. Downloading Google API SDK 
+// 5. Creating a project
+// 5. Enabling "Google Translator API for the project".
+//
+// Relevant links:
+// * https://console.cloud.google.com/apis/credentials/serviceaccountkey
+// * https://console.cloud.google.com/apis/credentials/serviceaccountkey
 
 if( $argc ==1 ) {
     $txt = stream_get_contents(STDIN);
