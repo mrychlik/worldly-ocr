@@ -23,14 +23,12 @@ Usage: $argv[0]
 
 EOF;
 
-print $help;
-
 if( $argc == 1 ) {
     $txt = stream_get_contents(STDIN);
 } elseif ($argc == 2) {
     if ( ( $argv[1] == '-h' ) or ( $argv[1] == '--help' ) ) {
         print($help);
-        exit("Exiting...");
+        exit("Exiting...\n");
     } else {
         $txt = $argv[1];
     }
@@ -38,7 +36,7 @@ if( $argc == 1 ) {
     $txt = file_get_contents($argv[2]);
 } else {
     print($help);
-    exit("Exiting...");
+    exit("Exiting...\n");
 }
 
 // Construct the name of the file where Google API Key is
