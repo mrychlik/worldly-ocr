@@ -1,4 +1,5 @@
 classdef LineBreaker
+%LINEBREAKER Breaks up an image into lines of text.
     properties
         BW;                             % The image to be broken up.
         LabeledLines;                   % Image labeled with lines.
@@ -17,6 +18,12 @@ classdef LineBreaker
     end
     methods
         function this = LineBreaker(BW,psm,language)
+        %LineBreaker Constructor
+        %  THIS = LINEBREAKER(BW,PSM,LANGUAGE) constructs an instance
+        %  which will hold an binary image BW and perform various
+        %  methods on it. The optional argument PSM defines Tesseract
+        %  'page segmentation mode' (default: 7). The modes are
+        %  described in the documentation of class TesseractRecognizer.
             narginchk(1,3);
             if nargin < 2; psm = 7; end % Line page segmentation
             if nargin < 3; language = 'pus'; end % Pashto
