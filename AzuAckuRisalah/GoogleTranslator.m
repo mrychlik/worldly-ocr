@@ -1,4 +1,5 @@
 classdef GoogleTranslator
+%GOOGLETRANSLATOR Calls Google Cloud to translate Pashto to English.
     methods
         function this = GoogleTranslator()
         end
