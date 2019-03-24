@@ -37,7 +37,7 @@ if( $argc == 1 ) {
     $txt = file_get_contents($argv[2]);
 } else {
     print($help);
-    exit(1);
+    exit("Exiting...");
 }
 
 // Construct the name of the file where Google API Key is
