@@ -23,7 +23,7 @@ classdef GoogleTranslator
         %  a UTF-8 encoded file in Pashto named FNAME, and it returns
         %  the translated file as a string RESULT. Upon failure non-zero
         %  STATUS is returned.
-            cmd = sprintf("pashto2english < %s", fname);
+            cmd = sprintf("pashto2english -f %s", fname);
             [status,result] = system(cmd);
         end
     end
