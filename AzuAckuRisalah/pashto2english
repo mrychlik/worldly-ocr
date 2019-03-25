@@ -67,7 +67,7 @@ curl_setopt($handle, CURLOPT_POSTFIELDS,
 	    ); */
 $response = curl_exec($handle);
 $arr = json_decode($response,FALSE);
-print $arr->data->translations[0]->translatedText.'\n';
+print $arr->data->translations[0]->translatedText."\n";
 
 // Lines below are for the benefit of Emacs
 /* Local Variables:  */
