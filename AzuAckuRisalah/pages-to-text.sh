@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# Use this script to covert images in folder ./Pages to text in ./Text
 TESSERACT=/usr/local/bin/tesseract
 
 for f in Pages/*
