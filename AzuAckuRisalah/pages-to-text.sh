@@ -9,7 +9,7 @@ function do_book() {
 	echo ${f##Pages/}
 	g=${f##Pages/}
 	h=${g%%.ppm}
-	$TESSERACT --oem 1 --psm 3 -l $lang $f Text/${h}_lang
+	$TESSERACT --oem 1 --psm 3 -l $lang $f Text/${h}_${lang}
     done
 }
 
