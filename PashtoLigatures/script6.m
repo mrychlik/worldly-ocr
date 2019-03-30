@@ -1,11 +1,3 @@
-%%----------------------------------------------------------------
-%% File:     script6.m
-%%----------------------------------------------------------------
-%%
-%% Author:   Marek Rychlik (rychlik@u.arizona.edu)
-%% Date:     Sat Mar 30 03:47:56 2019
-%% Copying:  (C) Marek Rychlik, 2010. All rights reserved.
-%%
 if ~exist('cropped','var')
     load('cropped.mat')
 end
