@@ -1,5 +1,5 @@
 dirpath=fullfile('Pages');
-imgname='page-06.ppm';
+%imgname='page-06.ppm';
 % imgname='page-07.ppm';
 % imgname='page-08.ppm';
 % imgname='page-09.ppm';
@@ -7,7 +7,7 @@ imgname='page-06.ppm';
 % imgname='page-11.ppm';
 % imgname='page-12.ppm';
 % imgname='page-13.ppm';
-% imgname='page-14.ppm';
+imgname='page-14.ppm';
 % imgname='page-15.ppm';
 % imgname='page-16.ppm';
 
