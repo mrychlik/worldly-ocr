@@ -3,6 +3,9 @@ pagedir='Pages';
 speed=80;
 pages=10:117;
 dilation_sz=3;
+max_height=100;
+min_width=10;
+
 se=strel('square',dilation_sz);
 
 for page=pages
@@ -64,7 +67,7 @@ end
 
 function rv=filter_image(K)
     rv=false;
-    if size(K,1) > 100 || size(K,2) < 10
+    if size(K,1) > max_height || size(K,2) < min_width
         rv=true;
     end
 end
