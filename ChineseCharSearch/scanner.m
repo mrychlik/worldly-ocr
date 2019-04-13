@@ -2,7 +2,8 @@ delay=0.2;
 pagedir='Pages';
 speed=80;
 pages=10:117;
-dilation_sz=3;
+dilation_sz=4;
+
 global max_height;
 global min_width;
 
