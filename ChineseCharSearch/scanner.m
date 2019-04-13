@@ -1,4 +1,4 @@
-delay=0.02;
+delay=0.2;
 pagedir='Pages';
 speed=80;
 pages=10:117;
