@@ -1,5 +1,6 @@
 delay=0.02;
 chardir='Chars';
+bw_chardir='BWChars';
 char_count=0;
 
 for page=6:96
@@ -49,7 +50,10 @@ for page=6:96
         pause(delay);
         % Save character image
         char_count = char_count +1;
-        imwrite(K, fullfile(chardir,sprintf('char%d.png',char_count)),'PNG');
+        imwrite(K, fullfile(chardir,sprintf('char%05d.png',char_count)), ...
+                'PNG');
+        imwrite(BW, fullfile(bw_chardir,sprintf('char%05d.pbm', ...
+                                                char_count)),'PBM');
     end
 
 end

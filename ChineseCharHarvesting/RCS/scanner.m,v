@@ -1,9 +1,39 @@
-head	1.35;
+head	1.41;
 access;
 symbols;
 locks; strict;
 comment	@// @;
 
+
+1.41
+date	2019.04.13.22.49.43;	author marek;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	2019.04.13.22.49.31;	author marek;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	2019.04.13.22.49.18;	author marek;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	2019.04.13.22.48.57;	author marek;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	2019.04.13.22.48.29;	author marek;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	2019.04.13.22.48.03;	author marek;	state Exp;
+branches;
+next	1.35;
 
 1.35
 date	2019.04.13.22.06.23;	author marek;	state Exp;
@@ -185,13 +215,14 @@ desc
 @@
 
 
-1.35
+1.41
 log
 @*** empty log message ***
 @
 text
 @delay=0.02;
 chardir='Chars';
+bw_chardir='BWChars';
 char_count=0;
 
 for page=6:96
@@ -241,7 +272,10 @@ for page=6:96
         pause(delay);
         % Save character image
         char_count = char_count +1;
-        imwrite(K, fullfile(chardir,sprintf('char%d.png',char_count)),'PNG');
+        imwrite(K, fullfile(chardir,sprintf('char%05d.png',char_count)), ...
+                'PNG');
+        imwrite(BW, fullfile(bw_chardir,sprintf('char%05d.pbm', ...
+                                                char_count)),'PBM');
     end
 
 end
@@ -267,6 +301,70 @@ function sorted=sort_stats(stats)
     [~, I] = sortrows(C);
     sorted=stats(I);
 end@
+
+
+1.40
+log
+@*** empty log message ***
+@
+text
+@d55 1
+a55 1
+        imwrite(BW, fullfile(bw_chardir,sprintf('char%05d.png', ...
+@
+
+
+1.39
+log
+@*** empty log message ***
+@
+text
+@d55 2
+a56 1
+        imwrite(BW, fullfile(bw_chardir,sprintf('char%05d.png',char_count)),'PBM');
+@
+
+
+1.38
+log
+@*** empty log message ***
+@
+text
+@d55 1
+a55 1
+        imwrite(BW, fullfile(bw_chardir,sprintf('char%05d.png',char_count)),'PNG');
+@
+
+
+1.37
+log
+@*** empty log message ***
+@
+text
+@d53 3
+a55 1
+        imwrite(K, fullfile(chardir,sprintf('char%05d.png',char_count)),'PNG');
+@
+
+
+1.36
+log
+@*** empty log message ***
+@
+text
+@d3 1
+@
+
+
+1.35
+log
+@*** empty log message ***
+@
+text
+@d52 1
+a52 1
+        imwrite(K, fullfile(chardir,sprintf('char%d.png',char_count)),'PNG');
+@
 
 
 1.34
