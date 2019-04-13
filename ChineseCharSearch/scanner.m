@@ -6,8 +6,8 @@ dilation_sz=3;
 global max_height;
 global min_width;
 
-max_height=100;
-min_width=10;
+max_height=50;
+min_width=5;
 
 se=strel('square',dilation_sz);
 
