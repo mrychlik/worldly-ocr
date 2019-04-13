@@ -168,9 +168,8 @@ classdef Page
         % P     - The peaks of the Hough transform, hopefully related
         %         to the page dividers.
             BW=im2bw(obj.I,obj.bw_threshold);
-            % Whiten top and bottom
-            margin_sz=obj.top_margin_size;
-            BW(1:margin_sz,:)=0;
+            obj.top_margin_size;
+            BW(1:obj.top_margin_size,:)=0;
             BW((end-margin_sz):end,:)=0;    
             if strcmp(obj.Display,'on')
                 imshow(BW);
