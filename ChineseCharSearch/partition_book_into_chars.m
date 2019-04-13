@@ -18,7 +18,7 @@ if exist(savefile,'file')
     warning('Using cached result');
     load(savefile);
 else 
-    B=imread(book_strip_image);
+    B=book_strip_image;
     P=sum(B,2)>.3.*max(B(:)).*size(B,2);
     Q=diff([0;P]);
     Up=Q==1;
