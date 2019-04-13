@@ -11,7 +11,7 @@ classdef Page
         max_skew = 4;                   % Maximal skew in degrees
         bw_threshold = 0.3;             % Threshold for gray to be
                                         % considered black
-        top_margin_size = 200;          % Margin at the top without characters
+        top_margin_size = 225;          % Margin at the top without characters
     end
 
     properties(Access=public)
