@@ -49,4 +49,4 @@ for page=pages;
     B=[B;T];
     display(size(B));
 end
-imwrite(B,'BookStrip.png','PNG');
+save('BookStrip.mat',B);
