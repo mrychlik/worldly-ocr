@@ -3,6 +3,9 @@ pagedir='Pages';
 speed=80;
 pages=10:117;
 dilation_sz=3;
+global max_height;
+global min_width;
+
 max_height=100;
 min_width=10;
 
@@ -66,6 +69,9 @@ function rv=filter_out(stat)
 end
 
 function rv=filter_image(K)
+    global max_height;
+    global min_width;
+
     rv=false;
     if size(K,1) > max_height || size(K,2) < min_width
         rv=true;
