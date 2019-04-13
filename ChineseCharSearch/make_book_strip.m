@@ -3,7 +3,7 @@
 % Author: Marek Rychlik (rychlik@email.arizona.edu)
 % 
 % Script input: Book pages in directory 'Pages'
-% Script output: BookStrip.mat
+% Script output: BookStrip.mat with a variable book_strip_image
 %
 % This script converts lots of pages of the Chinese text to a single strip,
 % stacking columns one above the other.  While not perfect, this process
