@@ -11,6 +11,7 @@ function char_seq = partition_book_into_chars(book_strip_image)
 nargchk(nargin, 1, 1);
 
 Display='off';
+Delay=0;
 
 savefile=fullfile('.','Cache','CharSeq.mat');
 
@@ -27,7 +28,7 @@ else
     plot(Up(1:1000),'Color','red'),
     plot(Down(1:1000),'Color','blue'),
     hold off;
-    pause(2);
+    pause(Delay);
 
     cnt=1;
     for r=1:size(B,1)
