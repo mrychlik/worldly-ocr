@@ -49,4 +49,4 @@ for page=pages;
     B=[B;T];
     display(size(B));
 end
-save('BookStrip.mat',B);
+save('BookStrip.mat','B');
