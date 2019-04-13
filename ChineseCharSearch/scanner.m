@@ -2,13 +2,14 @@ delay=0.2;
 pagedir='Pages';
 speed=80;
 pages=10:117;
+dilation_sz=3;
+se=strel('square',dilation_sz);
 
 for page=pages
     imfile=fullfile(pagedir, ['06061317.cn-000',...
                      sprintf('%03d',page),'.png']);
     I1=255-imread(imfile);
     I2=im2bw(I1);
-    se=strel('square',9);
     I3=imdilate(I2,se);
     %[L,N]=bwlabel(I3,4);
     stats=regionprops(I3,...
@@ -44,7 +45,7 @@ for page=pages
         subplot(1,2,2),
         imagesc(I2);
         r = rectangle('Position',b);
-        set(r,'EdgeColor','red');
+        set(r,'EdgeColor','red','LineWidth',2);
         title(sprintf('Page %d',page));
         drawnow;
         pause(delay);
