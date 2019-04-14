@@ -16,6 +16,7 @@ for char_count=1:N
     imfile=fullfile(bw_chardir,sprintf('char%05d.pbm', char_count));
     BW{char_count}=imread(imfile);
     %imshow(BW{char_count}),drawnow;
+    BW=imautocrop(BW);
     [h,w]=size(BW{char_count});
     max_h = max(h, max_h);
     max_w = max(w, max_w);    
