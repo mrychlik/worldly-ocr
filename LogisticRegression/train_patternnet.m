@@ -4,10 +4,10 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs)
     min_eta = 1e-5;                     % Stop if learning rate drops below
     alpha = 1e-1;                       % Regularizer constant
 
-    assert(size(X,1) == size(T,1), ['Inconsistent number of samples in ' ...
+    assert(size(X,2) == size(T,2), ['Inconsistent number of samples in ' ...
                         'data and targets.']);
 
-    assert(all(sum(T,2)==1),'Target rows must sum up to 1');
+    assert(all(sum(T,1)==1),'Target rows must sum up to 1');
     D = size(X, 2);                     % Dimension of data
     N = size(X, 1);                     % Number of samples
     C = size(T, 2);                     % Number of  classes
