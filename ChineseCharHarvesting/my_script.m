@@ -7,8 +7,8 @@ X = [ones([1,size(X,2)]);X];
 
 % Straight from PATTERNNET help page
 num_epochs = 500;
-[Y, NErrors] = train_patternnet(X',T',num_epochs);
+[Y, NErrors] = train_patternnet(X,T,num_epochs);
 
 figure;
-plotconfusion(T,Y');
+plotconfusion(T,Y);
 NErrors
