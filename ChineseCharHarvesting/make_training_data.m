@@ -3,13 +3,13 @@ txt_dir='OutputsAsUTF8';
 
 % Compuute common bounding box
 N=16002;
-O=15986;                                % The outlier
+O=[15986,15993];                                % The outlier
 
 BW=cell(N,1);
 max_h = 0; max_w = 0;
 bh=waitbar(0,'Computing common bounding box size...');
 for char_count=1:N
-    if char_count==O
+    if find(char_count==O,1)
         continue;
     end
     waitbar(char_count/N,bh);
@@ -24,7 +24,7 @@ close(bh);
 
 X=zeros(max_h,max_w,N);
 for char_count=1:N
-    if char_count==O
+    if find(char_count==O,1)
         continue;
     end
     [h,w]=size(BW{char_count});
