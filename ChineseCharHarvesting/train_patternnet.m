@@ -64,7 +64,7 @@ end
 
 function [G] = loss(W,Y,T,alpha)
     G = cross_entropy(W,Y,T);
-    G = G + alpha * trace(W * W');  % Regularize
+    G = G + alpha * sum(W .^2,'all');  % Regularize
 end
 
 function [Z] = cross_entropy(W,Y,T)
