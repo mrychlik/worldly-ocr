@@ -22,6 +22,7 @@ for char_count=1:N
 end
 close(bh);
 
+% Make centered images of the characters, and wrap in a 3D array
 X=zeros(max_h,max_w,N);
 for char_count=1:N
     if find(char_count==O,1)
