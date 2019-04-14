@@ -37,8 +37,9 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs, minibatch_size)
         % Visualize  learning
         set(0, 'CurrentFigure', LearningHandle),
         hold on;
-        plot(1:length(Gn),smooth(Gn),'-');
-        scatter(1:length(Gn),Gn); 
+        xdata=1:length(Gn);
+        plot(xdata',smooth(Gn'));
+        plot(xdata',Gn','*--'); 
         title(['Learning (epoch: ',num2str(epoch),')']),
         hold off;
         drawnow;
