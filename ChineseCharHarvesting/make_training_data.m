@@ -35,9 +35,6 @@ for char_count=1:N
     [bytes,count]=fread(fid,'uint8');
     str{char_count}=native2unicode(bytes');
     fclose(fid);
-    t{char_count}=bytes';
-    len=numel(bytes);
-    max_len=max(len,max_len);
 end
 
 [C,IA,IC] = unique(str);
