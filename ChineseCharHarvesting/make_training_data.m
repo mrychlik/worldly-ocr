@@ -34,6 +34,7 @@ for char_count=1:N
     X((y_off+1):(y_off+h),(x_off+1):(x_off+w),char_count)=BW{char_count};
 end
 
+% Read the labels, obtained by other means (e.g. Tesseract or human OCR).
 str=cell(N,1);
 for char_count=1:N
     txtfile=fullfile(txt_dir,sprintf('char%05d.txt', char_count));
@@ -46,6 +47,7 @@ for char_count=1:N
     fclose(fid);
 end
 
+% Find the unique labels
 [C,IA,IC] = unique(str);
 
 NC=numel(IA);
