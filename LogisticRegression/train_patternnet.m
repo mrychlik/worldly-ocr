@@ -27,6 +27,10 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs)
     Gn = [G];
 
     LearningHandle = figure;
+    H = uicontrol('Style', 'PushButton', ...
+                  'String', 'Break', ...
+                  'Callback', 'delete(gcbf)');
+    stop_me=false;
     for epoch = 1:num_epochs
         if mod(epoch, 100)==0; disp(['Epoch: ',num2str(epoch)]); end
 
@@ -71,6 +75,9 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs)
             W = W - mean(W);
         end;
         %pause(.1);
+        if stop_me
+            break;
+        end
     end
 
     NErrors = length(find(round(Y)~=T));
