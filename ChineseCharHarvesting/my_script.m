@@ -7,6 +7,7 @@ X = [ones([1,size(X,2)]);X];
 
 % Straight from PATTERNNET help page
 num_epochs = 100000;
-[Y, NErrors, W] = train_patternnet(X,T,num_epochs);
+minibatch_size = 1000;
+[Y, NErrors, W] = train_patternnet(X,T,num_epochs,minibatch_size);
 
 NErrors
