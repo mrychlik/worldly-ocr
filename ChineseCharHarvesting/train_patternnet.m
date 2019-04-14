@@ -23,15 +23,8 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs, minibatch_size)
                   'Callback', 'delete(gcbf)');
     stopme=false;
     for epoch = 1:num_epochs
-        if stopme
-            break;
-        end
         P=randperm(N);
         for b =1:minibatch_size:(N-1);
-            if ~ishandle(H)
-                stopme = true;
-                break;
-            end
             % Pick a minibatch sample
             batch=P((b+1):min((b+minibatch_size),N));
             batch_len=length(batch);
@@ -53,6 +46,13 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs, minibatch_size)
             if mod(epoch, 100) == 0 
                 W = W - mean(W,1);
             end;
+            if ~ishandle(H)
+                stopme = true;
+                break;
+            end
+        end
+        if stopme
+            break;
         end
     end
 
