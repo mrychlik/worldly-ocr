@@ -4,8 +4,8 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs, minibatch_size)
     if nargin < 3; num_epochs = 10000; end
     if nargin < 4; minibatch_size = 128; end
 
-    eta = 5e-2;                         % Stop if learning rate drops below
-    alpha = 1e-2;                       % Regularizer constant
+    eta = 1e-2;                         % Stop if learning rate drops below
+    alpha = 1e-1;                       % Regularizer constant
 
     assert(size(X,2) == size(T,2), ['Inconsistent number of samples in ' ...
                         'data and targets.']);
