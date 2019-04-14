@@ -4,7 +4,6 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs, minibatch_size)
     if nargin < 3; num_epochs = 128; end
     if nargin < 4; minibatch_size = 64; end
 
-    T = sparse(T);                      % One-hot encoding is really wasteful
     eta = 5e-2;                         % Stop if learning rate drops below
     alpha = 1e-1;                       % Regularizer constant
 
