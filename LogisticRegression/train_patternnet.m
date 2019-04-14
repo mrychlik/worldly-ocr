@@ -80,22 +80,9 @@ end
 
 function [G] = loss(W,Y,T,alpha)
     G = cross_entropy(W,Y,T);
-    G = G + alpha * sum(W * W','all');% Regularize
+    G = G + alpha * sum(W .^2,'all');% Regularize
 end
 
 function [Z] = cross_entropy(W,Y,T)
     Z = -sum(T .* log(Y+eps),'all');
 end
-
-function y = my_softmax(x)
-% Y = MY_SOFTMAX(X) applies softmax to the rows of matrix X.
-% It returns a matrix of the same size as X.
-
-    y = softmax(x')';
-
-    % Direct implementation:
-    %    y = exp(x);
-    %    s = sum(y, 2);
-    %    y = y ./ s;
-end
-
