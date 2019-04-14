@@ -16,10 +16,10 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs)
     W = mvnrnd(zeros([1, D * C]), SigmaW);   % Starting weihgts
     W = reshape(W, [C, D]);
 
-    Y = my_softmax(X * W');                % Compute activations
+    Y = softmax(W * X);                 % Compute activations
     %% Update gradient
     E = T - Y;
-    DW = -E' * X + alpha * W;
+    DW = -E * X' + alpha * W;
 
     eta = 1 /(eps + norm(DW));          % Initial learning rate
 
@@ -36,15 +36,14 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs)
 
         %% Update gradient
         DW_old = DW;
-        Y = my_softmax(X * W');                % Compute activations
+        Y = softmax(W * X);                % Compute activations
         E = T - Y;
-        DW = -E' * X + alpha * W;
+        DW = -E * X' + alpha * W;
 
         G = loss(W,Y,T,alpha);          % Test on the original sample
         Gn = [Gn,G];
 
         % Adjust learning rate according to Barzilai-Borwein
-
         eta = ((W(:) - W_old(:))' * (DW(:) - DW_old(:))) ...
               ./ (eps + norm(DW(:) - DW_old(:))^2 );
 
