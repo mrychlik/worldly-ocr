@@ -23,7 +23,7 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs, minibatch_size)
     stop_me=false;
     for epoch = 1:num_epochs
         P=randperm(N);
-        for b =1:minibatch_size:(N-1);
+        for b = 0:minibatch_size:(N-1);
             % Pick a minibatch sample
             batch=P((b+1):min((b+minibatch_size),N));
             batch_len=length(batch);
