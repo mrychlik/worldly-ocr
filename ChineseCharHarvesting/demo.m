@@ -5,5 +5,5 @@ for k=1:N;
     imagesc(X(:,:,k));
     title(sprintf('Character %d',k));
     drawnow;
-    pause(0.01); 
+    pause(0.05); 
 end
