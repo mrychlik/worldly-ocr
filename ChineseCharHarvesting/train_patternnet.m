@@ -36,8 +36,11 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs, minibatch_size)
 
         % Visualize  learning
         set(0, 'CurrentFigure', LearningHandle),
-        plot([Gn,smooth(Gn)],'-'), 
+        hold on;
+        plot(1:length(Gn),smooth(Gn),'-');
+        scatter(1:length(Gn),Gn); 
         title(['Learning (epoch: ',num2str(epoch),')']),
+        hold off;
         drawnow;
         % Re-center the weights
         % if mod(epoch, 100) == 0 
