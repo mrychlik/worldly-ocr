@@ -42,8 +42,6 @@ end
 NC=numel(IA);
 T=ind2vec(IC',NC);
 
-
-
 X=reshape(X,[max_h*max_w,N]);
 
 save('training_data.mat','X','T','max_h','max_w','-v7.3');
