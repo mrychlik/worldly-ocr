@@ -1,4 +1,19 @@
 function [X,T,H,W] = prepare_training_data(varargin)
+%PREPARE_TRAINING_DATA returns MNIST data prepared for training
+% [X,T,H,W] = PREPARE_TRAINING_DATA(D1,D2,...,DK) returns X, which is a
+% 784-by-N matrix, where N is the number of digit images. The arguments
+% D1, D2, ..., DK are the digit labels (a subset of 0, 1, ..., 9).
+% X contains linearized images. T is K-by-N matrix of one-hot encoded
+% labels for digit data.
+% It should be noted that we can retrieve each digit image in this manner:
+%
+%      n = 17;
+%      I=reshape(X(:,n),28,28)'
+%      imshow(I)
+%
+% Transposing is necessary to get the vertical digit, else is a digit on
+% its side.
+
 data_file=fullfile('.','digit_data.mat');
 load(data_file);
 
@@ -36,5 +51,5 @@ P = randperm(N);
 % Combined labels
 
 % Permuted combined samples and labels
-X = X0(P,:);
-T = T0(P,:);
+X = X0(P,:)';
+T = T0(P,:)';
