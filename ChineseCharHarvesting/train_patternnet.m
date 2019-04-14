@@ -2,7 +2,7 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs, minibatch_size)
 % [Y,NERRORS,W] = TRAIN_PATTERNNET(X, T, NUM_EPOCHS, MINIBATCH_SIZE) trains
 % a pattennet with H hidden neurons.
     if nargin < 3; num_epochs = 10000; end
-    if nargin < 4; minibatch_size = 64; end
+    if nargin < 4; minibatch_size = 128; end
 
     eta = 5e-2;                         % Stop if learning rate drops below
     alpha = 1e-2;                       % Regularizer constant
