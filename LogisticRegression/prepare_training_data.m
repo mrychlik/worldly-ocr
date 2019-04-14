@@ -1,5 +1,4 @@
 function [X,T,H,W] = prepare_training_data(varargin)
-%[I,T]=decode_images;
 data_file=fullfile('.','digit_data.mat');
 load(data_file);
 
