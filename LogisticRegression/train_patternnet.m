@@ -9,6 +9,11 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs)
 % pattern X(:,J). Note that the iteration can be stopped
 % at any time, by pressing the button in the left-lower corner 
 % of the plot, labeled 'BREAK'.
+%
+% The algorithm uses batch processing, whereby every sample is
+% included in the gradient computation in each epoch. The maximum number
+% of epochs can be specified by the argument NUM_EPOCHS (default: 10^4).
+    if nargin < 3; num_epochs=10000; end;
     min_eta = 1e-5;                     % Stop if learning rate drops below
     alpha = 1e-1;                       % Regularizer constant
 
