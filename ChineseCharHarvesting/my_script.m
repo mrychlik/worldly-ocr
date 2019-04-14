@@ -9,6 +9,4 @@ X = [ones([1,size(X,2)]);X];
 num_epochs = 500;
 [Y, NErrors] = train_patternnet(X,T,num_epochs);
 
-figure;
-plotconfusion(T,Y);
 NErrors
