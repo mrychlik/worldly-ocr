@@ -23,34 +23,28 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs, minibatch_size)
     stop_me=false;
     for epoch = 1:num_epochs
         P=randperm(N);
-        for b = 0:minibatch_size:(N-1);
-            % Pick a minibatch sample
-            batch=P((b+1):min((b+minibatch_size),N));
-            batch_len=length(batch);
-            X1 = X(:,batch);
-            T1 = T(:,batch);
-            Y1 = softmax(W * X1);             % Compute activations
-            E = T1 - Y1;                       
-            gradLoss = -E * X1' + alpha * W;;
-            W = W - eta * gradLoss;
-            G = loss(W,Y1,T1,alpha) / batch_len; % Loss per sample
-            Gn = [Gn,G];
+        % Pick a minibatch sample
+        batch=P(1:min(minibatch_size,N));
+        X1 = X(:,batch);
+        T1 = T(:,batch);
+        Y1 = softmax(W * X1);             % Compute activations
+        E = T1 - Y1;                       
+        gradLoss = -E * X1' + alpha * W;;
+        W = W - eta * gradLoss;
+        G = loss(W,Y1,T1,alpha) / minibatch_size; % Loss per sample
+        Gn = [Gn,G];
 
-            % Visualize  learning
-            set(0, 'CurrentFigure', LearningHandle),
-            semilogy(Gn,'-'), 
-            title(['Learning (epoch: ',num2str(epoch),')']),
-            drawnow;
-            % Re-center the weights
-            % if mod(epoch, 100) == 0 
-            %     W = W - mean(W,1);
-            % end;
-            if ~ishandle(H)
-                stop_me = true;
-                break;
-            end
-        end
-        if stop_me
+        % Visualize  learning
+        set(0, 'CurrentFigure', LearningHandle),
+        semilogy(Gn,'-'), 
+        title(['Learning (epoch: ',num2str(epoch),')']),
+        drawnow;
+        % Re-center the weights
+        % if mod(epoch, 100) == 0 
+        %     W = W - mean(W,1);
+        % end;
+        if ~ishandle(H)
+            stop_me = true;
             break;
         end
     end
