@@ -33,11 +33,6 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs, minibatch_size)
             G = loss(W,Y1,T1,alpha) / batch_len; % Loss per sample
             Gn = [Gn,G];
 
-            %  Limit the history to 100
-            if length(Gn) == 1024
-                Gn = Gn(1:2:1024);
-            end
-
             % Visualize  learning
             set(0, 'CurrentFigure', LearningHandle),
             semilogy(Gn,'-'), 
