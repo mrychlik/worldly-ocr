@@ -50,9 +50,12 @@ end
 % Find the unique labels
 [C,IA,IC] = unique(str);
 
+% Number of classes
 NC=numel(IA);
+% One-hot encoding of the classes
 T=ind2vec(IC',NC);
 
+% Make a standard training dataset, with linearized images as columns
 X=reshape(X,[max_h*max_w,N]);
 
 save('training_data.mat','X','T','max_h','max_w','-v7.3');
