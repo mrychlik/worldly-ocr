@@ -3,10 +3,15 @@ txt_dir='OutputsAsUTF8';
 
 % Compuute common bounding box
 N=16002;
+O=15986;                                % The outlier
+
 BW=cell(N,1);
 max_h = 0; max_w = 0;
 bh=waitbar(0,'Computing common bounding box size...');
 for char_count=1:N
+    if char_count==O
+        continue;
+    end
     waitbar(char_count/N,bh);
     imfile=fullfile(bw_chardir,sprintf('char%05d.pbm', char_count));
     BW{char_count}=imread(imfile);
@@ -19,6 +24,9 @@ close(bh);
 
 X=zeros(max_h,max_w,N);
 for char_count=1:N
+    if char_count==O
+        continue;
+    end
     [h,w]=size(BW{char_count});
     y_off=round((max_h-h)/2);
     x_off=round((max_w-w)/2);
@@ -27,6 +35,9 @@ end
 
 str=cell(N,1);
 for char_count=1:N
+    if char_count==O
+        continue;
+    end
     txtfile=fullfile(txt_dir,sprintf('char%05d.txt', char_count));
     [fid, msg]=fopen(txtfile,'r');
     if ~isempty(msg)
