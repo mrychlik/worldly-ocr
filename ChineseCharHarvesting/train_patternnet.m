@@ -18,9 +18,20 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs, minibatch_size)
     W = alpha * rand(C,D);              % Starting weihgts
     Gn = [];
     LearningHandle = figure;
+    H = uicontrol('Style', 'PushButton', ...
+                  'String', 'Break', ...
+                  'Callback', 'delete(gcbf)');
+    stopme=false;
     for epoch = 1:num_epochs
+        if stopme
+            break;
+        end
         P=randperm(N);
         for b =1:minibatch_size:(N-1);
+            if ~ishandle(H)
+                stopme = true;
+                break;
+            end
             % Pick a minibatch sample
             batch=P((b+1):min((b+minibatch_size),N));
             batch_len=length(batch);
