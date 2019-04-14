@@ -21,7 +21,7 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs, minibatch_size)
     H = uicontrol('Style', 'PushButton', ...
                   'String', 'Break', ...
                   'Callback', 'delete(gcbf)');
-    stopme=false;
+    stop_me=false;
     for epoch = 1:num_epochs
         P=randperm(N);
         for b =1:minibatch_size:(N-1);
@@ -47,11 +47,11 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs, minibatch_size)
                 W = W - mean(W,1);
             end;
             if ~ishandle(H)
-                stopme = true;
+                stop_me = true;
                 break;
             end
         end
-        if stopme
+        if stop_me
             break;
         end
     end
