@@ -35,9 +35,6 @@ end
 
 str=cell(N,1);
 for char_count=1:N
-    if char_count==O
-        continue;
-    end
     txtfile=fullfile(txt_dir,sprintf('char%05d.txt', char_count));
     [fid, msg]=fopen(txtfile,'r');
     if ~isempty(msg)
