@@ -5,11 +5,16 @@ function [X,T,H,W] = prepare_training_data(varargin)
 % D1, D2, ..., DK are the digit labels (a subset of 0, 1, ..., 9).
 % X contains linearized images. T is K-by-N matrix of one-hot encoded
 % labels for digit data.
-% It should be noted that we can retrieve each digit image in this manner:
 %
+% It should be noted that we can retrieve each digit image in the following manner:
+%
+%      [X,T] = prepare_training_data(0,1,2,3);
 %      n = 17;
 %      I=reshape(X(:,n),28,28)';
-%      imshow(I)
+%      imshow(I);
+%
+% This will give us the 17-th digit of the dataset, which happens to be a
+% rendition of digit '2'. 
 %
 % Transposing is necessary to get the vertical digit, else is a digit on
 % its side.
