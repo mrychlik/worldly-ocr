@@ -42,9 +42,9 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs, minibatch_size)
             title(['Learning (epoch: ',num2str(epoch),')']),
             drawnow;
             % Re-center the weights
-            if mod(epoch, 100) == 0 
-                W = W - mean(W,1);
-            end;
+            % if mod(epoch, 100) == 0 
+            %     W = W - mean(W,1);
+            % end;
             if ~ishandle(H)
                 stop_me = true;
                 break;
