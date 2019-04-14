@@ -48,6 +48,7 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs, minibatch_size)
         end
     end
     
+    % Compute activation from full sample
     Y = softmax(W * X);               
     NErrors = length(find(round(Y)~=T));
     disp(['Number of errors: ',num2str(NErrors)]);
