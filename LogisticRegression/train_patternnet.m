@@ -6,7 +6,9 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs)
 % The targets T is C-by-N, with each column being a probability
 % distribution of the patterns belonging to each of the C classes.
 % Often T(:,J) the column is the one-hot encoded true label of the 
-% pattern X(:,J).
+% pattern X(:,J). Note that the iteration can be stopped
+% at any time, by pressing the button in the left-lower corner 
+% of the plot, labeled 'BREAK'.
     min_eta = 1e-5;                     % Stop if learning rate drops below
     alpha = 1e-1;                       % Regularizer constant
 
