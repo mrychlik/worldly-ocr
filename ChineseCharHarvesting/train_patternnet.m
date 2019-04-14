@@ -36,10 +36,11 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs, minibatch_size)
 
         % Visualize  learning
         set(0, 'CurrentFigure', LearningHandle),
+        cla;
         hold on;
         xdata=1:length(Gn);
-        plot(xdata',smooth(Gn'));
-        plot(xdata',Gn','*--'); 
+        plot(xdata',smooth(Gn'),'LineWidth',2,'Color','blue');
+        plot(xdata',Gn','.','LineWidth',0.001,'Color','red'); 
         title(['Learning (epoch: ',num2str(epoch),')']),
         hold off;
         drawnow;
