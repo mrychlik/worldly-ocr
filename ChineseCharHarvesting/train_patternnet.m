@@ -28,7 +28,7 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs, minibatch_size)
             E = T1 - Y1;                       
             gradLoss = -E * X1' + alpha * W;;
             W = W - eta * gradLoss;
-            G = loss(W,Y1,T1,alpha);          % Test on the original sample
+            G = loss(W,Y1,T1,alpha) / minibatch_size; % Loss per sample
             Gn = [Gn,G];
 
             %  Limit the history to 100
