@@ -3,7 +3,7 @@ txt_dir='OutputsAsUTF8';
 
 % Compuute common bounding box
 N=16002;
-O=[15986,15993];                                % The outlier
+O=[15986,15993];                                % The outliers
 
 BW=cell(N,1);
 max_h = 0; max_w = 0;
