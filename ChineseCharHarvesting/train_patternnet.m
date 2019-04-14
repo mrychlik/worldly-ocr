@@ -16,20 +16,19 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs, minibatch_size)
     N = size(X, 2);                     % Number of samples
     C = size(T, 1);                     % Number of  classes
     W = spalloc(C,D,10);                % Starting weihgts
-    G = loss(W,Y,T,alpha);              % Test on the original sample
-    Gn = [G];
-
+    Gn = [];
     LearningHandle = figure;
     for epoch = 1:num_epochs
         P=randperm(N);
         for b =1:minibatch_size:N;
             % Pick a minibatch sample
-            X1 = X(:,P((b+1):min((b+minibatch_size),N)))
-            Y = softmax(W * X1);             % Compute activations
-            E = T - Y;                       
+            X1 = X(:,P((b+1):min((b+minibatch_size),N)));
+            T1 = T(:,P((b+1):min((b+minibatch_size),N)));
+            Y1 = softmax(W * X1);             % Compute activations
+            E = T1 - Y1;                       
             gradLoss = -E * X1' + alpha * W;;
             W = W - eta * gradLoss;
-            G = loss(W,Y,T,alpha);          % Test on the original sample
+            G = loss(W,Y1,T1,alpha);          % Test on the original sample
             Gn = [Gn,G];
 
             %  Limit the history to 100
@@ -38,13 +37,10 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs, minibatch_size)
             end
 
             % Visualize  learning
-            if mod(epoch, 10) == 0 
-                set(0, 'CurrentFigure', LearningHandle),
-                plot(Gn,'-o'), 
-                title(['Learning (epoch: ',num2str(epoch),')']),
-                disp(['Learning rate: ',num2str(eta)]);
-                drawnow;
-            end
+            set(0, 'CurrentFigure', LearningHandle),
+            plot(Gn,'-o'), 
+            title(['Learning (epoch: ',num2str(epoch),')']),
+            drawnow;
             % Re-center the weights
             if mod(epoch, 100) == 0 
                 W = W - mean(W,1);
