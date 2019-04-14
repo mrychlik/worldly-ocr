@@ -1,4 +1,6 @@
 bw_chardir='BWChars';
+txt_dir='OutputsAsUTF8';
+
 % Compuute common bounding box
 N=16002;
 BW=cell(N,1);
@@ -24,3 +26,17 @@ for char_count=1:N
 end
 
 save('training_data.mat','X','-v7.3');
+
+for char_count=1:N
+    char_count
+    txtfile=fullfile(txt_dir,sprintf('char%05d.txt', char_count));
+    [fid, msg]=fopen(txtfile,'r');
+    if ~isempty(msg)
+        error(sprintf('Could not open file %s: message: %s',txtfile, msg));
+    end
+    [bytes,count]=fread(fid,'uint8');
+    str=native2unicode(bytes);
+    str=str(1:(end-1));
+    str
+    fclose(fid);
+end
