@@ -6,7 +6,7 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs, minibatch_size)
 
     T = sparse(T);                      % One-hot encoding is really wasteful
     eta = 1e-1;                         % Stop if learning rate drops below
-    alpha = 1e-2;                       % Regularizer constant
+    alpha = 1e-1;                       % Regularizer constant
 
     assert(size(X,2) == size(T,2), ['Inconsistent number of samples in ' ...
                         'data and targets.']);
