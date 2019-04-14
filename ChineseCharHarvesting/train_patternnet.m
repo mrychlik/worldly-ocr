@@ -20,15 +20,17 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs, minibatch_size)
     LearningHandle = figure;
     for epoch = 1:num_epochs
         P=randperm(N);
-        for b =1:minibatch_size:N;
+        for b =1:minibatch_size:(N-1);
             % Pick a minibatch sample
-            X1 = X(:,P((b+1):min((b+minibatch_size),N)));
-            T1 = T(:,P((b+1):min((b+minibatch_size),N)));
+            batch=P((b+1):min((b+minibatch_size),N));
+            batch_len=length(batch);
+            X1 = X(:,batch);
+            T1 = T(:,batch);
             Y1 = softmax(W * X1);             % Compute activations
             E = T1 - Y1;                       
             gradLoss = -E * X1' + alpha * W;;
             W = W - eta * gradLoss;
-            G = loss(W,Y1,T1,alpha) / minibatch_size; % Loss per sample
+            G = loss(W,Y1,T1,alpha) / batch_len; % Loss per sample
             Gn = [Gn,G];
 
             %  Limit the history to 100
