@@ -14,7 +14,7 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs)
 
     W = spalloc(C,D,10);                % Starting weihgts
 
-    Y = my_softmax(W * X);             % Compute activations
+    Y = softmax(W * X);             % Compute activations
     %% Update gradient
     E = T - Y;
     gradLoss = -E * X' + alpha * W;;       % Gradient
@@ -34,7 +34,7 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs)
 
         %% Update gradient
         gradLoss_old = gradLoss;
-        Y = my_softmax(W * X);          % Compute activations
+        Y = softmax(W * X);          % Compute activations
         E = T - Y;
         gradLoss = -E * X' + alpha * W;
 
@@ -85,16 +85,3 @@ end
 function [Z] = cross_entropy(W,Y,T)
     Z = -sum(T .* log(Y+eps),'all');
 end
-
-function y = my_softmax(x)
-% Y = MY_SOFTMAX(X) applies softmax to the rows of matrix X.
-% It returns a matrix of the same size as X.
-
-    y = softmax(x')';
-
-    % Direct implementation:
-    %    y = exp(x);
-    %    s = sum(y, 2);
-    %    y = y ./ s;
-end
-
