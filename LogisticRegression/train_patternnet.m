@@ -8,9 +8,9 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs)
                         'data and targets.']);
 
     assert(all(sum(T,1)==1),'Target rows must sum up to 1');
-    D = size(X, 2);                     % Dimension of data
-    N = size(X, 1);                     % Number of samples
-    C = size(T, 2);                     % Number of  classes
+    D = size(X, 1);                     % Dimension of data
+    N = size(X, 2);                     % Number of samples
+    C = size(T, 1);                     % Number of  classes
 
     SigmaW = (1 / (2 * alpha)) * eye(D * C);
     W = mvnrnd(zeros([1, D * C]), SigmaW);   % Starting weihgts
