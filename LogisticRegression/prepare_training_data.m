@@ -8,7 +8,7 @@ function [X,T,H,W] = prepare_training_data(varargin)
 % It should be noted that we can retrieve each digit image in this manner:
 %
 %      n = 17;
-%      I=reshape(X(:,n),28,28)'
+%      I=reshape(X(:,n),28,28)';
 %      imshow(I)
 %
 % Transposing is necessary to get the vertical digit, else is a digit on
