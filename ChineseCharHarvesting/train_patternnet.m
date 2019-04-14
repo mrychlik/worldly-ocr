@@ -1,6 +1,7 @@
 function [Y,NErrors,W] = train_patternnet(X, T, num_epochs)
 % NERRORS = TRAIN_PATTERNNET(X, T, NUM_EPOCHS)    trains
 % a pattennet with H hidden neurons.
+    T = sparse(T);                      % One-hot encoding is really wasteful
     min_eta = 1e-5;                     % Stop if learning rate drops below
     alpha = 1e-1;                       % Regularizer constant
 
@@ -19,7 +20,7 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs)
     E = T - Y;
     gradLoss = -E * X' + alpha * W;;       % Gradient
 
-    eta = 1 /(eps + norm(gradL));       % Initial learning rate
+    eta = 1 /(eps + norm(gradLoss));    % Initial learning rate
 
     G = loss(W,Y,T,alpha);              % Test on the original sample
     Gn = [G];
