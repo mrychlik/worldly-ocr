@@ -1,6 +1,12 @@
 function [Y,NErrors,W] = train_patternnet(X, T, num_epochs)
-% NERRORS = TRAIN_PATTERNNET(X, T, NUM_EPOCHS)    trains
-% a pattennet with H hidden neurons.
+%TRAIN_PATTERNNET trains a logistic regression network
+% [Y, NERRORS,W] = TRAIN_PATTERNNET(X, T, NUM_EPOCHS)    trains
+% a pattennet (logistic regression network) to recognize
+% patterns, which are columns of X, a D-by-N matrix.
+% The targets T is C-by-N, with each column being a probability
+% distribution of the patterns belonging to each of the C classes.
+% Often T(:,J) the column is the one-hot encoded true label of the 
+% pattern X(:,J).
     min_eta = 1e-5;                     % Stop if learning rate drops below
     alpha = 1e-1;                       % Regularizer constant
 
