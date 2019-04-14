@@ -25,18 +25,29 @@ for char_count=1:N
     X((y_off+1):(y_off+h),(x_off+1):(x_off+w),char_count)=BW{char_count};
 end
 
-save('training_data.mat','X','-v7.3');
-
+str=cell(N,1);
 for char_count=1:N
-    char_count
     txtfile=fullfile(txt_dir,sprintf('char%05d.txt', char_count));
     [fid, msg]=fopen(txtfile,'r');
     if ~isempty(msg)
         error(sprintf('Could not open file %s: message: %s',txtfile, msg));
     end
     [bytes,count]=fread(fid,'uint8');
-    str=native2unicode(bytes);
-    str=str(1:(end-1));
-    str
+    str{char_count}=native2unicode(bytes');
     fclose(fid);
+    t{char_count}=bytes';
+    len=numel(bytes);
+    max_len=max(len,max_len);
 end
+
+[C,IA,IC] = unique(str);
+
+NC=numel(IA);
+T=ind2vec(IC',NC);
+
+
+
+X=reshape(X,[max_h*max_w,N]);
+
+save('training_data.mat','X','T','max_h','max_w','-v7.3');
+
