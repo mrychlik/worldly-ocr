@@ -10,4 +10,8 @@ num_epochs = 100000;
 minibatch_size = 32;
 [Y, NErrors, W] = train_patternnet(X,T,num_epochs,minibatch_size);
 
+for j=1:10
+    [Y, NErrors, W] = train_patternnet(X,T,num_epochs,minibatch_size,W);
+end
+
 NErrors
