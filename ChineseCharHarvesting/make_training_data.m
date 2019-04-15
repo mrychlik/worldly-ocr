@@ -40,7 +40,9 @@ close(bh);
 
 % Read the labels, obtained by other means (e.g. Tesseract or human OCR).
 str=cell(N,1);
+bh=waitbar(0,'Reading labels...');
 for char_count=1:N
+    waitbar(char_count/N,bh);
     txtfile=fullfile(txt_dir,sprintf('char%05d.txt', char_count));
     [fid, msg]=fopen(txtfile,'r');
     if ~isempty(msg)
@@ -50,6 +52,7 @@ for char_count=1:N
     str{char_count}=native2unicode(bytes');
     fclose(fid);
 end
+close(bh);
 
 % Find the unique labels
 [C,IA,IC] = unique(str);
