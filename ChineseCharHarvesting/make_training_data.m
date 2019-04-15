@@ -25,15 +25,18 @@ close(bh);
 
 % Make centered images of the characters, and wrap in a 3D array
 X=zeros(max_h,max_w,N);
+bh=waitbar(0,'Padding characters to common size...');
 for char_count=1:N
     if find(char_count==O,1)
         continue;
     end
+    waitbar(char_count/N,bh);
     [h,w]=size(BW{char_count});
     y_off=round((max_h-h)/2);
     x_off=round((max_w-w)/2);
     X((y_off+1):(y_off+h),(x_off+1):(x_off+w),char_count)=BW{char_count};
 end
+close(bh);
 
 % Read the labels, obtained by other means (e.g. Tesseract or human OCR).
 str=cell(N,1);
