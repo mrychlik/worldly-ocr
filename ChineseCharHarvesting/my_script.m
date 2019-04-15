@@ -6,7 +6,7 @@
 X = [ones([1,size(X,2)]);X];
 
 % Pick a subsample
-N=1000;
+N=2000;
 X=X(:,1:N);
 T=T(:,1:N);
 
