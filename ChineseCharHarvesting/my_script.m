@@ -5,6 +5,12 @@
 % Insert a row of 1's
 X = [ones([1,size(X,2)]);X];
 
+% Pick a subsample
+N=100;
+X=X(:,1:N);
+T=T(:,1:N);
+
+
 % Straight from PATTERNNET help page
 num_epochs = 100000;
 minibatch_size = 32;
