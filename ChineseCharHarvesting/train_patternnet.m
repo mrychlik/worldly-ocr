@@ -1,4 +1,4 @@
-function [Y,NErrors,W] = train_patternnet(X, T, num_epochs, minibatch_size)
+function [Y,NErrors,W] = train_patternnet(X, T, num_epochs, minibatch_size, W)
 % [Y,NERRORS,W] = TRAIN_PATTERNNET(X, T, NUM_EPOCHS, MINIBATCH_SIZE) trains
 % a pattennet with H hidden neurons.
     if nargin < 3; num_epochs = 10000; end
@@ -14,7 +14,11 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs, minibatch_size)
     D = size(X, 1);                     % Dimension of data
     N = size(X, 2);                     % Number of samples
     C = size(T, 1);                     % Number of  classes
-    W = alpha * rand(C,D);              % Starting weihgts
+    if nargin < 5
+        W = alpha * rand(C,D);              % Starting weihgts
+    else
+        assert(all(size(W)==[C,D]));
+    end
     Gn = [];
     LearningHandle = figure;
     H = uicontrol('Style', 'PushButton', ...
