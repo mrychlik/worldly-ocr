@@ -101,7 +101,7 @@ classdef LogisticRegression
                     disp(['Learning rate: ',num2str(this.eta)]);
                     drawnow;
                     % Update error stats
-                    this.app.LearningRateEditField = this.eta;
+                    this.app.LearningRateEditField.Value = this.eta;
                     this.NErrors = length(find(round(this.Y)~=this.T));
                     this.app.NumberOfErrorsEditField.Value = this.NErrors;
                 end
