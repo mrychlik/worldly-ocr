@@ -105,20 +105,8 @@ classdef LogisticRegression
             disp(['Number of errors: ',num2str(NErrors)]);
 
         end
-    end
 
-
-    methods(Static)
-        function [G] = loss(W,Y,T,alpha)
-            G = LogisticRegression.cross_entropy(W,Y,T);
-            G = G + alpha * sum(W .^2,'all');% Regularize
-        end
-
-        function [Z] = cross_entropy(W,Y,T)
-            Z = -sum(T .* log(Y+eps),'all');
-        end
-
-        function [X,T,H,W] = prepare_training_data(digits)
+        function this = prepare_training_data(this)
         %PREPARE_TRAINING_DATA returns MNIST data prepared for training
         % [X,T,H,W] = PREPARE_TRAINING_DATA(D1,D2,...,DK) returns X, which is a
         % 784-by-N matrix, where N is the number of digit images. The arguments
@@ -142,10 +130,15 @@ classdef LogisticRegression
             data_file=fullfile('.','digit_data.mat');
             load(data_file);
 
+            digits = this.app.digits;
+            ax = this.app.UIAxes2;
+
+
             % Digits to analyze
             num_digits = length(digits);
 
-            clf;
+            cla(ax);
+            subplot(ax);
             for j=1:num_digits
                 Digit{j}=I(T==digits(j),:,:)./255;
                 subplot(1,num_digits,j), imagesc(squeeze(Digit{j}(1,:,:))'),
@@ -178,5 +171,20 @@ classdef LogisticRegression
             X = X0(P,:)';
             T = T0(P,:)';
         end
+
+
+    end
+
+
+    methods(Static)
+        function [G] = loss(W,Y,T,alpha)
+            G = LogisticRegression.cross_entropy(W,Y,T);
+            G = G + alpha * sum(W .^2,'all');% Regularize
+        end
+
+        function [Z] = cross_entropy(W,Y,T)
+            Z = -sum(T .* log(Y+eps),'all');
+        end
+
     end
 end
