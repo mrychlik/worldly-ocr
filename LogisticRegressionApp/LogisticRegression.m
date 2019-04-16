@@ -61,11 +61,6 @@ classdef LogisticRegression
                 this.epoch_max = this.epoch_increment;
                 this.epoch = 0;
 
-                this.Y = softmax(this.W * this.X);                 % Compute activations
-                %% Update gradient
-                E = this.T - this.Y;
-                DW = -E * this.X' + this.alpha * this.W;
-
                 this.eta = 1 /(eps + norm(DW));          % Initial learning rate
 
                 loss = this.loss;       % Test on the original sample
@@ -74,6 +69,10 @@ classdef LogisticRegression
                 this.epoch_max = this.epoch_max + this.epoch_increment;
             end
 
+            %% Update gradient
+            E = this.T - this.Y;
+            DW = -E * this.X' + this.alpha * this.W;
+            this.Y = softmax(this.W * this.X);                 % Compute activations
 
             while this.epoch < this.epoch_max
                 this.epoch = this.epoch + 1;
