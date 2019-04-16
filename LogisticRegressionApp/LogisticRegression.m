@@ -179,6 +179,11 @@ classdef LogisticRegression
             this.T = T0(P,:)';
         end
 
+        function plot_confusion(this)
+            ax = this.app.UIAxes2;
+            plotconfusion(ax,T,Y);
+        end
+
         function [G] = loss(this)
             G = this.cross_entropy;
             G = G + this.alpha * sum(this.W .^2,'all');% Regularize
