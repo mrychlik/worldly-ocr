@@ -185,7 +185,6 @@ classdef LogisticRegression
                 return;
             end
             ax = this.app.UIAxes2;
-            ax.AutoResizeChildren = 'off';
             [c,cm] = confusion(this.T,this.Y);
             labels = this.app.DigitPickerListBox.Value;
             plotConfMat(ax,cm,labels);
