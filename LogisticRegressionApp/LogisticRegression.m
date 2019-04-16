@@ -63,8 +63,6 @@ classdef LogisticRegression
 
                 this.eta = 1 /(eps + norm(DW));          % Initial learning rate
 
-                loss = this.loss;       % Test on the original sample
-                this.losses = [loss];
             else
                 this.epoch_max = this.epoch_max + this.epoch_increment;
             end
@@ -73,6 +71,10 @@ classdef LogisticRegression
             E = this.T - this.Y;
             DW = -E * this.X' + this.alpha * this.W;
             this.Y = softmax(this.W * this.X);                 % Compute activations
+            loss = this.loss;       % Test on the original sample
+            if ~continuing
+                this.losses = [loss];
+            end
 
             while this.epoch < this.epoch_max
                 this.epoch = this.epoch + 1;
