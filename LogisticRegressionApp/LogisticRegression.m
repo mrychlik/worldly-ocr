@@ -148,7 +148,7 @@ classdef LogisticRegression
             g = ceil(sqrt(num_digits));
             for j=1:num_digits
                 Digit{j}=I(T==digits(j),:,:)./255;
-                ax = this.app.UIAxes2;
+                ax = subplot(g,g,j,'Parent',this.app.DigitViewerPanel);
                 imagesc(ax,squeeze(Digit{j}(1,:,:))');
                 title(ax,['Class ', num2str(j)]);
             end
@@ -184,8 +184,7 @@ classdef LogisticRegression
             if isempty(this.Y) 
                 return;
             end
-            this.app.ConfusionMatrixPanel.AutoResizeChildren = 'off';
-            ax = subplot(1,1,1,'Parent',this.app.ConfusionMatrixPanel);
+            ax = this.app.UIAxes2;
             [c,cm]=confusion(this.T,this.Y);
             labels=this.app.DigitPickerListBox.Value;
             plotConfMat(ax,cm,labels);
