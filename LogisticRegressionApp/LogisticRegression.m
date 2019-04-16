@@ -8,7 +8,7 @@ classdef LogisticRegression
         W                               % Weights
         eta                             % Learning rate
         epoch = 0                       % Epoch counter
-        epoch_max = 1000;               % Number of epochs to run
+        epoch_max;                      % Number of epochs to run
     end
 
     properties(Constant)
