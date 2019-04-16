@@ -179,7 +179,7 @@ classdef LogisticRegression
             G = G + alpha * sum(this.W .^2,'all');% Regularize
         end
 
-        function [Z] = cross_entropy
+        function [Z] = cross_entropy(this)
             Z = -sum(this.T .* log(this.Y+eps),'all');
         end
 
