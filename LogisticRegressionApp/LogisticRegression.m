@@ -3,13 +3,12 @@ classdef LogisticRegression
     properties
         X                               % Training data
         T                               % Target data
-        num_epochs=1000                 % Number of epochs
         Y                               % Network activation
         NErrors                         % Number of errors
         W                               % Weights
         eta                             % Learning rate
         epoch = 0                       % Epoch counter
-        epoch_max;
+        epoch_max = 1000;
     end
 
     properties(Constant)
