@@ -8,12 +8,15 @@ classdef LogisticRegression
         NErrors                         % Number of errors
         W                               % Weights
         eta                             % Learning rate
-        epoch = 1000                    % Epoch counter
+        epoch = 0                       % Epoch counter
+        epoch_max;
     end
 
     properties(Constant)
         min_eta = 1e-5                  % Stop if learning rate drops below
         alpha = 1e-1                    % Regularizer constant
+        epoch_increment = 1000;         % When manually continuing,
+                                        % increment epochs by this number
     end
 
     properties(Access=private)
@@ -55,7 +58,10 @@ classdef LogisticRegression
                 SigmaW = (1 / (2 * this.alpha)) * eye(D * C);
                 this.W = mvnrnd(zeros([1, D * C]), SigmaW);   % Starting weihgts
                 this.W = reshape(this.W, [C, D]);
+                this.epoch_max = this.epoch_max_incr;
                 this.epoch = 0;
+            else
+                this.epoch_max = this.epoch_max + this.epoch_max_incr;
             end
 
             this.Y = softmax(this.W * this.X);                 % Compute activations
@@ -68,8 +74,8 @@ classdef LogisticRegression
             G = this.loss;       % Test on the original sample
             Gn = [G];
 
-            for epoch = 1:this.num_epochs
-                if mod(epoch, 100)==0; disp(['Epoch: ',num2str(epoch)]); end
+            while this.epoch <= this.epoch_max
+                if mod(this.epoch, 100)==0; disp(['Epoch: ',num2str(epoch)]); end
 
                 % Update weights
                 W_old = this.W;
@@ -90,7 +96,7 @@ classdef LogisticRegression
 
                 % Visualize  learning
                 ax = this.app.UIAxes;
-                if mod(epoch, 10) == 0 
+                if mod(this.epoch, 10) == 0 
                     semilogy(ax, Gn,'-'), 
                     title(ax,['Learning (epoch: ',num2str(epoch),')']),
                     disp(['Learning rate: ',num2str(this.eta)]);
