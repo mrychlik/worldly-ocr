@@ -60,11 +60,7 @@ classdef LogisticRegression
             G = LogisticRegression.loss(W,Y,this.T,alpha);              % Test on the original sample
             Gn = [G];
 
-            LearningHandle = figure;
-            H = uicontrol('Style', 'PushButton', ...
-                          'String', 'Break', ...
-                          'Callback', 'delete(gcbf)');
-            for epoch = 1:num_epochs
+            for epoch = 1:this.num_epochs
                 if mod(epoch, 100)==0; disp(['Epoch: ',num2str(epoch)]); end
 
                 % Update weights
@@ -97,7 +93,7 @@ classdef LogisticRegression
 
                 % Visualize  learning
                 if mod(epoch, 10) == 0 
-                    set(0, 'CurrentFigure', LearningHandle),
+                    set(0, 'CurrentFigure', this.app.UIAxes),
                     plot(Gn,'-o'), 
                     title(['Learning (epoch: ',num2str(epoch),')']),
                     disp(['Learning rate: ',num2str(eta)]);
