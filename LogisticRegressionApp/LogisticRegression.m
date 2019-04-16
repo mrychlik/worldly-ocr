@@ -7,6 +7,9 @@ classdef LogisticRegression
         Y                               % Network activation
         NErrors                         % Number of errors
         W                               % Weights
+    end
+
+    properties(Constant)
         min_eta = 1e-5                  % Stop if learning rate drops below
         alpha = 1e-1                    % Regularizer constant
     end
