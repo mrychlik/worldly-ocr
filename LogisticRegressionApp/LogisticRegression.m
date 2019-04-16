@@ -4,9 +4,9 @@ classdef LogisticRegression
         X                               % Training data
         T                               % Target data
         num_epochs=1000                 % Number of epochs
-        Y
-        NErrors
-        W
+        Y                               % Network activation
+        NErrors                         % Number of errors
+        W                               % Weights
     end
 
     properties(Access=private)
