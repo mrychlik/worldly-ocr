@@ -54,7 +54,7 @@ classdef LogisticRegression
             N = size(this.X, 2);                     % Number of samples
             C = size(this.T, 1);                     % Number of  classes
 
-            if ~continuing
+            if ~continuing || isempty(this.W)
                 this.epoch = 0;
                 SigmaW = (1 / (2 * this.alpha)) * eye(D * C);
                 this.W = mvnrnd(zeros([1, D * C]), SigmaW);   % Starting weihgts
