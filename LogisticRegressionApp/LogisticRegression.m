@@ -112,6 +112,7 @@ classdef LogisticRegression
                 end;
                 %pause(.1);
             end
+            plot_confusion(this);
         end
 
         function this = prepare_training_data(this)
