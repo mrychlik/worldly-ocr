@@ -7,6 +7,10 @@ classdef LogisticRegression
         Y                               % Network activation
         NErrors                         % Number of errors
         W                               % Weights
+        min_eta = 1e-5;                 % Stop if learning rate drops below
+        alpha = 1e-1;                   % Regularizer constant
+
+
     end
 
     properties(Access=private)
@@ -36,9 +40,6 @@ classdef LogisticRegression
         % of epochs can be specified by the argument NUM_EPOCHS (default: 10^4).
             if nargin < 2; continuing = false; end;
 
-            min_eta = 1e-5;                     % Stop if learning rate drops below
-            alpha = 1e-1;                       % Regularizer constant
-
             assert(size(this.X,2) == size(this.T,2), ['Inconsistent number of samples in ' ...
                                 'data and targets.']);
 
@@ -58,7 +59,7 @@ classdef LogisticRegression
             E = this.T - this.Y;
             DW = -E * this.X' + alpha * this.W;
 
-            eta = 1 /(eps + norm(DW));          % Initial learning rate
+            this.eta = 1 /(eps + norm(DW));          % Initial learning rate
 
             G = this.loss(alpha);       % Test on the original sample
             Gn = [G];
@@ -68,7 +69,7 @@ classdef LogisticRegression
 
                 % Update weights
                 W_old = this.W;
-                this.W = this.W - eta * DW;
+                this.W = this.W - this.eta * DW;
 
                 %% Update gradient
                 DW_old = DW;
@@ -80,17 +81,18 @@ classdef LogisticRegression
                 Gn = [Gn,G];
 
                 % Adjust learning rate according to Barzilai-Borwein
-                eta = ((this.W(:) - W_old(:))' * (DW(:) - DW_old(:))) ...
-                      ./ (eps + norm(DW(:) - DW_old(:))^2 );
+                this.eta = ((this.W(:) - W_old(:))' * (DW(:) - DW_old(:))) ...
+                    ./ (eps + norm(DW(:) - DW_old(:))^2 );
 
                 % Visualize  learning
                 ax = this.app.UIAxes;
                 if mod(epoch, 10) == 0 
                     semilogy(ax, Gn,'-'), 
                     title(ax,['Learning (epoch: ',num2str(epoch),')']),
-                    disp(['Learning rate: ',num2str(eta)]);
+                    disp(['Learning rate: ',num2str(this.eta)]);
                     drawnow;
                     % Update error stats
+                    this.app.LearningRateEditField = this.eta;
                     this.NErrors = length(find(round(this.Y)~=this.T));
                     this.app.NumberOfErrorsEditField.Value = this.NErrors;
                 end
