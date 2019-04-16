@@ -14,8 +14,8 @@ classdef LogisticRegression
     properties(Constant)
         min_eta = 1e-5                  % Stop if learning rate drops below
         alpha = 1e-1                    % Regularizer constant
-        epoch_increment = 1000;         % When manually continuing,
-                                        % increment epochs by this number
+        epoch_increment = 1000          % Number of epochs to add
+        update_period = 10;             % Update stats this often
     end
 
     properties(Access=private)
@@ -93,7 +93,7 @@ classdef LogisticRegression
 
                 % Visualize  learning
                 ax = this.app.UIAxes;
-                if mod(this.epoch, 10) == 0 
+                if mod(this.epoch, this.update_period) == 0 
                     semilogy(ax, Gn,'-'), 
                     title(ax,['Learning (epoch: ',num2str(epoch),')']),
                     disp(['Learning rate: ',num2str(this.eta)]);
