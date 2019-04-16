@@ -98,11 +98,12 @@ classdef LogisticRegression
                     W = W - mean(W);
                 end;
                 %pause(.1);
-            end
+                this.Y = Y;
+                this.W = W;
+                this.NErrors = length(find(round(this.Y)~=this.T));
+                this.app.NumberOfErrorsEditField.Value = this.NErrors;
 
-            this.Y = Y;
-            this.W = W;
-            this.NErrors = length(find(round(this.Y)~=this.T));
+            end
             disp(['Number of errors: ',num2str(this.NErrors)]);
         end
 
