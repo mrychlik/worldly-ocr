@@ -180,11 +180,12 @@ classdef LogisticRegression
         end
 
         function plot_confusion(this)
-            ax = this.app.UIAxes2;
+            ax = this.app.ConfusionMatrixPanel;
             plotconfusion(this.T,this.Y);
-            aH = gca;
-            acH = flipud(allchild(aH));
-            copyobj(acH,ax);
+            h_gca = gca;
+            acH = {flipud(allchild(h_gca))};
+            copyobj(acH{1},ax);
+            set(h_gca,'Visible','on');
         end
 
         function [G] = loss(this)
