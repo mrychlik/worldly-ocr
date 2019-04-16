@@ -135,14 +135,11 @@ classdef LogisticRegression
             load(data_file);
 
             digits = this.app.digits;
-            this.app.UIFigure.AutoResizeChildren = 'off';
-            %ax1 = subplot(1,2,1,'Parent',app.UIFigure);
-            %ax2 = subplot(1,2,2,'Parent',app.UIFigure);
-
 
             % Digits to analyze
             num_digits = length(digits);
 
+            this.app.Panel.AutoResizeChildren = 'off';
             for j=1:num_digits
                 Digit{j}=I(T==digits(j),:,:)./255;
                 ax = subplot(1,num_digits,j,'Parent',this.app.Panel),
