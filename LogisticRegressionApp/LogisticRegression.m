@@ -80,11 +80,6 @@ classdef LogisticRegression
                 eta = ((W(:) - W_old(:))' * (DW(:) - DW_old(:))) ...
                       ./ (eps + norm(DW(:) - DW_old(:))^2 );
 
-                %  Limit the history to 100
-                if length(Gn) == 101
-                    Gn = Gn(2:101);
-                end
-
                 if eta < min_eta
                     disp('Learning rate threshold met, stopping...');        
                     break;
