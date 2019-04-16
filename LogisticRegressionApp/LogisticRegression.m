@@ -7,6 +7,7 @@ classdef LogisticRegression
         Y                               % Network activation
         NErrors                         % Number of errors
         W                               % Weights
+        eta
     end
 
     properties(Constant)
