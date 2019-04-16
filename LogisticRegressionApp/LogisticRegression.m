@@ -95,7 +95,7 @@ classdef LogisticRegression
                 ax = this.app.UIAxes;
                 if mod(this.epoch, this.update_period) == 0 
                     semilogy(ax, Gn,'-'), 
-                    title(ax,['Learning (epoch: ',num2str(epoch),')']),
+                    title(ax,['Learning (epoch: ',num2str(this.epoch),')']),
                     disp(['Learning rate: ',num2str(this.eta)]);
                     drawnow;
                     % Update error stats
