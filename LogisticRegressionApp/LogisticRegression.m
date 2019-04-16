@@ -86,7 +86,7 @@ classdef LogisticRegression
                 DW = -E * this.X' + this.alpha * this.W;
 
                 G = this.loss;% Test on the original sample
-                Gn = [Gn,G];
+                this.Gn = [this.Gn,G];
 
                 % Adjust learning rate according to Barzilai-Borwein
                 this.eta = ((this.W(:) - W_old(:))' * (DW(:) - DW_old(:))) ...
@@ -95,7 +95,7 @@ classdef LogisticRegression
                 % Visualize  learning
                 ax = this.app.UIAxes;
                 if mod(this.epoch, this.update_period) == 0 
-                    semilogy(ax, Gn,'-'), 
+                    semilogy(ax, this.Gn,'-'), 
                     title(ax,['Learning (epoch: ',num2str(this.epoch),')']),
                     disp(['Learning rate: ',num2str(this.eta)]);
                     drawnow;
