@@ -180,7 +180,8 @@ classdef LogisticRegression
         end
 
         function plot_confusion(this)
-            ax = this.app.ConfusionMatrixPanel;
+            this.app.ConfusionMatrixPanel.AutoResizeChildren = 'off';
+            ax = subplot(1,1,1,'Parent',this.app.ConfusionMatrixPanel),
             plotconfusion(this.T,this.Y);
             h_gca = gca;
             acH = {flipud(allchild(h_gca))};
