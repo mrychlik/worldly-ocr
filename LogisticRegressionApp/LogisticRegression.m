@@ -9,6 +9,7 @@ classdef LogisticRegression
         eta                             % Learning rate
         epoch = 0                       % Epoch counter
         epoch_max;                      % Number of epochs to run
+        losses = [];                    % List of loss values
     end
 
     properties(Constant)
@@ -67,8 +68,8 @@ classdef LogisticRegression
 
                 this.eta = 1 /(eps + norm(DW));          % Initial learning rate
 
-                G = this.loss;       % Test on the original sample
-                this.Gn = [G];
+                loss = this.loss;       % Test on the original sample
+                this.losses = [loss];
             else
                 this.epoch_max = this.epoch_max + this.epoch_increment;
             end
@@ -85,8 +86,8 @@ classdef LogisticRegression
                 E = this.T - this.Y;
                 DW = -E * this.X' + this.alpha * this.W;
 
-                G = this.loss;% Test on the original sample
-                this.Gn = [this.Gn,G];
+                loss = this.loss;% Test on the original sample
+                this.losses = [this.losses,loss];
 
                 % Adjust learning rate according to Barzilai-Borwein
                 this.eta = ((this.W(:) - W_old(:))' * (DW(:) - DW_old(:))) ...
@@ -95,7 +96,7 @@ classdef LogisticRegression
                 % Visualize  learning
                 ax = this.app.UIAxes;
                 if mod(this.epoch, this.update_period) == 0 
-                    semilogy(ax, this.Gn,'-'), 
+                    semilogy(ax, this.losses,'-'), 
                     title(ax,['Learning (epoch: ',num2str(this.epoch),')']),
                     disp(['Learning rate: ',num2str(this.eta)]);
                     drawnow;
