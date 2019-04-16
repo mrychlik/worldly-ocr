@@ -181,7 +181,7 @@ classdef LogisticRegression
 
         function plot_confusion(this)
             this.app.ConfusionMatrixPanel.AutoResizeChildren = 'off';
-            ax = subplot(1,1,1,'Parent',this.app.ConfusionMatrixPanel),
+            ax = subplot(1,1,1,'Parent',this.app.ConfusionMatrixPanel);
             [c,cm]=confusion(this.T,this.Y);
             labels=this.app.DigitPickerListBox.Value;
             plotConfMat(ax,cm,labels);
