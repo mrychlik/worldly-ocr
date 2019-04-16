@@ -1,0 +1,2 @@
+Using following command:
+tesseract source_file output_name --oem 1 -l chi_tra_vert
