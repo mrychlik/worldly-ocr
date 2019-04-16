@@ -54,12 +54,6 @@ classdef LogisticRegression
             N = size(this.X, 2);                     % Number of samples
             C = size(this.T, 1);                     % Number of  classes
 
-            
-            %% Update gradient
-            this.Y = softmax(this.W * this.X);% Compute activations
-            E = this.T - this.Y;
-            DW = -E * this.X' + this.alpha * this.W;
-
             if ~continuing
                 this.epoch = 0;
                 SigmaW = (1 / (2 * this.alpha)) * eye(D * C);
@@ -68,10 +62,17 @@ classdef LogisticRegression
 
 
                 this.eta = 1 /(eps + norm(DW));          % Initial learning rate
+            end
+            
+            %% Update gradient
+            this.Y = softmax(this.W * this.X);% Compute activations
+            E = this.T - this.Y;
+            DW = -E * this.X' + this.alpha * this.W;
 
+
+            if ~continuing
                 loss = this.loss;       % Test on the original sample
                 this.losses = [loss];
-
                 this.epoch_max = this.epoch_increment;
             else
                 this.epoch_max = this.epoch_max + this.epoch_increment;
