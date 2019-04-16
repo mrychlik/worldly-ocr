@@ -145,7 +145,7 @@ classdef LogisticRegression
 
             for j=1:num_digits
                 Digit{j}=I(T==digits(j),:,:)./255;
-                ax = subplot(1,num_digits,j,'Parent',this.app.UIFigure),
+                ax = subplot(1,num_digits,j,'Parent',this.app.UIPanel),
                 imagesc(squeeze(Digit{j}(1,:,:))',ax),
                 title(['Class ', num2str(j)]);
             end
