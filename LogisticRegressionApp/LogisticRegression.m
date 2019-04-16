@@ -17,7 +17,7 @@ classdef LogisticRegression
         end
 
         function train(this, app)
-            [Y,NErrors,W] = train_patternnet(this,num_epochs);
+            [Y,NErrors,W] = train_patternnet(this,this.num_epochs);
         end
 
         function [Y,NErrors,W] = train_patternnet(X, T, num_epochs)
