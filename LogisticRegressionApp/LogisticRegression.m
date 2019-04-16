@@ -135,7 +135,7 @@ classdef LogisticRegression
             % Digits to analyze
             num_digits = length(digits);
 
-            this.app.Panel.AutoResizeChildren = 'off';
+            this.app.DigitViewerPanel.AutoResizeChildren = 'off';
             g = ceil(sqrt(num_digits));
             for j=1:num_digits
                 Digit{j}=I(T==digits(j),:,:)./255;
