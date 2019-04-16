@@ -7,7 +7,8 @@ classdef LogisticRegression
         Y                               % Network activation
         NErrors                         % Number of errors
         W                               % Weights
-        eta
+        eta                             % Learning rate
+        epoch = 1000                    % Epoch counter
     end
 
     properties(Constant)
@@ -54,6 +55,7 @@ classdef LogisticRegression
                 SigmaW = (1 / (2 * this.alpha)) * eye(D * C);
                 this.W = mvnrnd(zeros([1, D * C]), SigmaW);   % Starting weihgts
                 this.W = reshape(this.W, [C, D]);
+                this.epoch = 0;
             end
 
             this.Y = softmax(this.W * this.X);                 % Compute activations
