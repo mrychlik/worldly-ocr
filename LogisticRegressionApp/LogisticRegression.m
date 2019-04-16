@@ -20,10 +20,6 @@ classdef LogisticRegression
         end
 
         function this = train(this)
-            this.train_patternnet;
-        end
-
-        function this = train_patternnet(this)
         %TRAIN_PATTERNNET trains a logistic regression network
         % [Y, NERRORS,W] = TRAIN_PATTERNNET(X, T, NUM_EPOCHS)    trains
         % a pattennet (logistic regression network) to recognize
