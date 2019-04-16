@@ -104,9 +104,6 @@ classdef LogisticRegression
                     W = W - mean(W);
                 end;
                 %pause(.1);
-                if ~ishandle(H)
-                    break;
-                end
             end
 
             NErrors = length(find(round(Y)~=this.T));
