@@ -38,10 +38,10 @@ classdef LogisticRegression
             min_eta = 1e-5;                     % Stop if learning rate drops below
             alpha = 1e-1;                       % Regularizer constant
 
-            assert(size(X,2) == size(T,2), ['Inconsistent number of samples in ' ...
+            assert(size(this.X,2) == size(this.T,2), ['Inconsistent number of samples in ' ...
                                 'data and targets.']);
 
-            assert(all(sum(T,1)==1),'Target rows must sum up to 1');
+            assert(all(sum(this.T,1)==1),'Target rows must sum up to 1');
             D = size(this.X, 1);                     % Dimension of data
             N = size(this.X, 2);                     % Number of samples
             C = size(this.T, 1);                     % Number of  classes
