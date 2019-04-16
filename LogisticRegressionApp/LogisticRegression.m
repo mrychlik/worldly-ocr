@@ -68,7 +68,7 @@ classdef LogisticRegression
                 this.eta = 1 /(eps + norm(DW));          % Initial learning rate
 
                 G = this.loss;       % Test on the original sample
-                Gn = [G];
+                this.Gn = [G];
             else
                 this.epoch_max = this.epoch_max + this.epoch_increment;
             end
