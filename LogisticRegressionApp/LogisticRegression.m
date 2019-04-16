@@ -19,7 +19,7 @@ classdef LogisticRegression
             this.app = app;
         end
 
-        function this = train(this)
+        function this = train(this,continuing)
         %TRAIN_PATTERNNET trains a logistic regression network
         % [Y, NERRORS,W] = TRAIN_PATTERNNET(X, T, NUM_EPOCHS)    trains
         % a pattennet (logistic regression network) to recognize
@@ -45,9 +45,11 @@ classdef LogisticRegression
             N = size(this.X, 2);                     % Number of samples
             C = size(this.T, 1);                     % Number of  classes
 
-            SigmaW = (1 / (2 * alpha)) * eye(D * C);
-            W = mvnrnd(zeros([1, D * C]), SigmaW);   % Starting weihgts
-            W = reshape(W, [C, D]);
+            if ~continuing
+                SigmaW = (1 / (2 * alpha)) * eye(D * C);
+                W = mvnrnd(zeros([1, D * C]), SigmaW);   % Starting weihgts
+                W = reshape(W, [C, D]);
+            end
 
             Y = softmax(W * this.X);                 % Compute activations
             %% Update gradient
