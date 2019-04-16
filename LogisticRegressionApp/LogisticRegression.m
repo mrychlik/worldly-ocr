@@ -184,7 +184,9 @@ classdef LogisticRegression
             if isempty(this.Y) 
                 return;
             end
-            ax = this.app.UIAxes2;
+            panel = this.app.ConfusionMatrixPanel;
+            panel.AutoResizeChildren = 'off';
+            ax = subplot(1,1,1,'Parent',panel);
             [c,cm] = confusion(this.T,this.Y);
             labels = this.app.DigitPickerListBox.Value;
             plotConfMat(ax,cm,labels);
