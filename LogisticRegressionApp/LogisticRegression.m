@@ -59,9 +59,6 @@ classdef LogisticRegression
                 SigmaW = (1 / (2 * this.alpha)) * eye(D * C);
                 this.W = mvnrnd(zeros([1, D * C]), SigmaW);   % Starting weihgts
                 this.W = reshape(this.W, [C, D]);
-
-
-                this.eta = 1 /(eps + norm(DW));          % Initial learning rate
             end
             
             %% Update gradient
@@ -70,6 +67,8 @@ classdef LogisticRegression
             DW = -E * this.X' + this.alpha * this.W;
 
             if ~continuing
+                this.eta = 1 /(eps + norm(DW));          % Initial learning rate
+
                 loss = this.loss;       % Test on the original sample
                 this.losses = [loss];
                 this.epoch_max = this.epoch_increment;
