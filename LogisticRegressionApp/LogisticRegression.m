@@ -107,7 +107,7 @@ classdef LogisticRegression
                     this.app.NumberOfErrorsEditField.Value = this.NErrors;
                 end
                 % Re-center the weights
-                if mod(epoch, 100) == 0 
+                if mod(this.epoch, 100) == 0 
                     this.W = this.W - mean(this.W);
                 end;
                 %pause(.1);
