@@ -68,7 +68,9 @@ classdef LogisticRegression
             E = this.T - this.Y;
             DW = -E * this.X' + this.alpha * this.W;
 
-            this.eta = 1 /(eps + norm(DW));          % Initial learning rate
+            if ~continuing
+                this.eta = 1 /(eps + norm(DW));          % Initial learning rate
+            end
 
             G = this.loss;       % Test on the original sample
             Gn = [G];
