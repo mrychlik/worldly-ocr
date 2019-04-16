@@ -7,10 +7,8 @@ classdef LogisticRegression
         Y                               % Network activation
         NErrors                         % Number of errors
         W                               % Weights
-        min_eta = 1e-5;                 % Stop if learning rate drops below
-        alpha = 1e-1;                   % Regularizer constant
-
-
+        min_eta = 1e-5                  % Stop if learning rate drops below
+        alpha = 1e-1                    % Regularizer constant
     end
 
     properties(Access=private)
@@ -49,7 +47,7 @@ classdef LogisticRegression
             C = size(this.T, 1);                     % Number of  classes
 
             if ~continuing
-                SigmaW = (1 / (2 * alpha)) * eye(D * C);
+                SigmaW = (1 / (2 * this.alpha)) * eye(D * C);
                 this.W = mvnrnd(zeros([1, D * C]), SigmaW);   % Starting weihgts
                 this.W = reshape(this.W, [C, D]);
             end
@@ -57,11 +55,11 @@ classdef LogisticRegression
             this.Y = softmax(this.W * this.X);                 % Compute activations
             %% Update gradient
             E = this.T - this.Y;
-            DW = -E * this.X' + alpha * this.W;
+            DW = -E * this.X' + this.alpha * this.W;
 
             this.eta = 1 /(eps + norm(DW));          % Initial learning rate
 
-            G = this.loss(alpha);       % Test on the original sample
+            G = this.loss;       % Test on the original sample
             Gn = [G];
 
             for epoch = 1:this.num_epochs
@@ -75,9 +73,9 @@ classdef LogisticRegression
                 DW_old = DW;
                 this.Y = softmax(this.W * this.X);                % Compute activations
                 E = this.T - this.Y;
-                DW = -E * this.X' + alpha * this.W;
+                DW = -E * this.X' + this.alpha * this.W;
 
-                G = this.loss(alpha);% Test on the original sample
+                G = this.loss;% Test on the original sample
                 Gn = [Gn,G];
 
                 % Adjust learning rate according to Barzilai-Borwein
@@ -169,9 +167,9 @@ classdef LogisticRegression
             this.T = T0(P,:)';
         end
 
-        function [G] = loss(this,alpha)
+        function [G] = loss(this)
             G = this.cross_entropy;
-            G = G + alpha * sum(this.W .^2,'all');% Regularize
+            G = G + this.alpha * sum(this.W .^2,'all');% Regularize
         end
 
         function [Z] = cross_entropy(this)
