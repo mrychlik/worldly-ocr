@@ -75,7 +75,8 @@ classdef LogisticRegression
             end
 
 
-            while this.epoch <= this.epoch_max
+            while this.epoch < this.epoch_max
+                this.epoch = this.epoch + 1;
                 % Update weights
                 W_old = this.W;
                 this.W = this.W - this.eta * DW;
