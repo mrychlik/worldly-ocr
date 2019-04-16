@@ -34,6 +34,8 @@ classdef LogisticRegression
         % The algorithm uses batch processing, whereby every sample is
         % included in the gradient computation in each epoch. The maximum number
         % of epochs can be specified by the argument NUM_EPOCHS (default: 10^4).
+            if nargin < 2; continuing = false; end;
+
             min_eta = 1e-5;                     % Stop if learning rate drops below
             alpha = 1e-1;                       % Regularizer constant
 
@@ -47,38 +49,38 @@ classdef LogisticRegression
 
             if ~continuing
                 SigmaW = (1 / (2 * alpha)) * eye(D * C);
-                W = mvnrnd(zeros([1, D * C]), SigmaW);   % Starting weihgts
-                W = reshape(W, [C, D]);
+                this.W = mvnrnd(zeros([1, D * C]), SigmaW);   % Starting weihgts
+                this.W = reshape(this.W, [C, D]);
             end
 
-            Y = softmax(W * this.X);                 % Compute activations
+            this.Y = softmax(this.W * this.X);                 % Compute activations
             %% Update gradient
-            E = this.T - Y;
-            DW = -E * this.X' + alpha * W;
+            E = this.T - this.Y;
+            DW = -E * this.X' + alpha * this.W;
 
             eta = 1 /(eps + norm(DW));          % Initial learning rate
 
-            G = LogisticRegression.loss(W,Y,this.T,alpha);              % Test on the original sample
+            G = this.loss(alpha);       % Test on the original sample
             Gn = [G];
 
             for epoch = 1:this.num_epochs
                 if mod(epoch, 100)==0; disp(['Epoch: ',num2str(epoch)]); end
 
                 % Update weights
-                W_old = W;
-                W = W - eta * DW;
+                W_old = this.W;
+                this.W = this.W - eta * DW;
 
                 %% Update gradient
                 DW_old = DW;
-                Y = softmax(W * this.X);                % Compute activations
-                E = this.T - Y;
-                DW = -E * this.X' + alpha * W;
+                this.Y = softmax(this.W * this.X);                % Compute activations
+                E = this.T - this.Y;
+                DW = -E * this.X' + alpha * this.W;
 
-                G = LogisticRegression.loss(W,Y,this.T,alpha);% Test on the original sample
+                G = this.loss(alpha);% Test on the original sample
                 Gn = [Gn,G];
 
                 % Adjust learning rate according to Barzilai-Borwein
-                eta = ((W(:) - W_old(:))' * (DW(:) - DW_old(:))) ...
+                eta = ((this.W(:) - W_old(:))' * (DW(:) - DW_old(:))) ...
                       ./ (eps + norm(DW(:) - DW_old(:))^2 );
 
                 if eta < min_eta
@@ -97,16 +99,14 @@ classdef LogisticRegression
                 end
                 % Re-center the weights
                 if mod(epoch, 100) == 0 
-                    W = W - mean(W);
+                    this.W = this.W - mean(this.W);
                 end;
                 %pause(.1);
-                this.Y = Y;
-                this.W = W;
                 this.NErrors = length(find(round(this.Y)~=this.T));
                 this.app.NumberOfErrorsEditField.Value = this.NErrors;
 
             end
-            disp(['Number of errors: ',num2str(this.NErrors)]);
+            %disp(['Number of errors: ',num2str(this.NErrors)]);
         end
 
         function this = prepare_training_data(this)
