@@ -74,8 +74,6 @@ classdef LogisticRegression
             Gn = [G];
 
             while this.epoch <= this.epoch_max
-                if mod(this.epoch, 100)==0; disp(['Epoch: ',num2str(this.epoch)]); end
-
                 % Update weights
                 W_old = this.W;
                 this.W = this.W - this.eta * DW;
