@@ -59,21 +59,20 @@ classdef LogisticRegression
                 this.W = reshape(this.W, [C, D]);
                 this.epoch_max = this.epoch_increment;
                 this.epoch = 0;
+
+                this.Y = softmax(this.W * this.X);                 % Compute activations
+                %% Update gradient
+                E = this.T - this.Y;
+                DW = -E * this.X' + this.alpha * this.W;
+
+                this.eta = 1 /(eps + norm(DW));          % Initial learning rate
+
+                G = this.loss;       % Test on the original sample
+                Gn = [G];
             else
                 this.epoch_max = this.epoch_max + this.epoch_increment;
             end
 
-            this.Y = softmax(this.W * this.X);                 % Compute activations
-            %% Update gradient
-            E = this.T - this.Y;
-            DW = -E * this.X' + this.alpha * this.W;
-
-            if ~continuing
-                this.eta = 1 /(eps + norm(DW));          % Initial learning rate
-            end
-
-            G = this.loss;       % Test on the original sample
-            Gn = [G];
 
             while this.epoch <= this.epoch_max
                 % Update weights
