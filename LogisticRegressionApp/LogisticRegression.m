@@ -136,9 +136,10 @@ classdef LogisticRegression
             num_digits = length(digits);
 
             this.app.Panel.AutoResizeChildren = 'off';
+            g = ceil(sqrt(num_digits));
             for j=1:num_digits
                 Digit{j}=I(T==digits(j),:,:)./255;
-                ax = subplot(1,num_digits,j,'Parent',this.app.Panel),
+                ax = subplot(g,g,j,'Parent',this.app.Panel),
                 imagesc(ax,squeeze(Digit{j}(1,:,:))'),
                 title(ax,['Class ', num2str(j)]);
             end
