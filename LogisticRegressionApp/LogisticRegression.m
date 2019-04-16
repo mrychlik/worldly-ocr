@@ -19,7 +19,7 @@ classdef LogisticRegression
             this.app = app;
         end
 
-        function this.train(this)
+        function this = train(this)
             this.train_patternnet;
         end
 
@@ -143,7 +143,7 @@ classdef LogisticRegression
             for j=1:num_digits
                 Digit{j}=I(T==digits(j),:,:)./255;
                 ax = subplot(1,num_digits,j,'Parent',this.app.Panel),
-                imagesc(squeeze(Digit{j}(1,:,:))',ax),
+                imagesc(ax,squeeze(Digit{j}(1,:,:))'),
                 title(['Class ', num2str(j)]);
             end
             drawnow;
