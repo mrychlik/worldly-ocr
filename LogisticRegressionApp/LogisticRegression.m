@@ -89,7 +89,7 @@ classdef LogisticRegression
                 % Visualize  learning
                 ax = this.app.UIAxes;
                 if mod(epoch, 10) == 0 
-                    plot(ax, Gn,'-o'), 
+                    semilogy(ax, Gn,'-o'), 
                     title(ax,['Learning (epoch: ',num2str(epoch),')']),
                     disp(['Learning rate: ',num2str(eta)]);
                     drawnow;
