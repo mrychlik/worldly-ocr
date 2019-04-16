@@ -93,20 +93,19 @@ classdef LogisticRegression
                 ax = this.app.UIAxes;
                 if mod(epoch, 10) == 0 
                     semilogy(ax, Gn,'-'), 
+
                     title(ax,['Learning (epoch: ',num2str(epoch),')']),
                     disp(['Learning rate: ',num2str(eta)]);
                     drawnow;
+                    this.NErrors = length(find(round(this.Y)~=this.T));
+                    this.app.NumberOfErrorsEditField.Value = this.NErrors;
                 end
                 % Re-center the weights
                 if mod(epoch, 100) == 0 
                     this.W = this.W - mean(this.W);
                 end;
                 %pause(.1);
-                this.NErrors = length(find(round(this.Y)~=this.T));
-                this.app.NumberOfErrorsEditField.Value = this.NErrors;
-
             end
-            %disp(['Number of errors: ',num2str(this.NErrors)]);
         end
 
         function this = prepare_training_data(this)
