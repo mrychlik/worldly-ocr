@@ -174,18 +174,13 @@ classdef LogisticRegression
             this.T = T0(P,:)';
         end
 
-
-    end
-
-
-    methods(Static)
-        function [G] = loss(W,Y,T,alpha)
-            G = LogisticRegression.cross_entropy(W,Y,T);
-            G = G + alpha * sum(W .^2,'all');% Regularize
+        function [G] = loss(this,alpha)
+            G = this.cross_entropy;
+            G = G + alpha * sum(this.W .^2,'all');% Regularize
         end
 
-        function [Z] = cross_entropy(W,Y,T)
-            Z = -sum(T .* log(Y+eps),'all');
+        function [Z] = cross_entropy
+            Z = -sum(this.T .* log(this.Y+eps),'all');
         end
 
     end
