@@ -184,9 +184,9 @@ classdef LogisticRegression
             if isempty(this.Y) 
                 return;
             end
-            ax=this.app.UIAxes2;
-            [c,cm]=confusion(this.T,this.Y);
-            labels=this.app.DigitPickerListBox.Value;
+            ax = this.app.UIAxes2;
+            [c,cm] = confusion(this.T,this.Y);
+            labels = this.app.DigitPickerListBox.Value;
             plotConfMat(ax,cm,labels);
         end
 
