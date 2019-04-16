@@ -69,7 +69,6 @@ classdef LogisticRegression
             E = this.T - this.Y;
             DW = -E * this.X' + this.alpha * this.W;
 
-
             if ~continuing
                 loss = this.loss;       % Test on the original sample
                 this.losses = [loss];
