@@ -183,8 +183,8 @@ classdef LogisticRegression
             ax = this.app.UIAxes2;
             plotconfusion(this.T,this.Y);
             aH = gca;
-            acH = {flipud(allchild(aH))};
-            copyobj(acH{1}(ii),ax);
+            acH = flipud(allchild(aH));
+            copyobj(acH,ax);
         end
 
         function [G] = loss(this)
