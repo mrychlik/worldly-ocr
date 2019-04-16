@@ -166,8 +166,8 @@ classdef LogisticRegression
             % Combined labels
 
             % Permuted combined samples and labels
-            X = X0(P,:)';
-            T = T0(P,:)';
+            this.X = X0(P,:)';
+            this.T = T0(P,:)';
         end
 
 
