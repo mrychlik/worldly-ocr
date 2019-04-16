@@ -17,10 +17,10 @@ classdef LogisticRegression
         end
 
         function train(this, app)
-            [Y,NErrors,W] = train_patternnet(this,this.num_epochs);
+            [Y,NErrors,W] = train_patternnet(this);
         end
 
-        function [Y,NErrors,W] = train_patternnet(X, T, num_epochs)
+        function [Y,NErrors,W] = train_patternnet(this)
         %TRAIN_PATTERNNET trains a logistic regression network
         % [Y, NERRORS,W] = TRAIN_PATTERNNET(X, T, NUM_EPOCHS)    trains
         % a pattennet (logistic regression network) to recognize
@@ -35,7 +35,6 @@ classdef LogisticRegression
         % The algorithm uses batch processing, whereby every sample is
         % included in the gradient computation in each epoch. The maximum number
         % of epochs can be specified by the argument NUM_EPOCHS (default: 10^4).
-            if nargin < 3; num_epochs=10000; end;
             min_eta = 1e-5;                     % Stop if learning rate drops below
             alpha = 1e-1;                       % Regularizer constant
 
@@ -43,22 +42,22 @@ classdef LogisticRegression
                                 'data and targets.']);
 
             assert(all(sum(T,1)==1),'Target rows must sum up to 1');
-            D = size(X, 1);                     % Dimension of data
-            N = size(X, 2);                     % Number of samples
-            C = size(T, 1);                     % Number of  classes
+            D = size(this.X, 1);                     % Dimension of data
+            N = size(this.X, 2);                     % Number of samples
+            C = size(this.T, 1);                     % Number of  classes
 
             SigmaW = (1 / (2 * alpha)) * eye(D * C);
             W = mvnrnd(zeros([1, D * C]), SigmaW);   % Starting weihgts
             W = reshape(W, [C, D]);
 
-            Y = softmax(W * X);                 % Compute activations
+            Y = softmax(W * this.X);                 % Compute activations
             %% Update gradient
-            E = T - Y;
-            DW = -E * X' + alpha * W;
+            E = this.T - Y;
+            DW = -E * this.X' + alpha * W;
 
             eta = 1 /(eps + norm(DW));          % Initial learning rate
 
-            G = LogisticRegression.loss(W,Y,T,alpha);              % Test on the original sample
+            G = LogisticRegression.loss(W,Y,this.T,alpha);              % Test on the original sample
             Gn = [G];
 
             LearningHandle = figure;
@@ -74,11 +73,11 @@ classdef LogisticRegression
 
                 %% Update gradient
                 DW_old = DW;
-                Y = softmax(W * X);                % Compute activations
-                E = T - Y;
-                DW = -E * X' + alpha * W;
+                Y = softmax(W * this.X);                % Compute activations
+                E = this.T - Y;
+                DW = -E * this.X' + alpha * W;
 
-                G = LogisticRegression.loss(W,Y,T,alpha);% Test on the original sample
+                G = LogisticRegression.loss(W,Y,this.T,alpha);% Test on the original sample
                 Gn = [Gn,G];
 
                 % Adjust learning rate according to Barzilai-Borwein
@@ -114,7 +113,7 @@ classdef LogisticRegression
                 end
             end
 
-            NErrors = length(find(round(Y)~=T));
+            NErrors = length(find(round(Y)~=this.T));
             disp(['Number of errors: ',num2str(NErrors)]);
 
         end
