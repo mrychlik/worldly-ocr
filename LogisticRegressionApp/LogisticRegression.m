@@ -62,9 +62,10 @@ classdef LogisticRegression
                 this.W = reshape(this.W, [C, D]);
 
                 %% Update gradient
+                this.Y = softmax(this.W * this.X);% Compute activations
                 E = this.T - this.Y;
                 DW = -E * this.X' + this.alpha * this.W;
-                this.Y = softmax(this.W * this.X);                 % Compute activations
+
                 this.eta = 1 /(eps + norm(DW));          % Initial learning rate
 
                 loss = this.loss;       % Test on the original sample
