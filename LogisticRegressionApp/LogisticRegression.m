@@ -83,12 +83,6 @@ classdef LogisticRegression
                 eta = ((this.W(:) - W_old(:))' * (DW(:) - DW_old(:))) ...
                       ./ (eps + norm(DW(:) - DW_old(:))^2 );
 
-                if eta < min_eta
-                    disp('Learning rate threshold met, stopping...');        
-                    break;
-                end
-
-
                 % Visualize  learning
                 ax = this.app.UIAxes;
                 if mod(epoch, 10) == 0 
@@ -96,6 +90,7 @@ classdef LogisticRegression
                     title(ax,['Learning (epoch: ',num2str(epoch),')']),
                     disp(['Learning rate: ',num2str(eta)]);
                     drawnow;
+                    % Update error stats
                     this.NErrors = length(find(round(this.Y)~=this.T));
                     this.app.NumberOfErrorsEditField.Value = this.NErrors;
                 end
