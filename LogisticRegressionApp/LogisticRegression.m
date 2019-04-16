@@ -15,8 +15,8 @@ classdef LogisticRegression
     properties(Constant)
         min_eta = 1e-5                  % Stop if learning rate drops below
         alpha = 1e-1                    % Regularizer constant
-        epoch_increment = 1000          % Number of epochs to add
-        update_period = 10;             % Update stats this often
+        epoch_increment = 100           % Number of epochs to add
+        update_period = 10              % Update stats this often
     end
 
     properties(Access=private)
