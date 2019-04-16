@@ -180,6 +180,9 @@ classdef LogisticRegression
         end
 
         function plot_confusion(this)
+            if isempty(this.Y) 
+                return;
+            end
             this.app.ConfusionMatrixPanel.AutoResizeChildren = 'off';
             ax = subplot(1,1,1,'Parent',this.app.ConfusionMatrixPanel);
             [c,cm]=confusion(this.T,this.Y);
