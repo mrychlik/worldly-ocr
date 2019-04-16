@@ -4,10 +4,13 @@ classdef LogisticRegression
         X                               % Training data
         T                               % Target data
         num_epochs=1000                 % Number of epochs
+        Y
+        NErrors
+        W
     end
 
     properties(Access=private)
-        app;
+        app
     end
     
     
@@ -16,11 +19,11 @@ classdef LogisticRegression
             this.app = app;
         end
 
-        function train(this, app)
-            [Y,NErrors,W] = train_patternnet(this);
+        function this.train(this)
+            this.train_patternnet;
         end
 
-        function [Y,NErrors,W] = train_patternnet(this)
+        function this = train_patternnet(this)
         %TRAIN_PATTERNNET trains a logistic regression network
         % [Y, NERRORS,W] = TRAIN_PATTERNNET(X, T, NUM_EPOCHS)    trains
         % a pattennet (logistic regression network) to recognize
@@ -101,9 +104,10 @@ classdef LogisticRegression
                 %pause(.1);
             end
 
-            NErrors = length(find(round(Y)~=this.T));
-            disp(['Number of errors: ',num2str(NErrors)]);
-
+            this.Y = Y;
+            this.W = W;
+            this.NErrors = length(find(round(this.Y)~=this.T));
+            disp(['Number of errors: ',num2str(this.NErrors)]);
         end
 
         function this = prepare_training_data(this)
