@@ -99,7 +99,7 @@ classdef LogisticRegression
                 if mod(this.epoch, this.update_period) == 0 
                     semilogy(ax, this.losses,'-'), 
                     title(ax,['Learning (epoch: ',num2str(this.epoch),')']),
-                    disp(['Learning rate: ',num2str(this.eta)]);
+                    %disp(['Learning rate: ',num2str(this.eta)]);
                     drawnow;
                     % Update error stats
                     this.app.LearningRateEditField.Value = this.eta;
