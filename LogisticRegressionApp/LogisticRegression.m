@@ -140,7 +140,7 @@ classdef LogisticRegression
                 Digit{j}=I(T==digits(j),:,:)./255;
                 ax = subplot(1,num_digits,j,'Parent',this.app.Panel),
                 imagesc(ax,squeeze(Digit{j}(1,:,:))'),
-                title(['Class ', num2str(j)]);
+                title(ax,['Class ', num2str(j)]);
             end
             drawnow;
 
