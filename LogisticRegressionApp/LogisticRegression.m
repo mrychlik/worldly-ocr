@@ -57,10 +57,10 @@ classdef LogisticRegression
                 SigmaW = (1 / (2 * this.alpha)) * eye(D * C);
                 this.W = mvnrnd(zeros([1, D * C]), SigmaW);   % Starting weihgts
                 this.W = reshape(this.W, [C, D]);
-                this.epoch_max = this.epoch_max_increment;
+                this.epoch_max = this.epoch_increment;
                 this.epoch = 0;
             else
-                this.epoch_max = this.epoch_max + this.epoch_max_increment;
+                this.epoch_max = this.epoch_max + this.epoch_increment;
             end
 
             this.Y = softmax(this.W * this.X);                 % Compute activations
