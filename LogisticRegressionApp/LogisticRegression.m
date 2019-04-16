@@ -186,7 +186,7 @@ classdef LogisticRegression
             h_gca = gca;
             acH = {flipud(allchild(h_gca))};
             copyobj(acH{1},ax);
-            set(h_gca,'Visible','on');
+            set(h_gca,'Visible','off');
         end
 
         function [G] = loss(this)
