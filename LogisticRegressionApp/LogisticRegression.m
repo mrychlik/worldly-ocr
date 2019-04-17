@@ -40,7 +40,6 @@ classdef LogisticRegression
                 else
                     path = apps(ind).location; % This app is installed, its path
                 end
-                fprintf('App data folder is %s\n',path);
             end
         end
 
