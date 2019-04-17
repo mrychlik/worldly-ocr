@@ -55,7 +55,7 @@ classdef LogisticRegression
                 % Print deployment information
                 fprintf('Running as a standalone application %s\n',this.app_name);
                 fprintf('Application files are in: %s\n', ctfroot);
-                fprintf('MATLAB runtime version is: %s\n', mcrversion);
+                fprintf('MATLAB runtime version is: %d\n', mcrversion);
             else
                 % 
                 fprintf('Running as a MATLAB app %s\n',this.app_name);
