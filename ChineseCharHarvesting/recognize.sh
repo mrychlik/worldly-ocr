@@ -25,12 +25,13 @@ DATADIR='BWChars'
 OUT='OutputsAsUTF8'
 LANG='chi_tra'
 #LANG='chi_tra_vert'
-
+TMPFILE=$(mktemp)
 
 mkdir -p $OUT
 
 for f in $DATADIR/*
 do
-    tesseract -l $LANG --psm 10 $f ${f%%.pbm}
+    convert $f 
+    tesseract -l $LANG --psm 10 $TMPFILE ${f%%.pbm}
     mv ${f%%.pbm}.txt $OUT
 done
