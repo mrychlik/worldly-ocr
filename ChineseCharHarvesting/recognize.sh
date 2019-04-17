@@ -23,8 +23,8 @@
 
 DATADIR='BlackOnWhiteChars'
 OUT='OutputsAsUTF8'
-#LANG='chi_tra'
-LANG='chi_tra_vert'
+LANG='chi_tra'
+#LANG='chi_tra_vert'
 
 mkdir -p $OUT
 
