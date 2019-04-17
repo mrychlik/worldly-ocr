@@ -56,6 +56,26 @@ classdef LogisticRegression
         end
 
 
+        function print_app_info(this)
+            if isdeployed
+                % Print deployment information
+                fprintf('Running as a standalone application %s\n',this.app_name);
+                fprintf('Application files are in: %s\n', ctfroot);
+                fprintf('MATLAB runtime version: %s', mcrversion);
+            else
+                % 
+                fprintf('Running as a MATLAB app %s\n',this.app_name);
+                apps = matlab.apputil.getInstalledAppInfo;
+                ind=find(cellfun(@(x)strcmp(x,this.app_name),{apps.name}));
+                if isempty(ind)
+                    path = '.';             % Current directory
+                else
+                    path = apps(ind).location; % This app is installed, its path
+                end
+                fprintf('App data folder is %s\n',path);
+            end
+        end
+
 
         function this = LogisticRegression(app)
             this.app = app;
