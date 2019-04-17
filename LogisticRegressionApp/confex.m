@@ -1,3 +1,5 @@
+% Test whether we can produce confusion matrix programmatically
+
 lra = LogisticRegressionApp;
 lr = lra.obj;
 lra.obj = lra.obj.train;
