@@ -30,6 +30,13 @@ classdef LogisticRegression
     
     methods
         function path = get.app_data_path(this)
+        %Find the path of application data
+        % PATH = GET.APP_DATA_PATH(THIS) returns the path where
+        %  the application data is. If this application is installed,
+        %  it is the path of the installation folder, else it is the
+        %  current folder, when we are running the application
+        %  uninstalled (the working directory thus must be the 
+        %  current folder).
             apps = matlab.apputil.getInstalledAppInfo;
             ind=find(cellfun(@(x)strcmp(x,'MNISTDigitsLearner'),{apps.name}));
             if isempty(ind)
@@ -37,7 +44,7 @@ classdef LogisticRegression
             else
                 path = apps(ind).location; % This app is installed, its path
             end
-            sprintf('App data folder is %s\n',path);
+            fprintf('App data folder is %s\n',path);
         end
 
 
