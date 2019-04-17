@@ -167,7 +167,7 @@ classdef LogisticRegression
         %
         % Transposing is necessary to get the vertical digit, else is a digit on
         % its side.
-            data_file = which(fullfile(this.app_data_path,mfilename,'digit_data.mat'));
+            data_file = fullfile(this.app_data_path,mfilename,'digit_data.mat');
             load(data_file);
 
             digits = this.app.digits;
