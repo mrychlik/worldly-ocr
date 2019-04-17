@@ -30,7 +30,6 @@ mkdir -p $OUT
 
 for f in $DATADIR/*
 do
-    convert $f 
     tesseract -l $LANG --psm 10 $f ${f%%.pbm}
     mv ${f%%.pbm}.txt $OUT
 done
