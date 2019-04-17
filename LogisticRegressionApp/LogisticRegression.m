@@ -29,10 +29,9 @@ classdef LogisticRegression
 
     
     methods
-        function path = get.app_data_path
+        function path = get.app_data_path(this)
             files = matlab.apputil.getInstalledAppInfo;
             [path,~,~] = fileparts(files(1).location)
-            this.app_data_path = path;
         end
 
 
