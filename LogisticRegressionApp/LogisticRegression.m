@@ -40,7 +40,7 @@ classdef LogisticRegression
         %  current folder).
             if isdeployed
                 fprintf('Standalone application %s\n',this.app_name);
-                fprintf('Application files in %s', ctfroot);
+                fprintf('Application files in %s\n', ctfroot);
                 fprintf('MATLAB runtime version: %s', mcrversion);
                 path = ctfroot;
             else
