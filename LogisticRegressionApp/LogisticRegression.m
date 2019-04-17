@@ -30,8 +30,13 @@ classdef LogisticRegression
     
     methods
         function path = get.app_data_path(this)
-            files = matlab.apputil.getInstalledAppInfo;
-            [path,~,~] = fileparts(files(1).location)
+            apps = matlab.apputil.getInstalledAppInfo;
+            ind=find(cellfun(@(x)strcmp(x,'MNISTDigitsLearner'),{apps.name}));
+            if isempty(ind)
+                path = '.';             % Current directory
+            else
+                path = apps(ind).location; % This app is installed, its path
+            end
         end
 
 
