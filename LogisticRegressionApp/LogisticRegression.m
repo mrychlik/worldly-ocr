@@ -38,14 +38,21 @@ classdef LogisticRegression
         %  current folder, when we are running the application
         %  uninstalled (the working directory thus must be the 
         %  current folder).
-            apps = matlab.apputil.getInstalledAppInfo;
-            ind=find(cellfun(@(x)strcmp(x,this.app_name),{apps.name}));
-            if isempty(ind)
-                path = '.';             % Current directory
+            if isdeployed
+                fprintf('Standalone application %s\n',this.app_name);
+                fprintf('Application files in %s', ctfroot);
+                fprintf('MATLAB runtime version: %s', mcrversion);
+                path = ctfroot;
             else
-                path = apps(ind).location; % This app is installed, its path
+                apps = matlab.apputil.getInstalledAppInfo;
+                ind=find(cellfun(@(x)strcmp(x,this.app_name),{apps.name}));
+                if isempty(ind)
+                    path = '.';             % Current directory
+                else
+                    path = apps(ind).location; % This app is installed, its path
+                end
+                fprintf('App data folder is %s\n',path);
             end
-            fprintf('App data folder is %s\n',path);
         end
 
 
