@@ -31,7 +31,8 @@ classdef LogisticRegression
     methods
         function path = get.app_data_path(this)
             if isdeployed
-                path = ctfroot;
+                % We will find the files in the 'application' folder
+                path = '';
             else
                 apps = matlab.apputil.getInstalledAppInfo;
                 ind=find(cellfun(@(x)strcmp(x,this.app_name),{apps.name}));
