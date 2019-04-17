@@ -58,7 +58,7 @@ classdef LogisticRegression
                 fprintf('MATLAB runtime version is: %d\n', mcrversion);
             else
                 % 
-                fprintf('Running as a MATLAB app %s\n',this.app_name);
+                fprintf('Running %s a MATLAB app.\n',this.app_name);
                 fprintf('MATLAB version: %s\n', version);
                 apps = matlab.apputil.getInstalledAppInfo;
                 ind=find(cellfun(@(x)strcmp(x,this.app_name),{apps.name}));
