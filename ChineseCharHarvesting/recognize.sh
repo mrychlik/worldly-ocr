@@ -25,8 +25,6 @@ DATADIR='BWChars'
 OUT='OutputsAsUTF8'
 #LANG='chi_tra'
 LANG='chi_tra_vert'
-TMPFILE=$(mktemp)
-
 
 mkdir -p $OUT
 
