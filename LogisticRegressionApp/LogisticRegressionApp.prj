@@ -1,0 +1,134 @@
+<deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
+  <configuration build-checksum="3246110057" file="/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/LogisticRegressionApp.prj" location="/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp" name="LogisticRegressionApp" preferred-package-location="/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/LogisticRegressionApp/for_redistribution" preferred-package-type="package.type.install" target="target.ezdeploy.standalone" target-name="Application Compiler">
+    <param.appname>LogisticRegressionApp</param.appname>
+    <param.icon />
+    <param.icons />
+    <param.version>1.0</param.version>
+    <param.authnamewatermark>Marek Rychlik</param.authnamewatermark>
+    <param.email>rychlik@email.arizona.edu</param.email>
+    <param.company>University of Arizona</param.company>
+    <param.summary>A handwritten digit recognition program</param.summary>
+    <param.description>This program learns how to recognize handwritten digits from the MNIST database.</param.description>
+    <param.screenshot />
+    <param.guid />
+    <param.installpath.string>/University_of_Arizona/LogisticRegressionApp/</param.installpath.string>
+    <param.installpath.combo>option.installpath.user</param.installpath.combo>
+    <param.logo />
+    <param.install.notes />
+    <param.target.install.notes>In the following directions, replace MR/v95 by the directory on the target machine where MATLAB is installed, or MR by the directory where the MATLAB Runtime is installed.
+
+(1) Set the environment variable XAPPLRESDIR to this value:
+
+MR/v95/X11/app-defaults
+
+
+(2) If the environment variable LD_LIBRARY_PATH is undefined, set it to the following:
+
+MR/v95/runtime/glnxa64:MR/v95/bin/glnxa64:MR/v95/sys/os/glnxa64:MR/v95/sys/opengl/lib/glnxa64
+
+If it is defined, set it to the following:
+
+${LD_LIBRARY_PATH}:MR/v95/runtime/glnxa64:MR/v95/bin/glnxa64:MR/v95/sys/os/glnxa64:MR/v95/sys/opengl/lib/glnxa64</param.target.install.notes>
+    <param.intermediate>${PROJECT_ROOT}/LogisticRegresionApp/for_testing</param.intermediate>
+    <param.files.only>${PROJECT_ROOT}/LogisticRegresionApp/for_redistribution_files_only</param.files.only>
+    <param.output>${PROJECT_ROOT}/LogisticRegresionApp/for_redistribution</param.output>
+    <param.logdir>${PROJECT_ROOT}/LogisticRegresionApp</param.logdir>
+    <param.enable.clean.build>false</param.enable.clean.build>
+    <param.user.defined.mcr.options />
+    <param.target.type>subtarget.standalone</param.target.type>
+    <param.support.packages />
+    <param.web.mcr>false</param.web.mcr>
+    <param.package.mcr>true</param.package.mcr>
+    <param.no.mcr>false</param.no.mcr>
+    <param.web.mcr.name>MyAppInstaller_web</param.web.mcr.name>
+    <param.package.mcr.name>MyAppInstaller_mcr</param.package.mcr.name>
+    <param.no.mcr.name>MyAppInstaller_app</param.no.mcr.name>
+    <param.windows.command.prompt>false</param.windows.command.prompt>
+    <param.create.log>false</param.create.log>
+    <param.log.file />
+    <param.native.matlab>false</param.native.matlab>
+    <param.checkbox>false</param.checkbox>
+    <param.example />
+    <param.help.text />
+    <unset>
+      <param.icon />
+      <param.icons />
+      <param.version />
+      <param.screenshot />
+      <param.guid />
+      <param.installpath.string />
+      <param.installpath.combo />
+      <param.logo />
+      <param.install.notes />
+      <param.intermediate />
+      <param.files.only />
+      <param.output />
+      <param.logdir />
+      <param.enable.clean.build />
+      <param.user.defined.mcr.options />
+      <param.target.type />
+      <param.support.packages />
+      <param.no.mcr />
+      <param.web.mcr.name />
+      <param.package.mcr.name />
+      <param.no.mcr.name />
+      <param.windows.command.prompt />
+      <param.create.log />
+      <param.log.file />
+      <param.native.matlab />
+      <param.checkbox />
+      <param.example />
+      <param.help.text />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}/LogisticRegressionApp.mlapp</file>
+    </fileset.main>
+    <fileset.resources />
+    <fileset.package>
+      <file>${PROJECT_ROOT}/digit_data.mat</file>
+    </fileset.package>
+    <fileset.depfun>
+      <file>${PROJECT_ROOT}/LogisticRegression.m</file>
+      <file>${PROJECT_ROOT}/plotConfMat.m</file>
+    </fileset.depfun>
+    <build-deliverables>
+      <file location="${PROJECT_ROOT}/LogisticRegresionApp/for_testing" name="readme.txt" optional="true">/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/LogisticRegresionApp/for_testing/readme.txt</file>
+      <file location="${PROJECT_ROOT}/LogisticRegresionApp/for_testing" name="LogisticRegressionApp" optional="false">/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/LogisticRegresionApp/for_testing/LogisticRegressionApp</file>
+      <file location="${PROJECT_ROOT}/LogisticRegresionApp/for_testing" name="run_LogisticRegressionApp.sh" optional="false">/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/LogisticRegresionApp/for_testing/run_LogisticRegressionApp.sh</file>
+      <file location="${PROJECT_ROOT}/LogisticRegresionApp/for_testing" name="splash.png" optional="false">/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/LogisticRegresionApp/for_testing/splash.png</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>/usr/local/MATLAB/R2018b</root>
+      <toolboxes>
+        <toolbox name="matlabcoder" />
+        <toolbox name="neuralnetwork" />
+      </toolboxes>
+      <toolbox>
+        <matlabcoder>
+          <enabled>true</enabled>
+        </matlabcoder>
+      </toolbox>
+      <toolbox>
+        <neuralnetwork>
+          <enabled>true</enabled>
+        </neuralnetwork>
+      </toolbox>
+    </matlab>
+    <platform>
+      <unix>true</unix>
+      <mac>false</mac>
+      <windows>false</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>true</linux>
+      <solaris>false</solaris>
+      <osver>5.0.6-200.fc29.x86_64</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>glnxa64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>
