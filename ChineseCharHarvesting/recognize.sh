@@ -21,7 +21,7 @@
 # 13    Raw line. Treat the image as a single text line,
 #       bypassing hacks that are Tesseract-specific.
 
-DATADIR='BWChars'
+DATADIR='BlackOnWhiteChars'
 OUT='OutputsAsUTF8'
 #LANG='chi_tra'
 LANG='chi_tra_vert'
