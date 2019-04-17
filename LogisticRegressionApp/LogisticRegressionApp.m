@@ -1,5 +1,0 @@
-classdef LogisticRegressionApp
-    
-    
-    
-end
