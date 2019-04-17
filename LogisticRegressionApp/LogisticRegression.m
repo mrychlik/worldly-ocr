@@ -13,7 +13,7 @@ classdef LogisticRegression
     end
 
     properties(Constant)
-        app_name = 'MNISTDigitsLearner' % This application name
+        app_name = 'MNISTDigitLearner' % This application name
         min_eta = 1e-5                  % Stop if learning rate drops below
         alpha = 1e-1                    % Regularizer constant
         epoch_increment = 100           % Number of epochs to add
