@@ -39,9 +39,6 @@ classdef LogisticRegression
         %  uninstalled (the working directory thus must be the 
         %  current folder).
             if isdeployed
-                fprintf('Standalone application %s\n',this.app_name);
-                fprintf('Application files in %s\n', ctfroot);
-                fprintf('MATLAB runtime version: %s', mcrversion);
                 path = ctfroot;
             else
                 apps = matlab.apputil.getInstalledAppInfo;
@@ -80,6 +77,7 @@ classdef LogisticRegression
 
         function this = LogisticRegression(app)
             this.app = app;
+            this.print_app_info;
         end
 
         function this = train(this,continuing)
