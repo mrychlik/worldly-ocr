@@ -7,5 +7,6 @@ mkdir -p $OUT
 
 for f in $DATADIR/*
 do
-    convert $f -negate $OUT/$f
+    g=$(basename $f)
+    convert $f -negate $OUT/$g
 done
