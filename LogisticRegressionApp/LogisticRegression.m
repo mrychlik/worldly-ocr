@@ -24,7 +24,9 @@ classdef LogisticRegression
         app
     end
     
-
+    properties(Dependent)
+        app_data_path                   % Where the app data is
+    end
     
     methods
         function path = get.app_data_path(this)
