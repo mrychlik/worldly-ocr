@@ -34,6 +34,10 @@ classdef LogisticRegression
                 % We will find the files in the 'application' folder
                 path = '';
             else
+                % We're running within MATLAB, either as a MATLAB app,
+                % or from a copy of the current folder. If we're running
+                % as a MATLAB app, we need to get the application folder
+                % by using matlab.apputil class.
                 apps = matlab.apputil.getInstalledAppInfo;
                 ind=find(cellfun(@(x)strcmp(x,this.app_name),{apps.name}));
                 if isempty(ind)
