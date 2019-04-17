@@ -27,6 +27,9 @@ classdef LogisticRegression
     methods
         function this = LogisticRegression(app)
             this.app = app;
+            files = matlab.apputil.getInstalledAppInfo;
+            [path,~,~] = fileparts(files(1).location)
+            this.app_data_path = path;
         end
 
         function this = train(this,continuing)
@@ -135,8 +138,7 @@ classdef LogisticRegression
         %
         % Transposing is necessary to get the vertical digit, else is a digit on
         % its side.
-
-            data_file=fullfile('.','digit_data.mat');
+            data_file=fullfile(this.app_data_path,'digit_data.mat');
             load(data_file);
 
             digits = this.app.digits;
