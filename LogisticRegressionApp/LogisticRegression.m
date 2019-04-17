@@ -23,13 +23,22 @@ classdef LogisticRegression
         app
     end
     
+    properties(Dependent)
+        app_data_path                   % Where the app data is
+    end
+
     
     methods
-        function this = LogisticRegression(app)
-            this.app = app;
+        function path = get.app_data_path
             files = matlab.apputil.getInstalledAppInfo;
             [path,~,~] = fileparts(files(1).location)
             this.app_data_path = path;
+        end
+
+
+
+        function this = LogisticRegression(app)
+            this.app = app;
         end
 
         function this = train(this,continuing)
