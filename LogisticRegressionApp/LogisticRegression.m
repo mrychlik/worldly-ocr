@@ -273,6 +273,10 @@ classdef LogisticRegression
 
         function WindowButtonDownFcn(this, event)
             display('Button down');
+            if this.State ~= 'Idle'
+                return;
+            end
+
             x = round(event.IntersectionPoint(1));
             y = round(event.IntersectionPoint(2));
             if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
