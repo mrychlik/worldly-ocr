@@ -46,7 +46,9 @@ be run by selecting it from the "APPS" dropdown menu.
 
 You can also run the app programatically from a script by doing:
 
+```Matlab
 >> matlab.apputil.run('MNISTDigitLearner');
+```
 
 ## Screenshots
 
