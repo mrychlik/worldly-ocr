@@ -268,6 +268,7 @@ classdef LogisticRegression
 
         function clear_digit(this)
             this.ImageHandle.CData = zeros(this.Height,this.Width);
+            drawnow;
         end
 
         function WindowButtonDownFcn(this, event)
@@ -308,6 +309,7 @@ classdef LogisticRegression
                 return;
             else
                 this.ImageHandle.CData(y,x)= 255;
+                drawnow;
             end
         end
     end
