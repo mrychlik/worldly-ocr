@@ -250,7 +250,7 @@ classdef LogisticRegression
             Z = -sum(this.T .* log(this.Y+eps),'all');
         end
 
-        function mean_digit = mean_digit_image(this, digit)
+        function mean_digit_image(this, digit)
         % MEAN_DIGIT_IMAGE get mean image of a digit
             if nargin < 2
                 digit=this.app.digit;
