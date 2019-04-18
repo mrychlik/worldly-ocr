@@ -12,7 +12,7 @@ classdef LogisticRegression
         epoch = 0                       % Epoch counter
         epoch_max;                      % Number of epochs to run
         losses = [];                    % List of loss values
-        State = 'Idle'                  % State of digit drawing
+        State = LogisticRegression.STATE_IDLE;
     end
 
     properties(Constant)
@@ -21,6 +21,9 @@ classdef LogisticRegression
         alpha = 1e-1                    % Regularizer constant
         epoch_increment = 100           % Number of epochs to add
         update_period = 10              % Update stats this often
+
+        STATE_IDLE = 0                  % We are not hand-drawing a digit
+        STATE_DRAWING = 1               % We are hand-drawing a digit
     end
 
     properties(Access=private)
