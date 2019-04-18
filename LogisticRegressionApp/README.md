@@ -44,6 +44,10 @@ Within matlab GUI, you do these steps:
 Upon completion, the application with a name "MNISTDigitLearner" can
 be run by selecting it from the "APPS" dropdown menu.
 
+You can also run the app programatically from a script by doing:
+
+>> matlab.apputil.run('MNISTDigitLearner');
+
 ## Screenshots
 
 ![PickDigits](./images/PickDigits.png)
