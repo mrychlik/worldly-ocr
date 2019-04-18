@@ -277,7 +277,7 @@ classdef LogisticRegression
 
         function this = WindowButtonDownFcn(this, event)
             display('Button down');
-            if this.State ~= 'Idle'
+            if this.State ~= LogisticRegression.STATE_IDLE
                 return;
             end
             this = this.clear_digit;
@@ -293,7 +293,7 @@ classdef LogisticRegression
 
         function this = WindowButtonUpFcn(this, event)
             display('Button up');
-            if this.State ~= 'Drawing'
+            if this.State ~= LogisticRegression.STATE_DRAWING
                 return;
             end
 
