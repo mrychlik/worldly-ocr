@@ -296,6 +296,7 @@ classdef LogisticRegression
             else
                 this.State = LogisticRegression.STATE_DRAWING;
             end
+            fprintf('New state %d\n', this.State);
         end
 
         function this = WindowButtonUpFcn(this, event)
