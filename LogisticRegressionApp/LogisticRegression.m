@@ -23,7 +23,8 @@ classdef LogisticRegression
     end
 
     properties(Access=private)
-        app
+        app                             % The GUI
+        ImageHandle                     % Image of a hand-drawn digit
     end
     
     properties(Dependent)
@@ -264,5 +265,51 @@ classdef LogisticRegression
             colormap(this.app.UIAxes2,1-gray .* this.app.hint_intensity);
         end
 
+        function draw_digit(this)
+            ah = this.app.UIAxes2;
+            this.ImageHandle = image(ah,zeros(this.Height,this.Width));
+        end
+
+        function WindowButtonDown(this, event)
+            display('Button down');
+            ah = this.app.UIAxes2;
+            cp = ah.CurrentPoint;
+            x = round(cp(1,1));
+            y = round(cp(1,2));
+            if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
+                return;
+            end
+            af = this.app.MNISTDigitLearnerUIFigure;
+            seltype = af.SelectionType;
+            if strcmp(seltype,'normal')
+                af.Pointer = 'circle';
+            end
+            af.WindowButtonMotionFcn = @wbmcb;
+            af.WindowButtonUpFcn = @wbucb;
+        end
+
+        function WindowButtonUp(this,event)
+            display('Button up');
+            cp = ah.CurrentPoint;
+            x=round(cp(1,1));
+            y=round(cp(1,2));
+            if ~( 1 <= x && x <= w && 1 <= y && y <= h )
+                return;
+            end
+            af = this.app.MNISTDigitLearnerUIFigure;
+            af.Pointer = 'arrow';
+        end
+
+        function WindowButtonMotionFcn(this, event)
+            display('Button moved');
+            cp = ah.CurrentPoint;
+            x=round(cp(1,1));
+            y=round(cp(1,2));
+            if ~( 1 <= x && x <= w && 1 <= y && y <= h )
+                return;
+            end
+            this.ImageHandle.CData(y,x)= 255;
+            drawnow;
+        end
     end
 end
