@@ -202,14 +202,14 @@ classdef LogisticRegression
             drawnow;
 
             % Height and width of images
-            H = size(Digit{1},2);
-            W = size(Digit{1},3);
+            this.Height = size(Digit{1},2);
+            this.Width = size(Digit{1},3);
 
             % Linearized images
             X0 = [];
             T0 = [];
             for j=1:num_digits
-                LinDigit = reshape(Digit{j}, [size(Digit{j},1), W * H]);
+                LinDigit = reshape(Digit{j}, [size(Digit{j},1), this.Width * this.Height]);
                 X0 = [X0; LinDigit];
                 T1 = zeros([size(LinDigit, 1),num_digits]);
                 T1(:,j) = ones([size(LinDigit, 1),1]);
@@ -249,9 +249,9 @@ classdef LogisticRegression
         end
 
         function mean_digit = mean_digit_image(this)
-            digit = this.app.digit;
-            idx = find(this.T(digit,:)==1);
-            mean_digit=mean(this.X, idx); 
+            digit = find(this.app.digit==this.app.digits,1);
+            idx = find(this.T(digit,:));
+            mean_digit=reshape(mean(this.X(:,:),2),[this.Height,this.Width]); 
         end
 
     end
