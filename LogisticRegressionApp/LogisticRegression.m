@@ -275,15 +275,19 @@ classdef LogisticRegression
             drawnow;
         end
 
+        function value = hit(this, event)
+            value = event.HitObject == this.app.UIAxes2;
+        end
+
         function this = WindowButtonDownFcn(this, event)
-            display('Button down');
+            fprintf('Button down, state %d\n', this.State);
             if this.State ~= LogisticRegression.STATE_IDLE
                 return;
             end
             this = this.clear_digit;
 
-            x = round(event.IntersectionPoint(1));
-            y = round(event.IntersectionPoint(2));
+            x = round(event.IntersectionPoint(1))
+            y = round(event.IntersectionPoint(2))
             if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
                 return;
             else
@@ -292,13 +296,13 @@ classdef LogisticRegression
         end
 
         function this = WindowButtonUpFcn(this, event)
-            display('Button up');
+            fprintf('Button up, state %d\n', this.State);
             if this.State ~= LogisticRegression.STATE_DRAWING
                 return;
             end
 
-            x = round(event.IntersectionPoint(1));
-            y = round(event.IntersectionPoint(2));
+            x = round(event.IntersectionPoint(1))
+            y = round(event.IntersectionPoint(2))
             if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
                 return;
             else
@@ -307,15 +311,16 @@ classdef LogisticRegression
         end
 
         function this = WindowButtonMotionFcn(this, event)
-            display('Button moved');
+            fprintf('Button moved, state %d\n', this.State);
             if this.State ~= LogisticRegression.STATE_DRAWING;
                 return;
             end
-            x = round(event.IntersectionPoint(1));
-            y = round(event.IntersectionPoint(2));
+            x = round(event.IntersectionPoint(1))
+            y = round(event.IntersectionPoint(2))
             if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
                 return;
             else
+                display('Drawing');
                 this.ImageHandle.CData(y,x)= 255;
                 drawnow;
             end
