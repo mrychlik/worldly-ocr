@@ -280,6 +280,9 @@ classdef LogisticRegression
         end
 
         function this = WindowButtonDownFcn(this, event)
+            if ~this.hit(event)
+                return
+            end
             fprintf('Button down, state %d\n', this.State);
             if this.State ~= LogisticRegression.STATE_IDLE
                 return;
@@ -296,6 +299,9 @@ classdef LogisticRegression
         end
 
         function this = WindowButtonUpFcn(this, event)
+            if ~this.hit(event)
+                return
+            end
             fprintf('Button up, state %d\n', this.State);
             if this.State ~= LogisticRegression.STATE_DRAWING
                 return;
@@ -311,6 +317,10 @@ classdef LogisticRegression
         end
 
         function this = WindowButtonMotionFcn(this, event)
+            if ~this.hit(event)
+                return
+            end
+
             fprintf('Button moved, state %d\n', this.State);
             if this.State ~= LogisticRegression.STATE_DRAWING;
                 return;
