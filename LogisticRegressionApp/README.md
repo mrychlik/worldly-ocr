@@ -27,7 +27,7 @@ necessary files as part of the installation process.
 If you have MATLAB running, you can run the application within MATLAB.
 You only need to download the file:
 
-.MNISTDigitLearner.mlappinstall
+[MNISTDigitLearner.mlappinstall](.MNISTDigitLearner.mlappinstall)
 
 Within matlab GUI, you can go to the "APPS" tab, and click on the icon "Install App".
 Then select the above file, and install. Upon completion, the application with a name
