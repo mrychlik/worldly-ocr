@@ -32,7 +32,11 @@ You only need to download the file:
 
 [MNISTDigitLearner.mlappinstall](./MNISTDigitLearner.mlappinstall)
 
-Within matlab GUI, you can go to the "APPS" tab, and click on the icon "Install App".
-Then select the above file, and install. Upon completion, the application with a name
-"MNISTDigitLearner" can be run by selecting it from the "APPS" dropdown menu.
+Within matlab GUI, you do these steps:
+- Go to the "APPS" tab
+- Click on the icon "Install App"
+- select the above downloaded file and install the app.
+
+Upon completion, the application with a name "MNISTDigitLearner" can
+be run by selecting it from the "APPS" dropdown menu.
 
