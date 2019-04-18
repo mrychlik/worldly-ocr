@@ -12,7 +12,8 @@ classdef LogisticRegression
         epoch = 0                       % Epoch counter
         epoch_max;                      % Number of epochs to run
         losses = [];                    % List of loss values
-        State = LogisticRegression.STATE_IDLE;
+
+        State = LogisticRegression.STATE_IDLE; % State of drawing
     end
 
     properties(Constant)
@@ -286,7 +287,7 @@ classdef LogisticRegression
             if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
                 return;
             else
-                this.State = 'Drawing';
+                this.State = LogisticRegression.STATE_DRAWING;
             end
         end
 
@@ -301,13 +302,13 @@ classdef LogisticRegression
             if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
                 return;
             else
-                this.State = 'Idle';
+                this.State = LogisticRegression.STATE_IDLE;
             end
         end
 
         function this = WindowButtonMotionFcn(this, event)
             display('Button moved');
-            if this.State ~= 'Drawing';
+            if this.State ~= LogisticRegression.STATE_DRAWING;
                 return;
             end
             x = round(event.IntersectionPoint(1));
