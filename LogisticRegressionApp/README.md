@@ -21,3 +21,15 @@ should work on most Linux platforms.)  It is an incomplete
 installer. It comes without the MATLAB redistributable runtime, which
 is currently a 2GB download. However, the installer will download the
 necessary files as part of the installation process.
+
+## What if I have MATLAB and do not want to install a standalone app?
+
+If you have MATLAB running, you can run the application within MATLAB.
+You only need to download the file:
+
+.MNISTDigitLearner.mlappinstall
+
+Within matlab GUI, you can go to the "APPS" tab, and click on the icon "Install App".
+Then select the above file, and install. Upon completion, the application with a name
+"MNISTDigitLearner" can be run by selecting it from the "APPS" dropdown menu.
+
