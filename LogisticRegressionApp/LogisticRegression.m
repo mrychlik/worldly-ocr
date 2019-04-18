@@ -266,17 +266,17 @@ classdef LogisticRegression
             colormap(this.app.UIAxes2,1-gray .* this.app.hint_intensity);
         end
 
-        function clear_digit(this)
+        function this = clear_digit(this)
             this.ImageHandle.CData = zeros(this.Height,this.Width);
             drawnow;
         end
 
-        function WindowButtonDownFcn(this, event)
+        function this = WindowButtonDownFcn(this, event)
             display('Button down');
             if this.State ~= 'Idle'
                 return;
             end
-            this.clear_digit;
+            this = this.clear_digit;
 
             x = round(event.IntersectionPoint(1));
             y = round(event.IntersectionPoint(2));
@@ -287,7 +287,7 @@ classdef LogisticRegression
             end
         end
 
-        function WindowButtonUpFcn(this, event)
+        function this = WindowButtonUpFcn(this, event)
             display('Button up');
             x = round(event.IntersectionPoint(1));
             y = round(event.IntersectionPoint(2));
@@ -298,7 +298,7 @@ classdef LogisticRegression
             end
         end
 
-        function WindowButtonMotionFcn(this, event)
+        function this = WindowButtonMotionFcn(this, event)
             display('Button moved');
             if this.State ~= 'Drawing';
                 return;
