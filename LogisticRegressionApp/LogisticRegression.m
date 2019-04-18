@@ -25,6 +25,7 @@ classdef LogisticRegression
     properties(Access=private)
         app                             % The GUI
         ImageHandle                     % Image of a hand-drawn digit
+        State = 0                       % State of digit drawing
     end
     
     properties(Dependent)
@@ -276,47 +277,34 @@ classdef LogisticRegression
             y = round(event.IntersectionPoint(2));
             if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
                 return;
+            else
+                this.State = 'BeginDrawing';
             end
-            af = this.app.MNISTDigitLearnerUIFigure;
-            seltype = af.SelectionType;
-            if strcmp(seltype,'normal')
-                af.Pointer = 'circle';
-            end
-            af.WindowButtonMotionFcn = @wbmcb;
-            af.WindowButtonUpFcn = @wbucb;
         end
 
         function WindowButtonUpFcn(this, event)
             display('Button up');
-            display(event);
-        end
-
-        function foo2(this)
-            ah = this.app.UIAxes2;
-            cp = ah.CurrentPoint;
-            x=round(cp(1,1));
-            y=round(cp(1,2));
-            if ~( 1 <= x && x <= w && 1 <= y && y <= h )
+            x = round(event.IntersectionPoint(1));
+            y = round(event.IntersectionPoint(2));
+            if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
                 return;
+            else
+                this.State = 'Draw';
             end
-            af = this.app.MNISTDigitLearnerUIFigure;
-            af.Pointer = 'arrow';
         end
 
         function WindowButtonMotionFcn(this, event)
             display('Button moved');
-            display(event);
-        end
-        function foo3(this)
-            ah = this.app.UIAxes2;
-            cp = ah.CurrentPoint;
-            x=round(cp(1,1));
-            y=round(cp(1,2));
-            if ~( 1 <= x && x <= w && 1 <= y && y <= h )
+            if this.State ~= 'Drawing';
                 return;
             end
-            this.ImageHandle.CData(y,x)= 255;
-            drawnow;
+            x = round(event.IntersectionPoint(1));
+            y = round(event.IntersectionPoint(2));
+            if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
+                return;
+            else
+                this.ImageHandle.CData(y,x)= 255;
+            end
         end
     end
 end
