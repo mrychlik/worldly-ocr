@@ -251,10 +251,12 @@ classdef LogisticRegression
         end
 
         function mean_digit = mean_digit_image(this, digit)
+        % MEAN_DIGIT_IMAGE get mean image of a digit
             if nargin < 2
-                digit = find(this.app.digit==this.app.digits,1);
+                digit=this.app.digit;
             end
-            idx = find(this.T(digit,:));
+            digit_idx = find(digit==this.app.digits,1)
+            idx = find(this.T(digit_idx,:));
             mean_digit=reshape(mean(this.X(:,:),2),[this.Height,this.Width])'; 
         end
 
