@@ -8,7 +8,11 @@ other platforms.
 
 ## The scope of the demo application
 The application in this folder is a GUI application for handwritten digit recognition,
-and is a direct port to a GUI environment of the implementation in the folder (../LogisticRegression).
+and is a direct port to a GUI environment of the implementation in the folder
+
+[LogisticRegression](../LogisticRegression).
+
+of the current project.
 
 ## The installer
 Due to file size limitation of 100MB, we are not able to include the installer on GitHub.
