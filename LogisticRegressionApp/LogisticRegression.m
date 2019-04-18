@@ -261,7 +261,7 @@ classdef LogisticRegression
             idx = find(this.T(digit_idx,:));
             mean_digit = reshape(mean(this.X(:,idx),2), [this.Height,this.Width])'; 
             imagesc(this.app.UIAxes2, mean_digit);
-            colormap(this.app.UIAxes2,gray);
+            colormap(this.app.UIAxes2,1-gray);
         end
 
     end
