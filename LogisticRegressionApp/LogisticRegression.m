@@ -276,22 +276,21 @@ classdef LogisticRegression
         end
 
         function value = hit(this, event)
-            value = event.HitObject == this.app.UIAxes2;
+            disp(event.HitObject);
+            value = event.HitObject == this.ImageHandle;
             disp('Hit');
         end
 
         function this = WindowButtonDownFcn(this, event)
             fprintf('Button down, state %d\n', this.State);
-            if ~this.hit(event)
+            if ~this.hit(event) || this.State ~= LogisticRegression.STATE_IDLE
                 return
-            end
-            if this.State ~= LogisticRegression.STATE_IDLE
-                return;
             end
             this = this.clear_digit;
 
-            x = round(event.IntersectionPoint(1))
-            y = round(event.IntersectionPoint(2))
+            x = round(event.IntersectionPoint(1));
+            y = round(event.IntersectionPoint(2));
+            disp(x); disp(y);
             if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
                 return;
             else
@@ -302,15 +301,13 @@ classdef LogisticRegression
 
         function this = WindowButtonUpFcn(this, event)
             fprintf('Button up, state %d\n', this.State);
-            if ~this.hit(event)
-                return
-            end
-            if this.State ~= LogisticRegression.STATE_DRAWING
+            if ~this.hit(event) || this.State ~= LogisticRegression.STATE_DRAWING
                 return;
             end
 
             x = round(event.IntersectionPoint(1))
             y = round(event.IntersectionPoint(2))
+            disp(x); disp(y);
             if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
                 return;
             else
@@ -320,10 +317,7 @@ classdef LogisticRegression
 
         function this = WindowButtonMotionFcn(this, event)
             fprintf('Button moved, state %d\n', this.State);
-            if ~this.hit(event)
-                return
-            end
-            if this.State ~= LogisticRegression.STATE_DRAWING;
+            if ~this.hit(event) || this.State ~= LogisticRegression.STATE_DRAWING
                 return;
             end
             x = round(event.IntersectionPoint(1))
