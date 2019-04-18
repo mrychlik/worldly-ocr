@@ -266,7 +266,7 @@ classdef LogisticRegression
             colormap(this.app.UIAxes2,1-gray .* this.app.hint_intensity);
         end
 
-        function draw_digit(this)
+        function clear_digit(this)
             ah = this.app.UIAxes2;
             this.ImageHandle = image(ah,zeros(this.Height,this.Width));
         end
@@ -276,6 +276,7 @@ classdef LogisticRegression
             if this.State ~= 'Idle'
                 return;
             end
+            this.clear_digit;
 
             x = round(event.IntersectionPoint(1));
             y = round(event.IntersectionPoint(2));
