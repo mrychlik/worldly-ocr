@@ -23,8 +23,11 @@ is currently a 2GB download. However, the installer will download the
 necessary files as part of the installation process.
 
 ## What if I have MATLAB and do not want to install a standalone app?
-
 If you have MATLAB running, you can run the application within MATLAB.
+In fact, the installation process is significantly simpler, as it is
+not necessary to download and install the MATLAB runtime component from
+MATLAB website.
+
 You only need to download the file:
 
 [MNISTDigitLearner.mlappinstall](./MNISTDigitLearner.mlappinstall)
