@@ -290,6 +290,7 @@ classdef LogisticRegression
 
         function WindowButtonUpFcn(this, event)
             display('Button up');
+            ah = this.app.UIAxes2;
             cp = ah.CurrentPoint;
             x=round(cp(1,1));
             y=round(cp(1,2));
