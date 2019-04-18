@@ -255,9 +255,12 @@ classdef LogisticRegression
             if nargin < 2
                 digit=this.app.digit;
             end
-            digit_idx = find(digit==this.app.digits,1)
+            % Find digit index in the current training digits
+            digit_idx = find(digit==this.app.digits,1);
+            % Find indices which label is correct
             idx = find(this.T(digit_idx,:));
-            mean_digit=reshape(mean(this.X(:,:),2),[this.Height,this.Width])'; 
+            mean_digit=reshape(mean(this.X(:,idx),2),[this.Height,this.Width])'; 
+            imagesc(this.app.UIAxes2,mean_digit);
         end
 
     end
