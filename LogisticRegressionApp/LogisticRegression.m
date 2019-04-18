@@ -3,6 +3,8 @@ classdef LogisticRegression
     properties
         X                               % Training data
         T                               % Target data
+        Height                          % Digit height (pixels)
+        Width                           % Digit width (pixels)
         Y                               % Network activation
         NErrors                         % Number of errors
         W                               % Weights
