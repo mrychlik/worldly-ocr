@@ -270,12 +270,10 @@ classdef LogisticRegression
             this.ImageHandle = image(ah,zeros(this.Height,this.Width));
         end
 
-        function WindowButtonDown(this, event)
+        function WindowButtonDownFcn(this, event)
             display('Button down');
-            ah = this.app.UIAxes2;
-            cp = ah.CurrentPoint;
-            x = round(cp(1,1));
-            y = round(cp(1,2));
+            x = round(event.IntersectionPoint(1));
+            y = round(event.IntersectionPoint(2));
             if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
                 return;
             end
@@ -290,6 +288,10 @@ classdef LogisticRegression
 
         function WindowButtonUpFcn(this, event)
             display('Button up');
+            display(event);
+        end
+
+        function foo2(this)
             ah = this.app.UIAxes2;
             cp = ah.CurrentPoint;
             x=round(cp(1,1));
@@ -303,6 +305,9 @@ classdef LogisticRegression
 
         function WindowButtonMotionFcn(this, event)
             display('Button moved');
+            display(event);
+        end
+        function foo3(this)
             ah = this.app.UIAxes2;
             cp = ah.CurrentPoint;
             x=round(cp(1,1));
