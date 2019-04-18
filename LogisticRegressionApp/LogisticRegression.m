@@ -277,13 +277,14 @@ classdef LogisticRegression
 
         function value = hit(this, event)
             value = event.HitObject == this.app.UIAxes2;
+            disp('Hit');
         end
 
         function this = WindowButtonDownFcn(this, event)
+            fprintf('Button down, state %d\n', this.State);
             if ~this.hit(event)
                 return
             end
-            fprintf('Button down, state %d\n', this.State);
             if this.State ~= LogisticRegression.STATE_IDLE
                 return;
             end
@@ -300,10 +301,10 @@ classdef LogisticRegression
         end
 
         function this = WindowButtonUpFcn(this, event)
+            fprintf('Button up, state %d\n', this.State);
             if ~this.hit(event)
                 return
             end
-            fprintf('Button up, state %d\n', this.State);
             if this.State ~= LogisticRegression.STATE_DRAWING
                 return;
             end
@@ -318,11 +319,10 @@ classdef LogisticRegression
         end
 
         function this = WindowButtonMotionFcn(this, event)
+            fprintf('Button moved, state %d\n', this.State);
             if ~this.hit(event)
                 return
             end
-
-            fprintf('Button moved, state %d\n', this.State);
             if this.State ~= LogisticRegression.STATE_DRAWING;
                 return;
             end
