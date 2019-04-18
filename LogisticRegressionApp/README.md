@@ -14,7 +14,7 @@ and is a direct port to a GUI environment of the implementation in the folder (.
 Due to file size limitation of 100MB, we are not able to include the installer on GitHub.
 The installer is hosted on (http://bitbucket.org) and can be downloaded from here:
 
-(https://bitbucket.org/rychlikjobs/worldly-ocr-installer/src/master/LogisticRegressionApp/for_redistribution/MyAppInstaller_web.install)
+[MyAppInstaller_web.install](https://bitbucket.org/rychlikjobs/worldly-ocr-installer/src/master/LogisticRegressionApp/for_redistribution/MyAppInstaller_web.install)
 
 Currently we provide only a Linux installer (tested on Fedora 29, but
 should work on most Linux platforms.)  It is an incomplete
