@@ -250,10 +250,12 @@ classdef LogisticRegression
             Z = -sum(this.T .* log(this.Y+eps),'all');
         end
 
-        function mean_digit = mean_digit_image(this)
-            digit = find(this.app.digit==this.app.digits,1);
+        function mean_digit = mean_digit_image(this, digit)
+            if nargin < 2
+                digit = find(this.app.digit==this.app.digits,1);
+            end
             idx = find(this.T(digit,:));
-            mean_digit=reshape(mean(this.X(:,:),2),[this.Height,this.Width]); 
+            mean_digit=reshape(mean(this.X(:,:),2),[this.Height,this.Width])'; 
         end
 
     end
