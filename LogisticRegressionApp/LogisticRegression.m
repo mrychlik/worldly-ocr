@@ -25,7 +25,7 @@ classdef LogisticRegression
     properties(Access=private)
         app                             % The GUI
         ImageHandle                     % Image of a hand-drawn digit
-        State = 0                       % State of digit drawing
+        State = 'Idle'                  % State of digit drawing
     end
     
     properties(Dependent)
@@ -289,7 +289,7 @@ classdef LogisticRegression
             if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
                 return;
             else
-                this.State = 'Draw';
+                this.State = 'EndDrawing';
             end
         end
 
