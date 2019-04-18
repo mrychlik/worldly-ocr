@@ -289,6 +289,10 @@ classdef LogisticRegression
 
         function this = WindowButtonUpFcn(this, event)
             display('Button up');
+            if this.State ~= 'Drawing'
+                return;
+            end
+
             x = round(event.IntersectionPoint(1));
             y = round(event.IntersectionPoint(2));
             if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
