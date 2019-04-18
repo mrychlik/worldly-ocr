@@ -278,7 +278,7 @@ classdef LogisticRegression
             if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
                 return;
             else
-                this.State = 'BeginDrawing';
+                this.State = 'Drawing';
             end
         end
 
@@ -289,7 +289,7 @@ classdef LogisticRegression
             if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
                 return;
             else
-                this.State = 'EndDrawing';
+                this.State = 'Idle';
             end
         end
 
