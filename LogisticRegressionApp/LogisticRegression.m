@@ -320,8 +320,8 @@ classdef LogisticRegression
             if ~this.hit(event) || this.State ~= LogisticRegression.STATE_DRAWING
                 return;
             end
-            x = round(event.IntersectionPoint(1))
-            y = round(event.IntersectionPoint(2))
+            x = round(event.IntersectionPoint(1));
+            y = round(event.IntersectionPoint(2));
             if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
                 return;
             else
