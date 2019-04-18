@@ -44,3 +44,10 @@ Within matlab GUI, you do these steps:
 Upon completion, the application with a name "MNISTDigitLearner" can
 be run by selecting it from the "APPS" dropdown menu.
 
+## Screenshots
+
+![PickDigits](./images/PickDigits.png)
+
+![Train](./images/Train.png)
+
+![Confusion](./images/Confusion.png)
