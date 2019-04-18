@@ -288,7 +288,7 @@ classdef LogisticRegression
             af.WindowButtonUpFcn = @wbucb;
         end
 
-        function WindowButtonUp(this,event)
+        function WindowButtonUpFcn(this, event)
             display('Button up');
             cp = ah.CurrentPoint;
             x=round(cp(1,1));
