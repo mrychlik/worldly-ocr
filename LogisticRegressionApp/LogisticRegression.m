@@ -12,6 +12,7 @@ classdef LogisticRegression
         epoch = 0                       % Epoch counter
         epoch_max;                      % Number of epochs to run
         losses = [];                    % List of loss values
+        State = 'Idle'                  % State of digit drawing
     end
 
     properties(Constant)
@@ -25,7 +26,6 @@ classdef LogisticRegression
     properties(Access=private)
         app                             % The GUI
         ImageHandle                     % Image of a hand-drawn digit
-        State = 'Idle'                  % State of digit drawing
     end
     
     properties(Dependent)
