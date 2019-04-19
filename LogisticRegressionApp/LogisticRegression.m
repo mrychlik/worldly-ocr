@@ -272,8 +272,8 @@ classdef LogisticRegression
         end
 
         function this = clear_digit(this)
-            this.ImageHandle.CData = zeros(this.Height,this.Width);
-            drawnow;
+        %this.ImageHandle.CData = zeros(this.Height,this.Width);
+        %drawnow;
         end
 
         function value = hit(this, event)
@@ -287,7 +287,7 @@ classdef LogisticRegression
             display(event.HitObject);
             switch event.EventName,
               case 'WindowMousePress',
-                fprintf('Button down, state %d\n', this.State);
+                fprintf('MousePress, state %d\n', this.State);
                 % if ~this.hit(event) || ( this.State ~= LogisticRegression.STATE_IDLE ...
                 %                          )
                 %     return
@@ -308,7 +308,7 @@ classdef LogisticRegression
               case 'WindowMouseRelease',
 
 
-                fprintf('Button up, state %d\n', this.State);
+                fprintf('MouseRelease, state %d\n', this.State);
                 % if ~this.hit(event) || ( this.State ~= ...
                 %                          LogisticRegression.STATE_DRAWING )
                 %     return;
