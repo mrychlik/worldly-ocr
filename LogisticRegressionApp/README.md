@@ -62,7 +62,10 @@ Requirements for the standalone version are:
 
 - MATLAB runtime version 9 (based on release R2019a of MATLAB)
 
-However, these dependencies should be resolved by the installer, by downloading the most recent runtime from the [Mathworks](http://mathworks.com) website.
+However, these dependencies should be resolved by the installer, by
+downloading the most recent runtime from the
+[Mathworks](http://mathworks.com) website. As previously indicated,
+this '''does not require MATLAB or MATLAB license'''.
 
 ## Screenshots
 
