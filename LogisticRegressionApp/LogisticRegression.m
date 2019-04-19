@@ -325,7 +325,7 @@ classdef LogisticRegression
 
               case 'WindowMouseMotion',
 
-                fprintf('Button moved, state %d\n', this.State);
+                fprintf('MouseMotion, state %d\n', this.State);
                 % if ~this.hit(event) || ( this.State ~= ...
                 %                          LogisticRegression.STATE_DRAWING )
                 %     return;
