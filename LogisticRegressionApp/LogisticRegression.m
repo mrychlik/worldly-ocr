@@ -14,6 +14,7 @@ classdef LogisticRegression
         losses = [];                    % List of loss values
 
         State = LogisticRegression.STATE_IDLE; % State of drawing
+        ImageHandle                     % Image of a hand-drawn digit
     end
 
     properties(Constant)
@@ -29,7 +30,6 @@ classdef LogisticRegression
 
     properties(Access=private)
         app                             % The GUI
-        ImageHandle                     % Image of a hand-drawn digit
     end
     
     properties(Dependent)
