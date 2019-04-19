@@ -292,22 +292,24 @@ classdef LogisticRegression
         function this = WindowEventFcn(this, event)
             fprintf('Event: %s, State: %d\n', event.EventName, this.State);
             display(event.HitObject);
+            if ~this.hit(event)
+                return
+            end
+
             switch event.EventName,
               case 'WindowMousePress',
                 fprintf('MousePress, state %d\n', this.State);
-                if ~this.hit(event) || ( this.State ~= LogisticRegression.STATE_IDLE ...
-                                         )
-                    return
-                end
-                this = this.clear_digit;
+                if this.State == LogisticRegression.STATE_IDLE 
+                    this = this.clear_digit;
 
-                x = round(event.IntersectionPoint(1));
-                y = round(event.IntersectionPoint(2));
-                disp(x); disp(y);
-                if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
-                    this.State = LogisticRegression.STATE_DRAWING;
+                    x = round(event.IntersectionPoint(1));
+                    y = round(event.IntersectionPoint(2));
+                    disp(x); disp(y);
+                    if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
+                        this.State = LogisticRegression.STATE_DRAWING;
+                    end
+                    fprintf('New state %d\n', this.State);
                 end
-                fprintf('New state %d\n', this.State);
 
               case 'WindowMouseRelease',
 
