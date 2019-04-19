@@ -286,7 +286,7 @@ classdef LogisticRegression
             fprintf('Event: %s, State: %d\n', event.EventName, this.State);
             display(event.HitObject);
             switch event.EventName,
-              case 'WindowButtonDown',
+              case 'WindowMousePress',
                 fprintf('Button down, state %d\n', this.State);
                 % if ~this.hit(event) || ( this.State ~= LogisticRegression.STATE_IDLE ...
                 %                          )
@@ -305,7 +305,7 @@ classdef LogisticRegression
                 fprintf('New state %d\n', this.State);
 
 
-              case 'WindowButtonUp',
+              case 'WindowMouseRelease',
 
 
                 fprintf('Button up, state %d\n', this.State);
