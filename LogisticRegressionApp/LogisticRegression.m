@@ -83,6 +83,7 @@ classdef LogisticRegression
         function this = LogisticRegression(app)
             this.app = app;
             this.print_app_info;
+            this.clear_digit;
         end
 
         function this = train(this,continuing)
@@ -278,12 +279,13 @@ classdef LogisticRegression
         function value = hit(this, event)
             disp(event.HitObject);
             value = event.HitObject == this.ImageHandle;
-            disp('Hit');
+            if value; disp('Hit'); end
         end
 
         function this = WindowButtonDownFcn(this, event)
             fprintf('Button down, state %d\n', this.State);
-            if ~this.hit(event) || this.State ~= LogisticRegression.STATE_IDLE
+            if ~this.hit(event) || ( this.State ~= LogisticRegression.STATE_IDLE ...
+                                     )
                 return
             end
             this = this.clear_digit;
@@ -301,7 +303,8 @@ classdef LogisticRegression
 
         function this = WindowButtonUpFcn(this, event)
             fprintf('Button up, state %d\n', this.State);
-            if ~this.hit(event) || this.State ~= LogisticRegression.STATE_DRAWING
+            if ~this.hit(event) || ( this.State ~= ...
+                                     LogisticRegression.STATE_DRAWING )
                 return;
             end
 
@@ -317,7 +320,8 @@ classdef LogisticRegression
 
         function this = WindowButtonMotionFcn(this, event)
             fprintf('Button moved, state %d\n', this.State);
-            if ~this.hit(event) || this.State ~= LogisticRegression.STATE_DRAWING
+            if ~this.hit(event) || ( this.State ~= ...
+                                     LogisticRegression.STATE_DRAWING )
                 return;
             end
             x = round(event.IntersectionPoint(1));
