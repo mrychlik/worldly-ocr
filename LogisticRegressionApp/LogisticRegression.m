@@ -341,6 +341,7 @@ classdef LogisticRegression
                     drawnow;
                 end
             end
+            fprintf('Exit State: %d\n', this.State);            
         end
     end
 end
