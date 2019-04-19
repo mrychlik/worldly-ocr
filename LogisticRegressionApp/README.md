@@ -16,7 +16,7 @@ of the current project.
 
 ## The installer
 Due to file size limitation of 100MB, we are not able to include the installer on GitHub.
-The installer is hosted on [BitBucket](http://bitbucket.org) and can be downloaded from here:
+The installer is hosted on [Bitbucket](http://bitbucket.org) and can be downloaded from here:
 
 [MyAppInstaller_web.install](https://bitbucket.org/rychlikjobs/worldly-ocr-installer/src/master/LogisticRegressionApp/for_redistribution/MyAppInstaller_web.install)
 
