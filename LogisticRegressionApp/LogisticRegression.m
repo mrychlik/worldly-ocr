@@ -278,7 +278,7 @@ classdef LogisticRegression
 
         function this = WindowEventFcn(this, event)
             fprintf('Event: %s, State: %d\n', event.EventName, this.State);
-            display(event.HitObject);
+            %display(event.HitObject);
 
             switch event.EventName,
               case 'WindowMousePress',
@@ -311,8 +311,8 @@ classdef LogisticRegression
 
               case 'WindowMouseMotion',
 
-                fprintf('MouseMotion, state %d\n', this.State);
                 if this.State == LogisticRegression.STATE_DRAWING
+                    fprintf('MouseMotion, state %d\n', this.State);
                     cp = event.Source.CurrentAxes.CurrentPoint;
                     x = round(cp(1,1));
                     y = round(cp(1,2));
