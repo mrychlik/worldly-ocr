@@ -322,6 +322,7 @@ classdef LogisticRegression
                     disp(ap);
                     x = round(cp(1,1));
                     y = round(cp(1,2));
+
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         display('Drawing');
                         this.ImageHandle.CData(y,x)= 255;
