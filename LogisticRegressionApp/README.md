@@ -49,6 +49,9 @@ You can also run the app programatically from a script by doing:
 ```Matlab
 >> matlab.apputil.run('MNISTDigitLearner');
 ```
+Requirements for the MATLAB version are:
+- MATLAB version R2019a;
+- Deep Learning Toolkit; the only dependency is the softmax function, which could be easily eliminated by one's own implementation.
 
 ## Screenshots
 
