@@ -278,9 +278,8 @@ classdef LogisticRegression
 
         function value = hit(this, event)
             disp(event.HitObject);
-            %value = event.HitObject == this.ImageHandle;
-            %if value; disp('Hit'); end
-            value = true;
+            value = event.HitObject == this.ImageHandle;
+            if value; disp('Hit'); end
         end
 
         function this = WindowEventFcn(this, event)
