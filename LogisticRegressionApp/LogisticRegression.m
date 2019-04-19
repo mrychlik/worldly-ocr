@@ -292,6 +292,7 @@ classdef LogisticRegression
         function this = WindowEventFcn(this, event)
             fprintf('Event: %s, State: %d\n', event.EventName, this.State);
             display(event.HitObject);
+
             if ~this.hit(event)
                 return
             end
