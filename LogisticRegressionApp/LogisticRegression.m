@@ -288,54 +288,48 @@ classdef LogisticRegression
             switch event.EventName,
               case 'WindowMousePress',
                 fprintf('MousePress, state %d\n', this.State);
-                % if ~this.hit(event) || ( this.State ~= LogisticRegression.STATE_IDLE ...
-                %                          )
-                %     return
-                % end
+                if ~this.hit(event) || ( this.State ~= LogisticRegression.STATE_IDLE ...
+                                         )
+                    return
+                end
                 this = this.clear_digit;
 
                 x = round(event.IntersectionPoint(1));
                 y = round(event.IntersectionPoint(2));
                 disp(x); disp(y);
-                if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
-                    return;
-                else
+                if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                     this.State = LogisticRegression.STATE_DRAWING;
                 end
                 fprintf('New state %d\n', this.State);
-
 
               case 'WindowMouseRelease',
 
 
                 fprintf('MouseRelease, state %d\n', this.State);
-                % if ~this.hit(event) || ( this.State ~= ...
-                %                          LogisticRegression.STATE_DRAWING )
-                %     return;
-                % end
+                if ~this.hit(event) || ( this.State ~= ...
+                                         LogisticRegression.STATE_DRAWING )
+                    return;
+                end
 
                 x = round(event.IntersectionPoint(1));
                 y = round(event.IntersectionPoint(2));
                 disp(x); disp(y);
-                if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
-                    return;
-                else
+                if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                     this.State = LogisticRegression.STATE_IDLE;
                 end
 
               case 'WindowMouseMotion',
 
                 fprintf('MouseMotion, state %d\n', this.State);
-                % if ~this.hit(event) || ( this.State ~= ...
-                %                          LogisticRegression.STATE_DRAWING )
-                %     return;
-                % end
-                x = round(event.IntersectionPoint(1));
-                y = round(event.IntersectionPoint(2));
-                disp(x); disp(y);
-                if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
+                if ~this.hit(event) || ( this.State ~= ...
+                                         LogisticRegression.STATE_DRAWING )
                     return;
-                else
+                end
+                cp = event.Source.CurrentAxes.CurrentPoint;
+                x = round(cp(1,1));
+                y = round(cp(1,2));
+                disp(x); disp(y);
+                if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                     display('Drawing');
                     this.ImageHandle.CData(y,x)= 255;
                     drawnow;
