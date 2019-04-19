@@ -57,8 +57,11 @@ Requirements for the MATLAB App version are:
 - Deep Learning Toolkit; the only dependency is the softmax function, which could be easily eliminated by one's own implementation.
 
 ### Standalone version
+
 Requirements for the standalone version are:
+
 - MATLAB runtime version 9 (based on release R2019a of MATLAB)
+
 However, these dependencies should be resolved by the installer, by downloading the most recent runtime from the [Mathworks](http://mathworks.com) website.
 
 ## Screenshots
