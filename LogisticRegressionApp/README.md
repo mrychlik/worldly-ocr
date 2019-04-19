@@ -7,8 +7,10 @@ MATLAB has features for creating standalone applications. Applications generated
 other platforms.
 
 ## The scope of the demo application
-The application in this folder is a GUI application for handwritten digit recognition,
-and is a direct port to a GUI environment of the implementation in the folder
+
+The application in this folder is a GUI application for handwritten
+digit recognition, and is a direct port to a GUI environment of the
+implementation in the folder
 
 [LogisticRegression](../LogisticRegression).
 
