@@ -65,7 +65,7 @@ Requirements for the standalone version are:
 However, these dependencies should be resolved by the installer, by
 downloading the most recent runtime from the
 [Mathworks](http://mathworks.com) website. As previously indicated,
-this '''does not require MATLAB or MATLAB license'''.
+this **does not require MATLAB or MATLAB license**.
 
 ## Screenshots
 
