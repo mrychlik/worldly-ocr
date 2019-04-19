@@ -278,8 +278,15 @@ classdef LogisticRegression
 
         function value = hit(this, event)
             disp(event.HitObject);
-            value = event.HitObject == this.ImageHandle;
-            if value; disp('Hit'); end
+            if  event.HitObject == this.ImageHandle
+                disp('Image hit');
+                value = true;
+            elseif event.HitObject== this.app.UIAxes 2
+                disp('Axes hit');
+                value = true;
+            else
+                value = false;
+            end
         end
 
         function this = WindowEventFcn(this, event)
