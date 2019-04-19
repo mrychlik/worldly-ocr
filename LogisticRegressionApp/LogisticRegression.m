@@ -282,56 +282,61 @@ classdef LogisticRegression
             if value; disp('Hit'); end
         end
 
-        function this = WindowButtonDownFcn(this, event)
-            fprintf('Button down, state %d\n', this.State);
-            if ~this.hit(event) || ( this.State ~= LogisticRegression.STATE_IDLE ...
-                                     )
-                return
-            end
-            this = this.clear_digit;
+        function this = WindowEventFcn(this, event)
+            switch event.Type
+              case 'WindowButtonUp',
+                fprintf('Button down, state %d\n', this.State);
+                if ~this.hit(event) || ( this.State ~= LogisticRegression.STATE_IDLE ...
+                                         )
+                    return
+                end
+                this = this.clear_digit;
 
-            x = round(event.IntersectionPoint(1));
-            y = round(event.IntersectionPoint(2));
-            disp(x); disp(y);
-            if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
-                return;
-            else
-                this.State = LogisticRegression.STATE_DRAWING;
-            end
-            fprintf('New state %d\n', this.State);
-        end
+                x = round(event.IntersectionPoint(1));
+                y = round(event.IntersectionPoint(2));
+                disp(x); disp(y);
+                if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
+                    return;
+                else
+                    this.State = LogisticRegression.STATE_DRAWING;
+                end
+                fprintf('New state %d\n', this.State);
 
-        function this = WindowButtonUpFcn(this, event)
-            fprintf('Button up, state %d\n', this.State);
-            if ~this.hit(event) || ( this.State ~= ...
-                                     LogisticRegression.STATE_DRAWING )
-                return;
-            end
 
-            x = round(event.IntersectionPoint(1));
-            y = round(event.IntersectionPoint(2));
-            disp(x); disp(y);
-            if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
-                return;
-            else
-                this.State = LogisticRegression.STATE_IDLE;
-            end
-        end
+            case 'WindowUp',
 
-        function this = WindowButtonMotionFcn(this, event)
-            fprintf('Button moved, state %d\n', this.State);
-            if ~this.hit(event) || ( this.State ~= ...
-                                     LogisticRegression.STATE_DRAWING )
-                return;
-            end
-            x = round(event.IntersectionPoint(1));
-            y = round(event.IntersectionPoint(2));
-            if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
-                return;
-            else
-                display('Drawing');
-                this.ImageHandle.CData(y,x)= 255;
-                drawnow;
+
+              fprintf('Button up, state %d\n', this.State);
+              if ~this.hit(event) || ( this.State ~= ...
+                                       LogisticRegression.STATE_DRAWING )
+                  return;
+              end
+
+              x = round(event.IntersectionPoint(1));
+              y = round(event.IntersectionPoint(2));
+              disp(x); disp(y);
+              if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
+                  return;
+              else
+                  this.State = LogisticRegression.STATE_IDLE;
+              end
+
+            case 'WindowMotion',
+
+              fprintf('Button moved, state %d\n', this.State);
+              if ~this.hit(event) || ( this.State ~= ...
+                                       LogisticRegression.STATE_DRAWING )
+                  return;
+              end
+              x = round(event.IntersectionPoint(1));
+              y = round(event.IntersectionPoint(2));
+              if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
+                  return;
+              else
+                  display('Drawing');
+                  this.ImageHandle.CData(y,x)= 255;
+                  drawnow;
+              end
             end
         end
     end
