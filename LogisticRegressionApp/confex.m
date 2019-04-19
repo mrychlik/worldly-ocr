@@ -11,4 +11,4 @@ Y=lra.obj.Y;
 %labels=lra.DigitPickerListBox.Value;
 %plotConfMat(gca,cm,labels);
 
-%J=lra.obj.mean_digit_image;
+J=lra.obj.plot_mean_digit;
