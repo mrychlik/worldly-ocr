@@ -15,8 +15,10 @@ and is a direct port to a GUI environment of the implementation in the folder
 of the current project.
 
 ## The installer
-Due to file size limitation of 100MB, we are not able to include the installer on GitHub.
-The installer is hosted on [Bitbucket](http://bitbucket.org) and can be downloaded from here:
+
+Due to file size limitation of 100MB, we are not able to include the
+installer on GitHub.  The installer is hosted on
+[Bitbucket](http://bitbucket.org) and can be downloaded from here:
 
 [MyAppInstaller_web.install](https://bitbucket.org/rychlikjobs/worldly-ocr-installer/src/master/LogisticRegressionApp/for_redistribution/MyAppInstaller_web.install)
 
