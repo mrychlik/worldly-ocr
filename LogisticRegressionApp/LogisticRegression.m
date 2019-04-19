@@ -314,7 +314,7 @@ classdef LogisticRegression
 
                 if this.State == LogisticRegression.STATE_DRAWING
                     fprintf('MouseMotion, state %d\n', this.State);
-                    cp = event.Source.CurrentAxes.CurrentPoint;
+                    cp = event.Source.CurrentPoint;
                     disp(cp);
                     x = round(cp(1,1));
                     y = round(cp(1,2));
