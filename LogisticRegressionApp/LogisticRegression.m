@@ -284,6 +284,8 @@ classdef LogisticRegression
         end
 
         function this = WindowEventFcn(this, event)
+            fprintf('Event: %s, State: %d\n', event.EventName, this.State);
+            display(event.HitObject);
             switch event.EventName,
               case 'WindowButtonDown',
                 fprintf('Button down, state %d\n', this.State);
@@ -295,7 +297,7 @@ classdef LogisticRegression
 
                 x = round(event.IntersectionPoint(1));
                 y = round(event.IntersectionPoint(2));
-                display(x); display(y);
+                disp(x); disp(y);
                 if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
                     return;
                 else
@@ -331,6 +333,7 @@ classdef LogisticRegression
                 % end
                 x = round(event.IntersectionPoint(1));
                 y = round(event.IntersectionPoint(2));
+                disp(x); disp(y);
                 if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
                     return;
                 else
