@@ -304,11 +304,10 @@ classdef LogisticRegression
                     x = round(event.IntersectionPoint(1));
                     y = round(event.IntersectionPoint(2));
                     disp(x); disp(y);
+                    this.State = LogisticRegression.STATE_IDLE;
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
-                        this.State = LogisticRegression.STATE_IDLE;
                         fprintf('New state %d\n', this.State);
                     end
-                    this.State = LogisticRegression.STATE_IDLE;
                 end
 
               case 'WindowMouseMotion',
