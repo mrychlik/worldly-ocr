@@ -283,8 +283,8 @@ classdef LogisticRegression
         end
 
         function this = WindowEventFcn(this, event)
-            switch event.Type
-              case 'WindowButtonUp',
+            switch event.Name
+              case 'WindowButtonDown',
                 fprintf('Button down, state %d\n', this.State);
                 if ~this.hit(event) || ( this.State ~= LogisticRegression.STATE_IDLE ...
                                          )
@@ -303,40 +303,40 @@ classdef LogisticRegression
                 fprintf('New state %d\n', this.State);
 
 
-            case 'WindowUp',
+              case 'WindowButtonUp',
 
 
-              fprintf('Button up, state %d\n', this.State);
-              if ~this.hit(event) || ( this.State ~= ...
-                                       LogisticRegression.STATE_DRAWING )
-                  return;
-              end
+                fprintf('Button up, state %d\n', this.State);
+                if ~this.hit(event) || ( this.State ~= ...
+                                         LogisticRegression.STATE_DRAWING )
+                    return;
+                end
 
-              x = round(event.IntersectionPoint(1));
-              y = round(event.IntersectionPoint(2));
-              disp(x); disp(y);
-              if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
-                  return;
-              else
-                  this.State = LogisticRegression.STATE_IDLE;
-              end
+                x = round(event.IntersectionPoint(1));
+                y = round(event.IntersectionPoint(2));
+                disp(x); disp(y);
+                if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
+                    return;
+                else
+                    this.State = LogisticRegression.STATE_IDLE;
+                end
 
-            case 'WindowMotion',
+              case 'WindowMouseMotion',
 
-              fprintf('Button moved, state %d\n', this.State);
-              if ~this.hit(event) || ( this.State ~= ...
-                                       LogisticRegression.STATE_DRAWING )
-                  return;
-              end
-              x = round(event.IntersectionPoint(1));
-              y = round(event.IntersectionPoint(2));
-              if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
-                  return;
-              else
-                  display('Drawing');
-                  this.ImageHandle.CData(y,x)= 255;
-                  drawnow;
-              end
+                fprintf('Button moved, state %d\n', this.State);
+                if ~this.hit(event) || ( this.State ~= ...
+                                         LogisticRegression.STATE_DRAWING )
+                    return;
+                end
+                x = round(event.IntersectionPoint(1));
+                y = round(event.IntersectionPoint(2));
+                if ~( 1 <= x && x <= this.Width && 1 <= y && y <= this.Height )
+                    return;
+                else
+                    display('Drawing');
+                    this.ImageHandle.CData(y,x)= 255;
+                    drawnow;
+                end
             end
         end
     end
