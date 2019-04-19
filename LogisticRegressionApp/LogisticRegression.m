@@ -276,26 +276,9 @@ classdef LogisticRegression
         %drawnow;
         end
 
-        function value = hit(this, event)
-            disp(event.HitObject);
-            if  event.HitObject == this.ImageHandle
-                disp('Image hit');
-                value = true;
-            elseif event.HitObject == this.app.UIAxes 2
-                disp('Axes hit');
-                value = true;
-            else
-                value = false;
-            end
-        end
-
         function this = WindowEventFcn(this, event)
             fprintf('Event: %s, State: %d\n', event.EventName, this.State);
             display(event.HitObject);
-
-            if ~this.hit(event)
-                return
-            end
 
             switch event.EventName,
               case 'WindowMousePress',
