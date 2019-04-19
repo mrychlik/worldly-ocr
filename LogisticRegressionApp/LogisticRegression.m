@@ -281,7 +281,7 @@ classdef LogisticRegression
             if  event.HitObject == this.ImageHandle
                 disp('Image hit');
                 value = true;
-            elseif event.HitObject== this.app.UIAxes 2
+            elseif event.HitObject == this.app.UIAxes 2
                 disp('Axes hit');
                 value = true;
             else
