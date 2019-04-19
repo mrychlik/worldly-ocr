@@ -298,6 +298,7 @@ classdef LogisticRegression
 
             switch event.EventName,
               case 'WindowMousePress',
+
                 fprintf('MousePress, state %d\n', this.State);
                 if this.State == LogisticRegression.STATE_IDLE 
                     this = this.clear_digit;
