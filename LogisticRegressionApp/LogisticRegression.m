@@ -283,7 +283,7 @@ classdef LogisticRegression
         end
 
         function this = WindowEventFcn(this, event)
-            switch event.Name
+            switch event.EventName,
               case 'WindowButtonDown',
                 fprintf('Button down, state %d\n', this.State);
                 if ~this.hit(event) || ( this.State ~= LogisticRegression.STATE_IDLE ...
