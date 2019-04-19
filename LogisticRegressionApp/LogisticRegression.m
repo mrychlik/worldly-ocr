@@ -309,11 +309,9 @@ classdef LogisticRegression
                         this.State = LogisticRegression.STATE_DRAWING;
                         fprintf('New state %d\n', this.State);
                     end
-
                 end
 
               case 'WindowMouseRelease',
-
 
                 fprintf('MouseRelease, state %d\n', this.State);
                 if this.State == LogisticRegression.STATE_DRAWING
