@@ -30,11 +30,11 @@ classdef LogisticRegression
 
     properties(Access=private)
         app                             % The GUI
-        mean_digits                     % Mean digits
     end
     
     properties(Dependent)
         app_data_path                   % Where the app data is
+        mean_digit                      % The mean digit
     end
     
     methods
@@ -84,7 +84,6 @@ classdef LogisticRegression
         function this = LogisticRegression(app)
             this.app = app;
             this.print_app_info;
-            %this.compute_mean_digits;
             this = this.clear_digit;
         end
 
