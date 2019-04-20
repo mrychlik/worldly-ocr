@@ -331,7 +331,6 @@ classdef LogisticRegression
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         display('Drawing');
                         this.ImageHandle.CData(y,x) = 255;
-                        drawnow;
                     end
                 end
             end
