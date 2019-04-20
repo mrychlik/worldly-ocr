@@ -304,7 +304,7 @@ classdef LogisticRegression
                         this.ImageHandle.CData(y,x) = 0;
                         this.DigitImage(:) = 0;
                         this.DigitImage(y,x) = 1;
-                        fprintf('New state %d\n', this.State);
+                        %fprintf('New state %d\n', this.State);
                     end
                 end
 
@@ -319,7 +319,7 @@ classdef LogisticRegression
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         this.ImageHandle.CData(y,x) = 0;
                         this.DigitImage(y,x) = 1;
-                        fprintf('New state %d\n', this.State);
+                        %fprintf('New state %d\n', this.State);
                         digit = this.predict;
                         % Update GUO
                         this.app.PredictDigitEditField.Value = digit;
