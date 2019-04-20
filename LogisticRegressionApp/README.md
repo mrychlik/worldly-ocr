@@ -75,7 +75,7 @@ this **does not require MATLAB or MATLAB license**.
 
 These are the steps:
 
-- Open the project file [LogisticRegressionApp.prj](./LogisticRegressionApp.prj) in MATLAB, by double clicking:
+- Open the project file [LogisticRegressionApp.prj](./LogisticRegressionApp.prj) in MATLAB, by double clicking the project file in MATLAB file explorer window:
 ![StanaloneAppWizard](./images/StanaloneAppWizard.png)
 - Click on "Package" button
 - Optionally, exclude/include the MATLAB runtime by picking either "Runtime downloaded from the web"
