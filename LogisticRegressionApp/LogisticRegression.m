@@ -158,7 +158,6 @@ classdef LogisticRegression
                     semilogy(ax, this.losses,'-'), 
                     title(ax,['Learning (epoch: ',num2str(this.epoch),')']),
                     %disp(['Learning rate: ',num2str(this.eta)]);
-                    drawnow;
                     % Update error stats
                     this.app.LearningRateEditField.Value = this.eta;
                     this.NErrors = length(find(round(this.Y)~=this.T));
@@ -217,7 +216,6 @@ classdef LogisticRegression
                 imagesc(ax,squeeze(Digit{j}(1,:,:))');
                 title(ax,['Class ', num2str(j)]);
             end
-            drawnow;
 
             % Height and width of images
             this.Height = size(Digit{1},2);
@@ -278,7 +276,6 @@ classdef LogisticRegression
             idx = find(this.T(digit_idx,:));
             mean_digit = reshape(mean(this.X(:,idx),2), [this.Height,this.Width])'; 
             this.ImageHandle.CData  = round(128 * mean_digit .* this.app.hint_intensity);
-            drawnow;
         end
 
         function this = clear_digit(this)
@@ -363,7 +360,6 @@ classdef LogisticRegression
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         this.ImageHandle.CData(y,x) = 255;
                         this.DigitImage(y,x) = 1;
-                        drawnow;
                     end
                 end
             end
