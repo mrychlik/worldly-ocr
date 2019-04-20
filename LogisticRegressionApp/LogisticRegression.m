@@ -295,7 +295,6 @@ classdef LogisticRegression
                         this.State = LogisticRegression.STATE_DRAWING;
                         this.ImageHandle.CData(y,x) = 0;
                         this.DigitImage(y,x) = 1;
-                        drawnow;
                         fprintf('New state %d\n', this.State);
                     end
                 end
@@ -311,7 +310,6 @@ classdef LogisticRegression
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         this.ImageHandle.CData(y,x) = 0;
                         this.DigitImage(y,x) = 1;
-                        drawnow;
                         fprintf('New state %d\n', this.State);
                     end
                 end
@@ -341,7 +339,6 @@ classdef LogisticRegression
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         this.ImageHandle.CData(y,x) = 0;
                         this.DigitImage(y,x) = 1;
-                        drawnow;
                     end
                 end
             end
