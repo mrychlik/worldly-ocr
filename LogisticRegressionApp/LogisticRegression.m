@@ -322,6 +322,7 @@ classdef LogisticRegression
                         %fprintf('New state %d\n', this.State);
                         this.ImageHandle.CData(y,x) = 255;
                         this.DigitImage(y,x) = 1;
+                        imagesc(this.app.DigitImageAxes,this.DigitImage);
                         try 
                             digit = this.predict;
                             % Update GUI
