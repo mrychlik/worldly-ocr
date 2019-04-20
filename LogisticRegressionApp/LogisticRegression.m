@@ -315,7 +315,6 @@ classdef LogisticRegression
 
                 %fprintf('MouseRelease, state %d\n', this.State);
                 if this.State == LogisticRegression.STATE_DRAWING
-                    this.State = LogisticRegression.STATE_IDLE;
                     x = round(event.IntersectionPoint(1));
                     y = round(event.IntersectionPoint(2));
                     %disp(x); disp(y);
@@ -336,6 +335,7 @@ classdef LogisticRegression
                         end
                         this.plot_mean_digit;
                     end
+                    this.State = LogisticRegression.STATE_IDLE;
                 end
 
               case 'WindowMouseMotion',
