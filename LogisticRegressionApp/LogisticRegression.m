@@ -330,6 +330,8 @@ classdef LogisticRegression
                     ywin = round(cp(1,2));
 
                     p = this.app.UIAxes2.InnerPosition;
+
+                    % Translate parent coordinates to axes coordinates
                     x = round( (xwin - p(1)) ./ p(3) .* this.Width );
                     y = round( (p(2) + p(4) - ywin) ./ p(4) .* this.Height );
 
