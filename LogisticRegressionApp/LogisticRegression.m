@@ -279,13 +279,13 @@ classdef LogisticRegression
             mean_digit = reshape(mean(this.X(:,idx),2), [this.Height,this.Width])'; 
             mean_digit = mean_digit .* this.app.hint_intensity;
             this.ImageHandle.CData  = mean_digit;
-            colormap(this.app.UIAxes2,gray);
+            colormap(this.app.UIAxes2,1-gray);
             drawnow;
         end
 
         function this = clear_digit(this)
-            this.ImageHandle = image(this.app.UIAxes2, 255*ones(this.Height,this.Width));
-            colormap(this.app.UIAxes2,gray);
+            this.ImageHandle = image(this.app.UIAxes2, ones(this.Height,this.Width));
+            colormap(this.app.UIAxes2,1-gray);
         end
 
         function this = WindowEventFcn(this, event)
@@ -304,6 +304,7 @@ classdef LogisticRegression
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         this.State = LogisticRegression.STATE_DRAWING;
                         this.ImageHandle.CData(y,x) = 0;
+                        % Turn on the initial pixel
                         this.DigitImage(:) = 0;
                         this.DigitImage(y,x) = 1;
                         %fprintf('New state %d\n', this.State);
