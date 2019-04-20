@@ -273,6 +273,7 @@ classdef LogisticRegression
 
         function this = clear_digit(this)
             this.ImageHandle = imagesc(this.app.UIAxes2, zeros(this.Height,this.Width));
+            colormap(this.app.UIAxes2,gray);
         end
 
         function this = WindowEventFcn(this, event)
