@@ -34,7 +34,6 @@ classdef LogisticRegression
     
     properties(Dependent)
         app_data_path                   % Where the app data is
-        mean_digit                      % The mean digit
     end
     
     methods
