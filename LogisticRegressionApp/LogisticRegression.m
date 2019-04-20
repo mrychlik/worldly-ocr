@@ -328,7 +328,8 @@ classdef LogisticRegression
                             this.plot_mean_digit;
                             drawnow;
                         catch e
-                            uialert(this.app.MNISTDigitLearnerUIFigure, e.message);
+                            uialert(this.app.MNISTDigitLearnerUIFigure, e.message,...
+                                    'Cannot plot the digits yet'));
                         end
                     end
                 end
