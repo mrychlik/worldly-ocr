@@ -323,7 +323,7 @@ classdef LogisticRegression
                         this.ImageHandle.CData(y,x) = 255;
                         this.DigitImage(y,x) = 1;
                         imagesc(this.app.UIAxes3,this.DigitImage);
-                        colormap(this.app.UIAxes3, gray);
+                        colormap(this.app.UIAxes3, 1-gray);
                         try 
                             digit = this.predict;
                             % Update GUI
