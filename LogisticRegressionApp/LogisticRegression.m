@@ -298,7 +298,7 @@ classdef LogisticRegression
 
                     x = round(event.IntersectionPoint(1));
                     y = round(event.IntersectionPoint(2));
-                    disp(x); disp(y);
+                    %disp(x); disp(y);
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         this.State = LogisticRegression.STATE_DRAWING;
                         this.ImageHandle.CData(y,x) = 0;
@@ -314,7 +314,7 @@ classdef LogisticRegression
                 if this.State == LogisticRegression.STATE_DRAWING
                     x = round(event.IntersectionPoint(1));
                     y = round(event.IntersectionPoint(2));
-                    disp(x); disp(y);
+                    %disp(x); disp(y);
                     this.State = LogisticRegression.STATE_IDLE;
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         this.ImageHandle.CData(y,x) = 0;
