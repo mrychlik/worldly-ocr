@@ -329,7 +329,7 @@ classdef LogisticRegression
                     disp(x); disp(y);
 
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
-                        this.ImageHandle.CData(y,x) = 255;
+                        this.ImageHandle.CData(y,x) = 1;
                     end
                 end
             end
