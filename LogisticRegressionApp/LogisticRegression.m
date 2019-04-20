@@ -321,8 +321,6 @@ classdef LogisticRegression
                     %disp(x); disp(y);
                     this.State = LogisticRegression.STATE_IDLE;
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
-                        this.ImageHandle.CData(y,x) = 0;
-                        this.DigitImage(y,x) = 1;
                         %fprintf('New state %d\n', this.State);
                         try 
                             digit = this.predict;
