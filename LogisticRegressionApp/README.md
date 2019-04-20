@@ -104,3 +104,5 @@ will be about 300MB.
 ![Train](./images/Train.png)
 
 ![Confusion](./images/Confusion.png)
+
+![Confusion](./images/DigitTracing.png)
