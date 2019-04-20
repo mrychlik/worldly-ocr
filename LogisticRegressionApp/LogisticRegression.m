@@ -83,6 +83,7 @@ classdef LogisticRegression
         function this = LogisticRegression(app)
             this.app = app;
             this.print_app_info;
+            this.compute_mean_digits;
             this = this.clear_digit;
         end
 
