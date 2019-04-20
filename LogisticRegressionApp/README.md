@@ -76,7 +76,7 @@ this **does not require MATLAB or MATLAB license**.
 These are the steps:
 
 - Open the project file [LogisticRegressionApp.prj](./LogisticRegressionApp.prj) in MATLAB, by double clicking the project file in MATLAB file explorer window:
-![StanaloneAppWizard](./images/StanaloneAppWizard.png)
+![Stanalone App Wizard](./images/StanaloneAppWizard.png)
 - Click on the "Package" button
 - Optionally, exclude/include the MATLAB runtime by picking either "Runtime downloaded from the web"
  or "Runtime included in package"
@@ -92,7 +92,7 @@ will be about 300MB.
 - Open the project file
   [MNISTDigitLearner.prj](./MNISTDigitLearner.prj) in MATLAB, by
   double clicking the project file in MATLAB file explorer window:
-![MATLABRibbonAppWizard.png](./MATLABRibbonAppWizard.png)
+![MATLAB Ribbon App Wizard.png](./images/MATLABRibbonAppWizard.png)
 - Click on the "Package" button
 
 **NOTE:** Do not add the installer files to the GitHub repository, they are too large! Push them to the Bitbucket repository.
