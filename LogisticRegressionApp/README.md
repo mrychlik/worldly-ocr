@@ -87,7 +87,7 @@ will be about 300MB.
 
 **NOTE:** Do not add the installer files to the GitHub repository, they are too large! Push them to the Bitbucket repository.
 
-## How to create a MATLAB App suitable for installing in the "APPS" ribbon
+## How to create a MATLAB App suitable for installing in the "APPS" ribbon?
 
 - Open the project file
   [MNISTDigitLearner.prj](./MNISTDigitLearner.prj) in MATLAB, by
