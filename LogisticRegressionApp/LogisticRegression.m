@@ -330,6 +330,8 @@ classdef LogisticRegression
                             uialert(this.app.MNISTDigitLearnerUIFigure, ...
                                     'Have you not yet trained your network?',...
                                     'Cannot predict yet.');
+                            this.plot_mean_digit;
+                            this.DigitImage(:) = 0;
                             %disp(e.message);
                         end
                     end
