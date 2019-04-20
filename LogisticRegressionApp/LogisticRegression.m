@@ -324,6 +324,7 @@ classdef LogisticRegression
                             digit = this.predict;
                             % Update GUI
                             this.app.PredictedDigitEditField.Value = num2str(digit);
+                            this.plot_mean_digit;
                         catch e
                             disp(e);
                         end
