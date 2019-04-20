@@ -325,14 +325,13 @@ classdef LogisticRegression
                             digit = this.predict;
                             % Update GUI
                             this.app.PredictedDigitEditField.Value = num2str(digit);
-                            drawnow;
+                            this.plot_mean_digit;
                         catch e
                             uialert(this.app.MNISTDigitLearnerUIFigure, ...
                                     'Have you not yet trained your network?',...
                                     'Cannot predict yet.');
                             %disp(e.message);
                         end
-                        this.plot_mean_digit;
                     end
                 end
 
