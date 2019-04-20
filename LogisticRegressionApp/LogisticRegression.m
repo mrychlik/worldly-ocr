@@ -278,6 +278,7 @@ classdef LogisticRegression
             idx = find(this.T(digit_idx,:));
             mean_digit = reshape(mean(this.X(:,idx),2), [this.Height,this.Width])'; 
             this.ImageHandle.CData = 1 - mean_digit .* (1-this.app.hint_intensity);
+            colormap(this.app.UIAxes2,gray);
             drawnow;
         end
 
