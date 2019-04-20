@@ -277,13 +277,13 @@ classdef LogisticRegression
             % Find indices which label is correct
             idx = find(this.T(digit_idx,:));
             mean_digit = reshape(mean(this.X(:,idx),2), [this.Height,this.Width])'; 
-            this.ImageHandle.CData  = 255 * mean_digit .* this.app.hint_intensity;
+            this.ImageHandle.CData  = round(128 * mean_digit .* this.app.hint_intensity);
             drawnow;
         end
 
         function this = clear_digit(this)
             this.ImageHandle = image(this.app.UIAxes2, ones(this.Height,this.Width));
-            colormap(this.app.UIAxes2, gray);
+            colormap(this.app.UIAxes2, 1-gray);
         end
 
         function this = WindowEventFcn(this, event)
