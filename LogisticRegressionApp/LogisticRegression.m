@@ -307,7 +307,6 @@ classdef LogisticRegression
                         this.DigitImage(:) = 0;
                         this.DigitImage(y,x) = 1;
                         %fprintf('New state %d\n', this.State);
-                        drawnow;
                     end
                 end
 
