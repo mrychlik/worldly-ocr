@@ -259,17 +259,6 @@ classdef LogisticRegression
             Z = -sum(this.T .* log(this.Y+eps),'all');
         end
 
-        function this = compute_mean_digits(this)
-        %COMPUTE_MEAN_DIGITS computes mean digits
-            for digit = 0:9
-                digit_idx = find(digit==this.app.digits,1);
-                idx = find(this.T(digit_idx,:));
-                this.mean_digits{digit_idx} = ...
-                    reshape(mean(this.X(:,idx),2), [this.Height,this.Width])'; 
-            end
-        end
-
-
         function this = plot_mean_digit(this, digit)
         % MEAN_DIGIT_IMAGE get mean image of a digit
             if nargin < 2
@@ -303,6 +292,7 @@ classdef LogisticRegression
                     disp(x); disp(y);
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         this.State = LogisticRegression.STATE_DRAWING;
+                        this.ImageHandle.CData(y,x) = 0;
                         fprintf('New state %d\n', this.State);
                     end
                 end
@@ -342,6 +332,7 @@ classdef LogisticRegression
 
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         this.ImageHandle.CData(y,x) = 0;
+                        drawnow;
                     end
                 end
             end
