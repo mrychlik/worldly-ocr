@@ -346,7 +346,7 @@ classdef LogisticRegression
                     x = round( (xwin - p(1)) ./ p(3) .* this.Width );
                     y = round( (p(2) + p(4) - ywin) ./ p(4) .* this.Height );
 
-                    disp(p); disp(x); disp(y);
+                    %disp(p); disp(x); disp(y);
 
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         this.ImageHandle.CData(y,x) = 0;
