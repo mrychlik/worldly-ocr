@@ -329,7 +329,7 @@ classdef LogisticRegression
                             this.plot_mean_digit;
                             drawnow;
                         catch e
-                            disp(e);
+                            disp(e.message);
                         end
                     end
                 end
