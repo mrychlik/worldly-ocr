@@ -71,7 +71,7 @@ downloading the most recent runtime from the
 [Mathworks](http://mathworks.com) website. As previously indicated,
 this **does not require MATLAB or MATLAB license**.
 
-## How to create a standalone app installer
+## How to create a standalone app installer?
 
 These are the steps:
 
@@ -85,7 +85,16 @@ If you include the runtime, it may need to be downloaded from the web
 and the resulting installer will be about 2.2 GB. Else, the installer
 will be about 300MB.
 
+**NOTE:** Do not add the installer files to the GitHub repository, they are too large! Push them to the Bitbucket repository.
 
+## How to create a MATLAB App suitable for installing in the "APPS" ribbon
+
+- Open the project file
+  [MNISTDigitLearner.prj](./MNISTDigitLearner.prj) in MATLAB, by
+  double clicking the project file in MATLAB file explorer window:
+- Click on the "Package" button
+
+**NOTE:** Do not add the installer files to the GitHub repository, they are too large! Push them to the Bitbucket repository.
 
 ## Screenshots
 
