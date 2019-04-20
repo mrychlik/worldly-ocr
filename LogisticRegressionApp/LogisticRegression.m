@@ -15,6 +15,7 @@ classdef LogisticRegression
 
         State = LogisticRegression.STATE_IDLE; % State of drawing
         ImageHandle                     % Image of a hand-drawn digit
+        DigitImage                      % The hand-drawn digit image
     end
 
     properties(Constant)
@@ -84,6 +85,7 @@ classdef LogisticRegression
             this.app = app;
             this.print_app_info;
             this = this.clear_digit;
+            this.DigitImage = zeros(this.Height, this.Width);
         end
 
         function this = train(this,continuing)
