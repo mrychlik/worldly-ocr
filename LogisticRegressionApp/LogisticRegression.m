@@ -284,7 +284,7 @@ classdef LogisticRegression
         end
 
         function this = clear_digit(this)
-            this.ImageHandle = image(this.app.UIAxes2, ones(this.Height,this.Width));
+            this.ImageHandle = image(this.app.UIAxes2, zeros(this.Height,this.Width));
             colormap(this.app.UIAxes2,1-gray);
         end
 
@@ -309,6 +309,7 @@ classdef LogisticRegression
                         this.DigitImage(:) = 0;
                         this.DigitImage(y,x) = 1;
                         %fprintf('New state %d\n', this.State);
+                        drawnow;
                     end
                 end
 
@@ -329,6 +330,7 @@ classdef LogisticRegression
                             % Update GUI
                             this.app.PredictedDigitEditField.Value = num2str(digit);
                             this.plot_mean_digit;
+                            drawnow;
                         catch e
                             disp(e);
                         end
@@ -360,6 +362,7 @@ classdef LogisticRegression
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         this.ImageHandle.CData(y,x) = 0;
                         this.DigitImage(y,x) = 1;
+                        drawnow;
                     end
                 end
             end
