@@ -270,6 +270,7 @@ classdef LogisticRegression
             idx = find(this.T(digit_idx,:));
             mean_digit = reshape(mean(this.X(:,idx),2), [this.Height,this.Width])'; 
             this.ImageHandle.CData = 1 - mean_digit .* this.app.hint_intensity;
+            drawnow;
         end
 
         function this = clear_digit(this)
