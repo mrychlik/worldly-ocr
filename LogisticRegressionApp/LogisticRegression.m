@@ -321,6 +321,7 @@ classdef LogisticRegression
                         this.DigitImage(y,x) = 1;
                         fprintf('New state %d\n', this.State);
                         digit = this.predict;
+                        % Update GUO
                         this.app.PredictDigitEditField.Value = digit;
                     end
                 end
