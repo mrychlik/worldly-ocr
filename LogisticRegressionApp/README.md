@@ -92,6 +92,7 @@ will be about 300MB.
 - Open the project file
   [MNISTDigitLearner.prj](./MNISTDigitLearner.prj) in MATLAB, by
   double clicking the project file in MATLAB file explorer window:
+![MATLABRibbonAppWizard.png](./MATLABRibbonAppWizard.png)
 - Click on the "Package" button
 
 **NOTE:** Do not add the installer files to the GitHub repository, they are too large! Push them to the Bitbucket repository.
