@@ -267,7 +267,7 @@ classdef LogisticRegression
             % Find indices which label is correct
             idx = find(this.T(digit_idx,:));
             mean_digit = reshape(mean(this.X(:,idx),2), [this.Height,this.Width])'; 
-            this.ImageHandle.CData = mean_digit;
+            this.ImageHandle.CData = 255 .* mean_digit;
             colormap(this.app.UIAxes2,1-gray .* this.app.hint_intensity);
         end
 
@@ -329,7 +329,7 @@ classdef LogisticRegression
                     disp(x); disp(y);
 
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
-                        this.ImageHandle.CData(y,x) = 1;
+                        this.ImageHandle.CData(y,x) = 255;
                     end
                 end
             end
