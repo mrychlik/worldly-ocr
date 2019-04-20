@@ -71,6 +71,22 @@ downloading the most recent runtime from the
 [Mathworks](http://mathworks.com) website. As previously indicated,
 this **does not require MATLAB or MATLAB license**.
 
+## How to create a standalone app installer
+
+These are the steps:
+
+- Open the project file [LogisticRegressionApp.prj](./LogisticRegressionApp.prj) in MATLAB, by double clicking:
+![StanaloneAppWizard](./images/StanaloneAppWizard.png)
+- Click on "Package" button
+- Optionally, exclude/include the MATLAB runtime by picking either "Runtime downloaded from the web"
+ or "Runtime included in package"
+
+If you include the runtime, it may need to be downloaded from the web
+and the resulting installer will be about 2.2 GB. Else, the installer
+will be about 300MB.
+
+
+
 ## Screenshots
 
 ![PickDigits](./images/PickDigits.png)
