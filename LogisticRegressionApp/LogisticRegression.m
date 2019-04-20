@@ -315,11 +315,11 @@ classdef LogisticRegression
 
                 %fprintf('MouseRelease, state %d\n', this.State);
                 if this.State == LogisticRegression.STATE_DRAWING
+                    this.State = LogisticRegression.STATE_IDLE;
                     x = round(event.IntersectionPoint(1));
                     y = round(event.IntersectionPoint(2));
                     %disp(x); disp(y);
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
-                        this.State = LogisticRegression.STATE_IDLE;
                         %fprintf('New state %d\n', this.State);
                         this.ImageHandle.CData(y,x) = 255;
                         this.DigitImage(y,x) = 1;
