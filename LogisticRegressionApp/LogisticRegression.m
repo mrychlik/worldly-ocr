@@ -293,7 +293,7 @@ classdef LogisticRegression
             switch event.EventName,
               case 'WindowMousePress',
 
-                fprintf('MousePress, state %d\n', this.State);
+                %fprintf('MousePress, state %d\n', this.State);
                 if this.State == LogisticRegression.STATE_IDLE 
 
                     x = round(event.IntersectionPoint(1));
@@ -310,7 +310,7 @@ classdef LogisticRegression
 
               case 'WindowMouseRelease',
 
-                fprintf('MouseRelease, state %d\n', this.State);
+                %fprintf('MouseRelease, state %d\n', this.State);
                 if this.State == LogisticRegression.STATE_DRAWING
                     x = round(event.IntersectionPoint(1));
                     y = round(event.IntersectionPoint(2));
