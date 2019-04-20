@@ -179,7 +179,6 @@ classdef LogisticRegression
             Y = round(Y)
             [~,digit_idx] = max(Y);
             digit = this.app.digits(digit_idx);
-            this.app.PredictDigitEditField.Value = digit;
         end
 
         function this = prepare_training_data(this)
@@ -321,6 +320,8 @@ classdef LogisticRegression
                         this.ImageHandle.CData(y,x) = 0;
                         this.DigitImage(y,x) = 1;
                         fprintf('New state %d\n', this.State);
+                        digit = this.predict;
+                        this.app.PredictDigitEditField.Value = digit;
                     end
                 end
 
