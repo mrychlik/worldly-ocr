@@ -214,6 +214,7 @@ classdef LogisticRegression
             % Height and width of images
             this.Height = size(Digit{1},2);
             this.Width = size(Digit{1},3);
+            this.DigitImage = zeros(this.Height, this.Width);
 
             % Linearized images
             X0 = [];
