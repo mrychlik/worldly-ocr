@@ -329,8 +329,9 @@ classdef LogisticRegression
                             drawnow;
                         catch e
                             uialert(this.app.MNISTDigitLearnerUIFigure, ...
-                                    e.message,...
-                                    'Cannot predict yet. Unfinished computation?');
+                                    'Have you not yet trained your network?',
+                                    'Cannot predict yet.');
+                            disp(e.message);
                         end
                     end
                 end
