@@ -329,7 +329,7 @@ classdef LogisticRegression
                             drawnow;
                         catch e
                             uialert(this.app.MNISTDigitLearnerUIFigure, e.message,...
-                                    'Cannot plot the digits yet'));
+                                    'Cannot plot the digits yet');
                         end
                     end
                 end
