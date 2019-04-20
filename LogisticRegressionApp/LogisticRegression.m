@@ -302,7 +302,7 @@ classdef LogisticRegression
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         this.State = LogisticRegression.STATE_DRAWING;
                         % Blacken the hit pixel
-                        this.ImageHandle.CData(y,x) = 1;
+                        this.ImageHandle.CData(y,x) = 255;
                         % Turn on the initial pixel
                         this.DigitImage(:) = 0;
                         this.DigitImage(y,x) = 1;
@@ -321,6 +321,8 @@ classdef LogisticRegression
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         this.State = LogisticRegression.STATE_IDLE;
                         %fprintf('New state %d\n', this.State);
+                        this.ImageHandle.CData(y,x) = 255;
+                        this.DigitImage(y,x) = 1;
                         try 
                             digit = this.predict;
                             % Update GUI
@@ -359,7 +361,7 @@ classdef LogisticRegression
                     %disp(p); disp(x); disp(y);
 
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
-                        this.ImageHandle.CData(y,x) = 1;
+                        this.ImageHandle.CData(y,x) = 255;
                         this.DigitImage(y,x) = 1;
                         drawnow;
                     end
