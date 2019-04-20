@@ -22,7 +22,7 @@ classdef LogisticRegression
         app_name = 'MNISTDigitLearner' % This application name
         min_eta = 1e-5                  % Stop if learning rate drops below
         alpha = 1e-1                    % Regularizer constant
-        epoch_increment = 100           % Number of epochs to add
+        epoch_increment = 300           % Number of epochs to add
         update_period = 10              % Update stats this often
 
         STATE_IDLE = 0                  % We are not hand-drawing a digit
