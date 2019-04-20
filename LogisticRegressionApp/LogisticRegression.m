@@ -322,7 +322,7 @@ classdef LogisticRegression
                         %fprintf('New state %d\n', this.State);
                         digit = this.predict;
                         % Update GUO
-                        this.app.PredictDigitEditField.Value = digit;
+                        this.app.PredictDigitEditField.Value = num2str(digit);
                     end
                 end
 
