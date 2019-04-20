@@ -302,7 +302,7 @@ classdef LogisticRegression
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         this.State = LogisticRegression.STATE_DRAWING;
                         % Blacken the hit pixel
-                        this.ImageHandle.CData(y,x) = 0;
+                        this.ImageHandle.CData(y,x) = 1;
                         % Turn on the initial pixel
                         this.DigitImage(:) = 0;
                         this.DigitImage(y,x) = 1;
