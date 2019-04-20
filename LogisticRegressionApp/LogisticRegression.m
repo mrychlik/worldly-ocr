@@ -333,10 +333,10 @@ classdef LogisticRegression
                     fprintf('MouseMotion, state %d\n', this.State);
                     src = event.Source;
                     cp = src.CurrentPoint;
-                    disp(cp);
+                    %disp(cp);
                     ax = src.CurrentAxes;
                     ap = ax.Position;
-                    disp(ap);
+                    %disp(ap);
                     xwin = round(cp(1,1));
                     ywin = round(cp(1,2));
 
