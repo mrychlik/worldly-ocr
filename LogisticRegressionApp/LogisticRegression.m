@@ -267,13 +267,12 @@ classdef LogisticRegression
             % Find indices which label is correct
             idx = find(this.T(digit_idx,:));
             mean_digit = reshape(mean(this.X(:,idx),2), [this.Height,this.Width])'; 
-            this.ImageHandle = imagesc(this.app.UIAxes2, mean_digit);
+            this.ImageHandle.CDATA = mean_digit;
             colormap(this.app.UIAxes2,1-gray .* this.app.hint_intensity);
         end
 
         function this = clear_digit(this)
-        %this.ImageHandle.CData = zeros(this.Height,this.Width);
-        %drawnow;
+            this.ImageHandle = imagesc(zeros(this.Height,this.Width));
         end
 
         function this = WindowEventFcn(this, event)
@@ -285,7 +284,6 @@ classdef LogisticRegression
 
                 fprintf('MousePress, state %d\n', this.State);
                 if this.State == LogisticRegression.STATE_IDLE 
-                    this = this.clear_digit;
 
                     x = round(event.IntersectionPoint(1));
                     y = round(event.IntersectionPoint(2));
