@@ -277,13 +277,13 @@ classdef LogisticRegression
             % Find indices which label is correct
             idx = find(this.T(digit_idx,:));
             mean_digit = reshape(mean(this.X(:,idx),2), [this.Height,this.Width])'; 
-            this.ImageHandle.CData  = mean_digit .* this.app.hint_intensity;
+            this.ImageHandle.CData  = 1-(1-mean_digit) .* this.app.hint_intensity;
             drawnow;
         end
 
         function this = clear_digit(this)
-            this.ImageHandle = image(this.app.UIAxes2, ones(this.Height,this.Width));
-            colormap(this.app.UIAxes2, 1 - gray);
+            this.ImageHandle = imagesc(this.app.UIAxes2, ones(this.Height,this.Width));
+            colormap(this.app.UIAxes2, gray);
         end
 
         function this = WindowEventFcn(this, event)
@@ -325,16 +325,14 @@ classdef LogisticRegression
                             digit = this.predict;
                             % Update GUI
                             this.app.PredictedDigitEditField.Value = num2str(digit);
-                            this.plot_mean_digit;
                         catch e
                             uialert(this.app.MNISTDigitLearnerUIFigure, ...
                                     'Have you not yet trained your network?',...
                                     'Cannot predict yet.');
-                            this.plot_mean_digit;
                             this.DigitImage(:) = 0;
                             %disp(e.message);
                         end
-
+                        this.plot_mean_digit;
                     end
                 end
 
