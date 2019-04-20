@@ -30,6 +30,7 @@ classdef LogisticRegression
 
     properties(Access=private)
         app                             % The GUI
+        mean_digits                     % Mean digits
     end
     
     properties(Dependent)
@@ -83,7 +84,7 @@ classdef LogisticRegression
         function this = LogisticRegression(app)
             this.app = app;
             this.print_app_info;
-            this.compute_mean_digits;
+            %this.compute_mean_digits;
             this = this.clear_digit;
         end
 
@@ -263,7 +264,8 @@ classdef LogisticRegression
             for digit = 0:9
                 digit_idx = find(digit==this.app.digits,1);
                 idx = find(this.T(digit_idx,:));
-                this.mean_digits(digit_idx) = reshape(mean(this.X(:,idx),2), [this.Height,this.Width])'; 
+                this.mean_digits{digit_idx} = ...
+                    reshape(mean(this.X(:,idx),2), [this.Height,this.Width])'; 
             end
         end
 
