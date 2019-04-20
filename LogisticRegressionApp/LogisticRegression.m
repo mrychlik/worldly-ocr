@@ -320,9 +320,13 @@ classdef LogisticRegression
                         this.ImageHandle.CData(y,x) = 0;
                         this.DigitImage(y,x) = 1;
                         %fprintf('New state %d\n', this.State);
-                        digit = this.predict;
-                        % Update GUO
-                        this.app.PredictDigitEditField.Value = num2str(digit);
+                        try 
+                            digit = this.predict;
+                            % Update GUO
+                            this.app.PredictDigitEditField.Value = num2str(digit);
+                        catch e
+                            disp(e);
+                        end
                     end
                 end
 
@@ -330,7 +334,7 @@ classdef LogisticRegression
 
                 %display(event.HitObject);
                 if this.State == LogisticRegression.STATE_DRAWING
-                    fprintf('MouseMotion, state %d\n', this.State);
+                    %fprintf('MouseMotion, state %d\n', this.State);
                     src = event.Source;
                     cp = src.CurrentPoint;
                     %disp(cp);
