@@ -174,11 +174,12 @@ classdef LogisticRegression
         end
 
         function digit = predict(this)
-            X = this.DigitImage(:);
-            Y = softmax(this.W * X);
-            Y = round(Y);
+            X = this.DigitImage(:)
+            Y = softmax(this.W * X)
+            Y = round(Y)
             [~,digit_idx] = max(Y);
             digit = this.app.digits(digit_idx);
+            this.app.PredictDigitEditField.Value = digit;
         end
 
         function this = prepare_training_data(this)
