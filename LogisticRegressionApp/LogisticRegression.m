@@ -320,10 +320,15 @@ classdef LogisticRegression
                     ax = src.CurrentAxes;
                     ap = ax.Position;
                     disp(ap);
-                    x = round(cp(1,1));
-                    y = round(cp(1,2));
+                    xwin = round(cp(1,1));
+                    ywin = round(cp(1,2));
 
                     p = this.app.UIAxes2.InnerPosition
+
+                    x = round( (xwin - p(1)) ./ p(3) .* this.Width );
+                    y = round( (ywin - p(2)) ./ p(4) .* this.Height );
+
+                    disp(x); disp(y);
 
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         display('Drawing');
