@@ -96,7 +96,7 @@ will be about 300MB.
 
 **NOTE:** Do not add the installer files to the GitHub repository, they are too large! Push them to the Bitbucket repository.
 
-## Screenshots
+## Application Screenshots
 
 ![PickDigits](./images/PickDigits.png)
 
