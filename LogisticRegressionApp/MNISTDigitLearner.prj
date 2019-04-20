@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration build-checksum="949745418" file="/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/MNISTDigitLearner.prj" location="/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp" name="MNISTDigitLearner" target="target.mlapps" target-name="Package App">
+  <configuration build-checksum="891665363" file="/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/MNISTDigitLearner.prj" location="/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp" name="MNISTDigitLearner" target="target.mlapps" target-name="Package App">
     <param.appname>MNISTDigitLearner</param.appname>
     <param.authnamewatermark>Marek Rychlik</param.authnamewatermark>
     <param.email>rychlik@email.arizona.edu</param.email>
