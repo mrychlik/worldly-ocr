@@ -173,6 +173,14 @@ classdef LogisticRegression
             plot_confusion(this);
         end
 
+        function digit = predict(this)
+            X = this.DigitImage(:);
+            Y = softmax(this.W * X);
+            Y = round(Y);
+            [~,digit_idx] = max(Y);
+            digit = this.app.digits(digit_idx);
+        end
+
         function this = prepare_training_data(this)
         %PREPARE_TRAINING_DATA returns MNIST data prepared for training
         % [X,T,H,W] = PREPARE_TRAINING_DATA(D1,D2,...,DK) returns X, which is a
@@ -294,6 +302,7 @@ classdef LogisticRegression
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         this.State = LogisticRegression.STATE_DRAWING;
                         this.ImageHandle.CData(y,x) = 0;
+                        this.DigitImage = 0;
                         this.DigitImage(y,x) = 1;
                         fprintf('New state %d\n', this.State);
                     end
