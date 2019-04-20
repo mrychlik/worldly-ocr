@@ -323,7 +323,7 @@ classdef LogisticRegression
                         try 
                             digit = this.predict;
                             % Update GUI
-                            this.app.PredictDigitEditField.Value = num2str(digit);
+                            this.app.PredictedDigitEditField.Value = num2str(digit);
                         catch e
                             disp(e);
                         end
