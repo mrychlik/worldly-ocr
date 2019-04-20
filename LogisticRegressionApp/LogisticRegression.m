@@ -158,6 +158,7 @@ classdef LogisticRegression
                     semilogy(ax, this.losses,'-'), 
                     title(ax,['Learning (epoch: ',num2str(this.epoch),')']),
                     %disp(['Learning rate: ',num2str(this.eta)]);
+                    drawnow;
                     % Update error stats
                     this.app.LearningRateEditField.Value = this.eta;
                     this.NErrors = length(find(round(this.Y)~=this.T));
