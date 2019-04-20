@@ -334,8 +334,8 @@ classdef LogisticRegression
                             this.DigitImage(:) = 0;
                             %disp(e.message);
                         end
-                        this.State = LogisticRegression.STATE_IDLE;
                     end
+                    this.State = LogisticRegression.STATE_IDLE;
                 end
 
               case 'WindowMouseMotion',
