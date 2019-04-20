@@ -359,7 +359,7 @@ classdef LogisticRegression
                     %disp(p); disp(x); disp(y);
 
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
-                        this.ImageHandle.CData(y,x) = 0;
+                        this.ImageHandle.CData(y,x) = 1;
                         this.DigitImage(y,x) = 1;
                         drawnow;
                     end
