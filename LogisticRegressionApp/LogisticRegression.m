@@ -326,6 +326,7 @@ classdef LogisticRegression
                             % Update GUI
                             this.app.PredictedDigitEditField.Value = num2str(digit);
                             this.plot_mean_digit;
+                            this.State = LogisticRegression.STATE_IDLE;
                         catch e
                             uialert(this.app.MNISTDigitLearnerUIFigure, ...
                                     'Have you not yet trained your network?',...
@@ -333,8 +334,9 @@ classdef LogisticRegression
                             this.plot_mean_digit;
                             this.DigitImage(:) = 0;
                             %disp(e.message);
+                            this.State = LogisticRegression.STATE_IDLE;
                         end
-                        this.State = LogisticRegression.STATE_IDLE;
+
                     end
                 end
 
