@@ -311,7 +311,7 @@ classdef LogisticRegression
 
               case 'WindowMouseMotion',
 
-                display(event.HitObject);
+                %display(event.HitObject);
                 if this.State == LogisticRegression.STATE_DRAWING
                     fprintf('MouseMotion, state %d\n', this.State);
                     src = event.Source;
@@ -322,6 +322,8 @@ classdef LogisticRegression
                     disp(ap);
                     x = round(cp(1,1));
                     y = round(cp(1,2));
+
+                    p = this.app.UIAxes2.InnerPosition
 
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         display('Drawing');
