@@ -174,7 +174,8 @@ classdef LogisticRegression
         end
 
         function digit = predict(this)
-            X = this.DigitImage(:)
+            X = this.DigitImage';
+            X=X(:);
             Y = softmax(this.W * X)
             Y = round(Y)
             [~,digit_idx] = max(Y);
