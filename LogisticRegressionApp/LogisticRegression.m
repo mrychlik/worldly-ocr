@@ -300,7 +300,7 @@ classdef LogisticRegression
                     x = event.IntersectionPoint(1);
                     y = event.IntersectionPoint(2);
                     %disp(x); disp(y);
-                    [x1, y1] = this.workoround_pos(event);
+                    [x1, y1] = this.workaround_pos(event);
 
                     % Offset from figure position to the above
                     this.x_offset = x1 - x;
@@ -353,7 +353,7 @@ classdef LogisticRegression
                 %display(event.HitObject);
                 if this.State == LogisticRegression.STATE_DRAWING
                     %fprintf('MouseMotion, state %d\n', this.State);
-                    [x, y] = this.workoround_pos(event);
+                    [x, y] = this.workaround_pos(event);
                     %disp(p); disp(x); disp(y);
 
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
@@ -365,7 +365,7 @@ classdef LogisticRegression
             %fprintf('Exit State: %d\n', this.State);            
         end
 
-        function [x,y] = workoround_pos(this, event)
+        function [x,y] = workaround_pos(this, event)
         %WORKOROUND_POS find Motion event point in image
             src = event.Source;
             cp = src.CurrentPoint;
