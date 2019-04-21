@@ -31,8 +31,8 @@ classdef LogisticRegression
 
     properties(Access=private)
         app                             % The GUI
-        x_offset;                       % To make a workaround work
-        y_offset;                       % To make a workaround work
+        x_offset;                       % For motion workaround
+        y_offset;                       % For motion workaround
     end
     
     properties(Dependent)
