@@ -355,6 +355,9 @@ classdef LogisticRegression
                     %fprintf('MouseMotion, state %d\n', this.State);
                     [x, y] = this.workaround_pos(event);
                     %disp(p); disp(x); disp(y);
+                    x = x - this.x_offset;
+                    y = y - this.y_offset;
+                    x = round(x); y = round(y);
 
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         this.ImageHandle.CData(y,x) = 255;
