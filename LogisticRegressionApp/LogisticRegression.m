@@ -31,6 +31,8 @@ classdef LogisticRegression
 
     properties(Access=private)
         app                             % The GUI
+        x_offset;                       % To make a workaround work
+        y_offset;                       % To make a workaround work
     end
     
     properties(Dependent)
@@ -285,13 +287,12 @@ classdef LogisticRegression
         end
 
         function this = WindowEventFcn(this, event)
-
-            %fprintf('Event: %s, State: %d\n', event.EventName, this.State);
+        %WINDOWEVENTFCN handles digit drawing
+            disp(event.Source);
+            %fprintf('Event: %s, State: %d\n', event.EventName, this.State);                
 
             switch event.EventName,
               case 'WindowMousePress',
-
-                assert(event.Source == this.ImageHandle);
 
                 %fprintf('MousePress, state %d\n', this.State);
                 if this.State == LogisticRegression.STATE_IDLE 
@@ -299,6 +300,12 @@ classdef LogisticRegression
                     x = round(event.IntersectionPoint(1));
                     y = round(event.IntersectionPoint(2));
                     %disp(x); disp(y);
+                    [x1, y1] = this.workoround_pos(event);
+
+                    % Offset from figure position to the above
+                    this.x_offset = x1 - x;
+                    this.y_offset = y1 - y;
+
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         this.State = LogisticRegression.STATE_DRAWING;
                         % Blacken the hit pixel
