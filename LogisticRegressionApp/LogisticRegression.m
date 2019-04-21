@@ -288,7 +288,7 @@ classdef LogisticRegression
 
         function this = WindowEventFcn(this, event)
         %WINDOWEVENTFCN handles digit drawing
-            disp(event.Source);
+        %disp(event.Source);
             %fprintf('Event: %s, State: %d\n', event.EventName, this.State);                
 
             switch event.EventName,
@@ -297,14 +297,17 @@ classdef LogisticRegression
                 %fprintf('MousePress, state %d\n', this.State);
                 if this.State == LogisticRegression.STATE_IDLE 
 
-                    x = round(event.IntersectionPoint(1));
-                    y = round(event.IntersectionPoint(2));
+                    x = event.IntersectionPoint(1);
+                    y = event.IntersectionPoint(2);
                     %disp(x); disp(y);
                     [x1, y1] = this.workoround_pos(event);
 
                     % Offset from figure position to the above
                     this.x_offset = x1 - x;
                     this.y_offset = y1 - y;
+                    disp(this.x_offset); disp(this.y_offset);
+
+                    x = round(x); y=round(y);
 
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         this.State = LogisticRegression.STATE_DRAWING;
@@ -321,8 +324,8 @@ classdef LogisticRegression
 
                 %fprintf('MouseRelease, state %d\n', this.State);
                 if this.State == LogisticRegression.STATE_DRAWING
-                    x = round(event.IntersectionPoint(1));
-                    y = round(event.IntersectionPoint(2));
+                    x = round(event.IntersectionPoint(1) + this.x_offset);
+                    y = round(event.IntersectionPoint(2) + this.y_offset);
                     %disp(x); disp(y);
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         %fprintf('New state %d\n', this.State);
