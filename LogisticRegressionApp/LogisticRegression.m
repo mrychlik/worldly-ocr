@@ -102,7 +102,7 @@ classdef LogisticRegression
         % The algorithm uses batch processing, whereby every sample is
         % included in the gradient computation in each epoch. The maximum number
         % of epochs can be specified by the argument NUM_EPOCHS (default: 10^4).
-            if nargin < 2; continuing = false; end;
+            if nargin < 2; continuing = false; end
 
             assert(size(this.X,2) == size(this.T,2), ['Inconsistent number of samples in ' ...
                                 'data and targets.']);
@@ -167,16 +167,16 @@ classdef LogisticRegression
                 % Re-center the weights
                 if mod(this.epoch, 100) == 0 
                     this.W = this.W - mean(this.W);
-                end;
+                end
                 %pause(.1);
             end
             plot_confusion(this);
         end
 
         function digit = predict(this)
-            X = this.DigitImage';       % Rotate by 90 degrees
-            X = X(:);                   % Linearize
-            Y = softmax(this.W * X);    % Activation
+            this.X = this.DigitImage';       % Rotate by 90 degrees
+            this.X = this.X(:);                   % Linearize
+            this.Y = softmax(this.W * this.X);    % Activation
             [~,digit_idx] = max(Y);
             digit = this.app.digits(digit_idx);
         end
@@ -329,7 +329,7 @@ classdef LogisticRegression
                             uialert(this.app.MNISTDigitLearnerUIFigure, ...
                                     'Have you not yet trained your network?',...
                                     'Cannot predict yet.');
-                            %disp(e.message);
+                            disp(e.message);
                         end
                         this.plot_mean_digit;
                     end
