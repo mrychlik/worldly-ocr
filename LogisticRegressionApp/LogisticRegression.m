@@ -305,7 +305,7 @@ classdef LogisticRegression
                     % Offset from figure position to the above
                     this.x_offset = x1 - x;
                     this.y_offset = y1 - y;
-                    disp(this.x_offset); disp(this.y_offset);
+                    %disp(this.x_offset); disp(this.y_offset);
 
                     x = round(x); y=round(y);
 
