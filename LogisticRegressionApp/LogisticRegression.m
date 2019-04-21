@@ -291,7 +291,7 @@ classdef LogisticRegression
             switch event.EventName,
               case 'WindowMousePress',
 
-                assert(event.Src == this.ImageHandle);
+                assert(event.Source == this.ImageHandle);
 
                 %fprintf('MousePress, state %d\n', this.State);
                 if this.State == LogisticRegression.STATE_IDLE 
