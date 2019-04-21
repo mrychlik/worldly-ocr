@@ -302,7 +302,7 @@ classdef LogisticRegression
                     %disp(x); disp(y);
                     [x1, y1] = this.workaround_pos(event);
 
-                    % Offset from figure position to the above
+                    % Offset from figure position to the above - part of workaround
                     this.x_offset = x1 - x;
                     this.y_offset = y1 - y;
                     %disp(this.x_offset); disp(this.y_offset);
