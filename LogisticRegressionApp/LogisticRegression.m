@@ -174,9 +174,9 @@ classdef LogisticRegression
         end
 
         function digit = predict(this)
-            this.X = this.DigitImage';       % Rotate by 90 degrees
-            this.X = this.X(:);                   % Linearize
-            this.Y = softmax(this.W * this.X);    % Activation
+            X = this.DigitImage';       % Rotate by 90 degrees
+            X = X(:);                   % Linearize
+            Y = softmax(this.W * this.X);    % Activation
             [~,digit_idx] = max(Y);
             digit = this.app.digits(digit_idx);
         end
