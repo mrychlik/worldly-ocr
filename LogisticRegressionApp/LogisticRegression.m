@@ -291,6 +291,8 @@ classdef LogisticRegression
             switch event.EventName,
               case 'WindowMousePress',
 
+                assert(event.Src == this.ImageHandle);
+
                 %fprintf('MousePress, state %d\n', this.State);
                 if this.State == LogisticRegression.STATE_IDLE 
 
@@ -341,21 +343,6 @@ classdef LogisticRegression
                 %display(event.HitObject);
                 if this.State == LogisticRegression.STATE_DRAWING
                     %fprintf('MouseMotion, state %d\n', this.State);
-                    % src = event.Source;
-                    % cp = src.CurrentPoint;
-                    % %disp(cp);
-                    % ax = src.CurrentAxes;
-                    % ap = ax.Position;
-                    % %disp(ap);
-                    % xwin = round(cp(1,1));
-                    % ywin = round(cp(1,2));
-
-                    % p = this.app.UIAxes2.InnerPosition;
-
-                    % % Translate parent coordinates to axes coordinates
-                    % x = round( (xwin - p(1)) ./ p(3) .* this.Width );
-                    % y = round( (p(2) + p(4) - ywin) ./ p(4) .* this.Height );
-
                     [x, y] = this.workoround_pos(event);
                     %disp(p); disp(x); disp(y);
 
@@ -367,6 +354,7 @@ classdef LogisticRegression
             end
             %fprintf('Exit State: %d\n', this.State);            
         end
+
         function [x,y] = workoround_pos(this, event)
         %WORKOROUND_POS find Motion event point in image
             src = event.Source;
