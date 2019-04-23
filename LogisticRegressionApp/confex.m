@@ -8,6 +8,7 @@ T=lra.obj.T;
 Y=lra.obj.Y;
 [c,cm]=confusion(T,Y);
 
-labels=lra.DigitPickerListBox.Value;
+%labels=lra.DigitPickerListBox.Value;
+%plotConfMat(gca,cm,labels);
 
-plotConfMat(gca,cm,labels);
+J=lra.obj.plot_mean_digit;

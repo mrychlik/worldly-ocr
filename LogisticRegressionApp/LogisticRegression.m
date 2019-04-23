@@ -3,6 +3,8 @@ classdef LogisticRegression
     properties
         X                               % Training data
         T                               % Target data
+        Height                          % Digit height (pixels)
+        Width                           % Digit width (pixels)
         Y                               % Network activation
         NErrors                         % Number of errors
         W                               % Weights
@@ -10,48 +12,79 @@ classdef LogisticRegression
         epoch = 0                       % Epoch counter
         epoch_max;                      % Number of epochs to run
         losses = [];                    % List of loss values
+
+        State = LogisticRegression.STATE_IDLE; % State of drawing
+        ImageHandle                     % Image of a hand-drawn digit
+        DigitImage                      % The hand-drawn digit image
     end
 
     properties(Constant)
-        app_name = 'MNISTDigitsLearner' % This application name
+        app_name = 'MNISTDigitLearner' % This application name
         min_eta = 1e-5                  % Stop if learning rate drops below
         alpha = 1e-1                    % Regularizer constant
-        epoch_increment = 100           % Number of epochs to add
+        epoch_increment = 300           % Number of epochs to add
         update_period = 10              % Update stats this often
+
+        STATE_IDLE = 0                  % We are not hand-drawing a digit
+        STATE_DRAWING = 1               % We are hand-drawing a digit
     end
 
     properties(Access=private)
-        app
+        app                             % The GUI
     end
     
     properties(Dependent)
         app_data_path                   % Where the app data is
     end
-
     
     methods
         function path = get.app_data_path(this)
-        %Find the path of application data
-        % PATH = GET.APP_DATA_PATH(THIS) returns the path where
-        %  the application data is. If this application is installed,
-        %  it is the path of the installation folder, else it is the
-        %  current folder, when we are running the application
-        %  uninstalled (the working directory thus must be the 
-        %  current folder).
-            apps = matlab.apputil.getInstalledAppInfo;
-            ind=find(cellfun(@(x)strcmp(x,this.app_name),{apps.name}));
-            if isempty(ind)
-                path = '.';             % Current directory
+            if isdeployed
+                % We will find the files in the 'application' folder
+                path = '';
             else
-                path = apps(ind).location; % This app is installed, its path
+                % We're running within MATLAB, either as a MATLAB app,
+                % or from a copy of the current folder. If we're running
+                % as a MATLAB app, we need to get the application folder
+                % by using matlab.apputil class.
+                apps = matlab.apputil.getInstalledAppInfo;
+                ind=find(cellfun(@(x)strcmp(x,this.app_name),{apps.name}));
+                if isempty(ind)
+                    path = '.';             % Current directory
+                else
+                    path = apps(ind).location; % This app is installed, its path
+                end
             end
-            fprintf('App data folder is %s\n',path);
         end
 
+
+        function print_app_info(this)
+        %PRINT_APP_INFO prints information about the app environment
+            if isdeployed
+                % Print deployment information
+                fprintf('Running %s as a standalone application.\n',this.app_name);
+                fprintf('Application files are in: %s\n', ctfroot);
+                fprintf('MATLAB runtime version is: %d\n', mcrversion);
+            else
+                % 
+                fprintf('Running %s a MATLAB app.\n',this.app_name);
+                fprintf('MATLAB version: %s\n', version);
+                apps = matlab.apputil.getInstalledAppInfo;
+                ind=find(cellfun(@(x)strcmp(x,this.app_name),{apps.name}));
+                if isempty(ind)
+                    path = '.';             % Current directory
+                else
+                    path = apps(ind).location; % This app is installed, its path
+                end
+                fprintf('App data folder is %s\n',path);
+            end
+        end
 
 
         function this = LogisticRegression(app)
             this.app = app;
+            this.print_app_info;
+            this = this.clear_digit;
         end
 
         function this = train(this,continuing)
@@ -69,7 +102,7 @@ classdef LogisticRegression
         % The algorithm uses batch processing, whereby every sample is
         % included in the gradient computation in each epoch. The maximum number
         % of epochs can be specified by the argument NUM_EPOCHS (default: 10^4).
-            if nargin < 2; continuing = false; end;
+            if nargin < 2; continuing = false; end
 
             assert(size(this.X,2) == size(this.T,2), ['Inconsistent number of samples in ' ...
                                 'data and targets.']);
@@ -134,10 +167,18 @@ classdef LogisticRegression
                 % Re-center the weights
                 if mod(this.epoch, 100) == 0 
                     this.W = this.W - mean(this.W);
-                end;
+                end
                 %pause(.1);
             end
             plot_confusion(this);
+        end
+
+        function digit = predict(this)
+            myX = this.DigitImage';     % Rotate by 90 degrees
+            myX = myX(:);               % Linearize
+            myY = softmax(this.W * myX);% Activation
+            [~,digit_idx] = max(myY);
+            digit = this.app.digits(digit_idx);
         end
 
         function this = prepare_training_data(this)
@@ -160,7 +201,7 @@ classdef LogisticRegression
         %
         % Transposing is necessary to get the vertical digit, else is a digit on
         % its side.
-            data_file=fullfile(this.app_data_path,'digit_data.mat');
+            data_file = fullfile(this.app_data_path, 'digit_data.mat');
             load(data_file);
 
             digits = this.app.digits;
@@ -176,17 +217,17 @@ classdef LogisticRegression
                 imagesc(ax,squeeze(Digit{j}(1,:,:))');
                 title(ax,['Class ', num2str(j)]);
             end
-            drawnow;
 
             % Height and width of images
-            H = size(Digit{1},2);
-            W = size(Digit{1},3);
+            this.Height = size(Digit{1},2);
+            this.Width = size(Digit{1},3);
+            this.DigitImage = zeros(this.Height, this.Width);
 
             % Linearized images
             X0 = [];
             T0 = [];
             for j=1:num_digits
-                LinDigit = reshape(Digit{j}, [size(Digit{j},1), W * H]);
+                LinDigit = reshape(Digit{j}, [size(Digit{j},1), this.Width * this.Height]);
                 X0 = [X0; LinDigit];
                 T1 = zeros([size(LinDigit, 1),num_digits]);
                 T1(:,j) = ones([size(LinDigit, 1),1]);
@@ -225,5 +266,105 @@ classdef LogisticRegression
             Z = -sum(this.T .* log(this.Y+eps),'all');
         end
 
+        function this = plot_mean_digit(this, digit)
+        % MEAN_DIGIT_IMAGE get mean image of a digit
+            if nargin < 2
+                digit=this.app.digit;
+            end
+            % Find digit index in the current training digits
+            digit_idx = find(digit==this.app.digits,1);
+            % Find indices which label is correct
+            idx = find(this.T(digit_idx,:));
+            mean_digit = reshape(mean(this.X(:,idx),2), [this.Height,this.Width])'; 
+            this.ImageHandle.CData  = round(128 * mean_digit .* this.app.hint_intensity);
+        end
+
+        function this = clear_digit(this)
+            this.ImageHandle = image(this.app.UIAxes2, ones(this.Height,this.Width));
+            colormap(this.app.UIAxes2, 1-gray);
+        end
+
+        function this = WindowEventFcn(this, event)
+
+            %fprintf('Event: %s, State: %d\n', event.EventName, this.State);
+
+            switch event.EventName,
+              case 'WindowMousePress',
+
+                %fprintf('MousePress, state %d\n', this.State);
+                if this.State == LogisticRegression.STATE_IDLE 
+
+                    x = round(event.IntersectionPoint(1));
+                    y = round(event.IntersectionPoint(2));
+                    %disp(x); disp(y);
+                    if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
+                        this.State = LogisticRegression.STATE_DRAWING;
+                        % Blacken the hit pixel
+                        this.ImageHandle.CData(y,x) = 255;
+                        % Turn on the initial pixel
+                        this.DigitImage(:) = 0;
+                        this.DigitImage(y,x) = 1;
+                        %fprintf('New state %d\n', this.State);
+                    end
+                end
+
+              case 'WindowMouseRelease',
+
+                %fprintf('MouseRelease, state %d\n', this.State);
+                if this.State == LogisticRegression.STATE_DRAWING
+                    x = round(event.IntersectionPoint(1));
+                    y = round(event.IntersectionPoint(2));
+                    %disp(x); disp(y);
+                    if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
+                        %fprintf('New state %d\n', this.State);
+                        this.ImageHandle.CData(y,x) = 255;
+                        this.DigitImage(y,x) = 1;
+                        imagesc(this.app.UIAxes3,this.DigitImage);
+                        colormap(this.app.UIAxes3, 1-gray);
+                        try 
+                            digit = this.predict;
+                            % Update GUI
+                            this.app.PredictedDigitEditField.Value = num2str(digit);
+                        catch e
+                            uialert(this.app.MNISTDigitLearnerUIFigure, ...
+                                    'Have you not yet trained your network?',...
+                                    'Cannot predict yet.');
+                            disp(e.message);
+                        end
+                        this.plot_mean_digit;
+                    end
+                    this.State = LogisticRegression.STATE_IDLE;
+                end
+
+              case 'WindowMouseMotion',
+
+                %display(event.HitObject);
+                if this.State == LogisticRegression.STATE_DRAWING
+                    %fprintf('MouseMotion, state %d\n', this.State);
+                    src = event.Source;
+                    cp = src.CurrentPoint;
+                    %disp(cp);
+                    ax = src.CurrentAxes;
+                    ap = ax.Position;
+                    %disp(ap);
+                    xwin = round(cp(1,1));
+                    ywin = round(cp(1,2));
+
+                    p = this.app.UIAxes2.InnerPosition;
+
+                    % Translate parent coordinates to axes coordinates
+                    x = round( (xwin - p(1)) ./ p(3) .* this.Width );
+                    y = round( (p(2) + p(4) - ywin) ./ p(4) .* this.Height );
+
+                    %disp(p); disp(x); disp(y);
+
+                    if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
+                        this.ImageHandle.CData(y,x) = 255;
+                        this.DigitImage(y,x) = 1;
+                    end
+                end
+            end
+            %fprintf('Exit State: %d\n', this.State);            
+        end
     end
 end
