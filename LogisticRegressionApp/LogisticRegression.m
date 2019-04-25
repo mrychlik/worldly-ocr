@@ -72,7 +72,7 @@ classdef LogisticRegression
                 fprintf('Running %s a MATLAB app.\n',this.app_name);
                 fprintf('MATLAB version: %s\n', version);
                 apps = matlab.apputil.getInstalledAppInfo;
-                ind=find(cellfun(@(x)strcmp(x,this.app_name),{apps.name}));
+                ind = find(cellfun(@(x)strcmp(x,this.app_name),{apps.name}));
                 if isempty(ind)
                     path = '.';             % Current directory
                 else
