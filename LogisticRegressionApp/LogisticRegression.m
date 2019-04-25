@@ -396,7 +396,7 @@ classdef LogisticRegression
             else
                 disp(['User selected ', fullfile(path,file)]);
                 % Write the file
-                saved_state.digits = this.app.digits;
+                saved_state.digits = this.app.DigitPickerListBox.Value;
                 saved_state.W = this.W;
                 save(fullfile(path,file), 'saved_state');
             end
