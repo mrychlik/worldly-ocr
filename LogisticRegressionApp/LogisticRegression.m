@@ -251,8 +251,8 @@ classdef LogisticRegression
 
             % Randomize order
             P = randperm(N);
-            this.X = this.X(P,:);
-            this.T = this.T(P,:);
+            this.X = this.X(:,P);
+            this.T = this.T(:,P);
         end
 
         function plot_confusion(this)
