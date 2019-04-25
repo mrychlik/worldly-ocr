@@ -411,7 +411,7 @@ classdef LogisticRegression
                 disp(['User selected ', fullfile(path,file)]);
                 load(fullfile(path,file));
                 % Write the file
-                this.app.SingleDigitPickerListBox.Value = state.digits;
+                this.app.DigitPickerListBox.Value = state.digits;
                 this.W = state.W;
             end
         end
