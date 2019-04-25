@@ -110,6 +110,7 @@ classdef LogisticRegression
                                 'data and targets.']);
 
             assert(all(sum(this.T,1)==1),'Target rows must sum up to 1');
+
             D = size(this.X, 1);                     % Dimension of data
             N = size(this.X, 2);                     % Number of samples
             C = size(this.T, 1);                     % Number of  classes
