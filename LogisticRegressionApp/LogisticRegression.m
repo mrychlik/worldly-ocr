@@ -409,8 +409,11 @@ classdef LogisticRegression
                 disp(['User selected ', fullfile(path,file)]);
                 load(fullfile(path,file));
                 % Write the file
-                this.app.DigitPickerListBox.Value = saved_state.digits;
-                this.W = saved_state.W;
+                if isequal(this.app.DigitPickerListBox.Value, saved_state.digits)
+                    this.W = saved_state.W;
+                else
+                    error('Digits do not match');
+                end
             end
         end
 
