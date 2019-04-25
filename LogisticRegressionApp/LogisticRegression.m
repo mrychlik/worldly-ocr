@@ -155,7 +155,6 @@ classdef LogisticRegression
                     ./ (eps + norm(DW(:) - DW_old(:))^2 );
 
                 % Visualize  learning
-                ax = this.app.UIAxes;
                 if mod(this.epoch, this.update_period) == 0 
                     this = this.show_learning_progress;
                 end
@@ -169,6 +168,7 @@ classdef LogisticRegression
         end
 
         function this = show_learning_progress(this)
+            ax = this.app.UIAxes;
             semilogy(ax, this.losses,'-'), 
             title(ax,['Learning (epoch: ',num2str(this.epoch),')']),
             %disp(['Learning rate: ',num2str(this.eta)]);
