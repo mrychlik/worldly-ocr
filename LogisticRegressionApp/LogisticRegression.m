@@ -406,6 +406,7 @@ classdef LogisticRegression
                 saved_state.digits = this.app.DigitPickerListBox.Value;
                 saved_state.W = this.W;
                 saved_state.losses = this.losses;
+                saved_state.eta = this.eta;
                 saved_state.NErrors = this.NErrors;
 
                 % Write the file
