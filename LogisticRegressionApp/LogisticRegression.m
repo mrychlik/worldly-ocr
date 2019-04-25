@@ -242,13 +242,17 @@ classdef LogisticRegression
 
             N = size(X0,1);
             P = randperm(N);
-            % Combined labels
 
             % Permuted combined samples and labels
-            this.X = X0(P,:)';
-            this.T = T0(P,:)';
+            this.X = X0';
+            this.T = T0';
 
             this = this.show_sample_digits;
+
+            % Randomize order
+            P = randperm(N);
+            this.X = this.X(P,:);
+            this.T = this.T(P,:);
         end
 
         function plot_confusion(this)
