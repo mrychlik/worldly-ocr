@@ -406,6 +406,7 @@ classdef LogisticRegression
         end
 
         function this = SaveFcn(this, event)
+        %SAVEFCN saves app state to file
             if isempty(this.savefile)
                 this.SaveAsFcn(event);
             else
@@ -415,6 +416,7 @@ classdef LogisticRegression
 
 
         function this = SaveAsFcn(this, event)
+        %SAVEASFCN saves app state to a selected file
             [file, path] = uiputfile('*.mat',...
                                      'Select a .mat file', 'DigitLearnerData.mat');
             if isequal(file,0)
@@ -428,7 +430,7 @@ classdef LogisticRegression
         end
 
         function DoSave(this)
-        % Prepare saved state
+        % DOSAVE prepares saved state and writes to savefile
             saved_state.digits = this.app.DigitPickerListBox.Value;
             saved_state.W = this.W;
             saved_state.losses = this.losses;
@@ -446,6 +448,7 @@ classdef LogisticRegression
 
 
         function this = LoadFcn(this, event)
+        % LOADFCN loads saved state from file
             [file, path] = uigetfile('*.mat',...
                                      'Select a .mat file', 'DigitLearnerData.mat');
             if isequal(file,0)
