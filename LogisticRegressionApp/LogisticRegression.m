@@ -175,6 +175,7 @@ classdef LogisticRegression
             drawnow;
             % Update error stats
             this.app.LearningRateEditField.Value = this.eta;
+            this.Y = softmax(this.W * this.X);
             this.NErrors = length(find(round(this.Y)~=this.T));
             this.app.NumberOfErrorsEditField.Value = this.NErrors;
         end
