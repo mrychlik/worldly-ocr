@@ -401,9 +401,14 @@ classdef LogisticRegression
                 disp('User selected Cancel');
             else
                 disp(['User selected ', fullfile(path,file)]);
-                % Write the file
+                
+                % Prepare saved state
                 saved_state.digits = this.app.DigitPickerListBox.Value;
                 saved_state.W = this.W;
+                saved_state.losses = this.losses;
+                saved_state.NErrors = this.NErrors;
+
+                % Write the file
                 save(fullfile(path,file), 'saved_state');
             end
         end
@@ -416,15 +421,15 @@ classdef LogisticRegression
             else
                 disp(['User selected ', fullfile(path,file)]);
                 load(fullfile(path,file));
-                % Write the file
-                if isequal(this.app.DigitPickerListBox.Value, saved_state.digits)
-                    this.W = saved_state.W;
-                else
-                    uialert(this.app.MNISTDigitLearnerUIFigure, ...
-                            'Cannot load weights',...
-                            'Digits did not match, so weights cannot be loaded');
 
-                end
+                % Restore state
+                this.app.DigitPickerListBox.Value = saved_state.digits;
+                this.W = saved_state.W;
+                this.losses = save_state.losses;
+                this.NErrors = save_state.NErrors;
+                
+                % Update learning state display
+                this.show_learning;
             end
         end
 
