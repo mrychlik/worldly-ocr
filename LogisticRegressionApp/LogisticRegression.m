@@ -432,7 +432,7 @@ classdef LogisticRegression
                 this.savefile = fullfile(path,file);
                 disp(['User selected ', this.savefile]);
 
-                this.DoSave
+                this.DoSave;
             end
         end
 
