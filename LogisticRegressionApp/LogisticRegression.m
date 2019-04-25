@@ -408,27 +408,44 @@ classdef LogisticRegression
         function this = SaveFcn(this, event)
             disp(event);
             disp(event.Source);
+            if isempty(this.savefile)
+                this.SaveAsFcn(event)
+            else
+                this.DoSave
+            end
+        end
+
+
+        function this = SaveAsFcn(this, event)
+            disp(event);
+            disp(event.Source);
             [file, path] = uiputfile('*.mat',...
                                      'Select a .mat file', 'DigitLearnerData.mat');
             if isequal(file,0)
                 disp('User selected Cancel');
             else
-                disp(['User selected ', fullfile(path,file)]);
-                
-                % Prepare saved state
-                saved_state.digits = this.app.DigitPickerListBox.Value;
-                saved_state.W = this.W;
-                saved_state.losses = this.losses;
-                saved_state.eta = this.eta;
-                saved_state.NErrors = this.NErrors;
-                saved_state.Y = this.Y;
-                saved_state.X = this.X;
-                saved_state.T = this.T;
+                this.savefile = fullfile(path,file)
+                disp(['User selected ', this.savefile]);
 
-                % Write the file
-                save(fullfile(path,file), 'saved_state');
+                this.DoSave
             end
         end
+
+        function DoSave(this)
+        % Prepare saved state
+            saved_state.digits = this.app.DigitPickerListBox.Value;
+            saved_state.W = this.W;
+            saved_state.losses = this.losses;
+            saved_state.eta = this.eta;
+            saved_state.NErrors = this.NErrors;
+            saved_state.Y = this.Y;
+            saved_state.X = this.X;
+            saved_state.T = this.T;
+
+            % Write the file
+            save(this.savefile, 'saved_state');
+        end
+
 
         function this = LoadFcn(this, event)
             [file, path] = uigetfile('*.mat',...
@@ -455,6 +472,5 @@ classdef LogisticRegression
                 this.plot_confusion;
             end
         end
-
     end
 end
