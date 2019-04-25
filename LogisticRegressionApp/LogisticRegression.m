@@ -322,14 +322,19 @@ classdef LogisticRegression
                     [x1, y1] = this.workaround_pos(event);
 
                     % Offset from figure position to the above - part of workaround
-                    this.x_offset = x1 - x;
-                    this.y_offset = y1 - y;
+                    x_offset = x1 - x;
+                    y_offset = y1 - y;
                     %disp(this.x_offset); disp(this.y_offset);
 
                     x = round(x); y=round(y);
 
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         this.State = LogisticRegression.STATE_DRAWING;
+
+                        % Save offsets
+                        this.x_offset = x_offset;
+                        this.y_offset = y_offset;
+
                         % Blacken the hit pixel
                         this.ImageHandle.CData(y,x) = 255;
                         % Turn on the initial pixel
