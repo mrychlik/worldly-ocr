@@ -406,8 +406,6 @@ classdef LogisticRegression
         end
 
         function this = SaveFcn(this, event)
-            disp(event);
-            disp(event.Source);
             if isempty(this.savefile)
                 this.SaveAsFcn(event);
             else
@@ -417,8 +415,6 @@ classdef LogisticRegression
 
 
         function this = SaveAsFcn(this, event)
-            disp(event);
-            disp(event.Source);
             [file, path] = uiputfile('*.mat',...
                                      'Select a .mat file', 'DigitLearnerData.mat');
             if isequal(file,0)
