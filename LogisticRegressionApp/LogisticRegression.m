@@ -211,7 +211,7 @@ classdef LogisticRegression
             data_file = fullfile(this.app_data_path, 'digit_data.mat');
             load(data_file);
 
-            this.show_digits(I);
+            this.show_digits(I, T);
 
             % Height and width of images
             this.Height = size(Digit{1},2);
@@ -242,7 +242,7 @@ classdef LogisticRegression
             this.T = T0(P,:)';
         end
 
-        function this = show_digits(this, I)
+        function this = show_digits(this, I, T)
             digits = this.app.digits;
             num_digits = length(digits);
             this.app.DigitViewerPanel.AutoResizeChildren = 'off';
