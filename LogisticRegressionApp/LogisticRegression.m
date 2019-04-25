@@ -211,6 +211,18 @@ classdef LogisticRegression
             data_file = fullfile(this.app_data_path, 'digit_data.mat');
             load(data_file);
 
+            digits = this.app.digits;
+            num_digits = length(digits);
+            this.app.DigitViewerPanel.AutoResizeChildren = 'off';
+            g = ceil(sqrt(num_digits));
+
+            for j=1:num_digits
+                Digit{j}=I(T==digits(j),:,:)./255;
+                ax = subplot(g,g,j,'Parent',this.app.DigitViewerPanel);
+                imagesc(ax,squeeze(Digit{j}(1,:,:))');
+                title(ax,['Class ', num2str(j)]);
+            end
+
             this.show_digits(I, T);
 
             % Height and width of images
@@ -221,8 +233,6 @@ classdef LogisticRegression
             % Linearized images
             X0 = [];
             T0 = [];
-            digits = this.app.digits;
-            num_digits = length(digits);
             for j=1:num_digits
                 LinDigit = reshape(Digit{j}, [size(Digit{j},1), this.Width * this.Height]);
                 X0 = [X0; LinDigit];
