@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration build-checksum="891665363" file="/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/MNISTDigitLearner.prj" location="/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp" name="MNISTDigitLearner" target="target.mlapps" target-name="Package App">
+  <configuration build-checksum="1405886558" file="/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/MNISTDigitLearner.prj" location="/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp" name="MNISTDigitLearner" target="target.mlapps" target-name="Package App">
     <param.appname>MNISTDigitLearner</param.appname>
     <param.authnamewatermark>Marek Rychlik</param.authnamewatermark>
     <param.email>rychlik@email.arizona.edu</param.email>
@@ -9,7 +9,7 @@
     <param.summary>Learns handwritten digits from the MNIST database</param.summary>
     <param.description>The program uses the MNIST database to learn recognition of handwritten digits. The underlying neural network is the multi-class logistic regressioin network.</param.description>
     <param.screenshot />
-    <param.version>1.0</param.version>
+    <param.version>1.1</param.version>
     <param.products.name />
     <param.products.id />
     <param.products.version />
@@ -20,7 +20,6 @@
       <param.icon />
       <param.icons />
       <param.screenshot />
-      <param.version />
       <param.products.name />
       <param.products.id />
       <param.products.version />
@@ -68,7 +67,7 @@
       <vista>false</vista>
       <linux>true</linux>
       <solaris>false</solaris>
-      <osver>5.0.6-200.fc29.x86_64</osver>
+      <osver>5.0.7-200.fc29.x86_64</osver>
       <os32>false</os32>
       <os64>true</os64>
       <arch>glnxa64</arch>
