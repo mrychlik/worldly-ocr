@@ -431,6 +431,7 @@ classdef LogisticRegression
                 
                 % Update learning state display
                 this = this.show_learning;
+                this = this.plot_confusion;
             end
         end
 
