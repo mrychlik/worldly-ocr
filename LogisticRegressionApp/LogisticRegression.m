@@ -214,8 +214,8 @@ classdef LogisticRegression
             digits = this.app.digits;
             num_digits = length(digits);
             this.app.DigitViewerPanel.AutoResizeChildren = 'off';
-            g = ceil(sqrt(num_digits));
 
+            g = ceil(sqrt(num_digits));
             for j=1:num_digits
                 Digit{j}=I(T==digits(j),:,:)./255;
                 ax = subplot(g,g,j,'Parent',this.app.DigitViewerPanel);
