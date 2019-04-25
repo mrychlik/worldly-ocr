@@ -425,7 +425,7 @@ classdef LogisticRegression
                 disp('User selected Cancel');
             else
                 this.savefile = fullfile(path,file);
-                disp(['User selected ', this.savefile]);
+                %disp(['User selected ', this.savefile]);
 
                 this.DoSave;
             end
