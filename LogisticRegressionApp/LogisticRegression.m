@@ -396,8 +396,8 @@ classdef LogisticRegression
             else
                 disp(['User selected ', fullfile(path,file)]);
             end
-            state.digits = obj.app.digits;
-            state.W = obj.W;
+            state.digits = this.app.digits;
+            state.W = this.W;
             save(fullfile(path,file), 'state');
         end
 
