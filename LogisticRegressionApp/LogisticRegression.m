@@ -389,7 +389,8 @@ classdef LogisticRegression
         function this = SaveFcn(this, event)
             disp(event);
             disp(event.Source);
-            [file, path] = uigetfile('*.mat');
+            [file, path] = uigetfile('*.mat',...
+                                     'Select a .mat file', 'Unknown.mat');
             if isequal(file,0)
                 disp('User selected Cancel');
             else
