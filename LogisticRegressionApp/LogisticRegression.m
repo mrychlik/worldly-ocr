@@ -250,20 +250,6 @@ classdef LogisticRegression
             this.T = T0(P,:)';
         end
 
-        function this = show_digits(this, I, T)
-            digits = this.app.digits;
-            num_digits = length(digits);
-            this.app.DigitViewerPanel.AutoResizeChildren = 'off';
-            g = ceil(sqrt(num_digits));
-            for j=1:num_digits
-                Digit{j}=I(T==digits(j),:,:)./255;
-                ax = subplot(g,g,j,'Parent',this.app.DigitViewerPanel);
-                imagesc(ax,squeeze(Digit{j}(1,:,:))');
-                title(ax,['Class ', num2str(j)]);
-            end
-        end
-
-
         function plot_confusion(this)
             if isempty(this.Y) 
                 return;
