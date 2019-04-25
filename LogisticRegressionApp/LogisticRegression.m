@@ -395,10 +395,11 @@ classdef LogisticRegression
                 disp('User selected Cancel');
             else
                 disp(['User selected ', fullfile(path,file)]);
+                % Write the file
+                state.digits = this.app.digits;
+                state.W = this.W;
+                save(fullfile(path,file), 'state');
             end
-            state.digits = this.app.digits;
-            state.W = this.W;
-            save(fullfile(path,file), 'state');
         end
 
     end
