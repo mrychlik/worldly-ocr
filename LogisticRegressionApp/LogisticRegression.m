@@ -215,15 +215,10 @@ classdef LogisticRegression
 
             digits = this.app.digits;
             num_digits = length(digits);
-            this.app.DigitViewerPanel.AutoResizeChildren = 'off';
 
-            % g = ceil(sqrt(num_digits));
-            % for j=1:num_digits
-            %     Digit{j}=I(T==digits(j),:,:)./255;
-            %     ax = subplot(g,g,j,'Parent',this.app.DigitViewerPanel);
-            %     imagesc(ax,squeeze(Digit{j}(1,:,:))');
-            %     title(ax,['Class ', num2str(j)]);
-            % end
+            for j=1:num_digits
+                Digit{j}=I(T==digits(j),:,:)./255;
+            end
             
 
             % Height and width of images
