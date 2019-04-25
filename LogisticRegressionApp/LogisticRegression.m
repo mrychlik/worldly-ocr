@@ -33,6 +33,7 @@ classdef LogisticRegression
         app                             % The GUI
         x_offset;                       % For motion workaround
         y_offset;                       % For motion workaround
+        savefile = [];                  % Location of save file
     end
     
     properties(Dependent)
