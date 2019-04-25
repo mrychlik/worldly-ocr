@@ -223,8 +223,6 @@ classdef LogisticRegression
                 title(ax,['Class ', num2str(j)]);
             end
 
-            this.show_digits(I, T);
-
             % Height and width of images
             this.Height = size(Digit{1},2);
             this.Width = size(Digit{1},3);
