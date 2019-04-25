@@ -446,6 +446,8 @@ classdef LogisticRegression
             saved_state.Y = this.Y;
             saved_state.X = this.X;
             saved_state.T = this.T;
+            saved_state.epoch = this.epoch;
+            saved_state.epoch_max = this.epoch_max;
 
             % Write the file
             save(this.savefile, 'saved_state');
@@ -470,6 +472,8 @@ classdef LogisticRegression
                 this.X = saved_state.X;
                 this.T = saved_state.T;
                 this.Y = saved_state.Y;
+                this.epoch = saved_state.epoch;
+                this.epoch_max = saved_state.epoch_max;
                 
                 % Update GUI
                 this = this.show_sample_digits;
