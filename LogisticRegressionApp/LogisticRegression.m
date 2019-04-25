@@ -486,6 +486,10 @@ classdef LogisticRegression
                 this = this.show_sample_digits;
                 this = this.show_learning;
                 this.plot_confusion;
+                uialert(this.app.MNISTDigitLearnerUIFigure, ...
+                        'Loaded saved state from file',...
+                        'Loaded saved state, including weights and training data.',...
+                        );
             end
         end
     end
