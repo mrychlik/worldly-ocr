@@ -451,6 +451,7 @@ classdef LogisticRegression
         % LOADFCN loads saved state from file
             [file, path] = uigetfile('*.mat',...
                                      'Select a .mat file', 'DigitLearnerData.mat');
+
             % TODO: Fix strange state in which GUI ends up after
             % UIGETFILE, by which the tracing window does not respond 
             % properly to a mouse click. The response is 
