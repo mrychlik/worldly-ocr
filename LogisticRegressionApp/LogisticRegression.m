@@ -427,6 +427,7 @@ classdef LogisticRegression
                 this.app.DigitPickerListBox.Value = saved_state.digits;
                 this.W = saved_state.W;
                 this.losses = save_state.losses;
+                this.eta = saved_state.eta;
                 this.NErrors = save_state.NErrors;
                 
                 % Update learning state display
