@@ -414,9 +414,9 @@ classdef LogisticRegression
             disp(event);
             disp(event.Source);
             if isempty(this.savefile)
-                this.SaveAsFcn(event)
+                this.SaveAsFcn(event);
             else
-                this.DoSave
+                this.DoSave;
             end
         end
 
