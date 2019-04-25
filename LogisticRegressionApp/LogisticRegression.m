@@ -429,7 +429,7 @@ classdef LogisticRegression
             if isequal(file,0)
                 disp('User selected Cancel');
             else
-                this.savefile = fullfile(path,file)
+                this.savefile = fullfile(path,file);
                 disp(['User selected ', this.savefile]);
 
                 this.DoSave
