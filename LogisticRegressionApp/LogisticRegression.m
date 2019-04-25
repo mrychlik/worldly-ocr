@@ -408,6 +408,8 @@ classdef LogisticRegression
                 saved_state.eta = this.eta;
                 saved_state.NErrors = this.NErrors;
                 saved_state.Y = this.Y;
+                saved_state.X = this.X;
+                saved_state.T = this.T;
 
                 % Write the file
                 save(fullfile(path,file), 'saved_state');
@@ -429,6 +431,8 @@ classdef LogisticRegression
                 this.losses = saved_state.losses;
                 this.eta = saved_state.eta;
                 this.NErrors = saved_state.NErrors;
+                this.X = saves_state.X;
+                this.T = saved_state.T;
                 this.Y = saved_state.Y;
                 
                 % Update learning state display
