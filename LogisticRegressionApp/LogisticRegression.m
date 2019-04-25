@@ -449,7 +449,8 @@ classdef LogisticRegression
                 this.T = saved_state.T;
                 this.Y = saved_state.Y;
                 
-                % Update learning state display
+                % Update GUI
+                this = this.show_sample_digits;
                 this = this.show_learning;
                 this.plot_confusion;
             end
