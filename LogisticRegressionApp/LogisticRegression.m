@@ -217,13 +217,15 @@ classdef LogisticRegression
             num_digits = length(digits);
             this.app.DigitViewerPanel.AutoResizeChildren = 'off';
 
-            g = ceil(sqrt(num_digits));
-            for j=1:num_digits
-                Digit{j}=I(T==digits(j),:,:)./255;
-                ax = subplot(g,g,j,'Parent',this.app.DigitViewerPanel);
-                imagesc(ax,squeeze(Digit{j}(1,:,:))');
-                title(ax,['Class ', num2str(j)]);
-            end
+            % g = ceil(sqrt(num_digits));
+            % for j=1:num_digits
+            %     Digit{j}=I(T==digits(j),:,:)./255;
+            %     ax = subplot(g,g,j,'Parent',this.app.DigitViewerPanel);
+            %     imagesc(ax,squeeze(Digit{j}(1,:,:))');
+            %     title(ax,['Class ', num2str(j)]);
+            % end
+            this = this.show_sample_digits;
+            
 
             % Height and width of images
             this.Height = size(Digit{1},2);
@@ -285,6 +287,22 @@ classdef LogisticRegression
             mean_digit = reshape(mean(this.X(:,idx),2), [this.Height,this.Width])'; 
             this.ImageHandle.CData  = round(128 * mean_digit .* this.app.hint_intensity);
         end
+
+        function this = show_sample_digits(this)
+            digits = this.app.digits;
+            num_digits = length(digits);
+
+            this.app.DigitViewerPanel.AutoResizeChildren = 'off';
+            g = ceil(sqrt(num_digits));
+            for j=1:num_digits
+                idx = find(this.T(j,:),1,'first');
+                sample_digit = reshape(this.X(:,idx), [this.Height,this.Width])'; 
+                ax = subplot(g,g,j,'Parent',this.app.DigitViewerPanel);
+                imagesc(ax, sample_digit);
+                title(ax,['Class ', num2str(j)]);
+            end
+        end
+
 
         function this = clear_digit(this)
             this.ImageHandle = image(this.app.UIAxes2, ones(this.Height,this.Width));
@@ -431,7 +449,7 @@ classdef LogisticRegression
                 this.losses = saved_state.losses;
                 this.eta = saved_state.eta;
                 this.NErrors = saved_state.NErrors;
-                this.X = saves_state.X;
+                this.X = saved_state.X;
                 this.T = saved_state.T;
                 this.Y = saved_state.Y;
                 
