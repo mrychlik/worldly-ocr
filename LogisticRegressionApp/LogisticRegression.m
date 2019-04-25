@@ -156,7 +156,15 @@ classdef LogisticRegression
 
                 % Visualize  learning
                 if mod(this.epoch, this.update_period) == 0 
-                    this = this.show_learning_progress;
+                    ax = this.app.UIAxes;
+                    semilogy(ax, this.losses,'-'), 
+                    title(ax,['Learning (epoch: ',num2str(this.epoch),')']),
+                    %disp(['Learning rate: ',num2str(this.eta)]);
+                    drawnow;
+                    % Update error stats
+                    this.app.LearningRateEditField.Value = this.eta;
+                    this.NErrors = length(find(round(this.Y)~=this.T));
+                    this.app.NumberOfErrorsEditField.Value = this.NErrors;
                 end
                 % Re-center the weights
                 if mod(this.epoch, 100) == 0 
@@ -166,20 +174,6 @@ classdef LogisticRegression
             end
             plot_confusion(this);
         end
-
-        function this = show_learning_progress(this)
-            ax = this.app.UIAxes;
-            semilogy(ax, this.losses,'-'), 
-            title(ax,['Learning (epoch: ',num2str(this.epoch),')']),
-            %disp(['Learning rate: ',num2str(this.eta)]);
-            drawnow;
-            % Update error stats
-            this.app.LearningRateEditField.Value = this.eta;
-            this.Y = softmax(this.W * this.X);
-            this.NErrors = length(find(round(this.Y)~=this.T));
-            this.app.NumberOfErrorsEditField.Value = this.NErrors;
-        end
-
 
         function digit = predict(this)
             myX = this.DigitImage';     % Rotate by 90 degrees
@@ -419,7 +413,6 @@ classdef LogisticRegression
                 this.app.DigitPickerListBox.Value = saved_state.digits;
                 this.W = saved_state.W;
                 this.losses = saved_state.losses;
-                this = this.show_learning_progress;
             end
         end
 
