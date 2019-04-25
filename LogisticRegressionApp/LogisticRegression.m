@@ -413,8 +413,9 @@ classdef LogisticRegression
                     this.W = saved_state.W;
                 else
                     uialert(this.app.MNISTDigitLearnerUIFigure, ...
-                            'Digits did not match',...
-                            'Cannot load weights. ');
+                            'Cannot load weights',...
+                            'Digits did not match, so weights cannot be loaded');
+
                 end
             end
         end
