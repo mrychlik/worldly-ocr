@@ -451,11 +451,6 @@ classdef LogisticRegression
         % LOADFCN loads saved state from file
             [file, path] = uigetfile('*.mat',...
                                      'Select a .mat file', 'DigitLearnerData.mat');
-            % Workaround to fix a problem described here:
-            % https://www.mathworks.com/matlabcentral/answers/296305-appdesigner-window-ends-up-in-background-after-uigetfile            
-            app.UIFigure.Visible = 'off';
-            app.UIFigure.Visible = 'on';
-
             if isequal(file,0)
                 disp('User selected Cancel');
             else
