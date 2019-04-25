@@ -385,5 +385,9 @@ classdef LogisticRegression
             x = (xwin - p(1)) ./ p(3) .* this.Width;
             y = (p(2) + p(4) - ywin) ./ p(4) .* this.Height;
         end
+
+        function this = SaveFcn(this, event)
+        end
+
     end
 end
