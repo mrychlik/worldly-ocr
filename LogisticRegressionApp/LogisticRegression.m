@@ -431,7 +431,7 @@ classdef LogisticRegression
                 this.NErrors = saved_state.NErrors;
                 
                 % Update learning state display
-                this.show_learning;
+                this = this.show_learning;
             end
         end
 
