@@ -408,7 +408,7 @@ classdef LogisticRegression
         function this = SaveFcn(this, event)
         %SAVEFCN saves app state to file
             if isempty(this.savefile)
-                this.SaveAsFcn(event);
+                this = this.SaveAsFcn(event);
             else
                 this.DoSave;
             end
