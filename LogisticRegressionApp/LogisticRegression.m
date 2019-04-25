@@ -396,7 +396,6 @@ classdef LogisticRegression
                 % Write the file
                 saved_state.digits = this.app.DigitPickerListBox.Value;
                 saved_state.W = this.W;
-                saved_state.losses = this.losses;
                 save(fullfile(path,file), 'saved_state');
             end
         end
@@ -411,9 +410,7 @@ classdef LogisticRegression
                 load(fullfile(path,file));
                 % Write the file
                 this.app.DigitPickerListBox.Value = saved_state.digits;
-                this = this.prepare_training_data;
                 this.W = saved_state.W;
-                this.losses = saved_state.losses;
             end
         end
 
