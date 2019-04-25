@@ -412,7 +412,9 @@ classdef LogisticRegression
                 if isequal(this.app.DigitPickerListBox.Value, saved_state.digits)
                     this.W = saved_state.W;
                 else
-                    error('Digits do not match');
+                    uialert(this.app.MNISTDigitLearnerUIFigure, ...
+                            'Digits did not match',...
+                            'Cannot load weights. ');
                 end
             end
         end
