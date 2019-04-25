@@ -466,10 +466,12 @@ classdef LogisticRegression
             if isequal(file,0)
                 disp('User selected Cancel');
             else
-                disp(['User selected ', fullfile(path,file)]);
+                set(this.app.MNISTDigitLearnerUIFigure, 'pointer', 'watch'), drawnow;
+                %disp(['User selected ', fullfile(path,file)]);
                 load(fullfile(path,file));
 
                 % Restore state
+
                 this.app.DigitPickerListBox.Value = saved_state.digits;
                 this.W = saved_state.W;
                 this.losses = saved_state.losses;
@@ -485,6 +487,7 @@ classdef LogisticRegression
                 this = this.show_sample_digits;
                 this = this.show_learning;
                 this.plot_confusion;
+                set(this.app.MNISTDigitLearnerUIFigure, 'pointer', 'arrow'), drawnow;
             end
         end
     end
