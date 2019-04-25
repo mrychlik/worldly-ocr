@@ -157,15 +157,8 @@ classdef LogisticRegression
 
                 % Visualize  learning
                 if mod(this.epoch, this.update_period) == 0 
-                    ax = this.app.UIAxes;
-                    semilogy(ax, this.losses,'-'), 
-                    title(ax,['Learning (epoch: ',num2str(this.epoch),')']),
-                    %disp(['Learning rate: ',num2str(this.eta)]);
-                    drawnow;
-                    % Update error stats
-                    this.app.LearningRateEditField.Value = this.eta;
                     this.NErrors = length(find(round(this.Y)~=this.T));
-                    this.app.NumberOfErrorsEditField.Value = this.NErrors;
+                    this = this.show_learning;
                 end
                 % Re-center the weights
                 if mod(this.epoch, 100) == 0 
@@ -175,6 +168,20 @@ classdef LogisticRegression
             end
             plot_confusion(this);
         end
+
+        function this = show_learning(this)
+            ax = this.app.UIAxes;
+            semilogy(ax, this.losses,'-'), 
+            title(ax,['Learning (epoch: ',num2str(this.epoch),')']),
+            %disp(['Learning rate: ',num2str(this.eta)]);
+            drawnow;
+            % Update error stats
+            this.app.LearningRateEditField.Value = this.eta;
+            this.NErrors = length(find(round(this.Y)~=this.T));
+            this.app.NumberOfErrorsEditField.Value = this.NErrors;
+        end
+
+
 
         function digit = predict(this)
             myX = this.DigitImage';     % Rotate by 90 degrees
