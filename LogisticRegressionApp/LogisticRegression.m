@@ -466,7 +466,6 @@ classdef LogisticRegression
             if isequal(file,0)
                 disp('User selected Cancel');
             else
-                set(this.app.MNISTDigitLearnerUIFigure, 'pointer', 'watch'), drawnow;
                 %disp(['User selected ', fullfile(path,file)]);
                 load(fullfile(path,file));
 
@@ -487,7 +486,6 @@ classdef LogisticRegression
                 this = this.show_sample_digits;
                 this = this.show_learning;
                 this.plot_confusion;
-                set(this.app.MNISTDigitLearnerUIFigure, 'pointer', 'arrow'), drawnow;
             end
         end
     end
