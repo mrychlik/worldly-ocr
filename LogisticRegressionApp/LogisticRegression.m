@@ -411,8 +411,6 @@ classdef LogisticRegression
                 % Write the file
                 if isequal(this.app.DigitPickerListBox.Value, saved_state.digits)
                     this.W = saved_state.W;
-                    this.epoch = 0;
-                    this.epoch_max = this.epoch_increment;
                 else
                     uialert(this.app.MNISTDigitLearnerUIFigure, ...
                             'Cannot load weights',...
