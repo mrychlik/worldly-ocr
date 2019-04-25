@@ -390,15 +390,29 @@ classdef LogisticRegression
             disp(event);
             disp(event.Source);
             [file, path] = uiputfile('*.mat',...
-                                     'Select a .mat file', 'Unknown.mat');
+                                     'Select a .mat file', 'DigitLearnerData.mat');
             if isequal(file,0)
                 disp('User selected Cancel');
             else
                 disp(['User selected ', fullfile(path,file)]);
                 % Write the file
-                state.digits = this.app.digits;
-                state.W = this.W;
-                save(fullfile(path,file), 'state');
+                saved_state.digits = this.app.digits;
+                saved_state.W = this.W;
+                save(fullfile(path,file), 'saved_state');
+            end
+        end
+
+        function this = LoadFcn(this, event)
+            [file, path] = uigetfile('*.mat',...
+                                     'Select a .mat file', 'DigitLearnerData.mat');
+            if isequal(file,0)
+                disp('User selected Cancel');
+            else
+                disp(['User selected ', fullfile(path,file)]);
+                load(fullfile(path,file));
+                % Write the file
+                this.app.SingleDigitPickerListBox.Value = state.digits;
+                this.W = state.W;
             end
         end
 
