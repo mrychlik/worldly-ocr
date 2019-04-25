@@ -211,7 +211,6 @@ classdef LogisticRegression
             data_file = fullfile(this.app_data_path, 'digit_data.mat');
             load(data_file);
 
-
             this.show_digits;
 
             % Height and width of images
