@@ -335,7 +335,7 @@ classdef LogisticRegression
 
                     x = round(x+0.5); y=round(y+0.5);
 
-                    if 1 <= x1 && x1 <= this.Width && 1 <= y && y <= this.Height
+                    if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         this.State = LogisticRegression.STATE_DRAWING;
 
                         % Save offsets
