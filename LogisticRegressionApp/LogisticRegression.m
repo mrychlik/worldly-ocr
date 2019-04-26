@@ -307,7 +307,7 @@ classdef LogisticRegression
 
         function this = WindowEventFcn(this, event)
         %WINDOWEVENTFCN handles digit drawing
-            if this.app.TabGroup.Selected ~= this.app.DigitTracingTab
+            if this.app.TabGroup.SelectedTab ~= this.app.DigitTracingTab
                 return;
             end
 
