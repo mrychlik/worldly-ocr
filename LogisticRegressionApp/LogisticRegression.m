@@ -388,7 +388,7 @@ classdef LogisticRegression
                     %disp(p); disp(x); disp(y);
                     x = x - this.x_offset;
                     y = y - this.y_offset;
-                    x = round(x); y = round(y);
+                    x = round(x + 0.5); y = round(y+0.5);
 
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         this.ImageHandle.CData(y,x) = 255;
