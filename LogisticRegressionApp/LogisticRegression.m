@@ -307,14 +307,18 @@ classdef LogisticRegression
 
         function this = WindowEventFcn(this, event)
         %WINDOWEVENTFCN handles digit drawing
+            if this.app.TabGroup.Selected ~= this.app.DigitTracingTab
+                return;
+            end
 
             switch event.EventName,
               case 'WindowMousePress',
-                disp(event);
-                disp(event.Source);
-                disp(event.Source.CurrentAxes);                
-                disp(event.Source.CurrentAxes.Title);                                
-                fprintf('Event: %s, State: %d\n', event.EventName, this.State);                
+                % disp(event);
+                % disp(event.Source);
+                % disp(event.Source.Parent);                
+                % disp(event.Source.CurrentAxes);                
+                % disp(['Title:', event.Source.CurrentAxes.Title.String]);
+                % fprintf('Event: %s, State: %d\n', event.EventName, this.State);                
 
 
                 %fprintf('MousePress, state %d\n', this.State);
