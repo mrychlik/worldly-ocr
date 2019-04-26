@@ -316,7 +316,7 @@ classdef LogisticRegression
                 % disp(event);
                 % disp(event.Source);
                 % disp(event.Source.Parent);                
-                % disp(event.Source.CurrentAxes);                
+                disp(event.Source.CurrentAxes.Tag);
                 % disp(['Title:', event.Source.CurrentAxes.Title.String]);
                 % fprintf('Event: %s, State: %d\n', event.EventName, this.State);                
 
