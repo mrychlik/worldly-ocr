@@ -310,7 +310,10 @@ classdef LogisticRegression
 
             switch event.EventName,
               case 'WindowMousePress',
+                disp(event);
                 disp(event.Source);
+                disp(event.Source.CurrentAxes);                
+                disp(event.Source.CurrentAxes.Title);                                
                 fprintf('Event: %s, State: %d\n', event.EventName, this.State);                
 
 
