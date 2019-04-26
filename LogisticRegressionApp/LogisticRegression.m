@@ -331,11 +331,11 @@ classdef LogisticRegression
                     % Offset from figure position to the above - part of workaround
                     x_offset = x1 - x;
                     y_offset = y1 - y;
-                    %disp(this.x_offset); disp(this.y_offset);
+                    disp(this.x_offset); disp(this.y_offset);
 
-                    x = round(x); y=round(y);
+                    x = round(x+0.5); y=round(y+0.5);
 
-                    if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
+                    if 1 <= x1 && x1 <= this.Width && 1 <= y && y <= this.Height
                         this.State = LogisticRegression.STATE_DRAWING;
 
                         % Save offsets
@@ -404,17 +404,22 @@ classdef LogisticRegression
             src = event.Source;
             cp = src.CurrentPoint;
             %disp(cp);
-            ax = src.CurrentAxes;
+            %ax = src.CurrentAxes;
+            ax = this.app.UIAxes2;
             ap = ax.Position;
             %disp(ap);
             xwin = round(cp(1,1));
             ywin = round(cp(1,2));
+
+            %disp(xwin);disp(ywin);
 
             p = this.app.UIAxes2.InnerPosition;
 
             % Translate parent coordinates to axes coordinates
             x = (xwin - p(1)) ./ p(3) .* this.Width;
             y = (p(2) + p(4) - ywin) ./ p(4) .* this.Height;
+
+            %disp(x);disp(y);
         end
 
         function this = SaveFcn(this, event)
