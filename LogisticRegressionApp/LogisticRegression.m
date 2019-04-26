@@ -314,14 +314,13 @@ classdef LogisticRegression
             switch event.EventName,
               case 'WindowMousePress',
                 % disp(event);
-                % disp(event.Source);
+                %disp(event.Source);
                 % disp(event.Source.Parent);                
-                disp(event.Source.CurrentAxes.Tag);
+                % disp(['Tag: ', event.Source.CurrentAxes.Tag ]);
                 % disp(['Title:', event.Source.CurrentAxes.Title.String]);
                 % fprintf('Event: %s, State: %d\n', event.EventName, this.State);                
+                % fprintf('MousePress, state %d\n', this.State);
 
-
-                %fprintf('MousePress, state %d\n', this.State);
                 if this.State == LogisticRegression.STATE_IDLE 
 
                     x = event.IntersectionPoint(1);
