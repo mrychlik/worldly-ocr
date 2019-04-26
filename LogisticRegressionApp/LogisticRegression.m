@@ -307,11 +307,12 @@ classdef LogisticRegression
 
         function this = WindowEventFcn(this, event)
         %WINDOWEVENTFCN handles digit drawing
-            disp(event.Source);
-            fprintf('Event: %s, State: %d\n', event.EventName, this.State);                
 
             switch event.EventName,
               case 'WindowMousePress',
+                disp(event.Source);
+                fprintf('Event: %s, State: %d\n', event.EventName, this.State);                
+
 
                 %fprintf('MousePress, state %d\n', this.State);
                 if this.State == LogisticRegression.STATE_IDLE 
