@@ -332,7 +332,7 @@ classdef LogisticRegression
                     % Offset from figure position to the above - part of workaround
                     x_offset = x1 - x;
                     y_offset = y1 - y;
-                    disp(this.x_offset); disp(this.y_offset);
+                    % disp(this.x_offset); disp(this.y_offset);
 
                     x = round(x+0.5); y=round(y+0.5);
 
