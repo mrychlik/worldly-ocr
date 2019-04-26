@@ -322,11 +322,12 @@ classdef LogisticRegression
                 % fprintf('MousePress, state %d\n', this.State);
 
                 if this.State == LogisticRegression.STATE_IDLE 
+                    [x1, y1] = this.workaround_pos(event);
 
                     x = event.IntersectionPoint(1);
                     y = event.IntersectionPoint(2);
                     %disp(x); disp(y);
-                    [x1, y1] = this.workaround_pos(event);
+
 
                     % Offset from figure position to the above - part of workaround
                     x_offset = x1 - x;
