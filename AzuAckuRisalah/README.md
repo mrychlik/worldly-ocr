@@ -19,3 +19,12 @@ implemented in MATLAB, which divides pages into lines of text.
   This step requires that the user subscribed to Google Cloud and has
   a valid API key. This is ***not a free service*** after the trial period.
 
+
+## The Language
+
+The document language is Persian (Farsi). However, Tesseract was run in both the Persian and Pashto
+mode. It should be noted that the two languages are requested in two different ways
+on Tesseract command line:
+
+   - 'tesseract -l pus ...' for Pashto
+   - 'tesseract -l fas ...' for Farsi
