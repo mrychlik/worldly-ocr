@@ -31,6 +31,9 @@ classdef LogisticRegression
 
     properties(Access=private)
         app                             % The GUI
+        x_offset;                       % For motion workaround
+        y_offset;                       % For motion workaround
+        savefile = [];                  % The path of save file
     end
     
     properties(Dependent)
@@ -70,7 +73,7 @@ classdef LogisticRegression
                 fprintf('Running %s a MATLAB app.\n',this.app_name);
                 fprintf('MATLAB version: %s\n', version);
                 apps = matlab.apputil.getInstalledAppInfo;
-                ind=find(cellfun(@(x)strcmp(x,this.app_name),{apps.name}));
+                ind = find(cellfun(@(x)strcmp(x,this.app_name), {apps.name}));
                 if isempty(ind)
                     path = '.';             % Current directory
                 else
@@ -108,6 +111,7 @@ classdef LogisticRegression
                                 'data and targets.']);
 
             assert(all(sum(this.T,1)==1),'Target rows must sum up to 1');
+
             D = size(this.X, 1);                     % Dimension of data
             N = size(this.X, 2);                     % Number of samples
             C = size(this.T, 1);                     % Number of  classes
@@ -153,16 +157,9 @@ classdef LogisticRegression
                     ./ (eps + norm(DW(:) - DW_old(:))^2 );
 
                 % Visualize  learning
-                ax = this.app.UIAxes;
                 if mod(this.epoch, this.update_period) == 0 
-                    semilogy(ax, this.losses,'-'), 
-                    title(ax,['Learning (epoch: ',num2str(this.epoch),')']),
-                    %disp(['Learning rate: ',num2str(this.eta)]);
-                    drawnow;
-                    % Update error stats
-                    this.app.LearningRateEditField.Value = this.eta;
                     this.NErrors = length(find(round(this.Y)~=this.T));
-                    this.app.NumberOfErrorsEditField.Value = this.NErrors;
+                    this = this.show_learning;
                 end
                 % Re-center the weights
                 if mod(this.epoch, 100) == 0 
@@ -172,6 +169,19 @@ classdef LogisticRegression
             end
             plot_confusion(this);
         end
+
+        function this = show_learning(this)
+            ax = this.app.UIAxes;
+            semilogy(ax, this.losses,'-'), 
+            title(ax,['Learning (epoch: ',num2str(this.epoch),')']),
+            %disp(['Learning rate: ',num2str(this.eta)]);
+            drawnow;
+            % Update error stats
+            this.app.LearningRateEditField.Value = this.eta;
+            this.app.NumberOfErrorsEditField.Value = this.NErrors;
+        end
+
+
 
         function digit = predict(this)
             myX = this.DigitImage';     % Rotate by 90 degrees
@@ -205,18 +215,12 @@ classdef LogisticRegression
             load(data_file);
 
             digits = this.app.digits;
-
-            % Digits to analyze
             num_digits = length(digits);
 
-            this.app.DigitViewerPanel.AutoResizeChildren = 'off';
-            g = ceil(sqrt(num_digits));
             for j=1:num_digits
                 Digit{j}=I(T==digits(j),:,:)./255;
-                ax = subplot(g,g,j,'Parent',this.app.DigitViewerPanel);
-                imagesc(ax,squeeze(Digit{j}(1,:,:))');
-                title(ax,['Class ', num2str(j)]);
             end
+            
 
             % Height and width of images
             this.Height = size(Digit{1},2);
@@ -238,11 +242,12 @@ classdef LogisticRegression
 
             N = size(X0,1);
             P = randperm(N);
-            % Combined labels
 
             % Permuted combined samples and labels
-            this.X = X0(P,:)';
-            this.T = T0(P,:)';
+            this.X = X0';
+            this.T = T0';
+
+            this = this.show_sample_digits;
         end
 
         function plot_confusion(this)
@@ -279,26 +284,65 @@ classdef LogisticRegression
             this.ImageHandle.CData  = round(128 * mean_digit .* this.app.hint_intensity);
         end
 
+        function this = show_sample_digits(this)
+            digits = this.app.digits;
+            num_digits = length(digits);
+
+            this.app.DigitViewerPanel.AutoResizeChildren = 'off';
+            g = ceil(sqrt(num_digits));
+            for j=1:num_digits
+                idx = find(this.T(j,:),1,'first');
+                sample_digit = reshape(this.X(:,idx), [this.Height,this.Width])'; 
+                ax = subplot(g,g,j,'Parent',this.app.DigitViewerPanel);
+                imagesc(ax, sample_digit);
+                title(ax,['Class ', num2str(j)]);
+            end
+        end
+
+
         function this = clear_digit(this)
             this.ImageHandle = image(this.app.UIAxes2, ones(this.Height,this.Width));
             colormap(this.app.UIAxes2, 1-gray);
         end
 
         function this = WindowEventFcn(this, event)
-
-            %fprintf('Event: %s, State: %d\n', event.EventName, this.State);
+        %WINDOWEVENTFCN handles digit drawing
+            if this.app.TabGroup.SelectedTab ~= this.app.DigitTracingTab
+                return;
+            end
 
             switch event.EventName,
               case 'WindowMousePress',
+                % disp(event);
+                %disp(event.Source);
+                % disp(event.Source.Parent);                
+                % disp(['Tag: ', event.Source.CurrentAxes.Tag ]);
+                % disp(['Title:', event.Source.CurrentAxes.Title.String]);
+                % fprintf('Event: %s, State: %d\n', event.EventName, this.State);                
+                % fprintf('MousePress, state %d\n', this.State);
 
-                %fprintf('MousePress, state %d\n', this.State);
                 if this.State == LogisticRegression.STATE_IDLE 
+                    [x1, y1] = this.workaround_pos(event);
 
-                    x = round(event.IntersectionPoint(1));
-                    y = round(event.IntersectionPoint(2));
+                    x = event.IntersectionPoint(1);
+                    y = event.IntersectionPoint(2);
                     %disp(x); disp(y);
-                    if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
+
+
+                    % Offset from figure position to the above - part of workaround
+                    x_offset = x1 - x;
+                    y_offset = y1 - y;
+                    % disp(this.x_offset); disp(this.y_offset);
+
+                    x = round(x+0.5); y=round(y+0.5);
+
+                    if x1 <= this.Width && 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         this.State = LogisticRegression.STATE_DRAWING;
+
+                        % Save offsets
+                        this.x_offset = x_offset;
+                        this.y_offset = y_offset;
+
                         % Blacken the hit pixel
                         this.ImageHandle.CData(y,x) = 255;
                         % Turn on the initial pixel
@@ -312,8 +356,8 @@ classdef LogisticRegression
 
                 %fprintf('MouseRelease, state %d\n', this.State);
                 if this.State == LogisticRegression.STATE_DRAWING
-                    x = round(event.IntersectionPoint(1));
-                    y = round(event.IntersectionPoint(2));
+                    x = round(event.IntersectionPoint(1) + 0.5);
+                    y = round(event.IntersectionPoint(2) + 0.5);
                     %disp(x); disp(y);
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         %fprintf('New state %d\n', this.State);
@@ -329,7 +373,7 @@ classdef LogisticRegression
                             uialert(this.app.MNISTDigitLearnerUIFigure, ...
                                     'Have you not yet trained your network?',...
                                     'Cannot predict yet.');
-                            disp(e.message);
+                            %disp(e.message);
                         end
                         this.plot_mean_digit;
                     end
@@ -341,22 +385,11 @@ classdef LogisticRegression
                 %display(event.HitObject);
                 if this.State == LogisticRegression.STATE_DRAWING
                     %fprintf('MouseMotion, state %d\n', this.State);
-                    src = event.Source;
-                    cp = src.CurrentPoint;
-                    %disp(cp);
-                    ax = src.CurrentAxes;
-                    ap = ax.Position;
-                    %disp(ap);
-                    xwin = round(cp(1,1));
-                    ywin = round(cp(1,2));
-
-                    p = this.app.UIAxes2.InnerPosition;
-
-                    % Translate parent coordinates to axes coordinates
-                    x = round( (xwin - p(1)) ./ p(3) .* this.Width );
-                    y = round( (p(2) + p(4) - ywin) ./ p(4) .* this.Height );
-
+                    [x, y] = this.workaround_pos(event);
                     %disp(p); disp(x); disp(y);
+                    x = x - this.x_offset;
+                    y = y - this.y_offset;
+                    x = round(x + 0.5); y = round(y+0.5);
 
                     if 1 <= x && x <= this.Width && 1 <= y && y <= this.Height
                         this.ImageHandle.CData(y,x) = 255;
@@ -365,6 +398,117 @@ classdef LogisticRegression
                 end
             end
             %fprintf('Exit State: %d\n', this.State);            
+        end
+
+        function [x,y] = workaround_pos(this, event)
+        %WORKOROUND_POS find Motion event point in image
+            src = event.Source;
+            cp = src.CurrentPoint;
+            %disp(cp);
+            %ax = src.CurrentAxes;
+            ax = this.app.UIAxes2;
+            ap = ax.Position;
+            %disp(ap);
+            xwin = round(cp(1,1));
+            ywin = round(cp(1,2));
+
+            %disp(xwin);disp(ywin);
+
+            p = this.app.UIAxes2.InnerPosition;
+
+            % Translate parent coordinates to axes coordinates
+            x = (xwin - p(1)) ./ p(3) .* this.Width;
+            y = (p(2) + p(4) - ywin) ./ p(4) .* this.Height;
+
+            %disp(x);disp(y);
+        end
+
+        function this = SaveFcn(this, event)
+        %SAVEFCN saves app state to file
+            if isempty(this.savefile)
+                this = this.SaveAsFcn(event);
+            else
+                this.DoSave;
+            end
+        end
+
+
+        function this = SaveAsFcn(this, event)
+        %SAVEASFCN saves app state to a selected file
+            [file, path] = uiputfile('*.mat',...
+                                     'Select a .mat file', 'DigitLearnerData.mat');
+            if isequal(file,0)
+                disp('User selected Cancel');
+            else
+                this.savefile = fullfile(path,file);
+                %disp(['User selected ', this.savefile]);
+
+                this.DoSave;
+            end
+        end
+
+        function DoSave(this)
+        % DOSAVE prepares saved state and writes to savefile
+            saved_state.digits = this.app.DigitPickerListBox.Value;
+            saved_state.W = this.W;
+            saved_state.losses = this.losses;
+            saved_state.eta = this.eta;
+            saved_state.NErrors = this.NErrors;
+            saved_state.Y = this.Y;
+            saved_state.X = this.X;
+            saved_state.T = this.T;
+            saved_state.epoch = this.epoch;
+            saved_state.epoch_max = this.epoch_max;
+
+            % Write the file
+            save(this.savefile, 'saved_state');
+            uialert(this.app.MNISTDigitLearnerUIFigure, ...
+                    ['Saved application training data and trained ' ...
+                     'weights.'],...
+                    'Saved application data to file');
+        end
+
+
+        function this = LoadFcn(this, event)
+        % LOADFCN loads saved state from file
+            [file, path] = uigetfile('*.mat',...
+                                     'Select a .mat file', 'DigitLearnerData.mat');
+
+            % TODO: Fix strange state in which GUI ends up after
+            % UIGETFILE, by which the tracing window does not respond 
+            % properly to a mouse click. The response is 
+            %   - changing cursor to 'hand'
+            %   - issuing a bunch of MouseMotion events when dragged
+
+            if isequal(file,0)
+                disp('User selected Cancel');
+            else
+                %disp(['User selected ', fullfile(path,file)]);
+                load(fullfile(path,file));
+
+                % Restore state
+
+                this.app.DigitPickerListBox.Value = saved_state.digits;
+                this.W = saved_state.W;
+                this.losses = saved_state.losses;
+                this.eta = saved_state.eta;
+                this.NErrors = saved_state.NErrors;
+                this.X = saved_state.X;
+                this.T = saved_state.T;
+                this.Y = saved_state.Y;
+                this.epoch = saved_state.epoch;
+                this.epoch_max = saved_state.epoch_max;
+                
+                % Update GUI
+                this = this.show_sample_digits;
+                this = this.show_learning;
+                this.plot_confusion;
+                uialert(this.app.MNISTDigitLearnerUIFigure, ...
+                        ['Loaded saved state, including trained weights ' ...
+                         'and training data. You can resume training ' ...
+                         'where you left off.'],...
+                        'Loaded saved state from file');
+            end
         end
     end
 end

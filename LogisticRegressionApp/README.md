@@ -5,6 +5,10 @@ MATLAB has features for creating standalone applications. Applications generated
 - Do not require MATLAB license
 - Are cross-platform. Installers can be generated for Linux, Windows and Mac OS, and
 other platforms.
+- They can run as Web applications
+
+The advantage of MATLAB is clear: the same codebase can be deployed
+in various ways, which provides extreme flexibilixy.
 
 ## The scope of the demo application
 
@@ -22,13 +26,22 @@ Due to file size limitation of 100MB, we are not able to include the
 installer on GitHub.  The installer is hosted on
 [Bitbucket](http://bitbucket.org) and can be downloaded from here:
 
-[MyAppInstaller_web.install](https://bitbucket.org/rychlikjobs/worldly-ocr-installer/src/master/LogisticRegressionApp/for_redistribution/MyAppInstaller_web.install)
+[MyAppInstaller_web.install](https://bitbucket.org/rychlikjobs/worldly-ocr-installer/src/master/LogisticRegressionApp/MyAppInstaller_web.install)
 
 Currently we provide only a Linux installer (tested on Fedora 29, but
 should work on most Linux platforms.)  It is an incomplete
 installer. It comes without the MATLAB redistributable runtime, which
 is currently a 2GB download. However, the installer will download the
 necessary files as part of the installation process.
+
+We also provide a .ctf file, which can be deployed to a MATLAB application server:
+[LogisticRegressionApp.ctf](https://bitbucket.org/rychlikjobs/worldly-ocr-installer/src/master/LogisticRegressionApp/LogisticRegressionApp.ctf)
+
+The way to set up a server is explained on the MathWorks website:
+[Web Apps](https://www.mathworks.com/help/compiler/web-apps.html)
+
+We note that the deployment amounts to copying the .ctf file to a designated folder
+on the server.
 
 ## What if I have MATLAB and do not want to install a standalone app?
 If you have MATLAB running, you can run the application within MATLAB.

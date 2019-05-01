@@ -29,16 +29,16 @@ MR/v95/runtime/glnxa64:MR/v95/bin/glnxa64:MR/v95/sys/os/glnxa64:MR/v95/sys/openg
 If it is defined, set it to the following:
 
 ${LD_LIBRARY_PATH}:MR/v95/runtime/glnxa64:MR/v95/bin/glnxa64:MR/v95/sys/os/glnxa64:MR/v95/sys/opengl/lib/glnxa64</param.target.install.notes>
-    <param.intermediate>${PROJECT_ROOT}/LogisticRegresionApp/for_testing</param.intermediate>
-    <param.files.only>${PROJECT_ROOT}/LogisticRegresionApp/for_redistribution_files_only</param.files.only>
-    <param.output>${PROJECT_ROOT}/LogisticRegresionApp/for_redistribution</param.output>
-    <param.logdir>${PROJECT_ROOT}/LogisticRegresionApp</param.logdir>
+    <param.intermediate>${PROJECT_ROOT}/LogisticRegressionApp/for_testing</param.intermediate>
+    <param.files.only>${PROJECT_ROOT}/LogisticRegressionApp/for_redistribution_files_only</param.files.only>
+    <param.output>${PROJECT_ROOT}/LogisticRegressionApp/for_redistribution</param.output>
+    <param.logdir>${PROJECT_ROOT}/LogisticRegressionApp</param.logdir>
     <param.enable.clean.build>false</param.enable.clean.build>
     <param.user.defined.mcr.options />
     <param.target.type>subtarget.standalone</param.target.type>
     <param.support.packages />
-    <param.web.mcr>false</param.web.mcr>
-    <param.package.mcr>true</param.package.mcr>
+    <param.web.mcr>true</param.web.mcr>
+    <param.package.mcr>false</param.package.mcr>
     <param.no.mcr>false</param.no.mcr>
     <param.web.mcr.name>MyAppInstaller_web</param.web.mcr.name>
     <param.package.mcr.name>MyAppInstaller_mcr</param.package.mcr.name>
@@ -68,6 +68,8 @@ ${LD_LIBRARY_PATH}:MR/v95/runtime/glnxa64:MR/v95/bin/glnxa64:MR/v95/sys/os/glnxa
       <param.user.defined.mcr.options />
       <param.target.type />
       <param.support.packages />
+      <param.web.mcr />
+      <param.package.mcr />
       <param.no.mcr />
       <param.web.mcr.name />
       <param.package.mcr.name />
@@ -92,10 +94,10 @@ ${LD_LIBRARY_PATH}:MR/v95/runtime/glnxa64:MR/v95/bin/glnxa64:MR/v95/sys/os/glnxa
       <file>${PROJECT_ROOT}/plotConfMat.m</file>
     </fileset.depfun>
     <build-deliverables>
-      <file location="${PROJECT_ROOT}/LogisticRegresionApp/for_testing" name="readme.txt" optional="true">/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/LogisticRegresionApp/for_testing/readme.txt</file>
-      <file location="${PROJECT_ROOT}/LogisticRegresionApp/for_testing" name="LogisticRegressionApp" optional="false">/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/LogisticRegresionApp/for_testing/LogisticRegressionApp</file>
-      <file location="${PROJECT_ROOT}/LogisticRegresionApp/for_testing" name="run_LogisticRegressionApp.sh" optional="false">/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/LogisticRegresionApp/for_testing/run_LogisticRegressionApp.sh</file>
-      <file location="${PROJECT_ROOT}/LogisticRegresionApp/for_testing" name="splash.png" optional="false">/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/LogisticRegresionApp/for_testing/splash.png</file>
+      <file location="${PROJECT_ROOT}/LogisticRegressionApp/for_testing" name="readme.txt" optional="true">/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/LogisticRegressionApp/for_testing/readme.txt</file>
+      <file location="${PROJECT_ROOT}/LogisticRegressionApp/for_testing" name="LogisticRegressionApp" optional="false">/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/LogisticRegressionApp/for_testing/LogisticRegressionApp</file>
+      <file location="${PROJECT_ROOT}/LogisticRegressionApp/for_testing" name="run_LogisticRegressionApp.sh" optional="false">/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/LogisticRegressionApp/for_testing/run_LogisticRegressionApp.sh</file>
+      <file location="${PROJECT_ROOT}/LogisticRegressionApp/for_testing" name="splash.png" optional="false">/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/LogisticRegressionApp/for_testing/splash.png</file>
     </build-deliverables>
     <workflow />
     <matlab>
@@ -124,7 +126,7 @@ ${LD_LIBRARY_PATH}:MR/v95/runtime/glnxa64:MR/v95/bin/glnxa64:MR/v95/sys/os/glnxa
       <vista>false</vista>
       <linux>true</linux>
       <solaris>false</solaris>
-      <osver>5.0.6-200.fc29.x86_64</osver>
+      <osver>5.0.7-200.fc29.x86_64</osver>
       <os32>false</os32>
       <os64>true</os64>
       <arch>glnxa64</arch>
