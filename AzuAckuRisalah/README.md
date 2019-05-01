@@ -29,3 +29,8 @@ line:
 
    - 'tesseract -l pus ...' for Pashto
    - 'tesseract -l fas ...' for Farsi
+
+This may require downloading the 'pus.trainddata' and 'fas.trainddata' files from
+the Tesseract site:
+
+These files should ordinarily be placed in /usr/local/share/tessdata.
