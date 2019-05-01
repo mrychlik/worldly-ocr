@@ -33,4 +33,6 @@ line:
 This may require downloading the 'pus.trainddata' and 'fas.trainddata' files from
 the Tesseract site:
 
+[tessdata_best](https://github.com/tesseract-ocr/tessdata_best)
+
 These files should ordinarily be placed in /usr/local/share/tessdata.
