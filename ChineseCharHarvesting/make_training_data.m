@@ -68,13 +68,10 @@ X=reshape(X,[max_h*max_w,N]);
 % Document variables in the .MAT file
 Doc=struct();
 Doc.Labels='Cell array of unique Unicode strings labeling character images';
-Doc.LabelIndices=['Indices of character images representing ' ...
-                  'unique labels'];
-Doc.ClassIndices='Indices of assigned classes.';
 Doc.max_h='Maximum cropped image height';
 Doc.max_w='Maximum cropped image width';
 
 % Package into a 7.3 version .MAT file, as we meet the size limit of
 % previous versions
-save('training_data.mat','X','T','Labels','LabelIndices','ClassIndices','max_h','max_w','Doc','-v7.3');
+save('training_data.mat','X','T','Labels','max_h','max_w','Doc','-v7.3');
 
