@@ -7,8 +7,10 @@ IC=vec2ind(T);                          % Convert one-hot encoded class to index
 for k=1:N; 
     clf;
     subplot(1,2,1);
-    title(sprintf('Character %d',k));
     imagesc(Xr(:,:,k));
+    title(sprintf('Character %d',k));
+    xlim([0,max_w]);
+    ylim([0,max_h]);
     subplot(1,2,2);
     title(sprintf('Class label index: %d',IC(k)));
     chi_text(C{IC(k)});
