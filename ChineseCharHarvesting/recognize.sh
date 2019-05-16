@@ -24,7 +24,7 @@ DATADIR='BlackOnWhiteChars'
 OUT='OutputsAsUTF8'
 LANG='chi_tra'
 DPI=120
-PSM=10		    #NOTE: Tesseract is run in the 'single character' mode.
+PSM=8		    #NOTE: Tesseract is run in the 'single word' mode.
 
 #LANG='chi_tra_vert'
 
