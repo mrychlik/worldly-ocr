@@ -62,7 +62,6 @@ function [str, status] = recognize(BW)
         delete(txtfname);
         try
             str = native2unicode(bytes,'UTF-8');
-            disp(str);
         catch ME
             rethrow(ME);
         end
