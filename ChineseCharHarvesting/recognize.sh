@@ -29,7 +29,7 @@ PSM=10		    #NOTE: Tesseract is run in the 'single character' mode.
 
 
 mkdir -p $OUT
-
+rm $OUT/*.txt
 for f in $DATADIR/*
 do
     tesseract --oem 1 --dpi $DPI -l $LANG --psm $PSM $f ${f%%.pbm}
