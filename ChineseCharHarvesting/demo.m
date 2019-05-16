@@ -10,7 +10,7 @@ for k=1:N;
     title('Label');
     chi_text(C{k});
     drawnow;
-    pause(5); 
+    pause(2); 
 end
 
 
