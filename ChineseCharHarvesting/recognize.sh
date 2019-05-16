@@ -26,7 +26,7 @@ LANG='chi_tra_vert'
 #LANG='chi_tra'
 DPI=300
 PSM=10	
-OEM=2
+OEM=1
 
 
 mkdir -p $OUT
