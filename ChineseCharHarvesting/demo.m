@@ -20,7 +20,7 @@ end
 function chi_text(str)
 % Draw the characters
     font='Arial';
-    fontsize=300;
+    fontsize=64;
     hold on;
     s=text(0, 0, str, ...
            'FontSize', fontsize,...
