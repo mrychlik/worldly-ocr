@@ -22,11 +22,11 @@
 
 DATADIR='BlackOnWhiteChars'
 OUT='OutputsAsUTF8'
-LANG='chi_tra'
-DPI=120
+LANG='chi_tra_vert'
+#LANG='chi_tra'
+DPI=72
 PSM=8		    #NOTE: Tesseract is run in the 'single word' mode.
 
-#LANG='chi_tra_vert'
 
 mkdir -p $OUT
 
