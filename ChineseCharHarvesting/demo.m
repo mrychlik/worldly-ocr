@@ -1,4 +1,4 @@
-if ~exists('X','var')
+if ~exist('X','var')
     load('training_data');
 end
 N=size(X,2);
