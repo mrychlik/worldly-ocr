@@ -48,10 +48,10 @@ function [str, status] = recognize(BW)
 % and STATUS is set to 0.
 % Upon failure, STATUS is non-zero.
     fname = tempname;
-    imwrite(~BW, fname, 'PBM');         % Work with negative B on white
+    imwrite(~BW, fname, 'TIFF');         % Work with negative B on white
     base = fname;
-    %lang='chi_tra';
-    lang='chi_tra_vert';
+    lang='chi_tra';
+    %lang='chi_tra_vert';
     dpi=300;
     psm=10;	
     oem=1;
