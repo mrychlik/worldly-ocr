@@ -19,4 +19,5 @@ for f=1:num_files
     fwrite(fh,chi_str,'char');
     fclose(fh);
 end
+waitbar(1, bh);
 close(bh);
