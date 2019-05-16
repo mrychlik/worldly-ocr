@@ -61,7 +61,7 @@ for char_count=1:N
     [fid, msg]=fopen(txtfile,'r');
     if ~isempty(msg)
         error(sprintf('Could not open file %s: message: %s',txtfile, msg));
-        str{char_count}='BAD';
+        str{char_count}='BDLBL';
     end
     [bytes,count]=fread(fid,'uint8');
     str{char_count}=native2unicode(bytes');
