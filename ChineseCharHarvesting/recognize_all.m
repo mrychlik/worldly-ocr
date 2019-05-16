@@ -11,7 +11,8 @@ for f=1:num_files
     fname=image_files(f).name;
     fbase=fname(1:end-4);
     fpath = fullfile(datadir, fname);
-    BW = imautocrop(imread(fpath));
+    BW0 = imautocrop(imread(fpath));
+    BW = padarray(BW0,[10 10],0,'both')
     %imshow(BW), drawnow;
     chi_str=recognize(BW);
     txt_fname=fullfile(out,[fbase,'.txt']);
