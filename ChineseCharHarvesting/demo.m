@@ -21,7 +21,7 @@ function chi_text(str)
     s=text(0, 0, str, 'FontSize', fontsize,'FontName',font,'FontUnits','Pixels');
     r=s.Extent;
     q=rectangle('Position',[r(1),r(2),r(3)-r(1),r(4)-r(2)],'LineWidth',1);
-    m=0.001;                                 % Margin
+    m=0.1;                                 % Margin
     xlim([r(1)-m,r(3)+m]);
     ylim([r(2)-m,r(4)+m]);
 end
