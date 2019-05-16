@@ -50,7 +50,8 @@ function [str, status] = recognize(BW)
     fname = tempname;
     imwrite(~BW, fname, 'PNG');         % Work with negative B on white
     base = fname;
-    lang='chi_tra';
+    %lang='chi_tra';
+    lang='chi_tra_vert';
     dpi=300;
     psm=10;	
     oem=1;
