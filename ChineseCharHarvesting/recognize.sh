@@ -25,7 +25,7 @@ OUT='OutputsAsUTF8'
 #LANG='chi_tra_vert'
 LANG='chi_tra'
 DPI=72
-PSM=13	
+PSM=2	
 
 
 mkdir -p $OUT
