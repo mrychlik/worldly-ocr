@@ -22,7 +22,7 @@ function chi_text(str)
     s=text(0, 0.015, str, ...
            'FontSize', fontsize,...
            'FontName',font)
-    s.Units = 'normalized';
+    set(s,'Units', 'normalized');
     r=s.Extent;
     q=rectangle('Position',[r(1),r(2),r(3)-r(1),r(4)-r(2)],'LineWidth',3);
     m=0.001;                            % Margin
