@@ -2,13 +2,13 @@ if ~exist('X','var')
     load('training_data');
 end
 N=size(X,2);
-X=reshape(X,[max_h,max_w,N]);
+Xr=reshape(X,[max_h,max_w,N]);
 IC=vec2ind(T);                          % Convert one-hot encoded class to index
 for k=1:N; 
     clf;
     subplot(1,2,1);
     title(sprintf('Character %d',k));
-    imagesc(X(:,:,k));
+    imagesc(Xr(:,:,k));
     subplot(1,2,2);
     title(sprintf('Class label index: %d',IC(k)));
     chi_text(C{IC(k)});
