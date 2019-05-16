@@ -10,7 +10,7 @@ for f=1:num_files
     fbase=fname(1:end-4);
     fpath = fullfile(datadir, fname);
     BW = imread(fpath);
-    imshow(BW), drawnow;
+    %imshow(BW), drawnow;
     chi_str=recognize(BW);
     txt_fname=fullfile(out,[fbase,'.txt']);
     fh = fopen(txt_fname,'wb+');
