@@ -25,14 +25,13 @@ OUT='OutputsAsUTF8'
 #LANG='chi_tra_vert'
 LANG='chi_tra'
 DPI=72
-PSM=10		    #NOTE: Tesseract is run in the 'single character' mode.
+PSM=13	
 
 
 mkdir -p $OUT
 rm $OUT/char*.txt
 for f in $DATADIR/*
 do
-    #tesseract --oem 1 --dpi $DPI -l $LANG --psm $PSM $f ${f%%.pbm}
-    tesseract --oem 1 -l $LANG --psm $PSM $f ${f%%.pbm}    
+    tesseract --oem 1 --dpi $DPI -l $LANG --psm $PSM $f ${f%%.pbm}
     mv ${f%%.pbm}.txt $OUT
 done
