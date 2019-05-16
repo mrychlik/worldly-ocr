@@ -24,7 +24,7 @@ DATADIR='BlackOnWhiteChars'
 OUT='OutputsAsUTF8'
 #LANG='chi_tra_vert'
 LANG='chi_tra'
-DPI=120
+DPI=300
 PSM=10	
 
 
