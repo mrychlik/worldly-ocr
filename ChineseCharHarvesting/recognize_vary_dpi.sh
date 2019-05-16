@@ -31,7 +31,7 @@ OEM=1
 mkdir -p $OUT
 f=$DATADIR/char00002.pbm
 rm $OUT/char*.txt
-
+cp $f $OUT
 for ((DPI=70; $DPI<=300; DPI=$DPI+10))
 do
     echo "DPI=$DPI"
