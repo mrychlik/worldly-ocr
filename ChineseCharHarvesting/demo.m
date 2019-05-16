@@ -31,7 +31,7 @@ function chi_text(str)
            'FontName',font);
     r=s.Extent;
     q=rectangle('Position',[r(1),r(2),r(3)-r(1),r(4)-r(2)],'LineWidth',3);
-    m=0.1;                            % Margin
+    m=0;                                % Margin
     xlim([r(1)-m,r(3)+m]);
     ylim([r(2)-m,r(4)+m]);
     hold off;
