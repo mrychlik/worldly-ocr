@@ -1,5 +1,5 @@
-datadir='BlackOnWhiteChars'
-out='OutputsAsUTF8'
+datadir='BlackOnWhiteChars';
+out='OutputsAsUTF8';
 image_files = dir(fullfile(datadir,'*.pbm'));
 num_files = numel(image_files);
 
