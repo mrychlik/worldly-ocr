@@ -23,10 +23,8 @@ function chi_text(str)
            'FontSize', fontsize,...
            'FontName',font);
     r=s.Extent;
-    %q=rectangle('Position',[r(1),r(2),r(3)-r(1),r(4)-r(2)],'LineWidth',1);
-    m=0.1;                                 % Margin
-                                           % xlim([r(1)-m,r(3)+m]);
-                                           % ylim([r(2)-m,r(4)+m]);
-    xlim([0,0.2]);
-    ylim([0,0.03]);
+    q=rectangle('Position',[r(1),r(2),r(3)-r(1),r(4)-r(2)],'LineWidth',1);
+    m=0.001;                            % Margin
+    xlim([r(1)-m,r(3)+m]);
+    ylim([r(2)-m,r(4)+m]);
 end
