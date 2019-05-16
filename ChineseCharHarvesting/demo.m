@@ -9,7 +9,7 @@ for k=1:N;
     title(sprintf('Character %d',k));
     subplot(1,2,2);
     title(sprintf('Label: %s',C{IC(k)}));
-    chi_text(C{k});
+    chi_text(C{IC(k)});
     drawnow;
     pause(2); 
 end
