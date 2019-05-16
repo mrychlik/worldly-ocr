@@ -55,17 +55,17 @@ end
 close(bh);
 
 % Find the unique labels
-[C,IA,IC] = unique(str);
+[Labels,LabelIndices,ClassIndices] = unique(str);
 
 % Number of classes
-NC=numel(IA);
+NumberOfClasses=numel(LabelIndices);
 % One-hot encoding of the classes
-T=ind2vec(IC',NC);
+T=ind2vec(ClassIndices',NumberOfClasses);
 
 % Make a standard training dataset, with linearized images as columns
 X=reshape(X,[max_h*max_w,N]);
 
 % Package into a 7.3 version .MAT file, as we meet the size limit of
 % previous versions
-save('training_data.mat','X','T','C','max_h','max_w','-v7.3');
+save('training_data.mat','X','T','Labels','LabelIndices','ClassIndices','max_h','max_w','-v7.3');
 
