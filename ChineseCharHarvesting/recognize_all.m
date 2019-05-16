@@ -4,6 +4,7 @@ image_files = dir(fullfile(datadir,'*.pbm'));
 num_files = numel(image_files);
 
 for f=1:num_files
+    disp(f);
     fname=image_files(f).name;
     fbase=fname(1:end-4);
     fpath = fullfile(datadir, fname);
