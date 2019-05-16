@@ -65,7 +65,15 @@ T=ind2vec(ClassIndices',NumberOfClasses);
 % Make a standard training dataset, with linearized images as columns
 X=reshape(X,[max_h*max_w,N]);
 
+% Document variables in the .MAT file
+Doc=struct();
+Doc.Labels='Labels - cell array of unique Unicode strings labeling character images';
+Doc.LabelIndices=['LabelIndices - indices of character images representing ' ...
+                  'unique labels'];
+
+Doc.ClassIndices='ClassIndices - indices of classes';
+
 % Package into a 7.3 version .MAT file, as we meet the size limit of
 % previous versions
-save('training_data.mat','X','T','Labels','LabelIndices','ClassIndices','max_h','max_w','-v7.3');
+save('training_data.mat','X','T','Labels','LabelIndices','ClassIndices','max_h','max_w','Doc','-v7.3');
 
