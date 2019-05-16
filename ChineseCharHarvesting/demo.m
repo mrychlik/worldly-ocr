@@ -7,11 +7,11 @@ for k=1:N;
     subplot(1,2,1);
     imagesc(X(:,:,k));
     title(sprintf('Character %d',k));
-    pbaspect([1,1,1]);
+    %pbaspect([1,1,1]);
     subplot(1,2,2);
     chi_text(C{IC(k)});
     title(sprintf('Class label index: %d',IC(k)));
-    pbaspect([1,1,1]);
+    %pbaspect([1,1,1]);
     drawnow;
     pause(2); 
 end
