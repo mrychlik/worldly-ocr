@@ -28,7 +28,8 @@ max_w = max(widths);
 % Identify outliers
 mean_w = mean(widths);
 sigma_w = std(widths);
-O=widths(widths > mean_w+3*sigma_w);
+IDX = widths > mean_w+3*sigma_w
+O = widths(IDX);
 
 % Make centered images of the characters, and wrap in a 3D array
 X=zeros(max_h,max_w,N);
