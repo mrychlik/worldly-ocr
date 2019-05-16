@@ -31,6 +31,8 @@ Outliers = ( widths >= floor(mean_w + 3 * sigma_w) );
 max_h = max(heights);
 max_w = max(widths(~Outliers));
 
+Outliers=find(Outliers);
+
 % Make centered images of the characters, and wrap in a 3D array
 X=zeros(max_h,max_w,N);
 bh=waitbar(0,'Padding characters to common size...');
