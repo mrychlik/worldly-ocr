@@ -6,7 +6,8 @@ num_files = numel(image_files);
 bh=waitbar(0,['Recognizing ', num2str(num_files), ' characters...']);
 for f=1:num_files
     if(mod(f,100)==0)
-        waitbar(f/num_files, bh);
+        frac=f/num_files;
+        waitbar(frac, bh,['Recognition ', num2str(frac*100),'% done...']);
     end
     fname=image_files(f).name;
     fbase=fname(1:end-4);
@@ -20,5 +21,5 @@ for f=1:num_files
     fwrite(fh,chi_str,'char');
     fclose(fh);
 end
-waitbar(1, bh);
+waitbar(1, bh,'Done');
 close(bh);
