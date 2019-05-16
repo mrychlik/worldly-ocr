@@ -32,6 +32,7 @@ mkdir -p $OUT
 rm $OUT/char*.txt
 for f in $DATADIR/*
 do
-    tesseract --oem 1 --dpi $DPI -l $LANG --psm $PSM $f ${f%%.pbm}
+    #tesseract --oem 1 --dpi $DPI -l $LANG --psm $PSM $f ${f%%.pbm}
+    tesseract --oem 1 -l $LANG --psm $PSM $f ${f%%.pbm}    
     mv ${f%%.pbm}.txt $OUT
 done
