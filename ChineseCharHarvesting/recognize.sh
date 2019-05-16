@@ -23,7 +23,7 @@
 
 DATADIR='BlackOnWhiteChars'
 OUT='OutputsAsUTF8'
-LANG='chi_tra'
+LANG='chi_tra_vert'
 DPI=120
 PSM=10
 #LANG='chi_tra_vert'
