@@ -1,7 +1,7 @@
 load('training_data');
 N=size(X,2);
 X=reshape(X,[max_h,max_w,N]);
-IC=vec2ind(T);                          % Reverse hot-encoded class to index
+IC=vec2ind(T);                          % Convert one-hot encoded class to index
 for k=1:N; 
     clf;
     subplot(1,2,1);
