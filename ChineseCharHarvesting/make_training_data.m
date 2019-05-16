@@ -37,7 +37,6 @@ Outliers=find(Outliers);
 X=zeros(max_h,max_w,N);
 bh=waitbar(0,'Padding characters to common size...');
 for char_count=1:N
-    disp(char_count);
     if find(char_count==Outliers,1)
         continue;
     end
