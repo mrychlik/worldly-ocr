@@ -26,12 +26,13 @@ LANG='chi_tra_vert'
 #LANG='chi_tra'
 DPI=300
 PSM=10	
+OEM=0
 
 
 mkdir -p $OUT
 rm $OUT/char*.txt
 for f in $DATADIR/*
 do
-    tesseract --oem 1 --dpi $DPI -l $LANG --psm $PSM $f ${f%%.pbm}
+    tesseract --oem $OEM --dpi $DPI -l $LANG --psm $PSM $f ${f%%.pbm}
     mv ${f%%.pbm}.txt $OUT
 done
