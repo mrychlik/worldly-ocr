@@ -7,7 +7,7 @@ bh=waitbar(0,['Recognizing ', num2str(num_files), ' characters...']);
 for f=1:num_files
     if(mod(f,10)==0)
         frac=f/num_files;
-        waitbar(frac, bh,['Recognition ', num2str(frac*100),'% done...']);
+        waitbar(frac, bh,['Recognition ', num2str(round(frac*100,3)),'% done...']);
     end
     fname=image_files(f).name;
     fbase=fname(1:end-4);
