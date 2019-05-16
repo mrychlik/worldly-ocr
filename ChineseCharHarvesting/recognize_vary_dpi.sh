@@ -1,6 +1,8 @@
 #!/bin/bash
-# Use tesseract to OCR the images in Ligatures.
-# The output is in OutputAsWord
+# Vary DPI in Tesseract to see if there is a response, on selected Chinese character
+#
+# Rationale: Some people claim sensitivity to this parameter; on this content there
+# seems to be no response.
 #
 # The meaning of the parameter '--psm' to Tesseract
 #
@@ -24,7 +26,7 @@ DATADIR='BlackOnWhiteChars'
 OUT='OutputVariableDpi'
 LANG='chi_tra_vert'
 #LANG='chi_tra'
-PSM=10	
+PSM=13	
 OEM=1
 
 
