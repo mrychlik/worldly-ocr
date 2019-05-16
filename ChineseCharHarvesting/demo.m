@@ -12,8 +12,8 @@ for k=1:N;
     xlim([0,max_w]);
     ylim([0,max_h]);
     subplot(1,2,2);
-    title(sprintf('Class label index: %d',IC(k)));
     chi_text(C{IC(k)});
+    title(sprintf('Class label index: %d',IC(k)));
     drawnow;
     pause(2); 
 end
