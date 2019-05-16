@@ -7,9 +7,11 @@ for k=1:N;
     subplot(1,2,1);
     imagesc(X(:,:,k));
     title(sprintf('Character %d',k));
+    pbaspect([1,1,1]);
     subplot(1,2,2);
     title(sprintf('Class label index: %d',IC(k)));
     chi_text(C{IC(k)});
+    pbaspect([1,1,1]);
     drawnow;
     pause(2); 
 end
@@ -23,7 +25,7 @@ function chi_text(str)
     s=text(0, 0, str, ...
            'FontSize', fontsize,...
            'FontName',font,...
-           'Units', 'pixels',...
+           'Units', 'Pixels',...
            'FontUnits','Pixels');
     r=s.Extent;
     q=rectangle('Position',[r(1),r(2),r(3)-r(1),r(4)-r(2)],'LineWidth',3);
