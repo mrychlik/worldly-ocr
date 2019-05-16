@@ -37,9 +37,9 @@ function chi_text(str)
     hold off;
 end
 
-function [str, status] = recognize(this, BW)
+function [str, status] = recognize(BW)
 %RECOGNIZE Perform OCR on a BW image.
-% [STR, STATUS] = RECOGNIZE(THIS, BW) takes a binary image BW and
+% [STR, STATUS] = RECOGNIZE(BW) takes a binary image BW and
 % performs OCR on it. Upon success, as string STR is returned
 % and STATUS is set to 0.
 % Upon failure, STATUS is non-zero.
