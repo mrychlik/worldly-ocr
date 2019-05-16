@@ -8,7 +8,7 @@ for k=1:N;
     imagesc(X(:,:,k));
     title(sprintf('Character %d',k));
     subplot(1,2,2);
-    title(sprintf('Class label: %d',IC(k)));
+    title(sprintf('Class label index: %d',IC(k)));
     chi_text(C{IC(k)});
     drawnow;
     pause(2); 
