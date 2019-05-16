@@ -1,13 +1,14 @@
 load('training_data');
 N=size(X,2);
 X=reshape(X,[max_h,max_w,N]);
+IC=vec2ind(T);
 for k=1:N; 
     clf;
     subplot(1,2,1);
     imagesc(X(:,:,k));
     title(sprintf('Character %d',k));
     subplot(1,2,2);
-    title(sprintf('Label: %s',C{k}));
+    title(sprintf('Label: %s',C{IC(k)}));
     chi_text(C{k});
     drawnow;
     pause(2); 
