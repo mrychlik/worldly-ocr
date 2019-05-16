@@ -5,7 +5,9 @@ num_files = numel(image_files);
 
 bh=waitbar(0,['Recognizing ', num2str(num_files), ' characters...']);
 for f=1:num_files
-    waitbar(f/num_files, bh);
+    if(mod(f,100)==0)
+        waitbar(f/num_files, bh);
+    end
     fname=image_files(f).name;
     fbase=fname(1:end-4);
     fpath = fullfile(datadir, fname);
