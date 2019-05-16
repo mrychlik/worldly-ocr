@@ -5,13 +5,13 @@ IC=vec2ind(T);                          % Convert one-hot encoded class to index
 for k=1:N; 
     clf;
     subplot(1,2,1);
+    pbaspect([1,1,1]);
     imagesc(X(:,:,k));
     title(sprintf('Character %d',k));
-    pbaspect([1,1,1]);
     subplot(1,2,2);
-    title(sprintf('Class label index: %d',IC(k)));
-    chi_text(C{IC(k)});
     pbaspect([1,1,1]);
+    chi_text(C{IC(k)});
+    title(sprintf('Class label index: %d',IC(k)));
     drawnow;
     pause(2); 
 end
