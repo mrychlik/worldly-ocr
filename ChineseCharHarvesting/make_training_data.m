@@ -68,8 +68,8 @@ X=reshape(X,[max_h*max_w,N]);
 % Document variables in the .MAT file
 Doc=struct();
 Doc.Labels='Cell array of unique Unicode strings labeling character images';
-Doc.max_h='Maximum cropped image height';
-Doc.max_w='Maximum cropped image width';
+Doc.Height='Maximum cropped image height';
+Doc.Width='Maximum cropped image width';
 
 % Package into a 7.3 version .MAT file, as we meet the size limit of
 % previous versions
