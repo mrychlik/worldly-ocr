@@ -1,4 +1,6 @@
-load('training_data');
+if ~exists('X','var')
+    load('training_data');
+end
 N=size(X,2);
 X=reshape(X,[max_h,max_w,N]);
 IC=vec2ind(T);                          % Convert one-hot encoded class to index
