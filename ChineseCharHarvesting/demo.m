@@ -17,7 +17,7 @@ for k=1:N;
     chi_text(chi_str);
     title(sprintf('Label %s', chi_str));
     drawnow;
-    pause(2); 
+    pause(1); 
 end
 
 
