@@ -3,7 +3,7 @@ out='OutputsAsUTF8';
 image_files = dir(fullfile(datadir,'*.pbm'));
 num_files = numel(image_files);
 
-bh=waitbar(0,'Recognizing',num2str(num_files), characters...');
+bh=waitbar(0,'Recognizing',num2str(num_files), 'characters...');
 for f=1:num_files
     waitbar(f/num_files, bh);
     fname=image_files(f).name;
