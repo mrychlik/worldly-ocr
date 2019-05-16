@@ -51,7 +51,7 @@ function [str, status] = recognize(BW)
     imwrite(BW, fname, 'PNG');
     base = fname;
     lang='chi_tra';
-    dpi=70;
+    dpi=120;
     psm=10;	
     oem=1;
     cmd = sprintf('tesseract --psm %d --dpi %d, -l %s %s %s', ...
