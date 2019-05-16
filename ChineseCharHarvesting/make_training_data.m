@@ -3,10 +3,9 @@ txt_dir='OutputsAsUTF8';
 
 % Compuute common bounding box
 N=16002;
-O=[15986,15993];                                % The outliers
-
 BW=cell(N,1);
-max_h = 0; max_w = 0;
+
+heights = zeros(N,1); widths=zeros(N,1);
 bh=waitbar(0,'Computing common bounding box size...');
 for char_count=1:N
     if find(char_count==O,1)
@@ -18,10 +17,18 @@ for char_count=1:N
     %imagesc(BW{char_count}),drawnow;
     %BW{char_count}=imautocrop(BW{char_count});
     [h,w]=size(BW{char_count});
-    max_h = max(h, max_h);
-    max_w = max(w, max_w);    
+    heights(char_count) = h;
+    widths(char_count) = w;
 end
 close(bh);
+
+max_h = max(heights);
+max_w = max(widths);
+
+mean_w = mean(widths);
+sigma_w = std(widths);
+
+O=widths(widths > mean_w+3*sigma_w);
 
 % Make centered images of the characters, and wrap in a 3D array
 X=zeros(max_h,max_w,N);
