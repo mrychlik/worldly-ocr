@@ -52,6 +52,10 @@ close(bh);
 str=cell(N,1);
 bh=waitbar(0,'Reading labels...');
 for char_count=1:N
+    if find(char_count==Outliers,1)
+        str{char_count}='OUTLR';
+        continue;
+    end
     waitbar(char_count/N,bh);
     txtfile=fullfile(txt_dir,sprintf('char%05d.txt', char_count));
     [fid, msg]=fopen(txtfile,'r');
