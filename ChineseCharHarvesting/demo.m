@@ -18,7 +18,7 @@ function chi_text(str)
 % Draw the characters
     font='Arial';
     fontsize=72;
-    s=text(0, 0, str, 'FontSize', fontsize'FontName',font,'FontUnits','Pixels');
+    s=text(0, 0, str, 'FontSize', fontsize,'FontName',font,'FontUnits','Pixels');
     r=s.Extent;
     q=rectangle('Position',[r(1),r(2),r(3)-r(1),r(4)-r(2)],'LineWidth',1);
     m=0.02;                                 % Margin
