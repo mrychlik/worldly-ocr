@@ -29,13 +29,14 @@ sigma_w = std(widths);
 IDX = ( widths > mean_w + 3 * sigma_w );
 O = widths(IDX);
 
-max_h = max(heights(~IDX));
+max_h = max(heights);
 max_w = max(widths(~IDX));
 
 % Make centered images of the characters, and wrap in a 3D array
 X=zeros(max_h,max_w,N);
 bh=waitbar(0,'Padding characters to common size...');
 for char_count=1:N
+    disp(char_count);
     if find(char_count==O,1)
         continue;
     end
