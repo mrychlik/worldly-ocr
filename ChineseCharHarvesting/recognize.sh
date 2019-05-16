@@ -1,7 +1,6 @@
 #!/bin/bash
 # Use tesseract to OCR the images in Ligatures.
 # The output is in OutputAsWord
-# NOTE: Tesseract is run in the 'single word' mode.
 #
 # The meaning of the parameter '--psm' to Tesseract
 #
@@ -25,7 +24,8 @@ DATADIR='BlackOnWhiteChars'
 OUT='OutputsAsUTF8'
 LANG='chi_tra'
 DPI=120
-PSM=10
+PSM=10		    #NOTE: Tesseract is run in the 'single character' mode.
+
 #LANG='chi_tra_vert'
 
 mkdir -p $OUT
