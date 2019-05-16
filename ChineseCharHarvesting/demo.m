@@ -51,7 +51,7 @@ function [str, status] = recognize(BW)
     imwrite(~BW, fname, 'PNG');         % Work with negative B on white
     base = fname;
     lang='chi_tra';
-    dpi=120;
+    dpi=300;
     psm=10;	
     oem=1;
     cmd = sprintf('tesseract --psm %d --dpi %d, -l %s %s %s', ...
