@@ -67,5 +67,5 @@ X=reshape(X,[max_h*max_w,N]);
 
 % Package into a 7.3 version .MAT file, as we meet the size limit of
 % previous versions
-save('training_data.mat','X','T','max_h','max_w','-v7.3');
+save('training_data.mat','X','T','C','max_h','max_w','-v7.3');
 
