@@ -13,8 +13,8 @@ function [Y,NErrors,W] = train_patternnet(X,T,num_epochs,minibatch_size,eta,W)
     D = size(X, 1);                     % Dimension of data
     N = size(X, 2);                     % Number of samples
     C = size(T, 1);                     % Number of  classes
-    if nargin < 5
-        W = alpha * rand(C,D);              % Starting weihgts
+    if nargin < 6
+        W = alpha * rand(C,D);          % Starting weihgts
     else
         assert(all(size(W)==[C,D]));
     end
