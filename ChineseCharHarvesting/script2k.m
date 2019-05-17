@@ -1,7 +1,7 @@
 %
 % This script learns 2000 Chinese characters to recognize perfectly
 %
-[X,T] = prepare_training_data;
+[X,T,Height,Width] = prepare_training_data;
 
 % Matlab expects samples in columns and T to be a row vector
 
