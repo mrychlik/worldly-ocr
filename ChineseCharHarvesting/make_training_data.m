@@ -8,9 +8,6 @@ BW=cell(N,1);
 heights = zeros(N,1); widths=zeros(N,1);
 bh=waitbar(0,'Computing common bounding box size...');
 for char_count=1:N
-    if find(char_count==O,1)
-        continue;
-    end
     waitbar(char_count/N,bh);
     imfile=fullfile(bw_chardir,sprintf('char%05d.pbm', char_count));
     BW{char_count}=imread(imfile);
