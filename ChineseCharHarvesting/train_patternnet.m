@@ -1,10 +1,9 @@
-function [Y,NErrors,W] = train_patternnet(X, T, num_epochs, minibatch_size, W)
+function [Y,NErrors,W] = train_patternnet(X,T,num_epochs,minibatch_size,eta,W)
 % [Y,NERRORS,W] = TRAIN_PATTERNNET(X, T, NUM_EPOCHS, MINIBATCH_SIZE) trains
 % a pattennet with H hidden neurons.
     if nargin < 3; num_epochs = 10000; end
     if nargin < 4; minibatch_size = 128; end
-
-    eta = 2e-2;                         % Fixed learning rate
+    if nargin < 5; eta = 2e-2; end;     % Fixed learning rate
     alpha = 1e-1;                       % Regularizer constant
 
     assert(size(X,2) == size(T,2), ['Inconsistent number of samples in ' ...
