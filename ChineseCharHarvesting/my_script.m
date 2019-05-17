@@ -6,7 +6,7 @@
 X = [ones([1,size(X,2)]);X];
 
 % Pick a subsample
-N=2000;
+N=size(X,2);
 X=X(:,1:N);
 T=T(:,1:N);
 
@@ -20,4 +20,5 @@ for j=1:10
     [Y, NErrors, W] = train_patternnet(X,T,num_epochs,minibatch_size,W);
 end
 
-NErrors
+disp(NErrors);
+save('best_weights','W');
