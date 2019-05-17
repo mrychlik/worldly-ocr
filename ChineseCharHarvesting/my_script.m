@@ -13,7 +13,7 @@ T=T(:,1:N);
 
 % Straight from PATTERNNET help page
 num_epochs = 100000;
-minibatch_size = 512;
+minibatch_size = 1024;
 [Y, NErrors, W] = train_patternnet(X,T,num_epochs,minibatch_size);
 
 for j=1:10
