@@ -25,3 +25,4 @@ for j=1:10
 end
 
 NErrors
+save('best_weights_2k','W');
