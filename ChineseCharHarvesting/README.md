@@ -24,7 +24,7 @@ Every row of the weight matrix (i.e. of the image above)
 is an image. Making it into a frame of a movie results
 in this video:
 
-[![The "Catscan" Video](http://img.youtube.com/vi/tEyRGVuEgh4/0.jpg)](http://www.youtube.com/watch?v=tEyRGVuEgh4?autoplay=1)
+![The "Catscan" Video](http://img.youtube.com/vi/tEyRGVuEgh4/0.jpg)](http://www.youtube.com/watch?v=tEyRGVuEgh4?autoplay=1)
 
 ## Research Problem
 Classify characters using unsupervised learning
