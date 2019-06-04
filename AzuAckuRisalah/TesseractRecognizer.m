@@ -73,6 +73,8 @@ classdef TesseractRecognizer
                 catch ME
                     rethrow(ME);
                 end
+            else
+                error('A call to tesseract failed. Is it installed?');
             end
         end
     end
