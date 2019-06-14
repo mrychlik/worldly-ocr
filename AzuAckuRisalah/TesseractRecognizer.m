@@ -32,7 +32,7 @@ classdef TesseractRecognizer
             if nargin < 2; language = 'pus'; end % Default is Pashto
             assert(psm >=0 && psm <= 13);
             this.psm = psm;
-            this.locate_tesseract_exec;
+            TesseractRecognizer.locate_tesseract_exec;
         end
     end
 
