@@ -62,7 +62,7 @@ classdef TesseractRecognizer
             imwrite(BW, fname, 'PNG');
             base = fname;
             cmd = sprintf('%s --psm %d -l pus %s %s', this.psm, ...
-                          tesseract_path, fname, base);
+                          this.tesseract_path, fname, base);
             [status,result] = system(cmd);
             delete(fname);
             if status == 0
