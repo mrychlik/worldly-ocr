@@ -1,6 +1,7 @@
 function [BW] = BWThreshold(I,Type)
-%% This is function to use change a color image to grayscale first,
-%%  then using different methods based on Type, it changes the figure I to grayscale and then to Balck and White
+% This is function to use change a color image to grayscale first, then
+%  using different methods based on Type, it changes the figure I to
+%  grayscale and then to Balck and White
     Igray=rgb2gray(I);
     switch Type
       case 1 %Threshold is fixed at 0.2
