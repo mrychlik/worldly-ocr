@@ -53,7 +53,7 @@ classdef TesseractRecognizer
 
         function locate_tesseract_exec
         % LOCATE_TESSERACT_EXEC sets the path of the Tesseract program             
-        % TODO: Implement this.
+        % TODO: Implement this carefully.
             if ismac
                 % Code to run on Mac platform
             elseif isunix
