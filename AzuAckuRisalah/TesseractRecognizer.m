@@ -59,16 +59,16 @@ classdef TesseractRecognizer
                 % Code to run on Linux platform
                 [status,result] = system('which tesseract');
                 if status == 0
-                    disp(sprintf('Found tesseract: %s.\n', result));
+                    fprintf('Found tesseract: %s.\n', result);
                     this.tesseract_path = result;
                 else
-                    disp(sprintf('Tesseract is not in the $PATH.'));
+                    fprintf('Tesseract is not in the $PATH.');
                 end
             elseif isunix
                 % Code to run on Linux platform
                 [status,result] = system('which tesseract');
                 if status == 0
-                    disp(sprintf('Found tesseract: %s.\n', result));
+                    fprintf('Found tesseract: %s.\n', result);
                     this.tesseract_path = result;
                 else
                     disp(sprintf('Tesseract is not in the $PATH.'));
@@ -78,7 +78,7 @@ classdef TesseractRecognizer
                 % Code to run on Linux platform
                 [status,result] = system('where tesseract');
                 if status == 0
-                    disp(sprintf('Found tesseract: %s.\n', result));
+                    fprintf('Found tesseract: %s.\n', result);
                     this.tesseract_path = result;
                 else
                     disp(sprintf('Tesseract is not in the $PATH.'));
