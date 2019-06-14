@@ -71,7 +71,7 @@ classdef TesseractRecognizer
                     fprintf('Found tesseract: %s.\n', result);
                     this.tesseract_path = result;
                 else
-                    disp(sprintf('Tesseract is not in the $PATH.'));
+                    fprintf('Tesseract is not in the $PATH.');
                 end
             elseif ispc
                 % Code to run on Windows platform
@@ -81,7 +81,7 @@ classdef TesseractRecognizer
                     fprintf('Found tesseract: %s.\n', result);
                     this.tesseract_path = result;
                 else
-                    disp(sprintf('Tesseract is not in the $PATH.'));
+                    fprintf('Tesseract is not in the $PATH.');
                 end
             else
                 disp('Platform not supported')
