@@ -22,6 +22,10 @@ classdef TesseractRecognizer
         language;
     end
 
+    properties(Access = private)
+        tesseract_path = 'tesseract';   % The path of Tesseract executable
+    end
+
     methods
         function this = TesseractRecognizer(psm, language)
             if nargin < 1; psm = 7; end % Default is line
@@ -57,8 +61,8 @@ classdef TesseractRecognizer
             fname = tempname;
             imwrite(BW, fname, 'PNG');
             base = fname;
-            cmd = sprintf('tesseract --psm %d -l pus %s %s', this.psm, ...
-                          fname, base);
+            cmd = sprintf('%s --psm %d -l pus %s %s', this.psm, ...
+                          tesseract_path, fname, base);
             [status,result] = system(cmd);
             delete(fname);
             if status == 0
