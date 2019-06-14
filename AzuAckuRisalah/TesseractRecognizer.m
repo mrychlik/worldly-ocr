@@ -32,6 +32,7 @@ classdef TesseractRecognizer
             if nargin < 2; language = 'pus'; end % Default is Pashto
             assert(psm >=0 && psm <= 13);
             this.psm = psm;
+            this.locate_tesseract_exec;
         end
     end
 
@@ -49,6 +50,12 @@ classdef TesseractRecognizer
             BBox=[min(J),min(I),range(J),range(I)];
             BWCropped=imcrop(BW,BBox);
         end
+
+        function locate_tesseract_exec
+        % LOCATE_TESSERACT_EXEC sets the path of the Tesseract program             
+        % TODO: Implement this.
+        end
+
     end
 
     methods
