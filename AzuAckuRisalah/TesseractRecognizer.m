@@ -58,6 +58,13 @@ classdef TesseractRecognizer
                 % Code to run on Mac platform
             elseif isunix
                 % Code to run on Linux platform
+                [status,result] = system('which tesseract');
+                if status == 0
+                    disp(sprintf('Found tesseract: %s.\n', result));
+                    this.tesseract_path = result;
+                else
+                    disp(sprintf('Tesseract is not in the $PATH.'));
+                end
             elseif ispc
                 % Code to run on Windows platform
             else
