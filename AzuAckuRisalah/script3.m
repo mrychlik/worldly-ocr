@@ -15,7 +15,11 @@ imgfile=fullfile(dirpath,imgname)
 I=imread(imgfile);
 imshow(I);
 
-BW=~im2bw(I,.2);
+%BW=~im2bw(I,.2);
+
+method=1;                               % Same as threshold=.2
+BW=BWThreshold(I,method);
+
 obj = LineBreaker(BW);
 
 obj.show_labels();
