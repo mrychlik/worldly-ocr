@@ -479,7 +479,7 @@ classdef LogisticRegression
                 disp('User selected Cancel');
             else
                 filepath = fullfile(path,file)
-                this = this.loadStateFromFile(this,filepath);
+                this = this.loadStateFromFile(filepath);
             end
         end
 
