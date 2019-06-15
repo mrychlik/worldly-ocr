@@ -60,18 +60,8 @@ obj.show_short_lines;
 
 obj.play_lines(3);
 
-% Short lines could be diacriticals
+%% Show remaining short lines. Short lines could be diacriticals
 obj.show_short_lines(.2);
-drawnow;
-
-% Set parameter to absorb diacriticals
-obj.SigmaFactor=1;                      % To be experimentally determined
-
-obj=merge_short_lines(obj);
-
-% After merging diacriticals should be in their rightful places
-obj.show_short_lines;
 
 
-obj.play_lines(3);
 
