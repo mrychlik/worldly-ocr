@@ -57,10 +57,9 @@ obj=merge_short_lines(obj);
 obj.show_short_lines;
 
 %% Show all lines after attaching diacriticals
-
 obj.play_lines(3);
 
-%% Show remaining short lines. Short lines could be diacriticals
+%% Show remaining short lines.
 obj.show_short_lines(.2);
 
 
