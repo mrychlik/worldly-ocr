@@ -60,7 +60,7 @@ obj.show_short_lines;
 obj.play_lines(3);
 
 %% Show remaining short lines.
-obj.show_short_lines(.2);
+%obj.show_short_lines(.2);
 
 
 
