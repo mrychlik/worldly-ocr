@@ -1,4 +1,13 @@
-%% Choose the image to be processed.
+%% This script implements a rudimentary OCR pipeline and consists of
+%% these steps:
+%%
+%%    1. Binarization
+%%    2. Breaking up image into lines
+%%    3. Postprocessing to identify and attach diacriticals
+%%    4. Invoking Tesseract to perform OCR
+%%
+
+%% Choose the image to be processed. The processing includes:
 
 dirpath=fullfile('Pages');
 % imgname='page-01.ppm';
