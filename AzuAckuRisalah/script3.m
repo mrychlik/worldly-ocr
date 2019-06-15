@@ -1,3 +1,5 @@
+%% Choose the image to be processed.
+
 dirpath=fullfile('Pages');
 % imgname='page-01.ppm';
 % imgname='page-02.ppm';
@@ -14,16 +16,22 @@ imgname='page-03.ppm';
 % imgname='page-15.ppm';
 % imgname='page-16.ppm';
 
+%% Read the image in
+
 imgfile=fullfile(dirpath,imgname)
 I=imread(imgfile);
 imshow(I);
 
 %BW=~im2bw(I,.2);
 
+%% Binarize the image
+
 method=3;                               % Same as threshold=.2
 BW=BWThreshold(I,method);
 
 imshow(BW);
+
+%% Break up the image into lines
 
 obj = LineBreaker(BW);
 
@@ -33,9 +41,12 @@ obj.plot_lines();
 pause(2);
 
 
-% Short lines could be diacriticals
+%% Show lines suspiciously short. Short lines could be diacriticals
+
 obj.show_short_lines(.2);
 drawnow;
+
+%% Attempt to adjoint diacriticals to correct lines
 
 % Set parameter to absorb diacriticals
 obj.SigmaFactor=1;                      % To be experimentally determined
@@ -45,6 +56,7 @@ obj=merge_short_lines(obj);
 % After merging diacriticals should be in their rightful places
 obj.show_short_lines;
 
+%% Show all lines after attaching diacriticals
 
 obj.play_lines(3);
 
