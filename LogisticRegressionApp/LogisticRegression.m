@@ -474,45 +474,48 @@ classdef LogisticRegression
             [file, path] = uigetfile('*.mat',...
                                      'Select a .mat file', 'DigitLearnerData.mat');
 
-            this = this.loadStateFromFile(this,file,path);
-        end
-
-        function this = loadStateFromFile(this, file, path)
-            % TODO: Fix strange state in which GUI ends up after
-            % UIGETFILE, by which the tracing window does not respond 
-            % properly to a mouse click. The response is 
-            %   - changing cursor to 'hand'
-            %   - issuing a bunch of MouseMotion events when dragged
-
             if isequal(file,0)
+                disp(['User selected ', fullfile(path,file)]);
                 disp('User selected Cancel');
             else
-                %disp(['User selected ', fullfile(path,file)]);
-                load(fullfile(path,file));
-
-                % Restore state
-
-                this.app.DigitPickerListBox.Value = saved_state.digits;
-                this.W = saved_state.W;
-                this.losses = saved_state.losses;
-                this.eta = saved_state.eta;
-                this.NErrors = saved_state.NErrors;
-                this.X = saved_state.X;
-                this.T = saved_state.T;
-                this.Y = saved_state.Y;
-                this.epoch = saved_state.epoch;
-                this.epoch_max = saved_state.epoch_max;
-                
-                % Update GUI
-                this = this.show_sample_digits;
-                this = this.show_learning;
-                this.plot_confusion;
-                uialert(this.app.MNISTDigitLearnerUIFigure, ...
-                        ['Loaded saved state, including trained weights ' ...
-                         'and training data. You can resume training ' ...
-                         'where you left off.'],...
-                        'Loaded saved state from file');
+                filepath = fullfile(path,file)
+                this = this.loadStateFromFile(this,filepath);
             end
         end
+
+        function this = loadStateFromFile(this, filepath)
+        % TODO: Fix strange state in which GUI ends up after
+        % UIGETFILE, by which the tracing window does not respond 
+        % properly to a mouse click. The response is 
+        %   - changing cursor to 'hand'
+        %   - issuing a bunch of MouseMotion events when dragged
+
+
+            load(filepath);
+
+            % Restore state
+
+            this.app.DigitPickerListBox.Value = saved_state.digits;
+            this.W = saved_state.W;
+            this.losses = saved_state.losses;
+            this.eta = saved_state.eta;
+            this.NErrors = saved_state.NErrors;
+            this.X = saved_state.X;
+            this.T = saved_state.T;
+            this.Y = saved_state.Y;
+            this.epoch = saved_state.epoch;
+            this.epoch_max = saved_state.epoch_max;
+            
+            % Update GUI
+            this = this.show_sample_digits;
+            this = this.show_learning;
+            this.plot_confusion;
+            uialert(this.app.MNISTDigitLearnerUIFigure, ...
+                    ['Loaded saved state, including trained weights ' ...
+                     'and training data. You can resume training ' ...
+                     'where you left off.'],...
+                    'Loaded saved state from file');
+        end
+
     end
 end
