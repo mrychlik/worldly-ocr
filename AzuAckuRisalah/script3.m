@@ -1,4 +1,4 @@
-%% This script implements a rudimentary OCR pipeline and consists of
+%% Synopsis: This script implements a rudimentary OCR pipeline and consists of
 %% these steps:
 %%
 %%    1. Binarization
@@ -13,8 +13,8 @@ dirpath=fullfile('Pages');
 % imgname='page-01.ppm';
 % imgname='page-02.ppm';
 % imgname='page-03.ppm';
-imgname='page-06.ppm';
-% imgname='page-07.ppm';
+%imgname='page-06.ppm';
+ imgname='page-07.ppm';
 % imgname='page-08.ppm';
 % imgname='page-09.ppm';
 % imgname='page-10.ppm';
