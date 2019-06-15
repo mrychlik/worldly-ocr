@@ -171,6 +171,9 @@ classdef LogisticRegression
         end
 
         function this = show_learning(this)
+            if isempty(this.losses)
+                return;
+            end
             ax = this.app.UIAxes;
             semilogy(ax, this.losses,'-'), 
             title(ax,['Learning (epoch: ',num2str(this.epoch),')']),
