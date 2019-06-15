@@ -35,7 +35,8 @@ imshow(I);
 
 %% Binarize the image
 
-method=3;                               % Same as threshold=.2
+% method=1;                               % Same as threshold=.2
+method = 2;
 BW=BWThreshold(I,method);
 
 imshow(BW);
