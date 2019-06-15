@@ -489,8 +489,6 @@ classdef LogisticRegression
         % properly to a mouse click. The response is 
         %   - changing cursor to 'hand'
         %   - issuing a bunch of MouseMotion events when dragged
-
-
             load(filepath);
 
             % Restore state
