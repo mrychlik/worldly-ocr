@@ -490,12 +490,13 @@ classdef LogisticRegression
         %   - changing cursor to 'hand'
         %   - issuing a bunch of MouseMotion events when dragged
             s = load(filepath);
+            saved_state = s.saved_state;
 
             % Restore state
-            this.app.DigitPickerListBox.Value = s.saved_state.digits;
-            this.W = s.saved_state.W;
-            this.losses = s.saved_state.losses;
-            this.eta = s.saved_state.eta;
+            this.app.DigitPickerListBox.Value = saved_state.digits;
+            this.W = saved_state.W;
+            this.losses = saved_state.losses;
+            this.eta = saved_state.eta;
             this.NErrors = saved_state.NErrors;
             this.X = saved_state.X;
             this.T = saved_state.T;
