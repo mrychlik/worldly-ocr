@@ -474,6 +474,10 @@ classdef LogisticRegression
             [file, path] = uigetfile('*.mat',...
                                      'Select a .mat file', 'DigitLearnerData.mat');
 
+            this = this.loadStateFromFile(this,file,path);
+        end
+
+        function this = loadStateFromFile(this, file, path)
             % TODO: Fix strange state in which GUI ends up after
             % UIGETFILE, by which the tracing window does not respond 
             % properly to a mouse click. The response is 
