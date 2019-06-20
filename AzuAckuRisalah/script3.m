@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 %% Synopsis: This script implements a rudimentary OCR pipeline and consists of
 %% these steps:
 %%
