@@ -10,28 +10,12 @@
 
 %% Choose the image to be processed. The processing includes:
 
-dirpath=fullfile('Pages');
-% imgname='page-01.ppm';
-% imgname='page-02.ppm';
-% imgname='page-03.ppm';
-% imgname='page-06.ppm';
-=======
-% This script implements a rudimentary OCR pipeline and consists of
-% these steps:
-%
-%    1. Binarization
-%    2. Breaking up image into lines
-%    3. Postprocessing to identify and attach diacriticals
-%    4. Invoking Tesseract to perform OCR
-%
-
 % Address of the folder the image is located
-dirpath='Pages';
+dirpath=fullfile('Pages');
 % Name of the image
-%imgname='page-06.ppm';
->>>>>>> 5f87878c20b33b2df468c00657c61d7ce7505490
+% imgname='page-06.ppm';
 % imgname='page-07.ppm';
-imgname='page-08.ppm';
+% imgname='page-08.ppm';
 % imgname='page-09.ppm';
 % imgname='page-10.ppm';
 % imgname='page-11.ppm';
@@ -45,7 +29,7 @@ imgname='page-14.ppm';
 imgfile=fullfile(dirpath,imgname);
 I=imread(imgfile);
 imshow(I);
-<<<<<<< HEAD
+
 
 %BW=~im2bw(I,.2);
 
@@ -58,12 +42,10 @@ BW=BWThreshold(I,method);
 imshow(BW);
 
 %% Break up the image into lines
-
-=======
 pause(1);
 %BW=~im2bw(I,.2); 
 BW=BWThreshold(I,1);
->>>>>>> 5f87878c20b33b2df468c00657c61d7ce7505490
+
 obj = LineBreaker(BW);
 
 obj.show_labels();
