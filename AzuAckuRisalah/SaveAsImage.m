@@ -25,7 +25,7 @@ for label=1:max(max(obj.LabeledLines))
     %pause(1); 
     name=sprintf('image%03.0f.png',label);
     fulname = fullfile(dirpathsave,name);
-    imwrite(IMAGEBox,fulname); 
+    imwrite(~IMAGEBox,fulname); 
 end
 
 
