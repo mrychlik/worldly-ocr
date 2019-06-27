@@ -14,17 +14,18 @@ obj = LineBreaker(BW);
 obj.SigmaFactor=1;                      % To be experimentally determined
 obj=merge_short_lines(obj);
 % saving each line seperately
-if(exist(dirpathsave,'dir') )
-    rmdir(dirpathsave,'s');
+imgfileLine=fullfile(dirpathsave,imgname);
+if(exist(imgfileLine,'dir') )
+    rmdir(imgfileLine,'s');
 end
-mkdir(dirpathsave)
+mkdir(imgfileLine)
 for label=1:max(max(obj.LabeledLines))
     IMAGE=obj.LabeledLines==label;
     IMAGEBox=box(IMAGE);
     imshow(IMAGEBox); 
     %pause(1); 
-    name=sprintf('image%03.0f.png',label);
-    fulname = fullfile(dirpathsave,name);
+    name1=sprintf('image%03.0f.png',label);
+    fulname = fullfile(imgfileLine,name1);
     imwrite(~IMAGEBox,fulname); 
 end
 

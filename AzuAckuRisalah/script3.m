@@ -46,24 +46,26 @@ pause(1);
 BW=BWThreshold(I,1);
 
 obj = LineBreaker(BW);
-
+%figure
 obj.show_labels();
 pause(3);
+%figure
 obj.plot_lines();
 pause(2);
 
 
 %%
+%figure
 % Short lines could be diacriticals
-obj.show_short_lines(.2);
-drawnow;
+% obj.show_short_lines(.2);
+% drawnow;
 
 % Set parameter to absorb diacriticals
 obj.SigmaFactor=1;                      % To be experimentally determined
 obj=merge_short_lines(obj);
 
 % After merging diacriticals should be in their rightful places
-obj.show_short_lines;
+%obj.show_short_lines;
 
 
 obj.play_lines(3);
