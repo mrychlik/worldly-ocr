@@ -41,6 +41,15 @@ classdef LogisticRegression
     end
     
     methods
+        function this = regularize_targets(this,p)
+        % Regularize T
+            [D,N] = size(X);
+            [C,~]=size(T);
+            T0=1/C*ones(C,1)*ones(1,N);
+            T=(1-t)*T0+t*T;
+        end
+
+
         function path = get.app_data_path(this)
             if isdeployed
                 % We will find the files in the 'application' folder
