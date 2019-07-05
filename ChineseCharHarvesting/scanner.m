@@ -25,8 +25,7 @@ char_count=0;
 se=strel('rectangle',[9,15]);
 boxdir='Boxes';
 
-for page=6
-    %for page=6:96
+for page=6:96
 
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
     I0=imread(filename);
