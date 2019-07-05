@@ -14,8 +14,8 @@ X = [ones([1,size(X,2)]);X];
 [C,~]=size(T);
 
 T0=1/C*ones(C,1)*ones(1,N);
-%t=.999;                % 1-t is the probability of assigning class at random
-t=1;                                    % Don't regularize
+t=.999;                % 1-t is the probability of assigning class at random
+                       %t=1;                                    % Don't regularize
                                         
 if t<1 
     T=(1-t)*T0+t*T;
