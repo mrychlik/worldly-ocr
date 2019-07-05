@@ -1,11 +1,20 @@
 delay=0.02;
+%
+% This script scans through the pages of a book in Chinese and
+% divides them into characters. 
+% 
+% Pages are asssumed to be images in directory PAGEDIR, with
+% filename pattern 
+%
+pagedir='Pages';
+pageimg_pattern='page-%02d.ppm';
 chardir='Chars';
 bw_chardir='BWChars';
 char_count=0;
 
 for page=6:96
 
-    filename=fullfile('Pages',sprintf('page-%02d.ppm',page));
+    filename=fullfile(pagedir,sprintf(pageimg_pattern,page));
     I1=255-imread(filename);
     I2=im2bw(I1);
     se=strel('rectangle',[9,15]);
