@@ -1,4 +1,3 @@
-delay=0.02;
 %
 % This script scans through the pages of a book in Chinese and
 % divides them into characters. 
@@ -15,6 +14,7 @@ delay=0.02;
 % to be large enough to connect parts within characters, and
 % to be small enough to separate distinct characters.
 % 
+delay=0.02;                             % Delay for viewing characters
 pagedir='Pages';
 page_img_pattern='page-%02d.ppm';
 chardir='Chars';
