@@ -42,7 +42,9 @@ classdef LogisticRegression
     
     methods
         function this = regularize_targets(this,p)
-        % Regularize T
+        % Regularize targets
+        % THIS = REGULARIZE_TARGETS(THIS,P) modifies
+        % the targets as if assigning class at random with probability 1-P
             [D,N] = size(X);
             [C,~] = size(T);
             T0 = 1/C*ones(C,1)*ones(1,N);
