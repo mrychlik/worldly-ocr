@@ -22,8 +22,6 @@ chardir='Chars';
 bw_chardir='BWChars';
 char_count=0;
 se=strel('rectangle',[9,15]);
-Type=2;                                 % Type of thresholding
-Threshold=0.2;
 
 for page=6:96
 
