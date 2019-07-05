@@ -14,6 +14,7 @@
 % to be large enough to connect parts within characters, and
 % to be small enough to separate distinct characters.
 % 
+page_delay;                             % Delay for viewing page
 delay=0.02;                             % Delay for viewing characters
 pagedir='Pages';
 page_img_pattern='page-%02d.ppm';
@@ -31,6 +32,7 @@ for page=6:96
     I1=255-I0; I2=im2bw(I1);
     %I2=binarize(I0,Type,Threshold);
     I3=imdilate(I2,se);
+    imagesc(I3); drawnow; pause(delay);
     %[L,N]=bwlabel(I3,4);
     stats=regionprops(I3,...
                       'BoundingBox',...
