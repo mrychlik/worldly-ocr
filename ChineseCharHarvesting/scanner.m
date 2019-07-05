@@ -80,7 +80,7 @@ for page=6:96
         imwrite(K, fullfile(chardir,sprintf('char%05d.png',char_count)), ...
                 'PNG');
         % Write box info
-        fprintf(fid, '%d %d %d %d\n', y1, x1, y2, x2)
+        fprintf(fid, '%d %d %d %d\n', y1, x1, y2, x2);
     end
     fclose(fid);
 
