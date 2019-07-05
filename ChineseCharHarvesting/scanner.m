@@ -39,7 +39,7 @@ for page=6:96
                       'Orientation',...
                       'Image',...
                       'Centroid');
-    %stats=sort_stats(stats);
+    stats=sort_stats(stats);
     N=numel(stats);
 
     %imshow(I3);
