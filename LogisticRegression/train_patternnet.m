@@ -92,7 +92,7 @@ function [Y,NErrors,W] = train_patternnet(X, T, num_epochs)
         end
     end
 
-    NErrors = length(find(round(Y)~=T));
+    NErrors = length(find(round(Y)~=round(T)));
     disp(['Number of errors: ',num2str(NErrors)]);
 
 end
