@@ -46,7 +46,7 @@ classdef LogisticRegression
             [D,N] = size(X);
             [C,~]=size(T);
             T0=1/C*ones(C,1)*ones(1,N);
-            T=(1-t)*T0+t*T;
+            T=(1-p)*T0+p*T;
         end
 
 
