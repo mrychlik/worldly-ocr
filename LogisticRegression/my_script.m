@@ -14,7 +14,8 @@ X = [ones([1,size(X,2)]);X];
 [C,~]=size(T);
 
 T0=1/C*ones(C,1)*ones(1,N);
-t=.984;
+t=.984;                                 % 1-t is the probability of assigning class at random
+                                        
 T=(1-t)*T0+t*T;
 
 % Straight from PATTERNNET help page
