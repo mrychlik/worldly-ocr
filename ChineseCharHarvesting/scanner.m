@@ -21,12 +21,15 @@ chardir='Chars';
 bw_chardir='BWChars';
 char_count=0;
 se=strel('rectangle',[9,15]);
+Type=1;                                 % Type of thresholding
+Threshold=0.2;
 
 for page=6:96
 
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
     I1=255-imread(filename);
-    I2=im2bw(I1);
+    %I2=im2bw(I1);
+    I2=binarize(I1,Type,Threshold);
     I3=imdilate(I2,se);
     %[L,N]=bwlabel(I3,4);
     stats=regionprops(I3,...
