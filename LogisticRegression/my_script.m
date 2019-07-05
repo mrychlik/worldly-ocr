@@ -14,7 +14,7 @@ X = [ones([1,size(X,2)]);X];
 [C,~]=size(T);
 
 T0=1/C*ones(C,1)*ones(1,N);
-t=.99;
+t=.984;
 T=(1-t)*T0+t*T;
 
 % Straight from PATTERNNET help page
