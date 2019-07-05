@@ -18,12 +18,15 @@ page_delay=0;                             % Delay for viewing page
 delay=0.02;                             % Delay for viewing characters
 pagedir='Pages';
 page_img_pattern='page-%02d.ppm';
+box_file_pattern='page-%02d.txt';
 chardir='Chars';
 bw_chardir='BWChars';
 char_count=0;
 se=strel('rectangle',[9,15]);
+boxdir='Boxes';
 
-for page=6:96
+for page=6
+    %for page=6:96
 
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
     I0=imread(filename);
@@ -39,8 +42,10 @@ for page=6:96
                       'Orientation',...
                       'Image',...
                       'Centroid');
-    stats=sort_stats(stats);
+    %stats=sort_stats(stats);
     N=numel(stats);
+    boxfilename=fullfile(boxdir,sprintf(box_file_pattern,page));
+    fid = fopen(boxfilename,'w');
 
     %imshow(I3);
     for n=1:N
@@ -71,11 +76,14 @@ for page=6:96
         pause(delay);
         % Save character image
         char_count = char_count +1;
-        imwrite(K, fullfile(chardir,sprintf('char%05d.png',char_count)), ...
-                'PNG');
         imwrite(BW, fullfile(bw_chardir,sprintf('char%05d.pbm', ...
                                                 char_count)),'PBM');
+        imwrite(K, fullfile(chardir,sprintf('char%05d.png',char_count)), ...
+                'PNG');
+        % Write box info
+        fprintf(fid, '%d %d %d %d\n', y1, x1, y2, x2)
     end
+    fclose(fid);
 
 end
 
