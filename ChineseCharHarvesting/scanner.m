@@ -4,17 +4,19 @@ delay=0.02;
 % divides them into characters. 
 % 
 % Pages are asssumed to be images in directory PAGEDIR, with
-% filename pattern 
+% filename pattern PAGE_IMG_PATTERN.
 %
+% The characters are written in grayscale to directory CHARDIR.
+% Additionally, monochromatic character images are placed in directory BW_CHARDIR
 pagedir='Pages';
-pageimg_pattern='page-%02d.ppm';
+page_img_pattern='page-%02d.ppm';
 chardir='Chars';
 bw_chardir='BWChars';
 char_count=0;
 
 for page=6:96
 
-    filename=fullfile(pagedir,sprintf(pageimg_pattern,page));
+    filename=fullfile(pagedir,sprintf(page_img_pattern,page));
     I1=255-imread(filename);
     I2=im2bw(I1);
     se=strel('rectangle',[9,15]);
