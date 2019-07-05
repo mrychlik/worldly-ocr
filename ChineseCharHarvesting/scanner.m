@@ -124,8 +124,8 @@ Igray=rgb2gray(I);
     case 4 %Adaptive Filter using Gaussian Method
         T=adaptthresh(Igray,Thres,'ForegroundPolarity','dark','Statistic','gaussian');
     case 5 %Adaptive Filter using Median Method
-        warning("Using Mean Method might be very time comsuming!")
-        T=adaptthresh(Igray,Thres,'ForegroundPolarity','dark','Statistic','median');
+      warning("Using Mean Method might be very time comsuming!")
+      T=adaptthresh(Igray,Thres,'ForegroundPolarity','dark','Statistic','median');
 end
 BW=~imbinarize(Igray,T);
 end
