@@ -70,7 +70,7 @@ classdef PageScan
         end
 
         function marked_page_img(this)
-            imagesc(this.page_img);
+            imshow(this.page_img);
             for char_idx = 1:length(this.chars)
                 r = rectangle('Position',this.chars(char_idx).BoundingBox);
                 set(r,'EdgeColor','red');
