@@ -72,11 +72,10 @@ classdef PageScan
         function marked_page_img(this,char_idx)
             subplot(1,2,1),
             imagesc(this.page_img);
-            subplot(1,2,2),
-            imagesc(this.chars(char_idx).Image);
             r = rectangle('Position',this.chars(char_idx).BoundingBox);
             set(r,'EdgeColor','red');
-            drawnow;
+            subplot(1,2,2),
+            imagesc(this.chars(char_idx).Image);
         end
 
     end
