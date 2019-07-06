@@ -67,7 +67,7 @@ classdef PageScan
                 this.chars(char_count).position = [x1,y1,x2,y2];
                 this.chars(char_count).BW = BW;
                 this.chars(char_count).Image = K;
-                this.chars(char_count).BoundingBox = b;                
+                this.chars(char_count).stats = stats(n);
             end
             this.char_count = char_count;
         end
