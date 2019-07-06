@@ -28,7 +28,8 @@ classdef PageScan
         dilated_img = [];
     end
     properties(Access=private)
-        rad = 10;                        % Radius of centroid in drawing
+        rad = 20;                       % Radius of centroid
+        col = 'pink';                   % Color of centroid
     end
     methods
         function this = scanfile(this,filename)
@@ -85,7 +86,7 @@ classdef PageScan
                 c = this.chars(char_idx).stats.Centroid;
                 pos = [c(1)-this.rad,c(2)-this.rad,2*this.rad,2*this.rad];
                 e = rectangle('Position', pos);
-                set(e,'EdgeColor','blue','FaceColor','blue');
+                set(e,'EdgeColor',this.col,'FaceColor',this.col);
             end
         end
 
