@@ -27,6 +27,9 @@ classdef PageScan
         page_img_mono = [];
         dilated_img = [];
     end
+    properties(Access=private)
+        rad = 5;                        % Radius of centroid in drawing
+    end
     methods
         function this = scanfile(this,filename)
             this.page_img = imread(filename);
@@ -75,8 +78,13 @@ classdef PageScan
         function marked_page_img(this)
             imagesc(this.page_img);
             for char_idx = 1:this.char_count
+                % Mark bounding box
                 r = rectangle('Position',this.chars(char_idx).stats.BoundingBox);
                 set(r,'EdgeColor','red');
+                % Mark centroid
+                c = this.chars(char_idx).stats.Centroid;
+                pos = [c(1)-this.rad,c(2)-this.rad,2*this.rad,2*this.rad];
+                e = rectangle('Position', pos);
             end
         end
 
