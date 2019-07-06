@@ -102,6 +102,7 @@ parfor page=6:96
     fclose(fid);
 
 end
+toc;
 
 
 function rv=filter_out(stat)
@@ -124,4 +125,3 @@ function sorted=sort_stats(stats)
     [~, I] = sortrows(C);
     sorted=stats(I);
 end
-toc;
