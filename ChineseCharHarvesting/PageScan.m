@@ -67,8 +67,6 @@ classdef PageScan
             end
         end
         
-        function K = 
-
     end
 
     methods(Static)
