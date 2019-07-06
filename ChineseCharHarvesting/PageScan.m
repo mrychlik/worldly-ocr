@@ -26,7 +26,7 @@ classdef PageScan
         page_img = [];
         page_img_mono = [];
         dilated_img = [];
-        short_height_threshold = 10;
+        short_height_threshold = 20;
     end
     methods
         function this = scanfile(this,filename)
