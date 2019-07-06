@@ -24,6 +24,7 @@ classdef PageScan
         char_count = [];
         chars = struct('position',[]);
         page_img = [];
+        page_img_mono = [];
         dilated_img = [];
     end
     methods
@@ -31,7 +32,7 @@ classdef PageScan
             char_count = 0;
             this.page_img = imread(filename);
             I1 = 255-this.page_img; 
-            I2 = im2bw(I1);
+            this.page_img_mono = im2bw(I1);
             this.dilated_img = imdilate(I2,this.se);
             stats = regionprops(this.dilated_img,...
                                 'BoundingBox',...
