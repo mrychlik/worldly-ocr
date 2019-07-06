@@ -17,8 +17,12 @@
 page_delay=0;                             % Delay for viewing page
 delay=0.02;                             % Delay for viewing characters
 pagedir='Pages';
+% filename patterns
 page_img_pattern='page-%02d.ppm';
 box_file_pattern='page-%02d.txt';
+char_img_pattern='page%02-char%05d.pbm';
+bw_char_img_pattern='page%02-char%05d.png';
+
 chardir='Chars';
 bw_chardir='BWChars';
 char_count=0;
@@ -75,9 +79,9 @@ parfor page=6:96
         pause(delay);
         % Save character image
         char_count = char_count +1;
-        imwrite(BW, fullfile(bw_chardir,sprintf('page%02-char%05d.pbm', ...
+        imwrite(BW, fullfile(bw_chardir,sprintf(char_img_pattern, ...
                                                 page,char_count)),'PBM');
-        imwrite(K, fullfile(chardir,sprintf('page%02-char%05d.png',...
+        imwrite(K, fullfile(chardir,sprintf(bw_char_img_pattern,...
                                             page,char_count)), 'PNG');
         % Write box info
         fprintf(fid, '%d %d %d %d\n', y1, x1, y2, x2);
