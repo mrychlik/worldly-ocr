@@ -26,6 +26,7 @@ classdef PageScan
         page_img = [];
         page_img_mono = [];
         dilated_img = [];
+        short_height_threshold = 10;
     end
     methods
         function this = scanfile(this,filename)
@@ -76,8 +77,13 @@ classdef PageScan
             imagesc(this.page_img);
             for char_idx = 1:this.char_count
                 % Mark bounding box
-                r = rectangle('Position',this.chars(char_idx).stats.BoundingBox);
+                bbox = this.chars(char_idx).stats.BoundingBox;
+                r = rectangle('Position',bbox);
                 set(r,'EdgeColor','red');
+                % Paint the face if 
+                if bbox(4) < this.short_height_threshold
+                    set(r,'FaceColor','magenta');                    
+                end
             end
         end
 
