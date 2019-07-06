@@ -29,7 +29,6 @@ classdef PageScan
     end
     methods
         function this = scanfile(this,filename)
-            char_count = 0;
             this.page_img = imread(filename);
             I1 = 255 - this.page_img; 
             this.page_img_mono = im2bw(I1);
@@ -42,6 +41,7 @@ classdef PageScan
                                 'Image',...
                                 'Centroid');
             N = numel(stats);
+            char_count = 0;
             for n=1:N
                 if PageScan.filter_out(stats(n))
                     continue;
