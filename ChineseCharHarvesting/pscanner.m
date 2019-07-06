@@ -23,10 +23,10 @@ box_file_pattern='page-%02d.txt';
 bw_char_img_pattern='page%02d-char%05d.pbm';
 char_img_pattern='page%02d-char%05d.png';
 
-chardir='Chars';
-bw_chardir='BWChars';
+chardir='PChars';
+bw_chardir='PBWChars';
 se=strel('rectangle',[9,15]);
-boxdir='Boxes';
+boxdir='PBoxes';
 
 parfor page=6:96
     char_count=0;
