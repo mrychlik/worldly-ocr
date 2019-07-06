@@ -46,15 +46,15 @@ classdef PageScan
                 if PageScan.filter_out(stats(n))
                     continue;
                 end
-                J = zeros(size(this.page_image_mono));
+                J = zeros(size(this.page_img_mono));
                 b = stats(n).BoundingBox;
                 x1 = b(1); y1 = b(2); x2 = b(1) + b(3); y2 = b(2) + b(4);
-                sz = size(this.page_image_mono);
+                sz = size(this.page_img_mono);
                 x1 = round( max(1,x1) ); x2 = round( min(x2, sz(2)));
                 y1 = round( max(1,y1) ); y2 = round( min(y2, sz(1)));
 
                 K = I1( y1:y2, x1:x2 );
-                BW = this.page_image_mono( y1 : y2, x1 : x2 );
+                BW = this.page_img_mono( y1 : y2, x1 : x2 );
                 BW = imautocrop(BW);
 
                 if PageScan.filter_image(BW)
