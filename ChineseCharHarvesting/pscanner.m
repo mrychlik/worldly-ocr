@@ -1,6 +1,7 @@
 %
 % NOTE: This is parallelized version of scanner.m
 % It does not plot for speed.
+% It runs the book in about 30 seconds
 %
 % This script scans through the pages of a book in Chinese and
 % divides them into characters. 
