@@ -62,7 +62,6 @@ parfor page=6:96
                       'Orientation',...
                       'Image',...
                       'Centroid');
-    %stats=sort_stats(stats);
     N=numel(stats);
     boxfilename=fullfile(boxdir,sprintf(box_file_pattern,page));
     fid = fopen(boxfilename,'w');
