@@ -85,7 +85,7 @@ classdef PageScan
                 c = this.chars(char_idx).stats.Centroid;
                 pos = [c(1)-this.rad,c(2)-this.rad,2*this.rad,2*this.rad];
                 e = rectangle('Position', pos);
-                set(e,'EdgeColor','blue');
+                set(e,'EdgeColor','blue','FaceColor','blue');
             end
         end
 
