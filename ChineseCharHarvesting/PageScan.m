@@ -69,6 +69,7 @@ classdef PageScan
                 this.chars(char_count).Image = K;
                 this.chars(char_count).BoundingBox = b;                
             end
+            this.char_count = char_count;
         end
 
         function marked_page_img(this)
