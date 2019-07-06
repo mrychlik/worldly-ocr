@@ -25,12 +25,11 @@ bw_char_img_pattern='page%02-char%05d.png';
 
 chardir='Chars';
 bw_chardir='BWChars';
-char_count=0;
 se=strel('rectangle',[9,15]);
 boxdir='Boxes';
 
 parfor page=6:96
-
+    char_count=0;
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
     I0=imread(filename);
     I1=255-I0; I2=im2bw(I1);
