@@ -26,7 +26,7 @@ classdef PageScan
         page_img = [];
         page_img_mono = [];
         dilated_img = [];
-        short_height_threshold = 20;
+        short_height_threshold = 60;
     end
     methods
         function this = scanfile(this,filename)
@@ -82,7 +82,7 @@ classdef PageScan
                 set(r,'EdgeColor','red');
                 % Paint the face if 
                 if bbox(4) < this.short_height_threshold
-                    set(r,'FaceColor','magenta');                    
+                    set(r,'FaceColor','yellow');                    
                 end
             end
         end
