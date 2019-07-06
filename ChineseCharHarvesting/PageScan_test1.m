@@ -7,5 +7,5 @@ for page=6:96
     ps = ps.scanfile(filename);
     ps.marked_page_img;
     drawnow;
-    pause(0.5);
+    pause(2);
 end;
