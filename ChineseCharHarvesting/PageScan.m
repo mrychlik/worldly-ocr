@@ -31,7 +31,7 @@ classdef PageScan
         function this = scanfile(this,filename)
             char_count = 0;
             this.page_img = imread(filename);
-            I1 = 255-this.page_img; 
+            I1 = 255 - this.page_img; 
             this.page_img_mono = im2bw(I1);
             this.dilated_img = imdilate(this.page_img_mono, this.se);
             stats = regionprops(this.dilated_img,...
