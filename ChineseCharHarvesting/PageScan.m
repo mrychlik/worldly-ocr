@@ -69,7 +69,7 @@ classdef PageScan
             end
         end
 
-        function marked_page_img(char_idx)
+        function marked_page_img(this,char_idx)
             subplot(1,2,1),
             imagesc(this.page_img);
             subplot(1,2,2),
