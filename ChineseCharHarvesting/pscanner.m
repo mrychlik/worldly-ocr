@@ -55,8 +55,6 @@ parfor page=6:96
     I1=255-I0; I2=im2bw(I1);
     %I2=binarize(I0,Type,Threshold);
     I3=imdilate(I2,se);
-    %imagesc(I3); drawnow; pause(page_delay);
-    %[L,N]=bwlabel(I3,4);
     stats=regionprops(I3,...
                       'BoundingBox',...
                       'MajorAxisLength',...
@@ -80,23 +78,12 @@ parfor page=6:96
         sz = size(I2);
         x1 = round( max(1,x1) ); x2 = round( min(x2, sz(2)));
         y1 = round( max(1,y1) ); y2 = round( min(y2, sz(1)));
-        %K=stats(n).Image;
         K = I1( y1:y2, x1:x2 );
         BW = I2( y1 : y2, x1 : x2 );
         BW = imautocrop(BW);
         if filter_image(BW)
             continue
         end
-        % subplot(1,2,1),
-        % imagesc(K);
-        % subplot(1,2,2),
-        % imagesc(I2);
-        % r = rectangle('Position',b);
-        % set(r,'EdgeColor','red');
-        % title(sprintf('Page %d',page));
-        % drawnow;
-        % pause(delay);
-        % Save character image
         char_count = char_count +1;
         imwrite(BW, fullfile(bw_chardir,sprintf(bw_char_img_pattern,page,char_count)),'PBM');
         imwrite(K, fullfile(chardir,sprintf(char_img_pattern,page,char_count)), 'PNG');
