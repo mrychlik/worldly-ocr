@@ -65,8 +65,19 @@ classdef PageScan
                 this.chars(char_count).position = [x1,y1,x2,y2];
                 this.chars(char_count).BW = BW;
                 this.chars(char_count).Image = K;
+                this.chars(char_count).BoundingBox = b;                
             end
         end
+
+        function marked_page_img(char_idx)
+            subplot(1,2,1),
+            imagesc(this.page_img);
+            subplot(1,2,2),
+            imagesc(this.char_count(char_idx).Image);
+            r = rectangle('Position',this.chars(char_idx).BoundingBox);
+            set(r,'EdgeColor','red');
+        end
+
     end
 
     methods(Static)
