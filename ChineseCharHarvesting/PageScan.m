@@ -66,7 +66,6 @@ classdef PageScan
                 this.chars(char_count).Image = K;
             end
         end
-        
     end
 
     methods(Static)
