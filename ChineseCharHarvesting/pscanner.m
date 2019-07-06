@@ -1,4 +1,6 @@
 %
+% NOTE: This is parallelized version of scanner.m
+%
 % This script scans through the pages of a book in Chinese and
 % divides them into characters. 
 % 
