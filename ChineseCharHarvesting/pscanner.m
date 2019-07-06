@@ -17,17 +17,33 @@
 page_delay=0;                             % Delay for viewing page
 delay=0.02;                             % Delay for viewing characters
 pagedir='Pages';
+boxdir='PBoxes';
+chardir='PChars';                       % Where to put characters
+bw_chardir='PBWChars';                  % Where to put BW characters
+
+if ~exist(chardir,'file')
+    mkdir(chardir)
+end
+if ~exist(bw_chardir,'file')
+    mkdir(bw_chardir)
+end
+if ~exist(boxdir,'file')
+    mkdir(boxdir)
+end
+
+
 % filename patterns
 page_img_pattern='page-%02d.ppm';
 box_file_pattern='page-%02d.txt';
 bw_char_img_pattern='page%02d-char%05d.pbm';
 char_img_pattern='page%02d-char%05d.png';
 
-chardir='PChars';
-bw_chardir='PBWChars';
-se=strel('rectangle',[9,15]);
-boxdir='PBoxes';
 
+
+se=strel('rectangle',[9,15]);
+
+
+tic;
 parfor page=6:96
     char_count=0;
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
@@ -108,3 +124,4 @@ function sorted=sort_stats(stats)
     [~, I] = sortrows(C);
     sorted=stats(I);
 end
+toc;
