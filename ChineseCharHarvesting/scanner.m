@@ -78,8 +78,8 @@ parfor page=6:96
         pause(delay);
         % Save character image
         char_count = char_count +1;
-        imwrite(BW, fullfile(bw_chardir,sprintf(char_img_pattern,page,char_count)),'PBM');
-        imwrite(K, fullfile(chardir,sprintf(bw_char_img_pattern,page,char_count)), 'PNG');
+        imwrite(BW, fullfile(bw_chardir,sprintf(bw_char_img_pattern,page,char_count)),'PBM');
+        imwrite(K, fullfile(chardir,sprintf(char_img_pattern,page,char_count)), 'PNG');
         % Write box info
         fprintf(fid, '%d %d %d %d\n', y1, x1, y2, x2);
     end
