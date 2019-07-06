@@ -20,8 +20,8 @@ pagedir='Pages';
 % filename patterns
 page_img_pattern='page-%02d.ppm';
 box_file_pattern='page-%02d.txt';
-bw_char_img_pattern='page%02-char%05d.pbm';
-char_img_pattern='page%02-char%05d.png';
+bw_char_img_pattern='page%02d-char%05d.pbm';
+char_img_pattern='page%02d-char%05d.png';
 
 chardir='Chars';
 bw_chardir='BWChars';
