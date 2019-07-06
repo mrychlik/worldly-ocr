@@ -61,7 +61,7 @@ classdef PageScan
                 end
 
                 char_count = char_count + 1;
-                disp(sprintf('Recording object %d as character %d', n, char_count));
+                %disp(sprintf('Recording object %d as character %d', n, char_count));
                 this.chars(char_count).position = [x1,y1,x2,y2];
                 this.chars(char_count).BW = BW;
                 this.chars(char_count).Image = K;
