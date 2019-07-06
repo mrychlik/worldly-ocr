@@ -23,12 +23,13 @@ classdef PageScan
         se=strel('rectangle',[9,15]);
         char_count = [];
         chars = struct('position',[]);
+        page_img = [];
     end
     methods
         function this = scanfile(this,filename)
             char_count = 0;
-            I0 = imread(filename);
-            I1 = 255-I0; 
+            this.page_img = imread(filename);
+            I1 = 255-this.page_img; 
             I2 = im2bw(I1);
             I3 = imdilate(I2,this.se);
             stats = regionprops(I3,...
