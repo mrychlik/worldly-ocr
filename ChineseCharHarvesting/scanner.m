@@ -14,7 +14,7 @@
 % to be large enough to connect parts within characters, and
 % to be small enough to separate distinct characters.
 % 
-page_delay=0;                             % Delay for viewing page
+page_delay=0.1;                             % Delay for viewing page
 delay=0.02;                             % Delay for viewing characters
 pagedir='Pages';
 page_img_pattern='page-%02d.ppm';
