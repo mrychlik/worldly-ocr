@@ -14,22 +14,19 @@
 % to be large enough to connect parts within characters, and
 % to be small enough to separate distinct characters.
 % 
-page_delay=0;                             % Delay for viewing page
+page_delay=10;                             % Delay for viewing page
 delay=0.02;                             % Delay for viewing characters
 pagedir='Pages';
-% filename patterns
 page_img_pattern='page-%02d.ppm';
-box_file_pattern='page-%02d.txt';
-bw_char_img_pattern='page%02d-char%05d.pbm';
-char_img_pattern='page%02d-char%05d.png';
-
 chardir='Chars';
 bw_chardir='BWChars';
+char_count=0;
 se=strel('rectangle',[9,15]);
-boxdir='Boxes';
+Type=2;                                 % Type of thresholding
+Threshold=0.2;
 
-parfor page=6:96
-    char_count=0;
+for page=6:96
+
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
     I0=imread(filename);
     I1=255-I0; I2=im2bw(I1);
@@ -46,8 +43,6 @@ parfor page=6:96
                       'Centroid');
     %stats=sort_stats(stats);
     N=numel(stats);
-    boxfilename=fullfile(boxdir,sprintf(box_file_pattern,page));
-    fid = fopen(boxfilename,'w');
 
     %imshow(I3);
     for n=1:N
@@ -78,12 +73,11 @@ parfor page=6:96
         pause(delay);
         % Save character image
         char_count = char_count +1;
-        imwrite(BW, fullfile(bw_chardir,sprintf(bw_char_img_pattern,page,char_count)),'PBM');
-        imwrite(K, fullfile(chardir,sprintf(char_img_pattern,page,char_count)), 'PNG');
-        % Write box info
-        fprintf(fid, '%d %d %d %d\n', y1, x1, y2, x2);
+        imwrite(K, fullfile(chardir,sprintf('char%05d.png',char_count)), ...
+                'PNG');
+        imwrite(BW, fullfile(bw_chardir,sprintf('char%05d.pbm', ...
+                                                char_count)),'PBM');
     end
-    fclose(fid);
 
 end
 
