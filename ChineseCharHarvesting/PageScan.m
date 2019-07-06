@@ -30,7 +30,7 @@ classdef PageScan
             I0 = imread(filename);
             I1 = 255-I0; 
             I2 = im2bw(I1);
-            I3 = imdilate(I2,se);
+            I3 = imdilate(I2,this.se);
             stats = regionprops(I3,...
                                 'BoundingBox',...
                                 'MajorAxisLength',...
@@ -40,6 +40,7 @@ classdef PageScan
                                 'Centroid');
             N = numel(stats);
             for n=1:N
+                disp(n);
                 if PageScan.filter_out(stats(n))
                     continue;
                 end
@@ -58,10 +59,9 @@ classdef PageScan
                     continue
                 end
 
-                char_count = char_count +1;
-                chars(char_count).position = [x1,y1,x2,y2];
+                char_count = char_count + 1;
+                this.chars(char_count).position = [x1,y1,x2,y2];
             end
-            fclose(fid);
 
         end
     end
