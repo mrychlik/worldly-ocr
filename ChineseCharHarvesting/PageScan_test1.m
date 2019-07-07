@@ -6,6 +6,7 @@ page_img_pattern='page-%02d.ppm';
 bg='Original';
 show_dilation = true;
 
+%for page=6:95
 for page=6:95
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
     ps = PageScan;
