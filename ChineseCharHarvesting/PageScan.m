@@ -19,9 +19,6 @@
 % to be small enough to separate distinct characters.
 % 
 classdef PageScan
-    properties(Constant)
-        regprops = {};
-    end
     properties
         se = strel('rectangle', [9,15]);
         char_count = [];
