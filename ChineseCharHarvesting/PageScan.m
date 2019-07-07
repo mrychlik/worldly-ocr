@@ -20,7 +20,7 @@
 % 
 classdef PageScan
     properties
-        StructuringElement = strel('rectangle', [9,25]); % for imdilate
+        StructuringElement = strel('rectangle', [9,20]); % for imdilate
         Characters = struct('Position','Stats');
         PageImage = [];
         PageImageMono = [];
@@ -178,39 +178,6 @@ classdef PageScan
                       'MarkerEdgeAlpha',0.5);
             hold off;
         end
-
-        function show_dilation(this)
-        % SHOW_CENTROIDS shows the centroid of each character
-            clf;
-            colormap(hot);
-            set (gca,'YDir','reverse');            
-            hold on;
-            im = imagesc(this.PageImage);
-            im.AlphaData = 0.8;
-            in = imagesc(this.DilatedImage);
-            in.AlphaData = 0.2;
-            for char_idx = 1:this.CharacterCount
-                % Mark bounding box
-                bbox = this.Characters(char_idx).Stats.BoundingBox;
-                r = rectangle('Position',bbox);
-                set(r,'EdgeColor','red');
-                % Paint the face if 
-                if this.Characters(char_idx).IsShort
-                    set(r,'FaceColor',[0,1,0,.5]);                    
-                else
-                    set(r,'FaceColor',[1,1,1,.2]);
-                end
-                % Show centroid
-                s=scatter(this.Centroids(:,1),this.Centroids(:,2),'o',...
-                          'MarkerEdgeColor','red',...
-                          'MarkerFaceColor','red',...
-                          'MarkerFaceAlpha',0.3,...                      
-                          'MarkerEdgeAlpha',0.5);
-            end
-            hold off;
-        end
-
-
 
         function [this,S]=cluster_centroids(this, varargin)
             p = inputParser;
