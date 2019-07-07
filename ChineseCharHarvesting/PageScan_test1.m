@@ -11,6 +11,7 @@ for page=6:95
     ps = PageScan;
     ps = ps.scanfile(filename);
     ps.show_marked_page_img('Background',bg,'ShowDilation',show_dilation);
+    title(sprintf('Page %d', page));
     drawnow;
     pause;
 end;
