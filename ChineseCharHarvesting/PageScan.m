@@ -22,7 +22,7 @@ classdef PageScan
     properties
         StructuringElement = strel('rectangle', [9,15]);
         CharacterCount = [];
-        chars = struct('Position','Stats');
+        Characters = struct('Position','Stats');
         page_img = [];
         page_img_mono = [];
         dilated_img = [];
@@ -67,11 +67,11 @@ classdef PageScan
                 char_count = char_count + 1;
 
                 %disp(sprintf('Recording object %d as character %d', n, char_count));
-                this.chars(char_count).Stats = stats(n);
-                this.chars(char_count).Position = [x1,y1,x2,y2];
-                this.chars(char_count).CroppedMonoImage = BW;
-                this.chars(char_count).AltImage = K; % Carved out image
-                this.chars(char_count).IsShort = bbox(4) < this.short_height_threshold;
+                this.Characters(char_count).Stats = stats(n);
+                this.Characters(char_count).Position = [x1,y1,x2,y2];
+                this.Characters(char_count).CroppedMonoImage = BW;
+                this.Characters(char_count).AltImage = K; % Carved out image
+                this.Characters(char_count).IsShort = bbox(4) < this.short_height_threshold;
             end
             this.CharacterCount = char_count;
         end
@@ -94,11 +94,11 @@ classdef PageScan
             colormap(hot);
             for char_idx = 1:this.CharacterCount
                 % Mark bounding box
-                bbox = this.chars(char_idx).Stats.BoundingBox;
+                bbox = this.Characters(char_idx).Stats.BoundingBox;
                 r = rectangle('Position',bbox);
                 set(r,'EdgeColor','red');
                 % Paint the face if 
-                if this.chars(char_idx).IsShort
+                if this.Characters(char_idx).IsShort
                     set(r,'FaceColor',[0,1,0,.5]);                    
                 else
                     set(r,'FaceColor',[1,1,1,.2]);
@@ -112,11 +112,11 @@ classdef PageScan
             colormap(hot);
             for char_idx = 1:this.CharacterCount
                 % Mark bounding box
-                bbox = this.chars(char_idx).BoundingBox;
+                bbox = this.Characters(char_idx).BoundingBox;
                 r = rectangle('Position',bbox);
                 %set(r,'EdgeColor','red');
                 % Paint the face if 
-                if this.chars(char_idx).IsShort
+                if this.Characters(char_idx).IsShort
                     set(r,'EdgeColor','red');
                     set(r,'FaceColor',[0,1,0,.5]);                    
                 else
