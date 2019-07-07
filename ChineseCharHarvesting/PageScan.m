@@ -47,6 +47,7 @@ classdef PageScan
                 if PageScan.filter_out(stats(n))
                     continue;
                 end
+
                 J = zeros(size(this.page_img_mono));
                 b = stats(n).BoundingBox;
                 x1 = b(1); y1 = b(2); x2 = b(1) + b(3); y2 = b(2) + b(4);
