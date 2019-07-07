@@ -59,7 +59,7 @@ classdef PageScan
                 BW = this.page_img_mono( y1 : y2, x1 : x2 );
                 BW = imautocrop(BW);
 
-                if PageScan.filter_image(BW)
+                if PageScan.filter_out_image(BW)
                     continue
                 end
 
@@ -105,6 +105,7 @@ classdef PageScan
 
     methods(Static)
         function rv=filter_out(stat)
+        % FILTER_OUT - filter out object based on stat
             rv=false;
             % Filter out tall, nearly vertical objects
             if stat.MinorAxisLength ./ stat.MajorAxisLength < 2e-1 && abs(stat.Orientation-90)<5
@@ -113,7 +114,8 @@ classdef PageScan
 
         end
 
-        function rv=filter_image(K)
+        function rv=filter_out_image(K)
+        % FILTER_OUT_IMAGE - filter out base
             rv=false;
             % Filter out objects taller than 100 pixels and narrower than
             % 10 pixels
