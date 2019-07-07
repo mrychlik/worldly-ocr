@@ -73,7 +73,13 @@ classdef PageScan
             this.char_count = char_count;
         end
 
-        function marked_page_img(this)
+        function marked_page_img(this,varargin)
+            p=inputParser;
+            addRequired(p,'this',@(x)isa(x,'PageScan'));            
+            addOptional(p,'Background','Original',...
+                        @(x)any(validatestring(x,{'Original','Mono'})));
+            parse(p,this,varargin{:});
+
             imagesc(this.page_img_mono);
             colormap(hot);
             for char_idx = 1:this.char_count
