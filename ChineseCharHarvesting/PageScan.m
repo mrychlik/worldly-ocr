@@ -22,9 +22,9 @@ classdef PageScan
     properties
         StructuringElement = strel('rectangle', [9,20]); % for imdilate
         Characters = struct('Position','Stats');
-        page_img = [];
-        page_img_mono = [];
-        dilated_img = [];
+        PageImage = [];
+        PageImageMono = [];
+        DilatedImage = [];
         short_height_threshold = 30;
     end
 
@@ -50,11 +50,11 @@ classdef PageScan
         end
 
         function this = scanfile(this,filename)
-            this.page_img = imread(filename);
-            I1 = 255 - this.page_img; 
-            this.page_img_mono = im2bw(I1);
-            this.dilated_img = imdilate(this.page_img_mono, this.StructuringElement);
-            stats = regionprops(this.dilated_img,...
+            this.PageImage = imread(filename);
+            I1 = 255 - this.PageImage; 
+            this.PageImageMono = im2bw(I1);
+            this.DilatedImage = imdilate(this.PageImageMono, this.StructuringElement);
+            stats = regionprops(this.DilatedImage,...
                                 'BoundingBox',...
                                 'MajorAxisLength',...
                                 'MinorAxisLength',...
@@ -68,15 +68,15 @@ classdef PageScan
                     continue;
                 end
 
-                J = zeros(size(this.page_img_mono));
+                J = zeros(size(this.PageImageMono));
                 bbox = stats(n).BoundingBox;
                 x1 = bbox(1); y1 = bbox(2); x2 = bbox(1) + bbox(3); y2 = bbox(2) + bbox(4);
-                sz = size(this.page_img_mono);
+                sz = size(this.PageImageMono);
                 x1 = round( max(1,x1) ); x2 = round( min(x2, sz(2)));
                 y1 = round( max(1,y1) ); y2 = round( min(y2, sz(1)));
 
                 K = I1( y1:y2, x1:x2 );
-                BW = this.page_img_mono( y1 : y2, x1 : x2 );
+                BW = this.PageImageMono( y1 : y2, x1 : x2 );
                 BW = imautocrop(BW);
 
                 if PageScan.filter_out_image(BW)
@@ -94,8 +94,8 @@ classdef PageScan
             end
         end
 
-        function show_marked_page_img(this,varargin)
-        % MARKED_PAGE_IMG shows page with character bounding boxes
+        function show_marked_PageImage(this,varargin)
+        % MARKED_PAGEIMAGE shows page with character bounding boxes
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
             addOptional(p, 'Background', 'Original',...
@@ -105,9 +105,9 @@ classdef PageScan
             hold on;
             switch p.Results.Background
               case 'Original',
-                  imagesc(this.page_img);
+                  imagesc(this.PageImage);
               case 'Mono',
-                  imagesc(this.page_img_mono),
+                  imagesc(this.PageImageMono),
               otherwise,
                 error('Something wrong.');
             end
@@ -138,7 +138,7 @@ classdef PageScan
 
         function show_short_chars_img(this,varargin)
         % SHORT_CHARS_IMG shows short characters, which may be parts
-            imagesc(this.page_img_mono);
+            imagesc(this.PageImageMono);
             set (gca,'YDir','reverse');
             colormap(hot);
             for char_idx = 1:this.CharacterCount
@@ -163,7 +163,7 @@ classdef PageScan
             colormap(hot);
             set (gca,'YDir','reverse');            
             hold on;
-            im = imagesc(this.page_img);
+            im = imagesc(this.PageImage);
             im.AlphaData = 0.5;
             s=scatter(this.Centroids(:,1),this.Centroids(:,2),'o',...
                       'MarkerEdgeColor','red',...
@@ -172,6 +172,20 @@ classdef PageScan
                       'MarkerEdgeAlpha',0.5);
             hold off;
         end
+
+        function show_dilation(this)
+        % SHOW_CENTROIDS shows the centroid of each character
+            clf;
+            colormap(hot);
+            set (gca,'YDir','reverse');            
+            hold on;
+            im = imagesc(this.PageImage);
+            im.AlphaData = 0.5;
+            in = imagesc(this.DilatedImage);
+            in.AlphaData = 0.5;
+            hold off;
+        end
+
 
 
         function [this,S]=cluster_centroids(this, varargin)
