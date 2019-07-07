@@ -75,6 +75,7 @@ classdef PageScan
 
         function marked_page_img(this)
             imagesc(this.page_img_mono);
+            colormap(hot);
             for char_idx = 1:this.char_count
                 % Mark bounding box
                 bbox = this.chars(char_idx).stats.BoundingBox;
