@@ -126,7 +126,11 @@ classdef PageScan
 
         end
 
-        function this=cluster_centroids(this, angle)
+        function this=cluster_centroids(this, varargin)
+            p = inputParser;
+            addRequired(p, 'this', @(x)isa(x,'PageScan'));            
+            addOptional(p, 'Angle', 0, @(x)isscalar(x);
+            parse(p, this,varargin{:});
             a = angle/180*pi;           % Convert to radians
             v = [cos(a),sin(a)];
         end
