@@ -26,6 +26,7 @@ classdef PageScan
         PageImageMono = [];
         DilatedImage = [];
         short_height_threshold = 30;
+        column_dist_threshold = 100;
     end
 
     properties(Dependent)
@@ -179,14 +180,22 @@ classdef PageScan
             hold off;
         end
 
-        function [this,S]=cluster_centroids(this, varargin)
+        function this=calculate_lines(this, varargin)
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
             addOptional(p, 'Angle', 0, @(x)isscalar(x));
             parse(p, this, varargin{:});
-            N = this.CharacterCount;
-            D = zeros(N,N);                        
-            
+            % Sort centroids by x
+            x = this.Centroids(:,1);
+            [x_sorted,I] = sort(x,'descend');  % For traditional chinese, right-to-left
+            max_x = -1;
+            col = 0;
+            for idx=I
+                if x_sorted(idx)-max_x > this.column_dist_threshold
+                    col = col+1
+                end
+                this.Characters(I(idx)).Column = col;
+            end
         end
     end
 
