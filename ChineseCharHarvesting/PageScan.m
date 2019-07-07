@@ -180,9 +180,9 @@ classdef PageScan
             set (gca,'YDir','reverse');            
             hold on;
             im = imagesc(this.PageImage);
-            im.AlphaData = 0.9;
+            im.AlphaData = 0.8;
             in = imagesc(this.DilatedImage);
-            in.AlphaData = 0.3;
+            in.AlphaData = 0.2;
             for char_idx = 1:this.CharacterCount
                 % Mark bounding box
                 bbox = this.Characters(char_idx).Stats.BoundingBox;
@@ -199,7 +199,7 @@ classdef PageScan
                           'MarkerEdgeColor','red',...
                           'MarkerFaceColor','red',...
                           'MarkerFaceAlpha',0.3,...                      
-                          'MarkerEdgeAlpha',0.3);
+                          'MarkerEdgeAlpha',0.5);
             end
             hold off;
         end
