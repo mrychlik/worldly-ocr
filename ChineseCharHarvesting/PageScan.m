@@ -20,7 +20,7 @@
 % 
 classdef PageScan
     properties
-        StructuringElement = strel('rectangle', [9,20]); % for imdilate
+        StructuringElement = strel('rectangle', [9,15]); % for imdilate
         Characters = struct('Position','Stats');
         PageImage = [];
         PageImageMono = [];
@@ -80,7 +80,7 @@ classdef PageScan
                 BW = imautocrop(BW);
 
                 if PageScan.filter_out_image(BW)
-                    continue
+                    %continue
                 end
 
                 char_count = char_count + 1;
