@@ -7,5 +7,6 @@ for page=6:95
     ps = ps.scanfile(filename);
     ps.show_short_chars_img;
     drawnow;
-    pause;
+    uiwait(gcf);
+    %pause;
 end;
