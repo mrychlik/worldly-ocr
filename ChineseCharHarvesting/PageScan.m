@@ -184,8 +184,8 @@ classdef PageScan
                 %     set(r,'FaceColor',[0,0,0,1]);
                 % end
                 col = this.Columns(char_idx);
-                col_mod = mod(col, size(map,1));
-                set(r, 'EdgeColor', map(col_mod, :),'LineWidth',3);
+                col_mod = rem(13*col, size(map,1));
+                set(r, 'EdgeColor', [map(col_mod, :),0.5],'LineWidth',3);
             end
 
         end
