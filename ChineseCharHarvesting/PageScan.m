@@ -196,7 +196,7 @@ classdef PageScan
                     col = col + 1
                 end
                 min_x = x_sorted(idx);
-                this.Characters(I(idx)).Column = col;
+                this.Columns(I(idx)) = col;
             end
             this.ColumnCount = col;
         end
