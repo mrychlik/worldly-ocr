@@ -70,8 +70,8 @@ classdef PageScan
                 char_count = char_count + 1;
 
                 %disp(sprintf('Recording object %d as character %d', n, char_count));
-                this.chars(char_count) = stats(n);
-                this.chars(char_count).position = [x1,y1,x2,y2];
+                this.chars(char_count).Stats = stats(n);
+                this.chars(char_count).Position = [x1,y1,x2,y2];
                 this.chars(char_count).CroppedMonoImage = BW;
                 this.chars(char_count).AltImage = K; % Carved out image
                 this.chars(char_count).IsShort = bbox(4) < this.short_height_threshold;
