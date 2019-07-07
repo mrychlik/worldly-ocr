@@ -7,6 +7,7 @@ for page=6:10
     ps = PageScan;
     ps = ps.scanfile(filename);
     ps.show_short_chars_img;
+    title(sprintf('Page %d', page));
     drawnow;
     uiwait(gcf);
     %pause;
