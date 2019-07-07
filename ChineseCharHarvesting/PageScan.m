@@ -105,6 +105,7 @@ classdef PageScan
     methods(Static)
         function rv=filter_out(stat)
             rv=false;
+            % Filter out tall, nearly vertical objects
             if stat.MinorAxisLength ./ stat.MajorAxisLength < 2e-1 && abs(stat.Orientation-90)<5
                 rv=true;
             end
@@ -113,6 +114,8 @@ classdef PageScan
 
         function rv=filter_image(K)
             rv=false;
+            % Filter out objects taller than 100 pixels and narrower than
+            % 10 pixels
             if size(K,1) > 100 || size(K,2) < 10
                 rv=true;
             end
