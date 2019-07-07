@@ -183,6 +183,26 @@ classdef PageScan
             im.AlphaData = 0.9;
             in = imagesc(this.DilatedImage);
             in.AlphaData = 0.3;
+            for char_idx = 1:this.CharacterCount
+                % Mark bounding box
+                bbox = this.Characters(char_idx).Stats.BoundingBox;
+                r = rectangle('Position',bbox);
+                set(r,'EdgeColor','red');
+                % Paint the face if 
+                if this.Characters(char_idx).IsShort
+                    set(r,'FaceColor',[0,1,0,.5]);                    
+                else
+                    set(r,'FaceColor',[1,1,1,.2]);
+                end
+                % Show centroid
+                if p.Results.ShowCentroids
+                    s=scatter(this.Centroids(:,1),this.Centroids(:,2),'o',...
+                              'MarkerEdgeColor','red',...
+                              'MarkerFaceColor','red',...
+                              'MarkerFaceAlpha',0.3,...                      
+                              'MarkerEdgeAlpha',0.5);
+                end
+            end
             hold off;
         end
 
