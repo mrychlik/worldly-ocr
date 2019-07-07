@@ -101,15 +101,21 @@ classdef PageScan
             addOptional(p, 'Background', 'Original',...
                         @(x)any(validatestring(x,{'Original','Mono'})));
             addOptional(p, 'ShowCentroids', true, @(x)islogical(x));
+            addOptional(p, 'ShowDilation', false, @(x)islogical(x));            
             parse(p, this,varargin{:});
             hold on;
             switch p.Results.Background
               case 'Original',
-                  imagesc(this.PageImage);
+                im = imagesc(this.PageImage);
               case 'Mono',
-                  imagesc(this.PageImageMono),
+                im = imagesc(this.PageImageMono),
               otherwise,
                 error('Something wrong.');
+            end
+            if p.Results.ShowDilation
+                im.AlphaData = 0.8;
+                in = imagesc(this.DilatedImage);
+                in.AlphaData = 0.2;
             end
             set (gca,'YDir','reverse');
             colormap(hot);
