@@ -20,7 +20,7 @@
 % 
 classdef PageScan
     properties
-        StructuringElement = strel('rectangle', [9,15]); % for imdilate
+        StructuringElement = strel('rectangle', [5,15]); % for imdilate
         Characters = struct('Position','Stats');
         PageImage = [];
         PageImageMono = [];
