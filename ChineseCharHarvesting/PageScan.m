@@ -190,10 +190,11 @@ classdef PageScan
             [x_sorted,I] = sort(x,'descend');  % For traditional chinese, right-to-left
             max_x = -1;
             col = 0;
-            for idx=I
-                if x_sorted(idx)-max_x > this.column_dist_threshold
-                    col = col+1
+            for idx=1:this.CharacterCount
+                if x_sorted(idx) - max_x < - this.column_dist_threshold
+                    col = col + 1
                 end
+                max_x = x_sorted(idx);
                 this.Characters(I(idx)).Column = col;
             end
         end
