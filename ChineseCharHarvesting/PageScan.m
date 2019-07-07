@@ -111,6 +111,7 @@ classdef PageScan
               otherwise,
                 error('Something wrong.');
             end
+            set (gca,'YDir','reverse');
             colormap(hot);
             for char_idx = 1:this.CharacterCount
                 % Mark bounding box
@@ -138,6 +139,7 @@ classdef PageScan
         function show_short_chars_img(this,varargin)
         % SHORT_CHARS_IMG shows short characters, which may be parts
             imagesc(this.page_img_mono);
+            set (gca,'YDir','reverse');
             colormap(hot);
             for char_idx = 1:this.CharacterCount
                 % Mark bounding box
@@ -158,6 +160,8 @@ classdef PageScan
         function show_centroids(this)
         % SHOW_CENTROIDS shows the centroid of each character
             clf;
+            colormap(hot);
+            set (gca,'YDir','reverse');            
             hold on;
             im = imagesc(this.page_img);
             im.AlphaData = 0.5;
