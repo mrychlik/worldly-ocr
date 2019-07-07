@@ -207,12 +207,8 @@ classdef PageScan
             hold off;
         end
 
-        function this=calculate_columns(this, varargin)
-        %CALCULATE_COLUMNS - assign characters to columns
-            p = inputParser;
-            addRequired(p, 'this', @(x)isa(x,'PageScan'));            
-            addOptional(p, 'Angle', 0, @(x)isscalar(x));
-            parse(p, this, varargin{:});
+        function Columns=get.Columns(this)
+            Columns = zeros(this.CharacterCount,1);
             % Sort centroids by x
             x = this.Centroids(:,1);
             [x_sorted,I] = sort(x,'descend');  % For traditional chinese, right-to-left
@@ -223,9 +219,8 @@ classdef PageScan
                     col = col + 1
                 end
                 min_x = x_sorted(idx);
-                this.Columns(I(idx)) = col;
+                Columns(I(idx)) = col;
             end
-            this.ColumnCount = col;
         end
     end
 
