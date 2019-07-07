@@ -216,7 +216,7 @@ classdef PageScan
             col = 1;
             for idx=1:numel(x)
                 if x_sorted(idx) <  min_x - this.column_dist_threshold
-                    col = col + 1
+                    col = col + 1;
                 end
                 min_x = x_sorted(idx);
                 Columns(I(idx)) = col;
