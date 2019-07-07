@@ -94,7 +94,7 @@ classdef PageScan
             end
         end
 
-        function show_marked_PageImage(this,varargin)
+        function show_marked_page_image(this,varargin)
         % MARKED_PAGEIMAGE shows page with character bounding boxes
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
