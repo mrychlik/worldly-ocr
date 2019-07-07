@@ -23,9 +23,9 @@ classdef PageScan
         regprops = {};
     end
     properties
-        se=strel('rectangle',[9,15]);
+        se = strel('rectangle', [9,15]);
         char_count = [];
-        chars = struct(regprops{:})
+        chars = struct('Position','Stats');
         page_img = [];
         page_img_mono = [];
         dilated_img = [];
