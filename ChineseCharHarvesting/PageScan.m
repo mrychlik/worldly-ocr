@@ -170,7 +170,7 @@ classdef PageScan
         % SHORT_CHARS_IMG shows short characters, which may be parts
             imagesc(this.PageImage);
             set (gca,'YDir','reverse');
-            colormap(hot);
+            colormap(jet);
             map = colormap;
             for char_idx = 1:this.CharacterCount
                 % Mark bounding box
@@ -184,7 +184,7 @@ classdef PageScan
                 %     set(r,'FaceColor',[0,0,0,1]);
                 % end
                 col = this.Columns(char_idx);
-                col_mod = rem(13*col, size(map,1));
+                col_mod = rem(17*col, size(map,1));
                 set(r, 'EdgeColor', [map(col_mod, :),0.5],'LineWidth',3);
             end
 
