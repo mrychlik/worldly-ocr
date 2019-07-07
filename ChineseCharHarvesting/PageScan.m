@@ -27,6 +27,7 @@ classdef PageScan
         DilatedImage = [];
         short_height_threshold = 30;
         column_dist_threshold = 100;
+        ColumnCount = -1;               % Number of columns
     end
 
     properties(Dependent)
@@ -197,6 +198,7 @@ classdef PageScan
                 max_x = x_sorted(idx);
                 this.Characters(I(idx)).Column = col;
             end
+            this.ColumnCount = col;
         end
     end
 
