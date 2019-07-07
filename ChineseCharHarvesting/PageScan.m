@@ -97,6 +97,8 @@ classdef PageScan
                 % Paint the face if 
                 if bbox(4) < this.short_height_threshold
                     set(r,'FaceColor',[0,1,0,.5]);                    
+                else
+                    set(r,'FaceColor',[1,1,1,.2]);
                 end
             end
         end
