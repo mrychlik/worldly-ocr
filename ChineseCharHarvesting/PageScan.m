@@ -183,6 +183,7 @@ classdef PageScan
         end
 
         function this=calculate_columns(this, varargin)
+        %CALCULATE_COLUMNS - assign characters to columns
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
             addOptional(p, 'Angle', 0, @(x)isscalar(x));
