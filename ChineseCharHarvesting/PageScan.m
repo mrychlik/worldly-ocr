@@ -144,6 +144,20 @@ classdef PageScan
 
         end
 
+        function show_centroids(this)
+            clf;
+            hold on;
+            im = imagesc(this.page_img);
+            im.AlphaData = 0.5;
+            s=scatter(this.Centroids(:,1),this.Centroids(:,2),'o',...
+                      'MarkerEdgeColor','red',...
+                      'MarkerFaceColor','red',...
+                      'MarkerFaceAlpha',0.3,...                      
+                      'MarkerEdgeAlpha',0.5)
+            hold off;
+        end
+
+
         function [this,S]=cluster_centroids(this, varargin)
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
