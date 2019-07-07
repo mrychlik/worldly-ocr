@@ -20,8 +20,7 @@
 % 
 classdef PageScan
     properties
-        StructuringElement = strel('rectangle', [9,15]);
-        CharacterCount = [];
+        StructuringElement = strel('rectangle', [9,15]); % for imdilate
         Characters = struct('Position','Stats');
         page_img = [];
         page_img_mono = [];
@@ -29,7 +28,15 @@ classdef PageScan
         short_height_threshold = 30;
     end
 
+    properties(Dependent)
+        CharacterCount;                 % Number of identified characters
+    end
+
     methods
+        function CharacterCount = get.CharacterCount(this)
+            CharacterCount = mumel(this.Characters);
+        end
+
         function this = scanfile(this,filename)
             this.page_img = imread(filename);
             I1 = 255 - this.page_img; 
@@ -73,7 +80,6 @@ classdef PageScan
                 this.Characters(char_count).AltImage = K; % Carved out image
                 this.Characters(char_count).IsShort = bbox(4) < this.short_height_threshold;
             end
-            this.CharacterCount = char_count;
         end
 
         function marked_page_img(this,varargin)
