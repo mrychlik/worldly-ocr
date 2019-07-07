@@ -70,6 +70,7 @@ classdef PageScan
                 this.chars(char_count).BW = BW;
                 this.chars(char_count).Image = K;
                 this.chars(char_count).stats = stats(n);
+                this.chars(char_count).is_short = bbox(4) < this.short_height_threshold;
             end
             this.char_count = char_count;
         end
@@ -95,7 +96,7 @@ classdef PageScan
                 r = rectangle('Position',bbox);
                 set(r,'EdgeColor','red');
                 % Paint the face if 
-                if bbox(4) < this.short_height_threshold
+                if this.cars(char_idx).is_short
                     set(r,'FaceColor',[0,1,0,.5]);                    
                 else
                     set(r,'FaceColor',[1,1,1,.2]);
