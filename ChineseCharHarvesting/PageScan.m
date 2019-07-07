@@ -49,8 +49,8 @@ classdef PageScan
                 end
 
                 J = zeros(size(this.page_img_mono));
-                b = stats(n).BoundingBox;
-                x1 = b(1); y1 = b(2); x2 = b(1) + b(3); y2 = b(2) + b(4);
+                bbox = stats(n).BoundingBox;
+                x1 = bbox(1); y1 = bbox(2); x2 = bbox(1) + bbox(3); y2 = bbox(2) + bbox(4);
                 sz = size(this.page_img_mono);
                 x1 = round( max(1,x1) ); x2 = round( min(x2, sz(2)));
                 y1 = round( max(1,y1) ); y2 = round( min(y2, sz(1)));
