@@ -101,6 +101,7 @@ classdef PageScan
             addOptional(p, 'Background', 'Original',...
                         @(x)any(validatestring(x,{'Original','Mono'})));
             parse(p, this,varargin{:});
+            hold on;
             switch p.Results.Background
               case 'Original',
                   imagesc(this.page_img);
@@ -121,7 +122,16 @@ classdef PageScan
                 else
                     set(r,'FaceColor',[1,1,1,.2]);
                 end
+                % Show centroid
+                if p.Results.ShowCentroids
+                    s=scatter(this.Centroids(:,1),this.Centroids(:,2),'o',...
+                              'MarkerEdgeColor','red',...
+                              'MarkerFaceColor','red',...
+                              'MarkerFaceAlpha',0.3,...                      
+                              'MarkerEdgeAlpha',0.5)
+                end
             end
+            hold off;
         end
 
         function show_short_chars_img(this,varargin)
