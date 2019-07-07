@@ -5,8 +5,7 @@ page_img_pattern='page-%02d.ppm';
 %bg='Foo';                               % Invalid option - test
 bg='Original';
 
-%for page=6:95
-for page=6
+for page=6:95
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
     ps = PageScan;
     ps = ps.scanfile(filename);
