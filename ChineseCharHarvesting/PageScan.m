@@ -96,7 +96,7 @@ classdef PageScan
                 r = rectangle('Position',bbox);
                 set(r,'EdgeColor','red');
                 % Paint the face if 
-                if this.cars(char_idx).is_short
+                if this.chars(char_idx).is_short
                     set(r,'FaceColor',[0,1,0,.5]);                    
                 else
                     set(r,'FaceColor',[1,1,1,.2]);
