@@ -5,7 +5,7 @@ for page=6:95
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
     ps = PageScan;
     ps = ps.scanfile(filename);
-    ps.show_short_chars_img;
+    ps.show_centroids;
     drawnow;
     pause;
 end;
