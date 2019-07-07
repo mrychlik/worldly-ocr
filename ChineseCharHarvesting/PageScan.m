@@ -75,11 +75,11 @@ classdef PageScan
         end
 
         function marked_page_img(this,varargin)
-            p=inputParser;
-            addRequired(p,'this',@(x)isa(x,'PageScan'));            
-            addOptional(p,'Background','Original',...
+            p = inputParser;
+            addRequired(p, 'this', @(x)isa(x,'PageScan'));            
+            addOptional(p, 'Background', 'Original',...
                         @(x)any(validatestring(x,{'Original','Mono'})));
-            parse(p,this,varargin{:});
+            parse(p, this,varargin{:});
             switch p.Results.Background
               case 'Original',
                   imagesc(this.page_img);
