@@ -30,11 +30,12 @@ classdef PageScan
 
     properties(Dependent)
         CharacterCount;                 % Number of identified characters
+        Centroids;                      % Character centroids
     end
 
     methods
         function CharacterCount = get.CharacterCount(this)
-            CharacterCount = mumel(this.Characters);
+            CharacterCount = numel(this.Characters);
         end
 
         function this = scanfile(this,filename)
@@ -135,7 +136,7 @@ classdef PageScan
         function this=cluster_centroids(this, varargin)
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
-            addOptional(p, 'Angle', 0, @(x)isscalar(x);
+            addOptional(p, 'Angle', 0, @(x)isscalar(x));
             parse(p, this,varargin{:});
             a = angle/180*pi;           % Convert to radians
             v = [cos(a),sin(a)];
