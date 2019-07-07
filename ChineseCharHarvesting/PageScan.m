@@ -117,7 +117,7 @@ classdef PageScan
         function rv=filter_out_image(K)
         % FILTER_OUT_IMAGE - filter out base
             rv=false;
-            % Filter out images taller than 100 pixels and narrower than 10
+            % Filter out tall and narrow images
             if size(K,1) > 100 || size(K,2) < 10
                 rv=true;
             end
