@@ -79,8 +79,14 @@ classdef PageScan
             addOptional(p,'Background','Original',...
                         @(x)any(validatestring(x,{'Original','Mono'})));
             parse(p,this,varargin{:});
-
-            imagesc(this.page_img_mono);
+            switch p.Results.Background
+              case 'Original',
+                  imagesc(this.page_img);
+              case 'Mono',
+                  imagesc(this.page_img_mono),
+              otherwise,
+                error('Invalid ''Background'' option value');
+            end
             colormap(hot);
             for char_idx = 1:this.char_count
                 % Mark bounding box
