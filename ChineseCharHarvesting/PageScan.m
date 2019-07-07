@@ -66,11 +66,11 @@ classdef PageScan
                 char_count = char_count + 1;
 
                 %disp(sprintf('Recording object %d as character %d', n, char_count));
+                this.chars(char_count) = stats(n);
                 this.chars(char_count).position = [x1,y1,x2,y2];
-                this.chars(char_count).BW = BW;
-                this.chars(char_count).Image = K;
-                this.chars(char_count).stats = stats(n);
-                this.chars(char_count).is_short = bbox(4) < this.short_height_threshold;
+                this.chars(char_count).CroppedMonoImage = BW;
+                this.chars(char_count).AltImage = K; % Carved out image
+                this.chars(char_count).IsShort = bbox(4) < this.short_height_threshold;
             end
             this.char_count = char_count;
         end
@@ -93,7 +93,7 @@ classdef PageScan
             colormap(hot);
             for char_idx = 1:this.char_count
                 % Mark bounding box
-                bbox = this.chars(char_idx).stats.BoundingBox;
+                bbox = this.chars(char_idx).BoundingBox;
                 r = rectangle('Position',bbox);
                 set(r,'EdgeColor','red');
                 % Paint the face if 
@@ -111,11 +111,11 @@ classdef PageScan
             colormap(hot);
             for char_idx = 1:this.char_count
                 % Mark bounding box
-                bbox = this.chars(char_idx).stats.BoundingBox;
+                bbox = this.chars(char_idx).BoundingBox;
                 r = rectangle('Position',bbox);
                 %set(r,'EdgeColor','red');
                 % Paint the face if 
-                if this.chars(char_idx).is_short
+                if this.chars(char_idx).IsShort
                     set(r,'EdgeColor','red');
                     set(r,'FaceColor',[0,1,0,.5]);                    
                 else
@@ -125,6 +125,10 @@ classdef PageScan
 
         end
 
+        function this=cluster_centroids(this, angle)
+            a = angle/180*pi;           % Convert to radians
+            v = [cos(a),sin(a)];
+        end
     end
 
     methods(Static)
