@@ -192,9 +192,9 @@ classdef PageScan
         function D = interval_hor_dist(a, b)
         % INTERVAL_HOR_DIST - distance between intervals
             if a(2) < b(1) 
-                D = b(1) - a(2)
+                D = b(1) - a(2);
             elseif a(1) > b(2)
-                D = b(2) - a(1)
+                D = b(2) - a(1);
             else 
                 D = 0;
             end
