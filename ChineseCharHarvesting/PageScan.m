@@ -97,7 +97,7 @@ classdef PageScan
             colormap(hot);
             for char_idx = 1:this.char_count
                 % Mark bounding box
-                bbox = this.chars(char_idx).BoundingBox;
+                bbox = this.chars(char_idx).Stats.BoundingBox;
                 r = rectangle('Position',bbox);
                 set(r,'EdgeColor','red');
                 % Paint the face if 
