@@ -2,8 +2,9 @@ pagedir='Pages';
 page_img_pattern='page-%02d.ppm';
 
 %bg='Mono';
-%bg='Original';
-bg='Foo';
+%bg='Foo';                               % Invalid option - test
+bg='Original';
+
 for page=6:96
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
     ps = PageScan;
