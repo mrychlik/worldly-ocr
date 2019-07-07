@@ -6,6 +6,7 @@ for page=6:95
     ps = PageScan;
     ps = ps.scanfile(filename);
     ps.show_centroids;
+    title(sprintf('Page %d', page));
     drawnow;
     uiwait(gcf);
     %pause;
