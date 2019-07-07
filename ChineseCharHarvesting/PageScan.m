@@ -19,15 +19,19 @@
 % to be small enough to separate distinct characters.
 % 
 classdef PageScan
+    properties(Constant)
+        regprops = {};
+    end
     properties
         se=strel('rectangle',[9,15]);
         char_count = [];
-        chars = struct('position',[]);
+        chars = struct(regprops{:})
         page_img = [];
         page_img_mono = [];
         dilated_img = [];
         short_height_threshold = 30;
     end
+
     methods
         function this = scanfile(this,filename)
             this.page_img = imread(filename);
