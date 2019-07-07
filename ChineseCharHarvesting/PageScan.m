@@ -30,7 +30,8 @@ classdef PageScan
 
     properties(Dependent)
         CharacterCount;                 % Number of identified characters
-        Centroids;                      % Character centroids - CharacterCount-by-2
+        Centroids;               % Character centroids - CharacterCount-by-2
+        HorizontalRanges;            % Horizontal extends of characters.
     end
 
     methods
@@ -41,6 +42,11 @@ classdef PageScan
         function Centroids = get.Centroids(this)
             fh = @(s)s.Stats.Centroid';
             Centroids = cell2mat(arrayfun(fh,this.Characters,'UniformOutput',false))';
+        end
+
+        function  HorizontalRanges = get.HorizontalRanges(this)
+            fh = @(s)PageScan.bbox_hor_range(s.Stats.BoundingBox)';
+            HorizontalRanges = cell2mat(arrayfun(fh,this.Characters,'UniformOutput',false))';
         end
 
         function this = scanfile(this,filename)
@@ -143,10 +149,9 @@ classdef PageScan
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
             addOptional(p, 'Angle', 0, @(x)isscalar(x));
             parse(p, this, varargin{:});
-            a = p.Results.Angle/180*pi;           % Convert to radians
-            v = [cos(a),sin(a)];
-            S = struct();
-            S.Data = this.Centroids*v';
+            N = this.CharacterCount;
+            D = zeros(N,N);                        
+            
         end
     end
 
@@ -198,7 +203,7 @@ classdef PageScan
         function D = bbox_dist(bbox1, bbox2)
         % BBOX_DIST - distance between BBOX1 and BBOX2
             D = PageScan.interval_hor_dist(PageScan.bbox_hor_range(bbox1),...
-                                           PageScan.bbox_hor_range(bbox1));
+                                           PageScan.bbox_hor_range(bbox2));
         end
     end
 end
