@@ -100,6 +100,7 @@ classdef PageScan
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
             addOptional(p, 'Background', 'Original',...
                         @(x)any(validatestring(x,{'Original','Mono'})));
+            addOptional(p, 'ShowCentroids', true, @(x)islogical(x));
             parse(p, this,varargin{:});
             hold on;
             switch p.Results.Background
