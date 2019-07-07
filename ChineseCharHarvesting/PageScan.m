@@ -94,7 +94,7 @@ classdef PageScan
             end
         end
 
-        function show_marked_page_image(this,varargin)
+        function show_marked_page_img(this,varargin)
         % MARKED_PAGEIMAGE shows page with character bounding boxes
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
@@ -180,9 +180,9 @@ classdef PageScan
             set (gca,'YDir','reverse');            
             hold on;
             im = imagesc(this.PageImage);
-            im.AlphaData = 0.5;
+            im.AlphaData = 0.9;
             in = imagesc(this.DilatedImage);
-            in.AlphaData = 0.5;
+            in.AlphaData = 0.3;
             hold off;
         end
 
