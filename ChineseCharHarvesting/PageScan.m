@@ -20,8 +20,8 @@
 % 
 classdef PageScan
     properties
-        se = strel('rectangle', [9,15]);
-        char_count = [];
+        StructuringElement = strel('rectangle', [9,15]);
+        CharacterCount = [];
         chars = struct('Position','Stats');
         page_img = [];
         page_img_mono = [];
@@ -34,7 +34,7 @@ classdef PageScan
             this.page_img = imread(filename);
             I1 = 255 - this.page_img; 
             this.page_img_mono = im2bw(I1);
-            this.dilated_img = imdilate(this.page_img_mono, this.se);
+            this.dilated_img = imdilate(this.page_img_mono, this.StructuringElement);
             stats = regionprops(this.dilated_img,...
                                 'BoundingBox',...
                                 'MajorAxisLength',...
@@ -73,7 +73,7 @@ classdef PageScan
                 this.chars(char_count).AltImage = K; % Carved out image
                 this.chars(char_count).IsShort = bbox(4) < this.short_height_threshold;
             end
-            this.char_count = char_count;
+            this.CharacterCount = char_count;
         end
 
         function marked_page_img(this,varargin)
@@ -92,7 +92,7 @@ classdef PageScan
                 error('Something wrong.');
             end
             colormap(hot);
-            for char_idx = 1:this.char_count
+            for char_idx = 1:this.CharacterCount
                 % Mark bounding box
                 bbox = this.chars(char_idx).Stats.BoundingBox;
                 r = rectangle('Position',bbox);
@@ -110,7 +110,7 @@ classdef PageScan
         % SHORT_CHARS_IMG shows short characters, which may be parts
             imagesc(this.page_img_mono);
             colormap(hot);
-            for char_idx = 1:this.char_count
+            for char_idx = 1:this.CharacterCount
                 % Mark bounding box
                 bbox = this.chars(char_idx).BoundingBox;
                 r = rectangle('Position',bbox);
