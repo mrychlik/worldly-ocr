@@ -181,7 +181,7 @@ classdef PageScan
             hold off;
         end
 
-        function this=calculate_lines(this, varargin)
+        function this=calculate_columns(this, varargin)
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
             addOptional(p, 'Angle', 0, @(x)isscalar(x));
@@ -191,7 +191,7 @@ classdef PageScan
             [x_sorted,I] = sort(x,'descend');  % For traditional chinese, right-to-left
             min_x = x_sorted(end)+1000;
             col = 0;
-            for idx=1:this.CharacterCount
+            for idx=1:numel(x)
                 if x_sorted(idx) <  min_x - this.column_dist_threshold
                     col = col + 1
                 end
