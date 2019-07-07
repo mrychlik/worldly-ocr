@@ -30,12 +30,17 @@ classdef PageScan
 
     properties(Dependent)
         CharacterCount;                 % Number of identified characters
-        Centroids;                      % Character centroids
+        Centroids;                      % Character centroids - CharacterCount-by-2
     end
 
     methods
         function CharacterCount = get.CharacterCount(this)
             CharacterCount = numel(this.Characters);
+        end
+
+        function Centroids = get.Centroids(this)
+            fh = @(s)s.Stats.Centroid';
+            Centroids = cell2mat(arrayfun(fh,this.Characters,'UniformOutput',false))';
         end
 
         function this = scanfile(this,filename)
