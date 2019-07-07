@@ -85,7 +85,7 @@ classdef PageScan
               case 'Mono',
                   imagesc(this.page_img_mono),
               otherwise,
-                error('Invalid ''Background'' option value');
+                error('Something wrong.');
             end
             colormap(hot);
             for char_idx = 1:this.char_count
