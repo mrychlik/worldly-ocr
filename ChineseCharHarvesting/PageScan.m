@@ -152,7 +152,7 @@ classdef PageScan
             colormap(hot);
             for char_idx = 1:this.CharacterCount
                 % Mark bounding box
-                bbox = this.Characters(char_idx).BoundingBox;
+                bbox = this.Characters(char_idx).Stats.BoundingBox;
                 r = rectangle('Position',bbox);
                 %set(r,'EdgeColor','red');
                 % Paint the face if 
@@ -165,6 +165,31 @@ classdef PageScan
             end
 
         end
+
+        function show_columns(this,varargin)
+        % SHORT_CHARS_IMG shows short characters, which may be parts
+            imagesc(this.PageImage);
+            set (gca,'YDir','reverse');
+            colormap(hot);
+            map = colormap;
+            for char_idx = 1:this.CharacterCount
+                % Mark bounding box
+                bbox = this.Characters(char_idx).Stats.BoundingBox;
+                r = rectangle('Position',bbox);
+                %set(r,'EdgeColor','red');
+                % Paint the face if 
+                % if this.Characters(char_idx).IsShort
+                %     set(r,'FaceColor',[0,1,0,.5]);                    
+                % else
+                %     set(r,'FaceColor',[0,0,0,1]);
+                % end
+                col = this.Columns(char_idx);
+                col_mod = mod(col, size(map,1));
+                set(r, 'EdgeColor', map(col_mod, :),'LineWidth',3);
+            end
+
+        end
+
 
         function show_centroids(this)
         % SHOW_CENTROIDS shows the centroid of each character
