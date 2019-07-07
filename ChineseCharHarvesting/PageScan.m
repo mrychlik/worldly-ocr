@@ -88,7 +88,7 @@ classdef PageScan
             end
         end
 
-        function marked_page_img(this,varargin)
+        function show_marked_page_img(this,varargin)
         % MARKED_PAGE_IMG shows page with character bounding boxes
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
@@ -118,7 +118,7 @@ classdef PageScan
             end
         end
 
-        function short_chars_img(this,varargin)
+        function show_short_chars_img(this,varargin)
         % SHORT_CHARS_IMG shows short characters, which may be parts
             imagesc(this.page_img_mono);
             colormap(hot);
@@ -138,13 +138,15 @@ classdef PageScan
 
         end
 
-        function this=cluster_centroids(this, varargin)
+        function [this,S]=cluster_centroids(this, varargin)
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
             addOptional(p, 'Angle', 0, @(x)isscalar(x));
-            parse(p, this,varargin{:});
-            a = angle/180*pi;           % Convert to radians
+            parse(p, this, varargin{:});
+            a = p.Results.Angle/180*pi;           % Convert to radians
             v = [cos(a),sin(a)];
+            S = struct();
+            S.Data = this.Centroids*v';
         end
     end
 
@@ -166,6 +168,37 @@ classdef PageScan
             if size(K,1) > 100 || size(K,2) < 10
                 rv=true;
             end
+        end
+
+        function [x,y,w,h] = dbox(bbox)
+        % DBOX - extract components of bbox
+            x = bbox(1);
+            y = bbox(2);
+            w = bbox(3);
+            h = bbox(4);
+        end
+
+        function xrange = bbox_hor_range(bbox)
+        % BBOX_HOR_RANGE - horizontal range of BBOX
+            [x,y,w,h] = PageScan.dbox(bbox);
+            xrange = [x,x+w];
+        end
+
+        function D = interval_hor_dist(a, b)
+        % INTERVAL_HOR_DIST - distance between intervals
+            if a(2) < b(1) 
+                D = b(1) - a(2)
+            elseif a(1) > b(2)
+                D = b(2) - a(1)
+            else 
+                D = 0;
+            end
+        end
+
+        function D = bbox_dist(bbox1, bbox2)
+        % BBOX_DIST - distance between BBOX1 and BBOX2
+            D = PageScan.interval_hor_dist(PageScan.bbox_hor_range(bbox1),...
+                                           PageScan.bbox_hor_range(bbox1));
         end
     end
 end
