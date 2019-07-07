@@ -198,7 +198,6 @@ classdef PageScan
             if stat.MinorAxisLength ./ stat.MajorAxisLength < 2e-1 && abs(stat.Orientation-90)<5
                 rv=true;
             end
-
         end
 
         function rv=filter_out_image(K)
