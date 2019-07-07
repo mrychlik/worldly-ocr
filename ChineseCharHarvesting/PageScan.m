@@ -80,7 +80,7 @@ classdef PageScan
                 BW = imautocrop(BW);
 
                 if PageScan.filter_out_image(BW)
-                    %continue
+                    continue
                 end
 
                 char_count = char_count + 1;
