@@ -145,6 +145,7 @@ classdef PageScan
         end
 
         function show_centroids(this)
+        % SHOW_CENTROIDS shows the centroid of each character
             clf;
             hold on;
             im = imagesc(this.page_img);
