@@ -283,6 +283,7 @@ classdef PageScan
                         row = row + 1;
                     end
                     max_y(col) = y_sorted(idx);
+                    last_col = col;
                 end
                 Rows(I(idx)) = row;
             end
