@@ -287,8 +287,8 @@ classdef PageScan
             im = imagesc(this.PageImage);
             im.AlphaData = 0.5;
             for char_idx = 1:this.CharacterCount
-                if ~p.Results.ShowOutliers 
-                    continue
+                if ~p.Results.ShowOutliers && this.is_outlier(char_idx)
+                    continue;
                 end
                 bbox = this.Characters(char_idx).Stats.BoundingBox;
                 r = rectangle('Position',bbox);
