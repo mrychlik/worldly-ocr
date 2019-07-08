@@ -27,7 +27,7 @@ classdef PageScan
         DilatedImage = [];
         short_height_threshold = 30;
         column_dist_threshold = 60;
-        row_dist_threshold = 30;        
+        row_dist_threshold = 40;        
         ColumnCount = -1;               % Number of columns
     end
 
@@ -68,9 +68,11 @@ classdef PageScan
                                 'Centroid');
             N = numel(stats);
             char_count = 0;
+            is_outlier = false;
             for n=1:N
                 if PageScan.filter_out(stats(n))
-                    continue;
+                    %continue;
+                    is_outlier = true;
                 end
 
                 J = zeros(size(this.PageImageMono));
@@ -85,7 +87,8 @@ classdef PageScan
                 BW = imautocrop(BW);
 
                 if PageScan.filter_out_image(BW)
-                    continue
+                    %continue
+                    is_outlier = true;
                 end
 
                 char_count = char_count + 1;
@@ -96,6 +99,7 @@ classdef PageScan
                 this.Characters(char_count).CroppedMonoImage = BW;
                 this.Characters(char_count).AltImage = K; % Carved out image
                 this.Characters(char_count).IsShort = bbox(4) < this.short_height_threshold;
+                this.Characters(char_count).IsOutlier = is_outlier;
             end
         end
 
