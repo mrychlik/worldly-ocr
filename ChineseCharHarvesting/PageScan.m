@@ -341,8 +341,13 @@ classdef PageScan
 
 
         function rv = is_outlier(this, char_idx)
-        % IS_OUTLIER returns true of character is outlier
+        % IS_OUTLIER returns true if character is outlier
             rv = this.Characters(char_idx).IsOutlier;
+        end
+
+        function rv = is_short(this, char_idx)
+        % IS_SHORT returns true if character is short
+            rv = this.Characters(char_idx).IsShort;
         end
     end
 
