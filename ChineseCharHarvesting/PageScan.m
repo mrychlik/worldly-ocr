@@ -41,7 +41,7 @@ classdef PageScan
 
     methods
         function this = PageScan(filename, varargin)
-            this = scanfile(this,filename,varargin{:});
+            this = this.scanfile(filename,varargin{:});
         end
 
 
