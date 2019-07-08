@@ -38,6 +38,9 @@ classdef PageScan
         Rows;                           % Row assignment
         ColumnCount;                    % Number of columns
         RowCount;                       % Number of rows
+        ColumnCenters;                  % X of the column mean centroid
+        Width;                          % Page width in pixels
+        Height;                         % Page height in pixels
     end
 
     methods
@@ -61,6 +64,13 @@ classdef PageScan
         function Centroids = get.Centroids(this)
             fh = @(s)s.Stats.Centroid';
             Centroids = cell2mat(arrayfun(fh,this.Characters,'UniformOutput',false))';
+        end
+
+        function ColumnCenters = get.ColumnCenters(this)
+            ColumnCenters = zeros(this.ColumnCount, 1);
+            for col=1:this.ColumnCount
+                ColumnCenters(col) = mean(this.Centroids(this.Columns == col,1));
+            end
         end
 
         function  HorizontalRanges = get.HorizontalRanges(this)
@@ -252,6 +262,25 @@ classdef PageScan
                       'MarkerFaceColor','red',...
                       'MarkerFaceAlpha',0.3,...                      
                       'MarkerEdgeAlpha',0.5);
+            hold off;
+        end
+
+        function show_column_centers(this, varargin)
+            p = inputParser;
+            addRequired(p, 'this', @(x)isa(x,'PageScan'));            
+            addOptional(p, 'ShowOutliers', false, @(x)islogical(x));            
+            parse(p, this,varargin{:});
+
+            clf;
+            colormap(hot);
+            set (gca,'YDir','reverse');            
+            hold on;
+            im = imagesc(this.PageImage);
+            im.AlphaData = 0.5;
+            for col = 1:this.ColumnCount
+                c = this.ColumnCenters(col)
+                line([c(1),c(2)], [0,this.Height]);
+            end
             hold off;
         end
 
