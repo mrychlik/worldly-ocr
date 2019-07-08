@@ -130,6 +130,9 @@ classdef PageScan
             set (gca,'YDir','reverse');
             colormap(hot);
             for char_idx = 1:this.CharacterCount
+                if ~p.Results.ShowOutliers
+                    continue
+                end
                 % Mark bounding box
                 bbox = this.Characters(char_idx).Stats.BoundingBox;
                 r = rectangle('Position',bbox);
