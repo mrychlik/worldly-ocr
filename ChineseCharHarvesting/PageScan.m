@@ -297,11 +297,10 @@ classdef PageScan
             for n=1:N
                 is_outlier = false;
                 if PageScan.filter_out(stats(n))
-                    if ~p.Results.KeepOutliers 
-                        continue;
-                    else
-                        is_outlier = true;
-                    end
+                    is_outlier = true;
+                end
+                if ~p.Results.KeepOutliers && is_outlier
+                    continue;
                 end
 
                 J = zeros(size(this.PageImageMono));
@@ -316,13 +315,12 @@ classdef PageScan
                 BW = imautocrop(BW);
 
                 if PageScan.filter_out_image(BW)
-                    if ~p.Results.KeepOutliers 
-                        continue;
-                    else
-                        is_outlier = true;
-                    end
+                    is_outlier = true;
                 end
 
+                if ~p.Results.KeepOutliers && is_outlier
+                    continue;
+                end
                 char_count = char_count + 1;
 
                 %disp(sprintf('Recording object %d as character %d', n, char_count));
