@@ -225,12 +225,12 @@ classdef PageScan
             for col = 1:this.ColumnCount
                 c = this.Centroids(this.Columns == col,:);
                 c = sortrows(c,2);
-                in = plot(c(:,1),c(:,2),'LineWidth',3);
+                in = plot(c(:,1),c(:,2),'LineWidth',2);
             end
             for row = 1:this.RowCount
                 c = this.Centroids(this.Rows == row,:);
                 c = sortrows(c,1);
-                in = plot(c(:,1),c(:,2),'LineWidth',3);
+                in = plot(c(:,1),c(:,2),'LineWidth',2);
             end
             s=scatter(this.Centroids(:,1),this.Centroids(:,2),...
                       'Marker', 'o',...
