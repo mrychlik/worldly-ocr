@@ -39,8 +39,7 @@ classdef PageScan
         ColumnCount;                    % Number of columns
         RowCount;                       % Number of rows
         ColumnCenters;                  % X of the column mean centroid
-        Width;                          % Page width in pixels
-        Height;                         % Page height in pixels
+        Size;                           % Page size in pixels: [h, w]
     end
 
     methods
@@ -64,6 +63,16 @@ classdef PageScan
         function Centroids = get.Centroids(this)
             fh = @(s)s.Stats.Centroid';
             Centroids = cell2mat(arrayfun(fh,this.Characters,'UniformOutput',false))';
+        end
+
+        function varargout = get.Size(this)
+            sz = size(this.PageImageMono);
+            if nargout == 1
+                varargout(:) = {sz};
+            elseif nargout == 2
+                varargout(1) = {sz(1)};
+                varargout(2) = {sz(2)};
+            end
         end
 
         function ColumnCenters = get.ColumnCenters(this)
