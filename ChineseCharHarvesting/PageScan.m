@@ -37,6 +37,7 @@ classdef PageScan
         Columns;                        % Column assignment
         Rows;                           % Row assignment
         ColumnCount;                    % Number of columns
+        ColumnCount;                    % Number of rows
     end
 
     methods
