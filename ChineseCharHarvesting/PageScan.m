@@ -277,6 +277,7 @@ classdef PageScan
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
             addOptional(p, 'ShowOutliers', false, @(x)islogical(x));            
+            addOptional(p, 'ShowBoundingBoxes', false, @(x)islogical(x));
             parse(p, this,varargin{:});
 
             clf;
@@ -285,9 +286,17 @@ classdef PageScan
             hold on;
             im = imagesc(this.PageImage);
             im.AlphaData = 0.5;
+            for char_idx = 1:this.CharacterCount
+                if ~p.Results.ShowOutliers 
+                    continue
+                end
+                bbox = this.Characters(char_idx).Stats.BoundingBox;
+                r = rectangle('Position',bbox);
+                set(r,'EdgeColor','red');
+            end
             for col = 1:this.ColumnCount
-                c = this.ColumnCenters(col)
-                line([c(1),c(2)], [0,this.Height]);
+                c = this.ColumnCenters(col);
+                line([c;c], [0;this.Height],'Color','magenta','LineWidth',2);
             end
             hold off;
         end
