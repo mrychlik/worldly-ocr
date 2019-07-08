@@ -212,7 +212,6 @@ classdef PageScan
                 row_mod = rem(19*row, size(map,1));
                 set(r, 'EdgeColor', [map(row_mod, :),0.5],'LineWidth',3);
             end
-
         end
 
 
