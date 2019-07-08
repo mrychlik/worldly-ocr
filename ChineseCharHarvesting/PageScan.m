@@ -131,7 +131,7 @@ classdef PageScan
             colormap(hot);
             for char_idx = 1:this.CharacterCount
                 if ~p.Results.ShowOutliers
-                    continue
+                    continue;
                 end
                 % Mark bounding box
                 bbox = this.Characters(char_idx).Stats.BoundingBox;
@@ -157,10 +157,18 @@ classdef PageScan
 
         function show_short_chars_img(this,varargin)
         % SHORT_CHARS_IMG shows short characters, which may be parts
+            p = inputParser;
+            addRequired(p, 'this', @(x)isa(x,'PageScan'));            
+            addOptional(p, 'ShowOutliers', false, @(x)islogical(x));            
+            parse(p, this,varargin{:});
+
             imagesc(this.PageImageMono);
             set (gca,'YDir','reverse');
             colormap(hot);
             for char_idx = 1:this.CharacterCount
+                if ~p.Results.ShowOutliers
+                    continue;
+                end
                 % Mark bounding box
                 bbox = this.Characters(char_idx).Stats.BoundingBox;
                 r = rectangle('Position',bbox);
@@ -178,11 +186,19 @@ classdef PageScan
 
         function show_columns(this,varargin)
         % SHOW_COLUMNS shows column assignment
+            p = inputParser;
+            addRequired(p, 'this', @(x)isa(x,'PageScan'));            
+            addOptional(p, 'ShowOutliers', false, @(x)islogical(x));            
+            parse(p, this,varargin{:});
+
             imagesc(this.PageImage);
             set (gca,'YDir','reverse');
             colormap(jet);
             map = colormap;
             for char_idx = 1:this.CharacterCount
+                if ~p.Results.ShowOutliers
+                    continue;
+                end
                 % Mark bounding box
                 bbox = this.Characters(char_idx).Stats.BoundingBox;
                 r = rectangle('Position',bbox);
@@ -202,11 +218,19 @@ classdef PageScan
 
         function show_rows(this,varargin)
         % SHOW_ROWS shows row assignment
+            p = inputParser;
+            addRequired(p, 'this', @(x)isa(x,'PageScan'));            
+            addOptional(p, 'ShowOutliers', false, @(x)islogical(x));            
+            parse(p, this,varargin{:});
+
             imagesc(this.PageImage);
             set (gca,'YDir','reverse');
             colormap(jet);
             map = colormap;
             for char_idx = 1:this.CharacterCount
+                if ~p.Results.ShowOutliers
+                    continue;
+                end
                 % Mark bounding box
                 bbox = this.Characters(char_idx).Stats.BoundingBox;
                 r = rectangle('Position',bbox);
