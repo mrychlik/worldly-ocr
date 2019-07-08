@@ -65,13 +65,15 @@ classdef PageScan
             Centroids = cell2mat(arrayfun(fh,this.Characters,'UniformOutput',false))';
         end
 
-        function varargout = get.Size(this)
+        function [varargout] = get.Size(this)
             sz = size(this.PageImageMono);
             if nargout == 1
                 varargout(:) = {sz};
             elseif nargout == 2
                 varargout(1) = {sz(1)};
                 varargout(2) = {sz(2)};
+            else
+                varargout(:) = {sz};
             end
         end
 
