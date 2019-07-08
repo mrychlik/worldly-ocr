@@ -36,6 +36,7 @@ classdef PageScan
         HorizontalRanges;            % Horizontal extends of characters.
         Columns;                        % Column assignment
         Rows;                           % Row assignment
+        ColumnCount;                    % Number of columns
     end
 
     methods
@@ -46,6 +47,14 @@ classdef PageScan
 
         function CharacterCount = get.CharacterCount(this)
             CharacterCount = numel(this.Characters);
+        end
+
+        function ColumnCount = get.ColumnCount(this)
+            ColumnCount = numel(unique(this.Columns));
+        end
+
+        function RowCount = get.RowCount(this)
+            RowCount = numel(unique(this.Rows));
         end
 
         function Centroids = get.Centroids(this)
