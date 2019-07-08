@@ -37,7 +37,7 @@ classdef PageScan
         Columns;                        % Column assignment
         Rows;                           % Row assignment
         ColumnCount;                    % Number of columns
-        ColumnCount;                    % Number of rows
+        RowCount;                       % Number of rows
     end
 
     methods
@@ -227,6 +227,10 @@ classdef PageScan
                       'MarkerFaceColor','red',...
                       'MarkerFaceAlpha',0.3,...                      
                       'MarkerEdgeAlpha',0.5);
+            for col = 1:this.ColumnCount
+                this.Centroids(this.Columns == col)
+
+            end
             hold off;
         end
 
