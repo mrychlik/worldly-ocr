@@ -277,7 +277,7 @@ classdef PageScan
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
             addOptional(p, 'ShowOutliers', false, @(x)islogical(x));            
-            addOptional(p, 'ShowBoundingBoxes', false, @(x)islogical(x));
+            addOptional(p, 'ShowBoundingBoxes', true, @(x)islogical(x));
             parse(p, this,varargin{:});
 
             clf;
