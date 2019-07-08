@@ -257,7 +257,6 @@ classdef PageScan
             for idx=1:numel(x)
                 if ~this.is_outlier(I(idx))
                     if x_sorted(idx) <  min_x - this.column_dist_threshold
-
                         col = col + 1;
                     end
                     min_x = x_sorted(idx);
