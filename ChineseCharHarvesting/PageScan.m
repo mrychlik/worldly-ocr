@@ -28,13 +28,14 @@ classdef PageScan
         short_height_threshold = 30;
         column_dist_threshold = 60;
         ColumnCount = -1;               % Number of columns
-        Columns = [];                   % Column assignment
     end
 
     properties(Dependent)
         CharacterCount;                 % Number of identified characters
         Centroids;               % Character centroids - CharacterCount-by-2
         HorizontalRanges;            % Horizontal extends of characters.
+        Columns;                        % Column assignment
+        Rows;                           % Row assignment
     end
 
     methods
@@ -207,7 +208,7 @@ classdef PageScan
             hold off;
         end
 
-        function Columns=get.Columns(this)
+        function Columns = get.Columns(this)
             Columns = zeros(this.CharacterCount,1);
             % Sort centroids by x
             x = this.Centroids(:,1);
@@ -220,6 +221,22 @@ classdef PageScan
                 end
                 min_x = x_sorted(idx);
                 Columns(I(idx)) = col;
+            end
+        end
+
+        function Rows = get.Rows(this)
+            Rows = zeros(this.CharacterCount,1);
+            % Sort centroids by x
+            y = this.Centroids(:,2);
+            [y_sorted,I] = sort(y,'ascend');  % For traditional chinese, right-to-left
+            max_y = 0;
+            row = 1;
+            for idx = 1:numel(y)
+                if y_sorted(idx) >  max_y + this.row_dist_threshold
+                    row = row + 1;
+                end
+                max_y = y_sorted(idx);
+                Rows(I(idx)) = row;
             end
         end
     end
