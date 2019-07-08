@@ -284,7 +284,7 @@ classdef PageScan
             for n=1:N
                 is_outlier = false;
                 if PageScan.filter_out(stats(n))
-                    if p.Results.DeleteOutliers 
+                    if ~p.Results.KeepOutliers 
                         continue;
                     else
                         is_outlier = true;
