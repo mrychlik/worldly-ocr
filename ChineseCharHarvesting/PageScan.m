@@ -272,12 +272,13 @@ classdef PageScan
             min_x = x_sorted(end)+1000;
             col = 1;
             for idx=1:numel(x)
-                if x_sorted(idx) <  min_x - this.column_dist_threshold
-                    if ~this.is_outlier(I(idx))
+                if ~this.is_outlier(I(idx))
+                    if x_sorted(idx) <  min_x - this.column_dist_threshold
+
                         col = col + 1;
                     end
+                    min_x = x_sorted(idx);
                 end
-                min_x = x_sorted(idx);
                 Columns(I(idx)) = col;
             end
         end
@@ -290,12 +291,13 @@ classdef PageScan
             max_y = 0;
             row = 1;
             for idx = 1:numel(y)
-                if y_sorted(idx) >  max_y + this.row_dist_threshold
-                    if ~this.is_outlier(I(idx))
+                if ~this.is_outlier(I(idx))
+                    if y_sorted(idx) >  max_y + this.row_dist_threshold
+
                         row = row + 1;
                     end
+                    max_y = y_sorted(idx);
                 end
-                max_y = y_sorted(idx);
                 Rows(I(idx)) = row;
             end
         end
