@@ -111,6 +111,7 @@ classdef PageScan
                         @(x)any(validatestring(x,{'Original','Mono'})));
             addOptional(p, 'ShowCentroids', true, @(x)islogical(x));
             addOptional(p, 'ShowDilation', false, @(x)islogical(x));            
+            addOptional(p, 'ShowOutliers', false, @(x)islogical(x));            
             parse(p, this,varargin{:});
             hold on;
             switch p.Results.Background
