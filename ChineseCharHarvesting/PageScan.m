@@ -229,10 +229,12 @@ classdef PageScan
                       'MarkerEdgeAlpha',0.5);
             for col = 1:this.ColumnCount
                 c = this.Centroids(this.Columns == col,:);
+                c = sortrows(c,1);
                 plot(c(:,1),c(:,2),'LineWidth',3);
             end
             for row = 1:this.RowCount
                 c = this.Centroids(this.Rows == row,:);
+                c = sortrows(c,2);
                 plot(c(:,1),c(:,2),'LineWidth',3);
             end
             hold off;
