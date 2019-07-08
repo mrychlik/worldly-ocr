@@ -25,9 +25,9 @@ classdef PageScan
         PageImage = [];
         PageImageMono = [];
         DilatedImage = [];
-        short_height_threshold = 40;
+        short_height_threshold = 30;
         column_dist_threshold = 60;
-        row_dist_threshold = 40;        
+        row_dist_threshold = 60;        
     end
 
     properties(Dependent)
