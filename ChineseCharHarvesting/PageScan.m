@@ -210,7 +210,7 @@ classdef PageScan
                 %     set(r,'FaceColor',[0,0,0,1]);
                 % end
                 row = this.Rows(char_idx);
-                row_mod = rem(19*row, size(map,1));
+                row_mod = rem(11*row, size(map,1));
                 set(r, 'EdgeColor', [map(row_mod, :),0.5],'LineWidth',3);
             end
         end
