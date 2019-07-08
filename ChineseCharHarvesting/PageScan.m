@@ -28,7 +28,6 @@ classdef PageScan
         short_height_threshold = 30;
         column_dist_threshold = 60;
         row_dist_threshold = 40;        
-        ColumnCount = -1;               % Number of columns
     end
 
     properties(Dependent)
