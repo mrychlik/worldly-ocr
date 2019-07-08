@@ -269,8 +269,7 @@ classdef PageScan
             row = 1;
             for idx = 1:numel(y)
                 if ~this.is_outlier(I(idx))
-                    if y_sorted(idx) >  max_y + this.row_dist_threshold
-
+                    if ~this.is_short(I(idx)) && y_sorted(idx) >  max_y + this.row_dist_threshold
                         row = row + 1;
                     end
                     max_y = y_sorted(idx);
