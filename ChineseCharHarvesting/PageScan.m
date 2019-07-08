@@ -40,6 +40,11 @@ classdef PageScan
     end
 
     methods
+        function this = PageScan(filename, varargin)
+            this = scanfile(this,filename,varargin{:});
+        end
+
+
         function CharacterCount = get.CharacterCount(this)
             CharacterCount = numel(this.Characters);
         end
@@ -54,54 +59,6 @@ classdef PageScan
             HorizontalRanges = cell2mat(arrayfun(fh,this.Characters,'UniformOutput',false))';
         end
 
-        function this = scanfile(this,filename)
-            this.PageImage = imread(filename);
-            I1 = 255 - this.PageImage; 
-            this.PageImageMono = im2bw(I1);
-            this.DilatedImage = imdilate(this.PageImageMono, this.StructuringElement);
-            stats = regionprops(this.DilatedImage,...
-                                'BoundingBox',...
-                                'MajorAxisLength',...
-                                'MinorAxisLength',...
-                                'Orientation',...
-                                'Image',...
-                                'Centroid');
-            N = numel(stats);
-            char_count = 0;
-            for n=1:N
-                is_outlier = false;
-                if PageScan.filter_out(stats(n))
-                    %continue;
-                    is_outlier = true;
-                end
-
-                J = zeros(size(this.PageImageMono));
-                bbox = stats(n).BoundingBox;
-                x1 = bbox(1); y1 = bbox(2); x2 = bbox(1) + bbox(3); y2 = bbox(2) + bbox(4);
-                sz = size(this.PageImageMono);
-                x1 = round( max(1,x1) ); x2 = round( min(x2, sz(2)));
-                y1 = round( max(1,y1) ); y2 = round( min(y2, sz(1)));
-
-                K = I1( y1:y2, x1:x2 );
-                BW = this.PageImageMono( y1 : y2, x1 : x2 );
-                BW = imautocrop(BW);
-
-                if PageScan.filter_out_image(BW)
-                    %continue
-                    is_outlier = true;
-                end
-
-                char_count = char_count + 1;
-
-                %disp(sprintf('Recording object %d as character %d', n, char_count));
-                this.Characters(char_count).Stats = stats(n);
-                this.Characters(char_count).Position = [x1,y1,x2,y2];
-                this.Characters(char_count).CroppedMonoImage = BW;
-                this.Characters(char_count).AltImage = K; % Carved out image
-                this.Characters(char_count).IsShort = bbox(4) < this.short_height_threshold;
-                this.Characters(char_count).IsOutlier = is_outlier;
-            end
-        end
 
         function show_marked_page_img(this,varargin)
         % MARKED_PAGEIMAGE shows page with character bounding boxes
@@ -304,6 +261,68 @@ classdef PageScan
     end
 
     methods(Access = private)
+
+        function this = scanfile(this,filename,varargin)
+            p = inputParser;
+            addRequired(p, 'this', @(x)isa(x,'PageScan'));            
+            addOptional(p, 'DeleteOutliers', true, @(x)islogical(x));            
+            parse(p, this,varargin{:});
+
+            this.PageImage = imread(filename);
+            I1 = 255 - this.PageImage; 
+            this.PageImageMono = im2bw(I1);
+            this.DilatedImage = imdilate(this.PageImageMono, this.StructuringElement);
+            stats = regionprops(this.DilatedImage,...
+                                'BoundingBox',...
+                                'MajorAxisLength',...
+                                'MinorAxisLength',...
+                                'Orientation',...
+                                'Image',...
+                                'Centroid');
+            N = numel(stats);
+            char_count = 0;
+            for n=1:N
+                is_outlier = false;
+                if PageScan.filter_out(stats(n))
+                    if p.Results.DeleteOutliers 
+                        continue;
+                    else
+                        is_outlier = true;
+                    end
+                end
+
+                J = zeros(size(this.PageImageMono));
+                bbox = stats(n).BoundingBox;
+                x1 = bbox(1); y1 = bbox(2); x2 = bbox(1) + bbox(3); y2 = bbox(2) + bbox(4);
+                sz = size(this.PageImageMono);
+                x1 = round( max(1,x1) ); x2 = round( min(x2, sz(2)));
+                y1 = round( max(1,y1) ); y2 = round( min(y2, sz(1)));
+
+                K = I1( y1:y2, x1:x2 );
+                BW = this.PageImageMono( y1 : y2, x1 : x2 );
+                BW = imautocrop(BW);
+
+                if PageScan.filter_out_image(BW)
+                    if p.Results.DeleteOutliers 
+                        continue;
+                    else
+                        is_outlier = true;
+                    end
+                end
+
+                char_count = char_count + 1;
+
+                %disp(sprintf('Recording object %d as character %d', n, char_count));
+                this.Characters(char_count).Stats = stats(n);
+                this.Characters(char_count).Position = [x1,y1,x2,y2];
+                this.Characters(char_count).CroppedMonoImage = BW;
+                this.Characters(char_count).AltImage = K; % Carved out image
+                this.Characters(char_count).IsShort = bbox(4) < this.short_height_threshold;
+                this.Characters(char_count).IsOutlier = is_outlier;
+            end
+        end
+
+
         function rv = is_outlier(this, char_idx)
         % IS_OUTLIER returns true of character is outlier
             rv = this.Characters(char_idx).IsOutlier;
