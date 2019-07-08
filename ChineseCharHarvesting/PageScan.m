@@ -168,7 +168,7 @@ classdef PageScan
         end
 
         function show_columns(this,varargin)
-        % SHORT_CHARS_IMG shows short characters, which may be parts
+        % SHOW_COLUMNS shows column assignment
             imagesc(this.PageImage);
             set (gca,'YDir','reverse');
             colormap(jet);
@@ -192,7 +192,7 @@ classdef PageScan
         end
 
         function show_rows(this,varargin)
-        % SHORT_CHARS_IMG shows short characters, which may be parts
+        % SHOW_ROWS shows row assignment
             imagesc(this.PageImage);
             set (gca,'YDir','reverse');
             colormap(jet);
