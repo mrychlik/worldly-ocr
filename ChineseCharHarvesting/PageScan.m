@@ -214,8 +214,13 @@ classdef PageScan
         end
 
 
-        function show_centroids(this)
+        function show_centroids(this, varargin)
         % SHOW_CENTROIDS shows the centroid of each character
+            p = inputParser;
+            addRequired(p, 'this', @(x)isa(x,'PageScan'));            
+            addOptional(p, 'ShowOutliers', false, @(x)islogical(x));            
+            parse(p, this,varargin{:});
+
             clf;
             colormap(hot);
             set (gca,'YDir','reverse');            
@@ -223,6 +228,9 @@ classdef PageScan
             im = imagesc(this.PageImage);
             im.AlphaData = 0.5;
             for char_idx = 1:this.CharacterCount
+                if ~p.Results.ShowOutliers 
+                    continue
+                end
                 bbox = this.Characters(char_idx).Stats.BoundingBox;
                 r = rectangle('Position',bbox);
                 set(r,'EdgeColor','red');
