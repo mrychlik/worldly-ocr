@@ -130,7 +130,7 @@ classdef PageScan
             set (gca,'YDir','reverse');
             colormap(hot);
             for char_idx = 1:this.CharacterCount
-                if ~p.Results.ShowOutliers
+                if ~p.Results.ShowOutliers && is_outlier(char_idx)
                     continue;
                 end
                 % Mark bounding box
@@ -166,7 +166,7 @@ classdef PageScan
             set (gca,'YDir','reverse');
             colormap(hot);
             for char_idx = 1:this.CharacterCount
-                if ~p.Results.ShowOutliers
+                if ~p.Results.ShowOutliers && is_outlier(char_idx)
                     continue;
                 end
                 % Mark bounding box
@@ -196,7 +196,7 @@ classdef PageScan
             colormap(jet);
             map = colormap;
             for char_idx = 1:this.CharacterCount
-                if ~p.Results.ShowOutliers
+                if ~p.Results.ShowOutliers && is_outlier(char_idx)
                     continue;
                 end
                 % Mark bounding box
@@ -228,7 +228,7 @@ classdef PageScan
             colormap(jet);
             map = colormap;
             for char_idx = 1:this.CharacterCount
-                if ~p.Results.ShowOutliers
+                if ~p.Results.ShowOutliers && is_outlier(char_idx)
                     continue;
                 end
                 % Mark bounding box
@@ -294,6 +294,12 @@ classdef PageScan
                 max_y = y_sorted(idx);
                 Rows(I(idx)) = row;
             end
+        end
+    end
+
+    methods(Access = private)
+        function rv = is_outlier(char_idx)
+            rv = this.Characters(char_idx).IsOutlier;
         end
     end
 
