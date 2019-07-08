@@ -27,7 +27,7 @@ classdef PageScan
         DilatedImage = [];
         short_height_threshold = 30;
         column_dist_threshold = 60;
-        row_dist_threshold = 40;
+        row_dist_threshold = 40;        
     end
 
     properties(Dependent)
@@ -222,6 +222,12 @@ classdef PageScan
             hold on;
             im = imagesc(this.PageImage);
             im.AlphaData = 0.5;
+            for char_idx = 1:this.CharacterCount
+                bbox = this.Characters(char_idx).Stats.BoundingBox;
+                r = rectangle('Position',bbox);
+                set(r,'EdgeColor','red');
+            end
+
             for col = 1:this.ColumnCount
                 c = this.Centroids(this.Columns == col,:);
                 c = sortrows(c,2);
@@ -268,7 +274,7 @@ classdef PageScan
             max_y = 0;
             row = 1;
             for idx = 1:numel(y)
-                if ~this.is_outlier(I(idx))
+                if ~this.is_outlier(I(idx)) 
                     if y_sorted(idx) >  max_y + this.row_dist_threshold
                         row = row + 1;
                     end
