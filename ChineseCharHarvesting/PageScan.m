@@ -275,7 +275,7 @@ classdef PageScan
             last_col = 0;
             for idx = 1:numel(y)
                 if ~this.is_outlier(I(idx)) 
-                    col = this.Columns(I(idx))
+                    col = this.Columns(I(idx));
                     if (last_col > 0 && col ~= last_col) &&...
                             y_sorted(idx) >  max_y + this.row_dist_threshold
                         row = row + 1;
