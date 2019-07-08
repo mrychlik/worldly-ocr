@@ -270,18 +270,17 @@ classdef PageScan
             % Sort centroids by x
             y = this.Centroids(:,2);
             [y_sorted,I] = sort(y,'ascend');  % For traditional chinese, right-to-left
-            nc = this.ColumnCount;
-            max_y = zeros(nc,1);
+            max_y = 0;
             row = 1;
             last_col = 0;
             for idx = 1:numel(y)
                 if ~this.is_outlier(I(idx)) 
                     col = this.Columns(I(idx))
                     if (last_col > 0 && col ~= last_col) &&...
-                            y_sorted(idx) >  max_y(col) + this.row_dist_threshold
+                            y_sorted(idx) >  max_y + this.row_dist_threshold
                         row = row + 1;
                     end
-                    max_y(col) = y_sorted(idx);
+                    max_y = y_sorted(idx);
                     last_col = col;
                 end
                 Rows(I(idx)) = row;
