@@ -68,8 +68,8 @@ classdef PageScan
                                 'Centroid');
             N = numel(stats);
             char_count = 0;
-            is_outlier = false;
             for n=1:N
+                is_outlier = false;
                 if PageScan.filter_out(stats(n))
                     %continue;
                     is_outlier = true;
@@ -130,7 +130,7 @@ classdef PageScan
             set (gca,'YDir','reverse');
             colormap(hot);
             for char_idx = 1:this.CharacterCount
-                if ~p.Results.ShowOutliers && is_outlier(char_idx)
+                if ~p.Results.ShowOutliers && this.is_outlier(char_idx)
                     continue;
                 end
                 % Mark bounding box
@@ -166,7 +166,7 @@ classdef PageScan
             set (gca,'YDir','reverse');
             colormap(hot);
             for char_idx = 1:this.CharacterCount
-                if ~p.Results.ShowOutliers && is_outlier(char_idx)
+                if ~p.Results.ShowOutliers && this.is_outlier(char_idx)
                     continue;
                 end
                 % Mark bounding box
@@ -196,7 +196,7 @@ classdef PageScan
             colormap(jet);
             map = colormap;
             for char_idx = 1:this.CharacterCount
-                if ~p.Results.ShowOutliers && is_outlier(char_idx)
+                if ~p.Results.ShowOutliers && this.is_outlier(char_idx)
                     continue;
                 end
                 % Mark bounding box
@@ -228,7 +228,7 @@ classdef PageScan
             colormap(jet);
             map = colormap;
             for char_idx = 1:this.CharacterCount
-                if ~p.Results.ShowOutliers && is_outlier(char_idx)
+                if ~p.Results.ShowOutliers && this.is_outlier(char_idx)
                     continue;
                 end
                 % Mark bounding box
@@ -298,7 +298,8 @@ classdef PageScan
     end
 
     methods(Access = private)
-        function rv = is_outlier(char_idx)
+        function rv = is_outlier(this, char_idx)
+        % IS_OUTLIER returns true of character is outlier
             rv = this.Characters(char_idx).IsOutlier;
         end
     end
