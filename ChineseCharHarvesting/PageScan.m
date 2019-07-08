@@ -290,7 +290,7 @@ classdef PageScan
         function this = scanfile(this,filename,varargin)
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
-            addOptional(p, 'KeepOutliers', false, @(x)islogical(x));            
+            addOptional(p, 'KeepOutliers', true, @(x)islogical(x));            
             parse(p, this,varargin{:});
 
             this.PageImage = imread(filename);
