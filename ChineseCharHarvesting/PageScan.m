@@ -303,7 +303,7 @@ classdef PageScan
                 BW = imautocrop(BW);
 
                 if PageScan.filter_out_image(BW)
-                    if p.Results.DeleteOutliers 
+                    if ~p.Results.KeepOutliers 
                         continue;
                     else
                         is_outlier = true;
