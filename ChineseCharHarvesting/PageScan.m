@@ -379,10 +379,10 @@ classdef PageScan
             Boundary = this.HorizontalBoundary | this.VerticalBoundary;
         end
 
-        function show_boundary(this)
+        function show_boundary(this, varargin)
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
-            addOptional(p, 'ShowText', false, @(x)islogical(x));            
+            addOptional(p, 'ShowText', true, @(x)islogical(x));            
             parse(p, this,varargin{:});
 
             hold on;
