@@ -41,6 +41,7 @@ classdef PageScan
         ColumnCenters;                  % X of the column mean centroid
         Width;                          % Image width
         Height;                         % Image height
+        Size;                           % Image size: [h,w]
         HorizontalBoundary;             % Page horizontal boundary
         VerticalBoundary;               % Page vertical boundary
         Boundary;                       % Page boundary
@@ -75,6 +76,10 @@ classdef PageScan
 
         function Height = get.Height(this)
             Height = size(this.PageImageMono,1);
+        end
+
+        function Size = get.Size(this)
+            Size = size(this.PageImageMono);
         end
 
         function ColumnCenters = get.ColumnCenters(this)
