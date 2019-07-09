@@ -487,7 +487,7 @@ classdef PageScan
             hold off;
         end
 
-        function BindingSide = get.BindingSide(this) 
+        function Binding = get.Binding(this) 
         % BINDINGSIDE - returns the side of the binding
             [T,R] = this.VerticalLines;
             % The equation of the line is R=cos(T)*x+sin(T)*y
@@ -502,6 +502,7 @@ classdef PageScan
             else
                 side = [];       % Unknown
             end
+            Binding = struct('Side',side,'X',x);
         end
     end
 
