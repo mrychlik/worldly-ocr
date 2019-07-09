@@ -13,7 +13,7 @@ for page=6:95
     BW = ps.Boundary;
     Theta = linspace(-10,10,100);
     [H,T,R] = hough(BW,'Theta',Theta);
-    P=houghpeaks(H,npeaks, 'NHoodSize',nhood_size);
+    P = houghpeaks(H,npeaks, 'NHoodSize',nhood_size);
     subplot(1,2,1)
     hold on;
     imshow(imadjust(rescale(H)),'XData',T,'YData',R/500,...
