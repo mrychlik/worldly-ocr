@@ -57,11 +57,11 @@ classdef PageScan
         end
 
         function ColumnCount = get.ColumnCount(this)
-            ColumnCount = numel(unique(this.Columns));
+            ColumnCount = max(this.Columns);
         end
 
         function RowCount = get.RowCount(this)
-            RowCount = numel(unique(this.Rows));
+            RowCount = max(this.Rows);
         end
 
         function Centroids = get.Centroids(this)
