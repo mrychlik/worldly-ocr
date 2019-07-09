@@ -342,7 +342,7 @@ classdef PageScan
         end
 
         function  HorizontalBoundary = get.HorizontalBoundary(this)
-        % HORIZONTALBOUNDARY - Find top and bottom
+        % HORIZONTAL_BOUNDARY - Find top and bottom
             se1 = strel('line',90,0);
             se2 = strel('line',1,90);
             BW = this.PageImageMono;
@@ -359,9 +359,10 @@ classdef PageScan
         end
 
         function  VerticalBoundary = get.VerticalBoundary(this)
+        % VERTICAL_BOUNDARY - Find left and right boundary
             % Find left and right
             se1 = strel('line',60,90);
-            se2 = strel('line',5,0);
+            se2 = strel('line',10,0);
             BW = this.PageImageMono;
             % Dilate slightly in horizontal direction
             BW = imdilate(BW, se2);
