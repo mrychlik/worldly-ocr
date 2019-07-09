@@ -331,9 +331,9 @@ classdef PageScan
         function Rows = get.Rows(this)
             switch this.Binding.Side
               case 'Left',
-                binding_col = 1;
-              case 'Right',
                 binding_col = this.ColumnCount;
+              case 'Right',
+                binding_col = 1;
               otherwise,
                 binding_col = 0;
             end
