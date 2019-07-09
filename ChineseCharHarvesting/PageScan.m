@@ -45,7 +45,7 @@ classdef PageScan
         Boundary;                       % Page boundary
         HorizontalBoundary;             % Top and bottom of page
         % VerticalBoundary              % Currently function, as we want to pass some options
-        BindingSide;
+        Binding;                        % Information about book binding
     end
 
     methods
