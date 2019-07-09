@@ -363,7 +363,7 @@ classdef PageScan
             % Find left and right
             se1 = strel('line',100,90);
             se2 = strel('line',20,0);
-            se3 = strel('line',20,0);            
+            se3 = strel('line',15,0);            
             BW = this.PageImageMono;
             % Dilate slightly in horizontal direction
             BW = imdilate(BW, se2);
