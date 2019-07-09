@@ -464,7 +464,7 @@ classdef PageScan
         % SHOW_VERTICAL_LINE - show page boundary (non-binding)
             set(gca,'YDir','reverse');
             hold on;
-            im=image(255*this.PageImageMono);
+            im = image(255*this.PageImageMono);
             im.AlphaData = 0.2;
             [T,R] = this.HorizontalLines;
             % The equation of the line is R=cos(T)*x+sin(T)*y
