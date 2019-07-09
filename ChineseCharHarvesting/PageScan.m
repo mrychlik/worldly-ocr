@@ -429,7 +429,7 @@ classdef PageScan
             P = houghpeaks(H,npeaks, 'NHoodSize',nhood_size);
         end
 
-        function show_vertical_line(this)
+        function show_vertical_lines(this)
         % SHOW_VERTICAL_LINE - show page boundary (non-binding)
             set(gca,'YDir','reverse');
             hold on;
