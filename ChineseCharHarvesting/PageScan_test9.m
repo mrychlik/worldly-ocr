@@ -3,7 +3,7 @@
 pagedir='Pages';
 page_img_pattern='page-%02d.ppm';
 keep_outliers=false;
-nhood_size = [25,25];                   % Suppression neighborhood size
+nhood_size = [99,99];                   % Suppression neighborhood size
 npeaks = 3;
 
 
@@ -11,7 +11,7 @@ for page=6:95
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
     ps = PageScan(filename,'KeepOutliers',keep_outliers);
     BW = ps.Boundary;
-    Theta = linspace(-5,5,50);
+    Theta = linspace(-5,5,100);
     [H,T,R] = hough(BW,'Theta',Theta);
     P = houghpeaks(H,npeaks, 'NHoodSize',nhood_size);
     subplot(1,2,1)
