@@ -3,15 +3,16 @@
 pagedir='Pages';
 page_img_pattern='page-%02d.ppm';
 keep_outliers=false;
+nhood_size = [81,89];           % Suppression neighborhood size
 
 for page=11
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
     ps = PageScan(filename,'KeepOutliers',keep_outliers);
     BW = ps.Boundary';
-    Theta = linspace(-5,5,100);
+    Theta = linspace(-10,10,100);
     [H,T,R] = hough(BW,'Theta',Theta);
     npeaks = 2;
-    P=houghpeaks(H,npeaks);
+    P=houghpeaks(H,npeaks, 'NHoodSize',nhood_size);
     subplot(1,2,1)
     hold on;
     imshow(imadjust(rescale(H)),'XData',T,'YData',R/500,...
