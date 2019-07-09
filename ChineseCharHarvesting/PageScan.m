@@ -421,9 +421,9 @@ classdef PageScan
         end
 
         function [T,R] = VerticalLines(this)
-        % VERTICALLINES - returns parameters of vertical lines (up to 2)
+        % VERTICALLINES - returns parameters of vertical lines (up to 1)
             nhood_size = [199,199];                   % Suppression neighborhood size
-            npeaks = 2;
+            npeaks = 1;
             BW = this.VerticalBoundary;
             Theta = linspace(-10,10,200);
             [H,T,R] = hough(BW,'Theta',Theta);
