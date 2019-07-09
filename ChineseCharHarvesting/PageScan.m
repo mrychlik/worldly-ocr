@@ -342,12 +342,13 @@ classdef PageScan
         function  Boundary = get.Boundary(this)
             ;
             % Find top and bottom
-            se = strel('line',90,0);
-            BW1 = imerode(this.PageImageMono,se);
+            se1 = strel('line',90,0);
+            se2 = strel('line',5,90);
+            BW1 = imdilate(imerode(imdilate(this.PageImageMono,se2),se1),se1);
             % Find left and right
-            se1 = strel('line',90,90);
-            se2 = strel('line',10,0);
-            BW2 = imerode(imerode(this.PageImageMono,se1),se2);
+            se1 = strel('line',60,90);
+            se2 = strel('line',5,0);
+            BW2 = imerode(imdilate(imerode(imdilate(this.PageImageMono,se2),se1),se1),se2);
             Boundary = BW1 | BW2;
         end
 
@@ -357,6 +358,7 @@ classdef PageScan
             im.AlphaData = 0.5;
             in = imagesc(~this.Boundary);
             in.AlphaData = 0.5;            
+            colormap(hot);
             hold off;
         end
 
