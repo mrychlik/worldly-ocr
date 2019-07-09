@@ -41,6 +41,8 @@ classdef PageScan
         ColumnCenters;                  % X of the column mean centroid
         Width;                          % Image width
         Height;                         % Image height
+        HorizontalBoundary;             % Page horizontal boundary
+        VerticalBoundary;               % Page vertical boundary
         Boundary;                       % Page boundary
     end
 
