@@ -45,7 +45,7 @@ classdef PageScan
         Boundary;                       % Page boundary
         HorizontalBoundary;             % Top and bottom of page
         % VerticalBoundary              % Currently function, as we want to pass some options
-        BindingSize;                    % Binding side could be 'Left' or 'Right'
+        BindingSide;           % Binding side could be 'Left', 'Right' or []
     end
 
     methods
