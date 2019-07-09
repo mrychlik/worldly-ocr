@@ -487,6 +487,20 @@ classdef PageScan
             hold off;
         end
 
+        function BindingSide = get.BindingSide(this) 
+            [T,R] = this.VerticalLines;
+            % The equation of the line is R=cos(T)*x+sin(T)*y
+            % where T is small, thus cos(T)~=0. Hence, x = (R-sin(T)*y)/cos(T)
+            y = this.Height/2;          % Half page height
+            x = (R-sin(T)*y)/cos(T);
+            if x < this.Width/4
+                BindingSide='Right';
+            elseif x > 3*this.Width/4
+                BindingSide = 'Left';
+            else
+                BindingSide = [];       % Unknown
+            end
+        end
     end
 
     methods(Access = private)
@@ -557,21 +571,6 @@ classdef PageScan
         function rv = is_short(this, char_idx)
         % IS_SHORT returns true if character is short
             rv = this.Characters(char_idx).IsShort;
-        end
-
-        function BindingSide = get.BindingSide(this) 
-            [T,R] = this.VerticalLines;
-            % The equation of the line is R=cos(T)*x+sin(T)*y
-            % where T is small, thus cos(T)~=0. Hence, x = (R-sin(T)*y)/cos(T)
-            y = this.Height/2;          % Half page height
-            x = (R-sin(T)*y)/cos(T);
-            if x < this.Width/4
-                BindingSide='Right';
-            elseif x > 3*this.Width/4
-                BindingSide = 'Left';
-            else
-                BindingSide = [];       % Unknown
-            end
         end
 
     end
