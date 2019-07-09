@@ -42,8 +42,6 @@ classdef PageScan
         Width;                          % Image width
         Height;                         % Image height
         Size;                           % Image size: [h,w]
-        HorizontalBoundary;             % Page horizontal boundary
-        VerticalBoundary;               % Page vertical boundary
         Boundary;                       % Page boundary
     end
 
@@ -346,7 +344,7 @@ classdef PageScan
             end
         end
 
-        function  HorizontalBoundary = get.HorizontalBoundary(this)
+        function  BW = get.HorizontalBoundary(this)
         % HORIZONTAL_BOUNDARY - Find top and bottom
             se1 = strel('line',100,0);
             se2 = strel('line',10,90);
@@ -359,11 +357,9 @@ classdef PageScan
             BW = imdilate(BW, se1);
             % Erode slightly in the vertical direction
             BW = imerode(BW,se2);
-            
-            HorizontalBoundary = BW;
         end
 
-        function  VerticalBoundary = get.VerticalBoundary(this, varargin)
+        function  BW = get.VerticalBoundary(this, varargin)
         % VERTICAL_BOUNDARY - Find left and right boundary
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
@@ -375,7 +371,7 @@ classdef PageScan
             if p.Results.EraseVerticalLines
                 se3 = strel('line',25,0);            
             else
-                se3 = strel('line',25,0);            
+                se3 = strel('line',15,0);            
             end
             BW = this.PageImageMono;
             % Dilate slightly in horizontal direction
@@ -386,7 +382,6 @@ classdef PageScan
             BW = imdilate(BW, se1);
             % Erode by nearly the amount of original dilation
             BW = imerode(BW, se3);
-            VerticalBoundary = BW;
         end
 
         function  Boundary = get.Boundary(this)
