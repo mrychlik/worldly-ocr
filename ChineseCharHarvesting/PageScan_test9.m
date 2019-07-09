@@ -3,7 +3,7 @@
 pagedir='Pages';
 page_img_pattern='page-%02d.ppm';
 keep_outliers=false;
-nhood_size = [200,200];           % Suppression neighborhood size
+nhood_size = [99,99];                   % Suppression neighborhood size
 npeaks = 3;
 
 
