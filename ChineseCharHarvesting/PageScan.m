@@ -420,9 +420,9 @@ classdef PageScan
             hold off;
         end
 
-        function [P,H,T,R] = VerticalLine(this)
+        function [P,H,T,R] = VerticalLines(this)
             nhood_size = [99,99];                   % Suppression neighborhood size
-            npeaks = 1;
+            npeaks = 2;
             BW = this.VerticalBoundary;
             Theta = linspace(-10,10,200);
             [H,T,R] = hough(BW,'Theta',Theta);
