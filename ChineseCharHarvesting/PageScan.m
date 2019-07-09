@@ -20,7 +20,7 @@
 % 
 classdef PageScan
     properties
-        StructuringElement = strel('rectangle', [5,15]); % for imdilate
+        DilationSE = strel('rectangle', [5,15]); % for imdilate
         Characters = struct('Position','Stats');
         PageImage = [];
         PageImageMono = [];
@@ -41,6 +41,7 @@ classdef PageScan
         ColumnCenters;                  % X of the column mean centroid
         Width;                          % Image width
         Height;                         % Image height
+        Boundary;                       % Page boundary
     end
 
     methods
@@ -337,6 +338,26 @@ classdef PageScan
                 Rows(I(idx)) = row;
             end
         end
+
+        function  Boundary = get.Boundary(this)
+            ;
+            % Find top and bottom
+            se = strel('line',90,0);
+            BW1 = imerode(this.PageImageMono,se);
+            % Find left and right
+            se1 = strel('line',90,90);
+            se2 = strel('line',10,0);
+            BW2 = imerode(imerode(this.PageImageMono,se1),se2);
+            Boundary = BW1 | BW2;
+        end
+
+        function show_boundary(this)
+            im = imagesc(this.PageImage);
+            im.AlphaData = 0.5;
+            in = imagesc(this.Boundary);
+            in.AlphaData = 0.5;            
+        end
+
     end
 
     methods(Access = private)
@@ -350,7 +371,7 @@ classdef PageScan
             this.PageImage = imread(filename);
             I1 = 255 - this.PageImage; 
             this.PageImageMono = im2bw(I1);
-            this.DilatedImage = imdilate(this.PageImageMono, this.StructuringElement);
+            this.DilatedImage = imdilate(this.PageImageMono, this.DilationSE);
             stats = regionprops(this.DilatedImage,...
                                 'BoundingBox',...
                                 'MajorAxisLength',...
