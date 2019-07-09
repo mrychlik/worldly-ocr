@@ -45,6 +45,7 @@ classdef PageScan
         Boundary;                       % Page boundary
         HorizontalBoundary;             % Top and bottom of page
         % VerticalBoundary              % Currently function, as we want to pass some options
+        BindingSide;
     end
 
     methods
@@ -486,7 +487,7 @@ classdef PageScan
             hold off;
         end
 
-        function [side,x] = BindingSide(this) 
+        function [side,x] = get.BindingSide(this) 
         % BINDINGSIDE - returns the side of the binding
         %  [SIDE,X] = BINDINGSIDE(THIS) returns the 
         %  side of the page which is adjacent to the binding.
