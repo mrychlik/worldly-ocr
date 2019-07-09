@@ -449,6 +449,37 @@ classdef PageScan
             hold off;
         end
 
+        function [T,R] = HorizontalLines(this)
+            nhood_size = [99,99];                   % Suppression neighborhood size
+            npeaks = 2;
+            BW = this.HorizontalBoundary';
+            Theta = linspace(-10,10,200);
+            [H,T,R] = hough(BW,'Theta',Theta);
+            P = houghpeaks(H,npeaks, 'NHoodSize',nhood_size);
+            T = T(P(:,2));
+            R = R(P(:,1));
+        end
+
+        function show_horizontal_lines(this)
+        % SHOW_VERTICAL_LINE - show page boundary (non-binding)
+            set(gca,'YDir','reverse');
+            hold on;
+            im=image(255*this.PageImageMono);
+            im.AlphaData = 0.2;
+            [T,R] = this.HorizontalLines;
+            % The equation of the line is R=cos(T)*x+sin(T)*y
+            % where T is small, thus cos(T)~=0. Hence, x = (R-sin(T)*y)/cos(T)
+            for j=1:size(T,1)
+                t = T(j)./90;
+                r = R(j);
+                y = 1:size(this.PageImageMono',1);
+                x = (r-sin(t).*y)./cos(t);
+                plot(y,x,'Color','red','LineWidth',3);
+            end
+            colormap(hot);
+            hold off;
+        end
+
     end
 
     methods(Access = private)
