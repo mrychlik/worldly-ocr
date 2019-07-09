@@ -449,6 +449,7 @@ classdef PageScan
                 plot(x,y,'Color','red','LineWidth',3);
             end
             colormap(hot);
+            title(sprintf('Theta(degree): %.3f',T));
             hold off;
         end
 
@@ -480,6 +481,7 @@ classdef PageScan
                 x = (r-sin(t).*y)./cos(t);
                 plot(y,x,'Color','red','LineWidth',3);
             end
+            title(sprintf('Theta(degree): %.3f',T));
             colormap(hot);
             hold off;
         end
