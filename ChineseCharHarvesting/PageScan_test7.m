@@ -1,8 +1,8 @@
 pagedir='Pages';
 page_img_pattern='page-%02d.ppm';
 keep_outliers=false;
-show_horizontal=true;
-show_vertical=false;
+show_horizontal=false;
+show_vertical=true;
 
 for page=6:95
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
