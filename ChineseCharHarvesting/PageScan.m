@@ -487,11 +487,8 @@ classdef PageScan
             hold off;
         end
 
-        function [side,x] = get.BindingSide(this) 
+        function BindingSide = get.BindingSide(this) 
         % BINDINGSIDE - returns the side of the binding
-        %  [SIDE,X] = BINDINGSIDE(THIS) returns the 
-        %  side of the page which is adjacent to the binding.
-        %  The result can be 'Left', 'Right', or [].
             [T,R] = this.VerticalLines;
             % The equation of the line is R=cos(T)*x+sin(T)*y
             % where T is small, thus cos(T)~=0. Hence, x = (R-sin(T)*y)/cos(T)
