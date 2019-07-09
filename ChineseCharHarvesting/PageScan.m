@@ -420,29 +420,32 @@ classdef PageScan
             hold off;
         end
 
-        function [P,H,T,R] = VerticalLines(this)
+        function [T,R] = VerticalLines(this)
+        % VERTICALLINES - returns parameters of vertical lines (up to 2)
             nhood_size = [99,99];                   % Suppression neighborhood size
             npeaks = 2;
             BW = this.VerticalBoundary;
             Theta = linspace(-10,10,200);
             [H,T,R] = hough(BW,'Theta',Theta);
             P = houghpeaks(H,npeaks, 'NHoodSize',nhood_size);
+            T = T(P(:,2))';
+            R = R(P(:,1))';
         end
 
         function show_vertical_lines(this)
         % SHOW_VERTICAL_LINE - show page boundary (non-binding)
             set(gca,'YDir','reverse');
             hold on;
-            im=image(255*this.PageImageMono);
+            im = image(255*this.PageImageMono);
             im.AlphaData = 0.2;
-            [P,H,T,R] = this.VerticalLines;
+            [T,R] = this.VerticalLines;
             % The equation of the line is R=cos(T)*x+sin(T)*y
             % where T is small, thus cos(T)~=0. Hence, x = (R-sin(T)*y)/cos(T)
-            for j=1:size(P,1)
-                t=T(P(j,2))./90;
-                r=R(P(j,1));
-                y=1:size(this.PageImageMono,1);
-                x=(r-sin(t).*y)./cos(t);
+            for j=1:size(T,1)
+                t = T(j)./90;
+                r = R(j);
+                y = 1:size(this.PageImageMono,1);
+                x = (r-sin(t).*y)./cos(t);
                 plot(x,y,'Color','red','LineWidth',3);
             end
             colormap(hot);
@@ -450,14 +453,15 @@ classdef PageScan
         end
 
         function [T,R] = HorizontalLines(this)
+        % HORIZONTALLINES - returns parameters of top and bottom lines
             nhood_size = [99,99];                   % Suppression neighborhood size
             npeaks = 2;
             BW = this.HorizontalBoundary';
             Theta = linspace(-10,10,200);
             [H,T,R] = hough(BW,'Theta',Theta);
             P = houghpeaks(H,npeaks, 'NHoodSize',nhood_size);
-            T = T(P(:,2));
-            R = R(P(:,1));
+            T = T(P(:,2))';
+            R = R(P(:,1))';
         end
 
         function show_horizontal_lines(this)
