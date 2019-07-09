@@ -359,7 +359,7 @@ classdef PageScan
             BW = imerode(BW,se2);
         end
 
-        function  BW = get.VerticalBoundary(this, varargin)
+        function  BW = VerticalBoundary(this, varargin)
         % VERTICAL_BOUNDARY - Find left and right boundary
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
