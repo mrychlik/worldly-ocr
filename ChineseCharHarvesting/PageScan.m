@@ -394,10 +394,10 @@ classdef PageScan
             parse(p, this,varargin{:});
             BW = zeros(this.Size);
             if p.Results.ShowHorizontal
-                BW = BW | this.HorizontalBoundary
+                BW = BW | this.HorizontalBoundary;
             end
             if p.Results.ShowVertical
-                BW = BW | this.VerticalBoundary
+                BW = BW | this.VerticalBoundary;
             end
 
             hold on;
