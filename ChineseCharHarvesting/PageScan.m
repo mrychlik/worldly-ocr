@@ -361,7 +361,7 @@ classdef PageScan
         function  VerticalBoundary = get.VerticalBoundary(this)
         % VERTICAL_BOUNDARY - Find left and right boundary
             % Find left and right
-            se1 = strel('line',60,90);
+            se1 = strel('line',100,90);
             se2 = strel('line',10,0);
             BW = this.PageImageMono;
             % Dilate slightly in horizontal direction
@@ -371,7 +371,7 @@ classdef PageScan
             % Dilate by the amount of erosion
             BW = imdilate(BW, se1);
             % Erode by the amount of original dilation
-            %BW = imerode(BW, se2);
+            BW = imerode(BW, se2);
             VerticalBoundary = BW;
         end
 
