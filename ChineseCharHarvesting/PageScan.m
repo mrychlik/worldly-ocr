@@ -431,17 +431,19 @@ classdef PageScan
 
         function show_vertical_line(this)
         % SHOW_VERTICAL_LINE - show page boundary (non-binding)
+            set(gca,'YDir','reverse');
             hold on;
-            im=image(255*ps.PageImageMono);
+            im=image(255*this.PageImageMono);
             im.AlphaData = 0.2;
-            [P,H,T,R] = this.VerticalLine
+            [P,H,T,R] = this.VerticalLine;
             for j=1:size(P,1)
                 t=T(P(j,2))./90;
                 r=R(P(j,1));
-                y=1:size(BW,1);
+                y=1:size(this.PageImageMono,1);
                 x=(r-sin(t).*y)./cos(t);
                 plot(x,y,'Color','red','LineWidth',3);
             end
+            colormap(hot);
             hold off;
         end
 
