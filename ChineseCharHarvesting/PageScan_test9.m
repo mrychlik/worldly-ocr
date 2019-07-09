@@ -19,7 +19,7 @@ for page=6:95
     imshow(imadjust(rescale(H)),'XData',T,'YData',R/500,...
            'InitialMagnification','fit');
     plot(T(P(:,2)),R(P(:,1))/500,'o','color','red','LineWidth',10);
-    title(sprintf('Theta: %.3f', T(P(j,2))));
+    title(sprintf('Theta: %.3f', T(P(1,2))));
     hold off;
     subplot(1,2,2);
     % Flip vertical axis upside down
