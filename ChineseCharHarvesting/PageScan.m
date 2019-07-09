@@ -352,10 +352,12 @@ classdef PageScan
         end
 
         function show_boundary(this)
+            hold on;
             im = imagesc(this.PageImage);
             im.AlphaData = 0.5;
-            in = imagesc(this.Boundary);
+            in = imagesc(~this.Boundary);
             in.AlphaData = 0.5;            
+            hold off;
         end
 
     end
