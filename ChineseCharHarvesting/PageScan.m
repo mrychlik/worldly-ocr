@@ -363,12 +363,20 @@ classdef PageScan
             HorizontalBoundary = BW;
         end
 
-        function  VerticalBoundary = get.VerticalBoundary(this)
+        function  VerticalBoundary = get.VerticalBoundary(this, varargin)
         % VERTICAL_BOUNDARY - Find left and right boundary
+            p = inputParser;
+            addRequired(p, 'this', @(x)isa(x,'PageScan'));            
+            addOptional(p, 'EraseVerticalLines', true, @(x)islogical(x));
+            parse(p, this,varargin{:});
             % Find left and right
             se1 = strel('line',100,90);
             se2 = strel('line',20,0);
-            se3 = strel('line',15,0);            
+            if p.Results.EraseVerticalLines
+                se3 = strel('line',25,0);            
+            else
+                se3 = strel('line',25,0);            
+            end
             BW = this.PageImageMono;
             % Dilate slightly in horizontal direction
             BW = imdilate(BW, se2);
@@ -391,13 +399,14 @@ classdef PageScan
             addOptional(p, 'ShowText', true, @(x)islogical(x));            
             addOptional(p, 'ShowHorizontal', true, @(x)islogical(x));            
             addOptional(p, 'ShowVertical', true, @(x)islogical(x));            
+            addOptional(p, 'EraseVerticalLines', true, @(x)islogical(x));
             parse(p, this,varargin{:});
             BW = zeros(this.Size);
             if p.Results.ShowHorizontal
                 BW = BW | this.HorizontalBoundary;
             end
             if p.Results.ShowVertical
-                BW = BW | this.VerticalBoundary;
+                BW = BW | this.VerticalBoundary('EraseVerticalLines',p.Results.EraseVerticalLines);
             end
 
             hold on;
