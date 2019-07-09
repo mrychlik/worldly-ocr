@@ -406,7 +406,8 @@ classdef PageScan
                 BW = BW | this.HorizontalBoundary;
             end
             if p.Results.ShowVertical
-                BW = BW | this.VerticalBoundary('EraseVerticalLines',p.Results.EraseVerticalLines);
+                BW = BW | this.VerticalBoundary('EraseVerticalLines',...
+                                                p.Results.EraseVerticalLines);
             end
 
             hold on;
