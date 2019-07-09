@@ -422,7 +422,7 @@ classdef PageScan
 
         function [T,R] = VerticalLines(this)
         % VERTICALLINES - returns parameters of vertical lines (up to 2)
-            nhood_size = [99,99];                   % Suppression neighborhood size
+            nhood_size = [199,199];                   % Suppression neighborhood size
             npeaks = 2;
             BW = this.VerticalBoundary;
             Theta = linspace(-10,10,200);
