@@ -5,7 +5,7 @@ page_img_pattern='page-%02d.ppm';
 keep_outliers=false;
 nhood_size = [81,89];           % Suppression neighborhood size
 
-for page=11
+for page=6:95
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
     ps = PageScan(filename,'KeepOutliers',keep_outliers);
     BW = ps.Boundary;
