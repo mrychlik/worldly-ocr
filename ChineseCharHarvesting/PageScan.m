@@ -371,11 +371,6 @@ classdef PageScan
             % Find left and right
             se1 = strel('line',100,90);
             se2 = strel('line',20,0);
-            if p.Results.EraseVerticalLines
-                se3 = strel('line',25,0);            
-            else
-                se3 = strel('line',15,0);            
-            end
             BW = this.PageImageMono;
             % Dilate slightly in horizontal direction
             BW = imdilate(BW, se2);
@@ -384,6 +379,11 @@ classdef PageScan
             % Dilate by the amount of erosion
             BW = imdilate(BW, se1);
             % Erode by nearly the amount of original dilation
+            if p.Results.EraseVerticalLines
+                se3 = strel('line',25,0);            
+            else
+                se3 = strel('line',15,0);            
+            end
             BW = imerode(BW, se3);
         end
 
