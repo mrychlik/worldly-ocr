@@ -469,7 +469,7 @@ classdef PageScan
             [T,R] = this.HorizontalLines;
             % The equation of the line is R=cos(T)*x+sin(T)*y
             % where T is small, thus cos(T)~=0. Hence, x = (R-sin(T)*y)/cos(T)
-            for j=1:size(T,1)
+            for j = 1:size(T,1)
                 t = T(j)./90;
                 r = R(j);
                 y = 1:size(this.PageImageMono',1);
