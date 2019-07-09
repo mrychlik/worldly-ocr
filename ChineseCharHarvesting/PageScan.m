@@ -344,7 +344,7 @@ classdef PageScan
         function  HorizontalBoundary = get.HorizontalBoundary(this)
         % HORIZONTAL_BOUNDARY - Find top and bottom
             se1 = strel('line',100,0);
-            se2 = strel('line',1,90);
+            se2 = strel('line',10,90);
             BW = this.PageImageMono;
             % First slightly thicken in the vertical direction
             BW = imdilate(BW,se2);
@@ -362,7 +362,7 @@ classdef PageScan
         % VERTICAL_BOUNDARY - Find left and right boundary
             % Find left and right
             se1 = strel('line',100,90);
-            se2 = strel('line',10,0);
+            se2 = strel('line',15,0);
             BW = this.PageImageMono;
             % Dilate slightly in horizontal direction
             BW = imdilate(BW, se2);
@@ -380,9 +380,16 @@ classdef PageScan
         end
 
         function show_boundary(this)
+            p = inputParser;
+            addRequired(p, 'this', @(x)isa(x,'PageScan'));            
+            addOptional(p, 'ShowText', false, @(x)islogical(x));            
+            parse(p, this,varargin{:});
+
             hold on;
-            im = imagesc(this.PageImage);
-            im.AlphaData = 0.5;
+            if p.Results.ShowText
+                im = imagesc(this.PageImage);
+                im.AlphaData = 0.5;
+            end
             in = imagesc(~this.Boundary);
             in.AlphaData = 0.5;            
             colormap(hot);
