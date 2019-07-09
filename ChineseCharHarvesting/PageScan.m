@@ -344,7 +344,7 @@ classdef PageScan
             end
         end
 
-        function  BW = get.HorizontalBoundary(this)
+        function  BW = HorizontalBoundary(this)
         % HORIZONTAL_BOUNDARY - Find top and bottom
             se1 = strel('line',100,0);
             se2 = strel('line',10,90);
