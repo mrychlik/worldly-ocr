@@ -570,7 +570,7 @@ classdef PageScan
             elseif x > 3*this.Width/4
                 BindingSide = 'Left';
             else
-                BindingSide = 'Unknown';
+                BindingSide = [];       % Unknown
             end
         end
 
