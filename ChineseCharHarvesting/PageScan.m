@@ -372,9 +372,9 @@ classdef PageScan
             se1 = strel('line',100,90);
             se2 = strel('line',20,0);
             if p.Results.EraseVerticalLines
-                se3 = strel('line',25,0);            
+                se3 = strel('line',23,0);            
             else
-                se3 = strel('line',15,0);            
+                se3 = strel('line',17,0);            
             end
             BW = this.PageImageMono;
             % Dilate slightly in horizontal direction
