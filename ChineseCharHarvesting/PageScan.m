@@ -369,7 +369,7 @@ classdef PageScan
             addOptional(p, 'EraseVerticalLines', true, @(x)islogical(x));
             parse(p, this,varargin{:});
             % Find left and right
-            se1 = strel('line',100,90);
+            se1 = strel('line',80,90);
             se2 = strel('line',20,0);
             BW = this.PageImageMono;
             % Dilate slightly in horizontal direction
@@ -417,6 +417,31 @@ classdef PageScan
             in.AlphaData = 0.5;            
             colormap(hot);
             set (gca,'YDir','reverse');
+            hold off;
+        end
+
+        function [P,H,T,R] = VerticalLine(this)
+            nhood_size = [99,99];                   % Suppression neighborhood size
+            npeaks = 1;
+            BW = this.VerticalBoundary;
+            Theta = linspace(-10,10,200);
+            [H,T,R] = hough(BW,'Theta',Theta);
+            P = houghpeaks(H,npeaks, 'NHoodSize',nhood_size);
+        end
+
+        function show_vertical_line(this)
+        % SHOW_VERTICAL_LINE - show page boundary (non-binding)
+            hold on;
+            im=image(255*ps.PageImageMono);
+            im.AlphaData = 0.2;
+            [P,H,T,R] = this.VerticalLine
+            for j=1:size(P,1)
+                t=T(P(j,2))./90;
+                r=R(P(j,1));
+                y=1:size(BW,1);
+                x=(r-sin(t).*y)./cos(t);
+                plot(x,y,'Color','red','LineWidth',3);
+            end
             hold off;
         end
 
@@ -481,7 +506,6 @@ classdef PageScan
                 this.Characters(char_count).IsOutlier = is_outlier;
             end
         end
-
 
         function rv = is_outlier(this, char_idx)
         % IS_OUTLIER returns true if character is outlier
