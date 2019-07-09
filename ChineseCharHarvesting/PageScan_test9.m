@@ -35,10 +35,8 @@ for page=6:95
         x=(r-sin(t).*y)./cos(t);
         plot(x,y,'Color','red','LineWidth',3);
     end
-    hold off;
-
-
     colormap(hot);
+    hold off;
     title(sprintf('Page %d', page));
     drawnow;
     uiwait(gcf);
