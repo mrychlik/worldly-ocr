@@ -43,6 +43,7 @@ classdef PageScan
         Height;                         % Image height
         Size;                           % Image size: [h,w]
         Boundary;                       % Page boundary
+        HorizontalBoundary;             % Top and bottom of page
     end
 
     methods
@@ -344,7 +345,7 @@ classdef PageScan
             end
         end
 
-        function  BW = HorizontalBoundary(this)
+        function  HorizontalBoundary = get.HorizontalBoundary(this)
         % HORIZONTAL_BOUNDARY - Find top and bottom
             se1 = strel('line',100,0);
             se2 = strel('line',10,90);
@@ -357,7 +358,8 @@ classdef PageScan
             BW = imdilate(BW, se1);
             % Erode slightly in the vertical direction
             BW = imerode(BW,se2);
-        end
+            HorizontalBoundary = BW;
+       end
 
         function  BW = VerticalBoundary(this, varargin)
         % VERTICAL_BOUNDARY - Find left and right boundary
