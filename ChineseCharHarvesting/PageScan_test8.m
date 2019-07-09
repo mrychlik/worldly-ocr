@@ -5,7 +5,7 @@ page_img_pattern='page-%02d.ppm';
 keep_outliers=false;
 nhood_size = [81,89];           % Suppression neighborhood size
 
-for page=11
+for page=6:95
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
     ps = PageScan(filename,'KeepOutliers',keep_outliers);
     BW = ps.Boundary';
@@ -18,7 +18,7 @@ for page=11
     imshow(imadjust(rescale(H)),'XData',T,'YData',R/500,...
            'InitialMagnification','fit');
     plot(T(P(:,2)),R(P(:,1))/500,'o','color','red','LineWidth',10);
-    title(sprintf('Theta: %f', T(P(j,2))));
+    title(sprintf('Theta: %.3f', T(P(j,2))));
     hold off;
     subplot(1,2,2);
     % Flip vertical axis upside down
