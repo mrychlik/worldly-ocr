@@ -342,16 +342,19 @@ classdef PageScan
         end
 
         function  HorizontalBoundary = get.HorizontalBoundary(this)
-            ;
-            % Find top and bottom
+        % HORIZONTALBOUNDARY - Find top and bottom
             se1 = strel('line',90,0);
             se2 = strel('line',5,90);
-            HorizontalBoundary = ...
-                imdilate(...
-                    imerode(...
-                        imdilate(this.PageImageMono,se2),...
-                        se1),...
-                    se1);
+            % First slightly thicken in the vertical direction
+            BW = imdilate(this.PageImageMono,se2);
+            % Then significantly erode in the horizontal direction
+            BW = imerode(BW, se1);
+            % Dilate in the horizontal direction equally to erosion
+            BW = imdilate(BW, se1);
+            % Erode slightly in the vertical direction
+            BW = imerode(this.PageImageMono,se2);
+            
+            HorizontalBoundary = BW;
         end
 
         function  VerticalBoundary = get.VerticalBoundary(this)
