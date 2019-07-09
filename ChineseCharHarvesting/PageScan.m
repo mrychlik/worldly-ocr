@@ -44,7 +44,7 @@ classdef PageScan
         Size;                           % Image size: [h,w]
         Boundary;                       % Page boundary
         HorizontalBoundary;             % Top and bottom of page
-                                        % VerticalBoundary % Currently function, as we want to pass some options
+        % VerticalBoundary              % Currently function, as we want to pass some options
     end
 
     methods
