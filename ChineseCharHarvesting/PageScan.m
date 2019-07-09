@@ -384,14 +384,23 @@ classdef PageScan
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
             addOptional(p, 'ShowText', true, @(x)islogical(x));            
+            addOptional(p, 'ShowHorizontal', true, @(x)islogical(x));            
+            addOptional(p, 'ShowVertical', true, @(x)islogical(x));            
             parse(p, this,varargin{:});
+            BW = zeros(this.Size);
+            if p.Results.ShowHorizontal
+                BW = BW | this.HorizontalBoundary
+            end
+            if p.Results.ShowVertical
+                BW = BW | this.VerticalBoundary
+            end
 
             hold on;
             if p.Results.ShowText
                 im = imagesc(this.PageImage);
                 im.AlphaData = 0.5;
             end
-            in = imagesc(~this.Boundary);
+            in = imagesc(~BW);
             in.AlphaData = 0.5;            
             colormap(hot);
             set (gca,'YDir','reverse');
