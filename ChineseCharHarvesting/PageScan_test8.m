@@ -37,8 +37,6 @@ for page=6:95
         plot(x,y,'Color','red','LineWidth',3);
     end
     hold off;
-
-
     colormap(hot);
     title(sprintf('Page %d', page));
     drawnow;
