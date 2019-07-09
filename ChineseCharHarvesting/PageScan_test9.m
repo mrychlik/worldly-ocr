@@ -11,7 +11,7 @@ for page=6:95
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
     ps = PageScan(filename,'KeepOutliers',keep_outliers);
     BW = ps.Boundary;
-    Theta = linspace(-5,5,100);
+    Theta = linspace(-5,5,50);
     [H,T,R] = hough(BW,'Theta',Theta);
     P = houghpeaks(H,npeaks, 'NHoodSize',nhood_size);
     subplot(1,2,1)
