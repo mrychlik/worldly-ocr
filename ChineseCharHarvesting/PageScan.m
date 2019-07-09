@@ -339,17 +339,35 @@ classdef PageScan
             end
         end
 
-        function  Boundary = get.Boundary(this)
+        function  HorizontalBoundary = get.HorizontalBoundary(this)
             ;
             % Find top and bottom
             se1 = strel('line',90,0);
             se2 = strel('line',5,90);
-            BW1 = imdilate(imerode(imdilate(this.PageImageMono,se2),se1),se1);
+            HorizontalBoundary = ...
+                imdilate(...
+                    imerode(...
+                        imdilate(this.PageImageMono,se2),...
+                        se1),...
+                    se1);
+        end
+
+        function  VerticalBoundary = get.VerticalBoundary(this)
             % Find left and right
             se1 = strel('line',60,90);
             se2 = strel('line',5,0);
-            BW2 = imerode(imdilate(imerode(imdilate(this.PageImageMono,se2),se1),se1),se2);
-            Boundary = BW1 | BW2;
+            VerticalBoundary = ...
+                imerode(...
+                    imdilate(...
+                        imerode(...
+                            imdilate(this.PageImageMono,se2),...
+                            se1),...
+                        se1),...
+                    se2);
+        end
+
+        function  Boundary = get.Boundary(this)
+            Boundary = this.HorizontalBoundary | this.VerticalBoundary;
         end
 
         function show_boundary(this)
