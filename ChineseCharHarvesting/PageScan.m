@@ -104,8 +104,10 @@ classdef PageScan
                         @(x)any(validatestring(x,{'Original','Mono'})));
             addOptional(p, 'ShowCentroids', true, @(x)islogical(x));
             addOptional(p, 'ShowDilation', false, @(x)islogical(x));            
-            addOptional(p, 'ShowOutliers', false, @(x)islogical(x));            
+            addOptional(p, 'ShowOutliers', false, @(x)islogical(x));
+            addOptional(p, 'ShowBoundary', true, @(x)islogical(x));
             parse(p, this,varargin{:});
+
             hold on;
             switch p.Results.Background
               case 'Original',
@@ -145,6 +147,7 @@ classdef PageScan
                               'MarkerEdgeAlpha',0.5);
                 end
             end
+            this.draw_boundary(varargin{:});
             hold off;
         end
 
