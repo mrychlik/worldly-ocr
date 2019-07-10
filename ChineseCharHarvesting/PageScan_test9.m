@@ -2,6 +2,8 @@
 % Use Hough transform
 pagedir='Pages';
 page_img_pattern='page-%02d.ppm';
+if ~exist('pages','var') pages=6:95; end;
+
 keep_outliers=false;
 nhood_size = [99,99];                   % Suppression neighborhood size
 npeaks = 3;
