@@ -158,6 +158,7 @@ classdef PageScan
             imagesc(this.PageImageMono);
             set (gca,'YDir','reverse');
             colormap(hot);
+
             for char_idx = 1:this.CharacterCount
                 if ~p.Results.ShowOutliers && this.is_outlier(char_idx)
                     continue;
