@@ -596,17 +596,17 @@ classdef PageScan
             im.AlphaData = 0.5;            
         end
 
-        function merge_characters(this)
+        function identify_merge_characters(this)
             im = imagesc(this.PageImage);
             im.AlphaData = 0.5;
             for col=1:this.ColumnCount
                 chars = find( this.Columns == col );
-                c = this.Centroids(chars,:);
-                [c_sorted, I] = sortrows(c,2);
-                sorted_chars = chars(I);
+                c = this.centroids(chars,:);
+                [c_sorted, i] = sortrows(c,2);
+                sorted_chars = chars(i);
                 for i = 1:numel(sorted_chars)
                     char_idx = sorted_chars(i);
-                    if this.Characters(char_idx).IsShort
+                    if this.characters(char_idx).isshort
                         nb = [char_idx];
                         if i > 1 
                             nb = [nb,sorted_chars(i-1)];
@@ -614,7 +614,7 @@ classdef PageScan
                         if i < numel(sorted_chars)
                             nb = [nb,sorted_chars(i+1)];
                         end
-                        this.draw_bounding_boxes('CharacterIndices',nb);
+                        this.draw_bounding_boxes('characterindices',nb);
                     end
                 end
             end
