@@ -601,7 +601,7 @@ classdef PageScan
             im.AlphaData = 0.5;
             for col=1:this.ColumnCount
                 chars = find( this.Columns == col );
-                c = this.centroids(chars,:);
+                c = this.Centroids(chars,:);
                 [c_sorted, i] = sortrows(c,2);
                 sorted_chars = chars(i);
                 for i = 1:numel(sorted_chars)
