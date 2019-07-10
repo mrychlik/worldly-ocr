@@ -606,7 +606,7 @@ classdef PageScan
                 sorted_chars = chars(i);
                 for i = 1:numel(sorted_chars)
                     char_idx = sorted_chars(i);
-                    if this.characters(char_idx).isshort
+                    if this.Characters(char_idx).isshort
                         nb = [char_idx];
                         if i > 1 
                             nb = [nb,sorted_chars(i-1)];
