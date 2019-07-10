@@ -4,7 +4,7 @@ if ~exist('pages','var') pages=6:95; end;
 
 keep_outliers=false;
 
-for page=6:95
+for page=pages
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
     ps = PageScan(filename,'KeepOutliers',keep_outliers);
     ps.show_vertical_lines;
