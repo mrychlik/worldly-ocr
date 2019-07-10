@@ -383,7 +383,7 @@ classdef PageScan
         % VERTICAL_BOUNDARY - Find left and right boundary
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
-            addOptional(p, 'EraseVerticalLines', true, @(x)islogical(x));
+            addOptional(p, 'EraseVerticalLines', false, @(x)islogical(x));
             parse(p, this,varargin{:});
             % Find left and right
             se1 = strel('line',80,90);
