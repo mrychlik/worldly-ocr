@@ -415,7 +415,7 @@ classdef PageScan
             addOptional(p, 'ShowHorizontal', true, @(x)islogical(x));
             addOptional(p, 'ShowVertical', true, @(x)islogical(x));
             addOptional(p, 'ShowBoundingBoxes', true, @(x)islogical(x));
-            addOptional(p, 'ShowOutlider', false, @(x)islogical(x));
+            addOptional(p, 'ShowOutliers', false, @(x)islogical(x));
             addOptional(p, 'EraseVerticalLines', true, @(x)islogical(x));
             parse(p, this,varargin{:});
             BW = zeros(this.Size);
