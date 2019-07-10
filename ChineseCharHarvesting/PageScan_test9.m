@@ -9,7 +9,7 @@ nhood_size = [99,99];                   % Suppression neighborhood size
 npeaks = 3;
 
 
-for page=6:95
+for page=pages
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
     ps = PageScan(filename,'KeepOutliers',keep_outliers);
     BW = ps.Boundary;
