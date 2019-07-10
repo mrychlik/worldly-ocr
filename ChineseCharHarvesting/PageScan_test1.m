@@ -1,17 +1,19 @@
+disp(mfilename);
+
 pagedir='Pages';
 page_img_pattern='page-%02d.ppm';
+if ~exist('pages','var') pages=6:95; end;
 
 %bg='Mono';
 %bg='Foo';                               % Invalid option - test
 bg='Original';
-show_dilation = true;
-show_outliers = true;
+show_dilation = false;
+show_outliers = false;
 
-%for page=6:95
-for page=6:10
+
+for page=pages
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
-    ps = PageScan;
-    ps = ps.scanfile(filename);
+    ps = PageScan(filename);
     ps.show_marked_page_img('Background',bg,...
                             'ShowDilation',show_dilation,...
                             'ShowOutliers',show_outliers);
