@@ -1,7 +1,8 @@
 pagedir='Pages';
 page_img_pattern='page-%02d.ppm';
+if ~exist('pages','var') pages=6:95; end;
 
-for page=6:95
+for page=pages
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
     ps = PageScan(filename);
     ps.show_centroids;
