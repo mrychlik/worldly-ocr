@@ -410,6 +410,7 @@ classdef PageScan
             addRequired(p, 'this', @(x)isa(x,'PageScan'));
             addOptional(p, 'ShowHorizontal', true, @(x)islogical(x));
             addOptional(p, 'ShowVertical', true, @(x)islogical(x));
+            addOptional(p, 'Color', 'blue', @(x)islogical(x));
             parse(p, this,varargin{:});
 
             BW = zeros(this.Size);
@@ -420,7 +421,7 @@ classdef PageScan
             if p.Results.ShowVertical
                 BW = BW | this.VerticalBoundary(varargin{:});
             end
-            im = imagesc(~BW);
+            im = imshow(~BW);
             im.AlphaData = 0.5;            
         end
 
