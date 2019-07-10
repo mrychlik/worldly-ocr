@@ -511,7 +511,7 @@ classdef PageScan
                 plot(x,y,'Color','red','LineWidth',3);
             end
             colormap(hot);
-            title(sprintf('Theta: %.3f',T));
+            title(sprintf('Theta: %6.3f ',T));
             drawnow;
             hold off;
         end
