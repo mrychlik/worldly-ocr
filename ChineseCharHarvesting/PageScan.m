@@ -105,8 +105,6 @@ classdef PageScan
             addOptional(p, 'ShowCentroids', true, @(x)islogical(x));
             addOptional(p, 'ShowDilation', false, @(x)islogical(x));            
             addOptional(p, 'ShowOutliers', false, @(x)islogical(x));
-            addOptional(p, 'ShowHorizontal', true, @(x)islogical(x));
-            addOptional(p, 'ShowVertical', true, @(x)islogical(x));            
             parse(p, this,varargin{:});
 
             hold on;
@@ -407,6 +405,7 @@ classdef PageScan
         end
 
         function draw_boundary(this, varargin)
+            disp(varargin);
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));
             addOptional(p, 'ShowHorizontal', true, @(x)islogical(x));
