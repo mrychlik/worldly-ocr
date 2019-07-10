@@ -596,6 +596,30 @@ classdef PageScan
             im.AlphaData = 0.5;            
         end
 
+        function merge_characters(this)
+            im = imagesc(this.PageImage);
+            im.AlphaData = 0.5;
+            for col=1:this.ColumnCount
+                chars = find( this.Columns == col )
+                c = this.Centroids(chars,:);
+                [c_sorted, I] = sortrows(c,2);
+                sorted_chars = chars(I);
+                for i = 1:numel(sorted_chars)
+                    char_idx = sorted_chars(i);
+                    if this.Characters(char_idx).IsShort
+                        nb = [char_idx];
+                        if i > 1 
+                            nb = [nb,sorted_chars(i-1)];
+                        end
+                        if i < numel(sorted_chars)
+                            nb = [nb,sorted_chars(i+1)];
+                        end
+                        this.draw_bounding_boxes('CharacterIndices',nb);
+                    end
+                end
+            end
+        end
+
 
     end
 
@@ -660,26 +684,6 @@ classdef PageScan
                 this.Characters(char_count).IsOutlier = is_outlier;
             end
         end
-
-
-        function merge_characters(this)
-            im = imagesc(this.PageImage);
-            im.AlphaData = 0.5;
-            for col=1:this.ColumnCount
-                chars = this.Columns == col,:);
-                c = this.Centroids(chars,:);
-                [c_sorted, I] = sortrows(c,2);
-                for i = 1:size(C,1)
-                    char_idx = chars(I(i));
-                    if this.Characters(char_idx).IsShort
-                        
-                    end
-                end
-            end
-        end
-
-
-
 
         function rv = is_outlier(this, char_idx)
         % IS_OUTLIER returns true if character is outlier
