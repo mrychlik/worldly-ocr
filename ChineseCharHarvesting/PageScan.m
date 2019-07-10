@@ -413,7 +413,8 @@ classdef PageScan
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
             addOptional(p, 'ShowText', true, @(x)islogical(x));            
             addOptional(p, 'ShowHorizontal', true, @(x)islogical(x));            
-            addOptional(p, 'ShowVertical', true, @(x)islogical(x));            
+            addOptional(p, 'ShowVertical', true, @(x)islogical(x));
+            addOptional(p, 'ShowBoundingBoxes', true, @(x)islogical(x));                            
             addOptional(p, 'EraseVerticalLines', true, @(x)islogical(x));
             parse(p, this,varargin{:});
             BW = zeros(this.Size);
@@ -430,6 +431,24 @@ classdef PageScan
                 im = imagesc(this.PageImage);
                 im.AlphaData = 0.5;
             end
+            if p.Results.ShowBoundingBoxes
+                for char_idx = 1:this.CharacterCount
+                    if ~p.Results.ShowOutliers && this.is_outlier(char_idx)
+                        continue;
+                    end
+                    % Mark bounding box
+                    bbox = this.Characters(char_idx).Stats.BoundingBox;
+                    r = rectangle('Position',bbox);
+                    set(r,'EdgeColor','red');
+                    % Paint the face if 
+                    if this.Characters(char_idx).IsShort
+                        set(r,'FaceColor',[0,1,0,.5]);                    
+                    else
+                        set(r,'FaceColor',[1,1,1,.2]);
+                    end
+                end
+            end
+
             in = imagesc(~BW);
             in.AlphaData = 0.5;            
             colormap(hot);
