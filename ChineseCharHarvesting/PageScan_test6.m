@@ -6,7 +6,7 @@ show_outliers=false;
 keep_outliers=false;
 show_bboxes=true;
 
-for page=6:95
+for page=pages
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
     ps = PageScan(filename,'KeepOutliers',keep_outliers);
     ps.show_column_centers('ShowOutliers',show_outliers, 'ShowBoundingBoxes',show_bboxes);
