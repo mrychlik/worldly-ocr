@@ -1,3 +1,5 @@
+disp(mfilename);
+
 % Determine the left and right boundary of the page as a geomeric line
 % Use Hough transform
 pagedir='Pages';
@@ -6,7 +8,7 @@ if ~exist('pages','var') pages=6:95; end;
 
 keep_outliers=false;
 nhood_size = [99,99];                   % Suppression neighborhood size
-npeaks = 3;
+npeaks = 12;
 
 
 for page=pages
