@@ -600,7 +600,7 @@ classdef PageScan
             im = imagesc(this.PageImage);
             im.AlphaData = 0.5;
             for col=1:this.ColumnCount
-                chars = find( this.Columns == col )
+                chars = find( this.Columns == col );
                 c = this.Centroids(chars,:);
                 [c_sorted, I] = sortrows(c,2);
                 sorted_chars = chars(I);
