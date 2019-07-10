@@ -410,7 +410,6 @@ classdef PageScan
             addRequired(p, 'this', @(x)isa(x,'PageScan'));
             addOptional(p, 'ShowHorizontal', true, @(x)islogical(x));
             addOptional(p, 'ShowVertical', true, @(x)islogical(x));
-            addOptional(p, 'Color', 'blue', @(x)islogical(x));
             parse(p, this,varargin{:});
 
             BW = zeros(this.Size);
