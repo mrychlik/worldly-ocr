@@ -163,6 +163,7 @@ classdef PageScan
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
             addOptional(p, 'ShowOutliers', false, @(x)islogical(x));            
+            addOptional(p, 'ShowBoundingBoxes', true, @(x)islogical(x));            
             parse(p, this,varargin{:});
 
             imagesc(this.PageImageMono);
@@ -184,6 +185,10 @@ classdef PageScan
                 else
                     set(r,'FaceColor',[0,0,0,1]);
                 end
+            end
+
+            if p.Results.ShowBoundingBoxes
+                this.draw_bounding_boxes('ShowOutliers',p.Results.ShowOutliers);
             end
 
         end
