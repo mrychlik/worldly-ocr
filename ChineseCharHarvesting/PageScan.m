@@ -105,6 +105,10 @@ classdef PageScan
             addOptional(p, 'ShowCentroids', true, @(x)islogical(x));
             addOptional(p, 'ShowDilation', false, @(x)islogical(x));            
             addOptional(p, 'ShowOutliers', false, @(x)islogical(x));
+            addOptional(p, 'ShowHorizontal', true, @(x)islogical(x));
+            addOptional(p, 'ShowVertical', true, @(x)islogical(x));
+            addOptional(p, 'EraseVerticalLines', true, @(x)islogical(x));
+
             parse(p, this,varargin{:});
 
             hold on;
@@ -404,26 +408,6 @@ classdef PageScan
             Boundary = this.HorizontalBoundary | this.VerticalBoundary;
         end
 
-        function draw_boundary(this, varargin)
-            disp(varargin);
-            p = inputParser;
-            addRequired(p, 'this', @(x)isa(x,'PageScan'));
-            addOptional(p, 'ShowHorizontal', true, @(x)islogical(x));
-            addOptional(p, 'ShowVertical', true, @(x)islogical(x));
-            parse(p, this,varargin{:});
-
-            BW = zeros(this.Size);
-
-            if p.Results.ShowHorizontal
-                BW = BW | this.HorizontalBoundary;
-            end
-            if p.Results.ShowVertical
-                BW = BW | this.VerticalBoundary(varargin{:});
-            end
-            im = imshow(~BW);
-            im.AlphaData = 0.5;            
-        end
-
 
         function show_boundary(this, varargin)
             p = inputParser;
@@ -621,6 +605,26 @@ classdef PageScan
                 this.Characters(char_count).IsShort = bbox(4) < this.short_height_threshold;
                 this.Characters(char_count).IsOutlier = is_outlier;
             end
+        end
+
+        function draw_boundary(this, varargin)
+            disp(varargin);
+            p = inputParser;
+            addRequired(p, 'this', @(x)isa(x,'PageScan'));
+            addOptional(p, 'ShowHorizontal', true, @(x)islogical(x));
+            addOptional(p, 'ShowVertical', true, @(x)islogical(x));
+            parse(p, this,varargin{:});
+
+            BW = zeros(this.Size);
+
+            if p.Results.ShowHorizontal
+                BW = BW | this.HorizontalBoundary;
+            end
+            if p.Results.ShowVertical
+                BW = BW | this.VerticalBoundary(varargin{:});
+            end
+            im = imshow(~BW);
+            im.AlphaData = 0.5;            
         end
 
         function rv = is_outlier(this, char_idx)
