@@ -320,8 +320,24 @@ classdef PageScan
         function Columns = get.Columns(this)
             Columns = zeros(this.CharacterCount,1);
             % Sort centroids by x
+            %
+            % For Traditional Chinese, right-to-left
+            % is the natural direction. However,
+            % we are disturbed by the book binding
+            % so we may want to do it in the opposite order.
+
+            switch this.Binding.Side,
+              case 'Left',
+                direction = 'descend';
+              case 'Right',
+                direction = 'ascend';
+              otherwise,
+                direction = 'descend';
+            end
+
             x = this.Centroids(:,1);
-            [x_sorted,I] = sort(x,'descend');  % For traditional chinese, right-to-left
+
+            [x_sorted,I] = sort(x,direction);  
             min_x = x_sorted(end)+1000;
             col = 1;
             for idx=1:numel(x)
@@ -332,6 +348,9 @@ classdef PageScan
                     min_x = x_sorted(idx);
                 end
                 Columns(I(idx)) = col;
+            end
+            if strcmp(direction,'ascend')
+                Columns = numel(Columns)-Columns+1;
             end
         end
 
