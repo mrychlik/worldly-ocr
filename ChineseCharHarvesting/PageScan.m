@@ -130,7 +130,7 @@ classdef PageScan
                 bbox = this.Characters(char_idx).Stats.BoundingBox;
                 r = rectangle('Position',bbox);
                 set(r,'EdgeColor','red');
-                % Paint the face if 
+                % Paint the face
                 if this.Characters(char_idx).IsShort
                     set(r,'FaceColor',[0,1,0,.5]);                    
                 else
