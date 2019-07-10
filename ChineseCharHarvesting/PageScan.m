@@ -472,10 +472,15 @@ classdef PageScan
         end
 
 
-        function [T,R] = VerticalLines(this)
+        function [T,R] = VerticalLines(this,varargin)
         % VERTICALLINES - returns parameters of vertical lines (up to 1)
+            p = inputParser;
+            addRequired(p, 'this', @(x)isa(x,'PageScan'));
+            addOptional(p, 'NumberOfLines', 1, @(x)isscalar(x));
+            parse(p, this,varargin{:});
+
             nhood_size = [199,199];                   % Suppression neighborhood size
-            npeaks = 1;
+            npeaks = p.Results.NumberOfLines;
             BW = this.VerticalBoundary;
             Theta = linspace(-10,10,200);
             [H,T,R] = hough(BW,'Theta',Theta);
@@ -484,13 +489,18 @@ classdef PageScan
             R = R(P(:,1))';
         end
 
-        function show_vertical_lines(this)
+        function show_vertical_lines(this,varargin)
         % SHOW_VERTICAL_LINE - show page boundary (non-binding)
+            p = inputParser;
+            addRequired(p, 'this', @(x)isa(x,'PageScan'));
+            addOptional(p, 'NumberOfLines', 1, @(x)isscalar(x));
+            parse(p, this,varargin{:});
+
             set(gca,'YDir','reverse');
             hold on;
             im = image(255*this.PageImageMono);
             im.AlphaData = 0.2;
-            [T,R] = this.VerticalLines;
+            [T,R] = this.VerticalLines(p.Results.NumberOfLines);
             % The equation of the line is R=cos(T)*x+sin(T)*y
             % where T is small, thus cos(T)~=0. Hence, x = (R-sin(T)*y)/cos(T)
             for j=1:size(T,1)
