@@ -248,6 +248,7 @@ classdef PageScan
             addOptional(p, 'ShowOutliers', false, @(x)islogical(x));            
             addOptional(p, 'ShowColumns', true, @(x)islogical(x));            
             addOptional(p, 'ShowRows', false, @(x)islogical(x));            
+            addOptional(p, 'ShowBoundingBoxes', true, @(x)islogical(x));
             parse(p, this,varargin{:});
 
             clf;
@@ -258,7 +259,9 @@ classdef PageScan
             im = imagesc(this.PageImage);
             im.AlphaData = 0.5;
 
-            this.draw_bounding_boxes(varargin{:});
+            if p.Results.ShowBoundingBoxes
+                this.draw_bounding_boxes(varargin{:});
+            end
 
             if p.Results.ShowColumns
                 for col = 1:this.ColumnCount
