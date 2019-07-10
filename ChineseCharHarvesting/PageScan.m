@@ -410,11 +410,12 @@ classdef PageScan
 
         function show_boundary(this, varargin)
             p = inputParser;
-            addRequired(p, 'this', @(x)isa(x,'PageScan'));            
-            addOptional(p, 'ShowText', true, @(x)islogical(x));            
-            addOptional(p, 'ShowHorizontal', true, @(x)islogical(x));            
+            addRequired(p, 'this', @(x)isa(x,'PageScan'));
+            addOptional(p, 'ShowText', true, @(x)islogical(x));
+            addOptional(p, 'ShowHorizontal', true, @(x)islogical(x));
             addOptional(p, 'ShowVertical', true, @(x)islogical(x));
-            addOptional(p, 'ShowBoundingBoxes', true, @(x)islogical(x));                            
+            addOptional(p, 'ShowBoundingBoxes', true, @(x)islogical(x));
+            addOptional(p, 'ShowOutlider', false, @(x)islogical(x));
             addOptional(p, 'EraseVerticalLines', true, @(x)islogical(x));
             parse(p, this,varargin{:});
             BW = zeros(this.Size);
