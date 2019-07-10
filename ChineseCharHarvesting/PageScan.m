@@ -620,7 +620,6 @@ classdef PageScan
             end
         end
 
-
     end
 
 
