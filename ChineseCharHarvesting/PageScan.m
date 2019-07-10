@@ -457,9 +457,10 @@ classdef PageScan
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));
             addOptional(p, 'ShowOutliers', false, @(x)islogical(x));
+            addOptional(p, 'CharacterIndices', 1:this.CharacterCount, @(x)isnumeric(x));
             parse(p, this,varargin{:});
 
-            for char_idx = 1:this.CharacterCount
+            for char_idx = p.Results.CharacterIndices
                 if ~p.Results.ShowOutliers && this.is_outlier(char_idx)
                     continue;
                 end
@@ -659,6 +660,25 @@ classdef PageScan
                 this.Characters(char_count).IsOutlier = is_outlier;
             end
         end
+
+
+        function merge_characters(this)
+            im = imagesc(this.PageImage);
+            im.AlphaData = 0.5;
+            for col=1:this.ColumnCount
+                chars = this.Columns == col,:);
+                c = this.Centroids(chars,:);
+                [c_sorted, I] = sortrows(c,2);
+                for i = 1:size(C,1)
+                    char_idx = chars(I(i));
+                    if this.Characters(char_idx).IsShort
+                        
+                    end
+                end
+            end
+        end
+
+
 
 
         function rv = is_outlier(this, char_idx)
