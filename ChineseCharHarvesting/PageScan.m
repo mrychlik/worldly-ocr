@@ -302,14 +302,9 @@ classdef PageScan
             hold on;
             im = imagesc(this.PageImage);
             im.AlphaData = 0.5;
-            for char_idx = 1:this.CharacterCount
-                if ~p.Results.ShowOutliers && this.is_outlier(char_idx)
-                    continue;
-                end
-                bbox = this.Characters(char_idx).Stats.BoundingBox;
-                r = rectangle('Position',bbox);
-                set(r,'EdgeColor','red');
-            end
+
+            this.draw_bounding_boxes(varargin{:});
+
             for col = 1:this.ColumnCount
                 c = this.ColumnCenters(col);
                 line([c;c], [0;this.Height],'Color','magenta','LineWidth',2);
@@ -437,7 +432,7 @@ classdef PageScan
             end
 
             if p.Results.ShowBoundingBoxes
-                this.draw_bounding_boxes;
+                this.draw_bounding_boxes(varargin{:});
             end
 
             in = imagesc(~BW);
