@@ -1,3 +1,5 @@
+disp(mfilename);
+
 % Determine the top and bottom of the page as a geomeric line
 % Use Hough transform
 pagedir='Pages';
