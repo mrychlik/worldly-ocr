@@ -150,6 +150,7 @@ classdef PageScan
                               'MarkerEdgeAlpha',0.5);
                 end
             end
+            p.Results
             this.draw_boundary('ShowVertical',p.Results.ShowVertical,...
                                'ShowHorizontal',p.Results.ShowHorizontal,...
                                'EraseVerticalLines',p.Results.EraseVerticalLines);
@@ -551,9 +552,9 @@ classdef PageScan
         function draw_boundary(this, varargin)
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));
-            addOptional(p, 'ShowHorizontal', true, @(x)true);
-            addOptional(p, 'ShowVertical', true, @(x)true);
-            addOptional(p, 'EraseVerticalLines', true, @(x)true);
+            addOptional(p, 'ShowHorizontal', true, @(x)islogical(x));
+            addOptional(p, 'ShowVertical', true, @(x)islogical(x));
+            addOptional(p, 'EraseVerticalLines', true, @(x)islogical(x));
 
             parse(p, this,varargin{:});
 
@@ -563,7 +564,8 @@ classdef PageScan
                 BW = BW | this.HorizontalBoundary;
             end
             if p.Results.ShowVertical
-                BW = BW | this.VerticalBoundary(varargin{:});
+                BW = BW | this.VerticalBoundary('EraseVerticalLines',...
+                                                p.Results.EraseVerticalLines);
             end
             im = imshow(~BW);
             im.AlphaData = 0.5;            
