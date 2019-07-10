@@ -418,6 +418,7 @@ classdef PageScan
             addOptional(p, 'ShowOutliers', false, @(x)islogical(x));
             addOptional(p, 'EraseVerticalLines', true, @(x)islogical(x));
             parse(p, this,varargin{:});
+
             BW = zeros(this.Size);
 
             if p.Results.ShowHorizontal
@@ -436,21 +437,7 @@ classdef PageScan
             end
 
             if p.Results.ShowBoundingBoxes
-                for char_idx = 1:this.CharacterCount
-                    if ~p.Results.ShowOutliers && this.is_outlier(char_idx)
-                        continue;
-                    end
-                    % Mark bounding box
-                    bbox = this.Characters(char_idx).Stats.BoundingBox;
-                    r = rectangle('Position',bbox);
-                    set(r,'EdgeColor','red');
-                    % Paint the face if 
-                    if this.Characters(char_idx).IsShort
-                        set(r,'FaceColor',[0,1,0,.5]);                    
-                    else
-                        set(r,'FaceColor',[1,1,1,.2]);
-                    end
-                end
+                this.draw_bounding_boxes;
             end
 
             in = imagesc(~BW);
@@ -459,6 +446,30 @@ classdef PageScan
             set (gca,'YDir','reverse');
             hold off;
         end
+
+        function draw_bounding_boxes(this, varargin)
+            p = inputParser;
+            addRequired(p, 'this', @(x)isa(x,'PageScan'));
+            addOptional(p, 'ShowOutliers', false, @(x)islogical(x));
+            parse(p, this,varargin{:});
+
+            for char_idx = 1:this.CharacterCount
+                if ~p.Results.ShowOutliers && this.is_outlier(char_idx)
+                    continue;
+                end
+                % Mark bounding box
+                bbox = this.Characters(char_idx).Stats.BoundingBox;
+                r = rectangle('Position',bbox);
+                set(r,'EdgeColor','red');
+                % Paint the face if 
+                if this.Characters(char_idx).IsShort
+                    set(r,'FaceColor',[0,1,0,.5]);                    
+                else
+                    set(r,'FaceColor',[1,1,1,.2]);
+                end
+            end
+        end
+
 
         function [T,R] = VerticalLines(this)
         % VERTICALLINES - returns parameters of vertical lines (up to 1)
