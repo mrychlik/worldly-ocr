@@ -402,15 +402,11 @@ classdef PageScan
             Boundary = this.HorizontalBoundary | this.VerticalBoundary;
         end
 
-        function show_boundary(this, varargin)
+        function draw_boundary(this, varargin)
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));
-            addOptional(p, 'ShowText', true, @(x)islogical(x));
             addOptional(p, 'ShowHorizontal', true, @(x)islogical(x));
             addOptional(p, 'ShowVertical', true, @(x)islogical(x));
-            addOptional(p, 'ShowBoundingBoxes', true, @(x)islogical(x));
-            addOptional(p, 'ShowOutliers', false, @(x)islogical(x));
-            addOptional(p, 'EraseVerticalLines', true, @(x)islogical(x));
             parse(p, this,varargin{:});
 
             BW = zeros(this.Size);
@@ -422,8 +418,23 @@ classdef PageScan
                 BW = BW | this.VerticalBoundary('EraseVerticalLines',...
                                                 p.Results.EraseVerticalLines);
             end
+        end
 
+
+        function show_boundary(this, varargin)
+            p = inputParser;
+            addRequired(p, 'this', @(x)isa(x,'PageScan'));
+            addOptional(p, 'ShowText', true, @(x)islogical(x));
+            addOptional(p, 'ShowHorizontal', true, @(x)islogical(x));
+            addOptional(p, 'ShowVertical', true, @(x)islogical(x));
+            addOptional(p, 'ShowBoundingBoxes', true, @(x)islogical(x));
+            addOptional(p, 'ShowOutliers', false, @(x)islogical(x));
+            addOptional(p, 'EraseVerticalLines', true, @(x)islogical(x));
+            parse(p, this,varargin{:});
+
+            
             hold on;
+            this.draw_boundary(varargin{:});
 
             if p.Results.ShowText
                 im = imagesc(this.PageImage);
