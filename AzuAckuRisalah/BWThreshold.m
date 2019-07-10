@@ -9,8 +9,12 @@ function [BW] = BWThreshold(I,Type,Thres)
 if  nargin < 3
     Thres=0.2;
 end
-Igray=rgb2gray(I);
- switch Type
+if size(I,3)==3
+    Igray=rgb2gray(I);
+else 
+    Igray=I;
+end
+switch Type
     case 1 %Threshold is fixed at 0.2
         T=Thres;
     case 2 %Threshold is global using Otsu Method
