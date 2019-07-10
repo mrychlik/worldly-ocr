@@ -419,6 +419,7 @@ classdef PageScan
             addOptional(p, 'EraseVerticalLines', true, @(x)islogical(x));
             parse(p, this,varargin{:});
             BW = zeros(this.Size);
+
             if p.Results.ShowHorizontal
                 BW = BW | this.HorizontalBoundary;
             end
