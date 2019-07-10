@@ -253,17 +253,12 @@ classdef PageScan
             clf;
             colormap(hot);
             set (gca,'YDir','reverse');            
+
             hold on;
             im = imagesc(this.PageImage);
             im.AlphaData = 0.5;
-            for char_idx = 1:this.CharacterCount
-                if ~p.Results.ShowOutliers 
-                    continue
-                end
-                bbox = this.Characters(char_idx).Stats.BoundingBox;
-                r = rectangle('Position',bbox);
-                set(r,'EdgeColor','red');
-            end
+
+            this.draw_bounding_boxes(varargin{:});
 
             if p.Results.ShowColumns
                 for col = 1:this.ColumnCount
