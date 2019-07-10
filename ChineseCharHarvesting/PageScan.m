@@ -429,10 +429,12 @@ classdef PageScan
             end
 
             hold on;
+
             if p.Results.ShowText
                 im = imagesc(this.PageImage);
                 im.AlphaData = 0.5;
             end
+
             if p.Results.ShowBoundingBoxes
                 for char_idx = 1:this.CharacterCount
                     if ~p.Results.ShowOutliers && this.is_outlier(char_idx)
