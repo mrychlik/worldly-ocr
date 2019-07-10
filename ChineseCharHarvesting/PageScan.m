@@ -415,8 +415,10 @@ classdef PageScan
                 BW = BW | this.HorizontalBoundary;
             end
             if p.Results.ShowVertical
-                BW = BW | this.VerticalBoundary(varargin{:}));
+                BW = BW | this.VerticalBoundary(varargin{:});
             end
+            im = imagesc(~BW);
+            im.AlphaData = 0.5;            
         end
 
 
@@ -433,7 +435,6 @@ classdef PageScan
 
             
             hold on;
-            this.draw_boundary(varargin{:});
 
             if p.Results.ShowText
                 im = imagesc(this.PageImage);
@@ -444,8 +445,7 @@ classdef PageScan
                 this.draw_bounding_boxes(varargin{:});
             end
 
-            in = imagesc(~BW);
-            in.AlphaData = 0.5;            
+            this.draw_boundary(varargin{:});
             colormap(hot);
             set (gca,'YDir','reverse');
             hold off;
