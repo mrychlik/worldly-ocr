@@ -246,6 +246,8 @@ classdef PageScan
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
             addOptional(p, 'ShowOutliers', false, @(x)islogical(x));            
+            addOptional(p, 'ShowColumns', true, @(x)islogical(x));            
+            addOptional(p, 'ShowRows', false, @(x)islogical(x));            
             parse(p, this,varargin{:});
 
             clf;
@@ -263,15 +265,20 @@ classdef PageScan
                 set(r,'EdgeColor','red');
             end
 
-            for col = 1:this.ColumnCount
-                c = this.Centroids(this.Columns == col,:);
-                c = sortrows(c,2);
-                in = plot(c(:,1),c(:,2),'LineWidth',2);
+            if p.Results.ShowColumns
+                for col = 1:this.ColumnCount
+                    c = this.Centroids(this.Columns == col,:);
+                    c = sortrows(c,2);
+                    in = plot(c(:,1),c(:,2),'LineWidth',2);
+                end
             end
-            for row = 1:this.RowCount
-                c = this.Centroids(this.Rows == row,:);
-                c = sortrows(c,1);
-                in = plot(c(:,1),c(:,2),'LineWidth',2);
+
+            if p.Results.ShowRows
+                for row = 1:this.RowCount
+                    c = this.Centroids(this.Rows == row,:);
+                    c = sortrows(c,1);
+                    in = plot(c(:,1),c(:,2),'LineWidth',2);
+                end
             end
             s=scatter(this.Centroids(:,1),this.Centroids(:,2),...
                       'Marker', 'o',...
