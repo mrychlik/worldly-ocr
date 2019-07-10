@@ -1,3 +1,5 @@
+disp(mfilename);
+
 pagedir='Pages';
 page_img_pattern='page-%02d.ppm';
 show_outliers=false;
