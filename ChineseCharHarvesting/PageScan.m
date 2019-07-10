@@ -545,7 +545,33 @@ classdef PageScan
             end
             Binding = struct('Side',side,'X',x);
         end
+
+        function draw_boundary(this, varargin)
+            varargin{:}
+            p = inputParser;
+            addRequired(p, 'this', @(x)isa(x,'PageScan'));
+            addOptional(p, 'ShowHorizontal', true, @(x)true);
+            addOptional(p, 'ShowVertical', true, @(x)true);
+            addOptional(p, 'EraseVerticalLines', true, @(x)true);
+
+            parse(p, this,varargin{:});
+
+            BW = zeros(this.Size);
+
+            if p.Results.ShowHorizontal
+                BW = BW | this.HorizontalBoundary;
+            end
+            if p.Results.ShowVertical
+                BW = BW | this.VerticalBoundary(varargin{:});
+            end
+            im = imshow(~BW);
+            im.AlphaData = 0.5;            
+        end
+
+
     end
+
+
 
     methods(Access = private)
 
@@ -607,26 +633,6 @@ classdef PageScan
             end
         end
 
-        function draw_boundary(this, varargin)
-            p = inputParser;
-            addRequired(p, 'this', @(x)isa(x,'PageScan'));
-            addOptional(p, 'ShowHorizontal', true, @(x)islogical(x));
-            addOptional(p, 'ShowVertical', true, @(x)islogical(x));
-            addOptional(p, 'EraseVerticalLines', true, @(x)islogical(x));
-
-            parse(p, this,varargin{:});
-
-            BW = zeros(this.Size);
-
-            if p.Results.ShowHorizontal
-                BW = BW | this.HorizontalBoundary;
-            end
-            if p.Results.ShowVertical
-                BW = BW | this.VerticalBoundary(varargin{:});
-            end
-            im = imshow(~BW);
-            im.AlphaData = 0.5;            
-        end
 
         function rv = is_outlier(this, char_idx)
         % IS_OUTLIER returns true if character is outlier
