@@ -322,7 +322,7 @@ classdef PageScan
             x = this.Centroids(:,1);
             % Sort centroids by x
             % For Traditional Chinese, right-to-left
-            [x_sorted,I] = sort(x,direction);  
+            [x_sorted,I] = sort(x,'descending');  
             min_x = x_sorted(end)+1000;
             col = 1;
             for idx=1:numel(x)
