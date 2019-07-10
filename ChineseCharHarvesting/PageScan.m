@@ -271,7 +271,7 @@ classdef PageScan
             im.AlphaData = 0.5;
 
             if p.Results.ShowBoundingBoxes
-                this.draw_bounding_boxes(varargin{:});
+                this.draw_bounding_boxes('ShowOutliers',p.Results.ShowOutliers);
             end
 
             if p.Results.ShowColumns
@@ -313,7 +313,10 @@ classdef PageScan
             im = imagesc(this.PageImage);
             im.AlphaData = 0.5;
 
-            this.draw_bounding_boxes(varargin{:});
+            if p.Results.ShowBoundingBoxes
+                this.draw_bounding_boxes('ShowOutliers', ...
+                                         p.Results.ShowOutliers);
+            end
 
             for col = 1:this.ColumnCount
                 c = this.ColumnCenters(col);
@@ -435,7 +438,7 @@ classdef PageScan
             end
 
             if p.Results.ShowBoundingBoxes
-                this.draw_bounding_boxes(varargin{:});
+                this.draw_bounding_boxes('ShowOutliers',p.Results.ShowOutliers);
             end
 
             this.draw_boundary(varargin{:});
