@@ -150,7 +150,7 @@ classdef PageScan
                               'MarkerEdgeAlpha',0.5);
                 end
             end
-            p.Results
+
             this.draw_boundary('ShowVertical',p.Results.ShowVertical,...
                                'ShowHorizontal',p.Results.ShowHorizontal,...
                                'EraseVerticalLines',p.Results.EraseVerticalLines);
@@ -567,7 +567,7 @@ classdef PageScan
                 BW = BW | this.VerticalBoundary('EraseVerticalLines',...
                                                 p.Results.EraseVerticalLines);
             end
-            im = imshow(~BW);
+            im = imagesc(~BW);
             im.AlphaData = 0.5;            
         end
 
