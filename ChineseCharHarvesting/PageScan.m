@@ -349,6 +349,7 @@ classdef PageScan
                 end
                 Columns(I(idx)) = col;
             end
+            % Reverse to natural order
             if strcmp(direction,'ascend')
                 Columns = numel(Columns)-Columns+1;
             end
