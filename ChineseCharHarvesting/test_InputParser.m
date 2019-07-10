@@ -1,6 +1,18 @@
-varargin = {'a',1,'c',false,'b',true};
+make_parser;
+
+varargin1 = {'a',7,'c',false,'b',17,'d',[]};
+parse(p, 'a',varargin1{:});
+p.Results
+
+varargin2 = {'a',7,'b',15,'c',23,'d',[]};
+parse(p, 'a',varargin2{:});
+p.Results
+
+
+function p = make_parser
 p = inputParser;
 addRequired(p, 'a', @(x)isscalar(x));
-addOptional(p, 'b', true, @(x)islogical(x));
-addOptional(p, 'c', true, @(x)islogical(x));
-parse(p, 'a',varargin{:});
+addParameter(p, 'd', [], @(x)isempty(x));
+addOptional(p, 'b', true, @(x)isscalar(x));
+addOptional(p, 'c', true, @(x)isscalar(x));
+end
