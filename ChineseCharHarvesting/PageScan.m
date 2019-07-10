@@ -154,6 +154,7 @@ classdef PageScan
             this.draw_boundary('ShowVertical',p.Results.ShowVertical,...
                                'ShowHorizontal',p.Results.ShowHorizontal,...
                                'EraseVerticalLines',p.Results.EraseVerticalLines);
+            drawnow;
             hold off;
         end
 
@@ -294,6 +295,7 @@ classdef PageScan
                       'MarkerFaceColor','red',...
                       'MarkerFaceAlpha',0.3,...                      
                       'MarkerEdgeAlpha',0.5);
+            drawnow;
             hold off;
         end
 
@@ -317,6 +319,7 @@ classdef PageScan
                 c = this.ColumnCenters(col);
                 line([c;c], [0;this.Height],'Color','magenta','LineWidth',2);
             end
+            drawnow;
             hold off;
         end
 
@@ -438,6 +441,7 @@ classdef PageScan
             this.draw_boundary(varargin{:});
             colormap(hot);
             set (gca,'YDir','reverse');
+            drawnow;
             hold off;
         end
 
@@ -495,6 +499,7 @@ classdef PageScan
             end
             colormap(hot);
             title(sprintf('Theta(degree): %.3f',T));
+            drawnow;
             hold off;
         end
 
@@ -528,6 +533,7 @@ classdef PageScan
             end
             title(sprintf('Theta(degree): %.3f',T));
             colormap(hot);
+            drawnow;
             hold off;
         end
 
