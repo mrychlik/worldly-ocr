@@ -150,7 +150,9 @@ classdef PageScan
                               'MarkerEdgeAlpha',0.5);
                 end
             end
-            this.draw_boundary(varargin{:});
+            this.draw_boundary('ShowVertical',p.Results.ShowVertical,...
+                               'ShowHorizontal',p.Results.ShowHorizontal,...
+                               'EraseVerticalLines',p.Results.EraseVerticalLines);
             hold off;
         end
 
@@ -547,7 +549,6 @@ classdef PageScan
         end
 
         function draw_boundary(this, varargin)
-            varargin{:}
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));
             addOptional(p, 'ShowHorizontal', true, @(x)true);
