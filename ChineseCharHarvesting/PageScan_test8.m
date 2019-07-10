@@ -7,7 +7,7 @@ if ~exist('pages','var') pages=6:95; end;
 keep_outliers=false;
 nhood_size = [81,89];           % Suppression neighborhood size
 
-for page=6:95
+for page=pages
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
     ps = PageScan(filename,'KeepOutliers',keep_outliers);
     BW = ps.Boundary';
