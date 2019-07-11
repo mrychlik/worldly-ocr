@@ -598,11 +598,7 @@ classdef PageScan
         end
 
         function MergeCharacters = get.MergeCharacters(this)
-            ;
-            im = imagesc(this.PageImage);
-            im.AlphaData = 0.5;
             MergeCharacters = struct('Col', [], 'Row', [], 'Idx', [], 'MergedWith', []);
-
             mc_count = 0;
             for col=1:this.ColumnCount
                 chars = find( this.Columns == col );
@@ -624,12 +620,11 @@ classdef PageScan
                             nb(j).idx = sorted_chars(i+1);
                         end
                         ci = [nb.idx];
-                        this.draw_bounding_boxes('CharacterIndices',[ci,char_idx]);
                         if numel(ci) == 2
                             ss = [this.Characters(ci).IsShort];
                             if ss(1) && ss(2)
                                 mc_count = mc_count + 1;
-                                MergeCharacters(mc_count).col = col;
+                                MergeCharacters(mc_count).Col = col;
                                 MergeCharacters(mc_count).Row = i;
                                 MergeCharacters(mc_count).Idx = char_idx;
                                 MergeCharacters(mc_count).MergedWith = nb;
@@ -637,6 +632,17 @@ classdef PageScan
                         end
                     end
                 end
+            end
+        end
+
+        function show_merge_characters(this)
+            im = imagesc(this.PageImage);
+            im.AlphaData = 0.5;
+            for i=1:numel(this.MergeCharacters)
+                nb = this.MergeCharacters(i).MergedWith
+                ci = [nb.idx];
+                char_idx = this.MergeCharacters(i).Idx;
+                this.draw_bounding_boxes('CharacterIndices',[ci,char_idx]);
             end
         end
 
