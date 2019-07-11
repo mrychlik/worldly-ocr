@@ -639,7 +639,7 @@ classdef PageScan
             im = imagesc(this.PageImage);
             im.AlphaData = 0.5;
             for i=1:numel(this.MergeCharacters)
-                nb = this.MergeCharacters(i).MergedWith
+                nb = this.MergeCharacters(i).MergedWith;
                 ci = [nb.idx];
                 char_idx = this.MergeCharacters(i).Idx;
                 this.draw_bounding_boxes('CharacterIndices',[ci,char_idx]);
