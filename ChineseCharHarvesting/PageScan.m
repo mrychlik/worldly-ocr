@@ -21,7 +21,7 @@
 classdef PageScan
     properties
         DilationSE = strel('rectangle', [5,15]); % for imdilate
-        Characters = struct('Position','Stats');
+        Characters = [];
         PageImage = [];
         PageImageMono = [];
         DilatedImage = [];
@@ -648,7 +648,7 @@ classdef PageScan
                 PageScan.bbox_union(...
                     this.Characters(idx1).Stats.BoundingBox,...
                     this.Characters(idx2).Stats.BoundingBox);
-            
+            this.Characters(idx2).Ignore = true;
         end
 
 end
