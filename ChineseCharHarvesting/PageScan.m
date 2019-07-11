@@ -598,7 +598,6 @@ classdef PageScan
         end
 
         function MergeCharacters = get.MergeCharacters(this)
-            MergeCharacters = struct('Col', [], 'Row', [], 'Idx', [], 'MergedWith', []);
             mc_count = 0;
             for col=1:this.ColumnCount
                 chars = find( this.Columns == col );
