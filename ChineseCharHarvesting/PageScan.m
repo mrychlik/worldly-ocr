@@ -599,6 +599,7 @@ classdef PageScan
 
         function MergeCharacters = get.MergeCharacters(this)
             mc_count = 0;
+            MergeCharacters = [];
             for col=1:this.ColumnCount
                 chars = find( this.Columns == col );
                 c = this.Centroids(chars,:);
@@ -619,16 +620,11 @@ classdef PageScan
                             nb(j).idx = sorted_chars(i+1);
                         end
                         ci = [nb.idx];
-                        if numel(ci) == 2
-                            ss = [this.Characters(ci).IsShort];
-                            if ss(1) && ss(2)
-                                mc_count = mc_count + 1;
-                                MergeCharacters(mc_count).Col = col;
-                                MergeCharacters(mc_count).Row = i;
-                                MergeCharacters(mc_count).Idx = char_idx;
-                                MergeCharacters(mc_count).MergedWith = nb;
-                            end
-                        end
+                        mc_count = mc_count + 1;
+                        MergeCharacters(mc_count).Col = col;
+                        MergeCharacters(mc_count).Row = i;
+                        MergeCharacters(mc_count).Idx = char_idx;
+                        MergeCharacters(mc_count).MergedWith = nb;
                     end
                 end
             end
@@ -645,7 +641,17 @@ classdef PageScan
             end
         end
 
-    end
+        function this = do_merge_characters(this, idx1, idx2)
+            ;
+            % Merge bounding boxes
+            this.Characters(idx1).Stats.BoundingBox = ...
+                PageScan.bbox_union(...
+                    this.Characters(idx1).Stats.BoundingBox,...
+                    this.Characters(idx2).Stats.BoundingBox);
+            
+        end
+
+end
 
 
 
@@ -747,6 +753,19 @@ classdef PageScan
             w = bbox(3);
             h = bbox(4);
         end
+
+        function rv = bbox_union(bbox1, bbox2);
+            [x1,y1,w1,h1] = PageScan.dbox(bbox1);
+            [x2,y2,w2,h2] = PageScan.dbox(bbox2);            
+            x = min(x1,x2);
+            y = min(y1,y2);            
+            x_max = max(x1+w1, x2+w2);
+            y_max = max(y1+h1, y2+h2);            
+            w = x_max-x;
+            h = y_max-y;
+            rv = [x,y,w,h];
+        end
+
 
         function xrange = bbox_hor_range(bbox)
         % BBOX_HOR_RANGE - horizontal range of BBOX
