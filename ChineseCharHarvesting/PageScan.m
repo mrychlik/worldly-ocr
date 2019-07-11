@@ -46,6 +46,7 @@ classdef PageScan
         HorizontalBoundary;             % Top and bottom of page
         % VerticalBoundary              % Currently function, as we want to pass some options
         Binding;                        % Information about book binding
+        MergeCharacters;
     end
 
     methods
@@ -596,9 +597,11 @@ classdef PageScan
             im.AlphaData = 0.5;            
         end
 
-        function identify_merge_characters(this)
+        function MergeCharacters = get.MergeCharacters(this)
             im = imagesc(this.PageImage);
             im.AlphaData = 0.5;
+            MergeCharacters = zeros(this.CharacterCount,1);
+
             for col=1:this.ColumnCount
                 chars = find( this.Columns == col );
                 c = this.Centroids(chars,:);
@@ -608,23 +611,32 @@ classdef PageScan
                     char_idx = sorted_chars(i);
                     if this.Characters(char_idx).IsShort
                         % Get neighbors
-                        nb = [char_idx];
+                        j=1;
                         if i > 1 
-                            nb = [nb,sorted_chars(i-1)];
+                            nb(j).row = i-1;
+                            nb(j).idx = sorted_chars(i-1);
+                            j = j+1;
                         end
                         if i < numel(sorted_chars)
-                            nb = [nb,sorted_chars(i+1)];
+                            nb(j).row = i+1;
+                            nb(j).idx = sorted_chars(i+1);
                         end
-                        this.draw_bounding_boxes('characterindices',nb);
-
                         nb
-                        this.Characters(nb).IsShort
-
-
-
+                        ci = [nb.idx]
+                        this.draw_bounding_boxes('CharacterIndices',[ci,char_idx]);
+                        if numel(ci) == 2
+                            ss = [this.Characters(ci).IsShort];
+                            if ss(1) && ss(2)
+                                this.Characters(ci(1)).MergedInto = char_idx;
+                                this.Characters(ci(2)).MergedInto = char_idx;
+                                this.Characters(char_idx).MergedWidth = ci;
+                                MergeCharacters(char_idx) = 1;
+                            end
+                        end
                     end
                 end
             end
+            MergeCharacters = which(MergeCharacters);
         end
 
     end
