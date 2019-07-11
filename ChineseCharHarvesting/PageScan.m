@@ -601,7 +601,7 @@ classdef PageScan
             ;
             %im = imagesc(this.PageImage);
             %im.AlphaData = 0.5;
-            MergeCharacters = struct('Idx', 'MergedWidth');
+            MergeCharacters = struct('Col', [], 'Row', [], 'Idx', [], 'MergedWith', []);
 
             mc_count = 0;
             for col=1:this.ColumnCount
@@ -629,8 +629,10 @@ classdef PageScan
                             ss = [this.Characters(ci).IsShort];
                             if ss(1) && ss(2)
                                 mc_count = mc_count + 1;
+                                MergeCharacters(mc_count).col = col;
+                                MergeCharacters(mc_count).Row = i;
                                 MergeCharacters(mc_count).Idx = char_idx;
-                                MergeCharacters(mc_count).MergedWith = ci;
+                                MergeCharacters(mc_count).MergedWith = nb;
                             end
                         end
                     end
