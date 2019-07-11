@@ -712,6 +712,7 @@ end
                 this.Characters(char_count).AltImage = K; % Carved out image
                 this.Characters(char_count).IsShort = bbox(4) < this.short_height_threshold;
                 this.Characters(char_count).IsOutlier = is_outlier;
+                this.Characters(char_count).Ignore = false;
             end
         end
 
