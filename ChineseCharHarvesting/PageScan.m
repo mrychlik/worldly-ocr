@@ -602,11 +602,12 @@ classdef PageScan
             for col=1:this.ColumnCount
                 chars = find( this.Columns == col );
                 c = this.Centroids(chars,:);
-                [c_sorted, i] = sortrows(c,2);
-                sorted_chars = chars(i);
+                [c_sorted, I] = sortrows(c,2);
+                sorted_chars = chars(I);
                 for i = 1:numel(sorted_chars)
                     char_idx = sorted_chars(i);
                     if this.Characters(char_idx).IsShort
+                        % Get neighbors
                         nb = [char_idx];
                         if i > 1 
                             nb = [nb,sorted_chars(i-1)];
@@ -615,6 +616,12 @@ classdef PageScan
                             nb = [nb,sorted_chars(i+1)];
                         end
                         this.draw_bounding_boxes('characterindices',nb);
+
+                        nb
+                        this.Characters(nb).IsShort
+
+
+
                     end
                 end
             end
