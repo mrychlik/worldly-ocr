@@ -472,6 +472,8 @@ classdef PageScan
                 % Paint the face if 
                 if this.Characters(char_idx).IsShort
                     set(r,'FaceColor',[0,1,0,.5]);                    
+                elseif this.Characters(char_idx).IsIgnored
+                    set(r,'FaceColor',[0,0,1,.5]);                                        
                 else
                     set(r,'FaceColor',[1,1,1,.2]);
                 end
