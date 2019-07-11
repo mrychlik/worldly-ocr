@@ -624,7 +624,7 @@ classdef PageScan
                             nb(j).idx = sorted_chars(i+1);
                         end
                         ci = [nb.idx];
-                        %this.draw_bounding_boxes('CharacterIndices',[ci,char_idx]);
+                        this.draw_bounding_boxes('CharacterIndices',[ci,char_idx]);
                         if numel(ci) == 2
                             ss = [this.Characters(ci).IsShort];
                             if ss(1) && ss(2)
