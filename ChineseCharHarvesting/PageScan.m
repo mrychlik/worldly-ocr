@@ -599,8 +599,8 @@ classdef PageScan
 
         function MergeCharacters = get.MergeCharacters(this)
             ;
-            %im = imagesc(this.PageImage);
-            %im.AlphaData = 0.5;
+            im = imagesc(this.PageImage);
+            im.AlphaData = 0.5;
             MergeCharacters = struct('Col', [], 'Row', [], 'Idx', [], 'MergedWith', []);
 
             mc_count = 0;
