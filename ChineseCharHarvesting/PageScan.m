@@ -28,7 +28,7 @@ classdef PageScan
         short_height_threshold = 30;
         column_dist_threshold = 60;
         row_dist_threshold = 40;        
-        merge_threshold = 10;           % For attaching "cloud"
+        merge_threshold = 15;           % For attaching "cloud"
     end
 
     properties(Dependent)
@@ -715,18 +715,18 @@ classdef PageScan
                             this=this.do_merge_characters(char_idx,ci(1));
                             this=this.do_merge_characters(char_idx,ci(2));
                         end
-                    elseif ~c(1).IsShort
-                        % One neighbor is short, the other is long
-                        % Find the short one and merge
-                        d = PageScan.bbox_vert_dist(...
-                            c(1).Stats.BoundingBox,...
-                            c0.Stats.BoundingBox);
-                        e = PageScan.bbox_hor_dist(...
-                            c(1).Stats.BoundingBox,...
-                            c0.Stats.BoundingBox);
-                        if d < 2*this.merge_threshold && e == 0
-                            this=this.do_merge_characters(char_idx,ci(1));
-                        end
+                    % elseif ~c(1).IsShort
+                    %     % One neighbor is short, the other is long
+                    %     % Find the short one and merge
+                    %     d = PageScan.bbox_vert_dist(...
+                    %         c(1).Stats.BoundingBox,...
+                    %         c0.Stats.BoundingBox);
+                    %     e = PageScan.bbox_hor_dist(...
+                    %         c(1).Stats.BoundingBox,...
+                    %         c0.Stats.BoundingBox);
+                    %     if d < 2*this.merge_threshold && e == 0
+                    %         this=this.do_merge_characters(char_idx,ci(1));
+                    %     end
                     end
                 end
             end
