@@ -662,8 +662,15 @@ classdef PageScan
                         d2 = PageScan.bbox_vert_dist(...
                             c(2).Stats.BoundingBox,...
                             c0.Stats.BoundingBox);
+                        e1 = PageScan.bbox_hor_dist(...
+                            c(1).Stats.BoundingBox,...
+                            c0.Stats.BoundingBox);
+                        e2 = PageScan.bbox_hor_dist(...
+                            c(2).Stats.BoundingBox,...
+                            c0.Stats.BoundingBox);
                         [d,j] = min([d1,d2]);
-                        if d < this.merge_threshold;
+                        e = [e1,e2]
+                        if d < this.merge_threshold && e(j) == 0
                             this=this.do_merge_characters(ci(j), ...
                                                           char_idx);
                         end
@@ -825,10 +832,10 @@ end
             end
         end
 
-        function D = bbox_dist(bbox1, bbox2)
-        % BBOX_DIST - distance between BBOX1 and BBOX2
+        function D = bbox_hor_dist(bbox1, bbox2)
+        % BBOX_HOR_DIST - distance between BBOX1 and BBOX2 in horizontal direction
             D = PageScan.interval_dist(PageScan.bbox_hor_range(bbox1),...
-                                           PageScan.bbox_hor_range(bbox2));
+                                       PageScan.bbox_hor_range(bbox2));
         end
 
         function D = bbox_vert_dist(bbox1, bbox2)
