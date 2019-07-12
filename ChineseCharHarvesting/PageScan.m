@@ -662,6 +662,7 @@ classdef PageScan
                         d2 = PageScan.bbox_vert_dist(...
                             c(2).Stats.BoundingBox,...
                             c0.Stats.BoundingBox);
+
                         e1 = PageScan.bbox_hor_dist(...
                             c(1).Stats.BoundingBox,...
                             c0.Stats.BoundingBox);
@@ -669,7 +670,7 @@ classdef PageScan
                             c(2).Stats.BoundingBox,...
                             c0.Stats.BoundingBox);
                         [d,j] = min([d1,d2]);
-                        e = [e1,e2]
+                        e = [e1,e2];
                         if d < this.merge_threshold && e(j) == 0
                             this=this.do_merge_characters(ci(j), ...
                                                           char_idx);
@@ -816,7 +817,7 @@ end
         end
 
         function yrange = bbox_vert_range(bbox)
-        % BBOX_HOR_RANGE - horizontal range of BBOX
+        % BBOX_VERT_RANGE - vertical range of BBOX
             [x,y,w,h] = PageScan.dbox(bbox);
             yrange = [y,y+h];
         end
