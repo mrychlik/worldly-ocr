@@ -665,8 +665,8 @@ classdef PageScan
                             c0.Stats.BoundingBox)
                         [d,j] = min([d1,d2]);
                         if d < this.merge_threshold;
-                            this=this.do_merge_characters(char_idx, ...
-                                                          ci(j));
+                            this=this.do_merge_characters(ci(j), ...
+                                                          char_idx);
                         end
                     end
                 end
