@@ -666,9 +666,9 @@ classdef PageScan
                 nb = this.MergeCharacters(i).MergedWith;
                 ci = [nb.idx];
                 char_idx = this.MergeCharacters(i).Idx;
-                % if c0.Ignore || any([c.Ignore])
-                %     continue;
-                % end
+                if c0.Ignore
+                    continue;
+                end
                 if numel(ci) == 2
                     % Two neighbors
                     c0 = this.Characters(char_idx);
@@ -690,7 +690,7 @@ classdef PageScan
                             c0.Stats.BoundingBox);
                         [d,j] = min([d1,d2]);
                         e = [e1,e2];
-                        if d < this.merge_threshold && e(j) == 0
+                        if d < this.merge_threshold && e(j) == 0 && ~c(j).Ignore
                             disp(sprintf('Merging character %d: Rule 1',char_idx));
                             this=this.do_merge_characters(ci(j), ...
                                                           char_idx);
@@ -712,12 +712,12 @@ classdef PageScan
                             c0.Stats.BoundingBox);
                         d = [d1,d2];
                         e = [e1,e2];
-                        if all(d < this.merge_threshold) && all(e == 0)
+                        if all(d < this.merge_threshold) && all(e == 0) && ~any([c.Ignore])
                             disp(sprintf('Merging character %d: Rule 2',char_idx));
                             this=this.do_merge_characters(char_idx,ci(1));
                             this=this.do_merge_characters(char_idx,ci(2));
                         end
-                     elseif ~c(1).IsShort
+                     elseif ~c(1).IsShort && && ~c(1).Ignore
                          % One neighbor is short, the other is long
                          % Find the short one and merge
                          d = PageScan.bbox_vert_dist(...
