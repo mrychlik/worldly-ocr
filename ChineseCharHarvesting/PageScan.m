@@ -691,6 +691,7 @@ classdef PageScan
                         [d,j] = min([d1,d2]);
                         e = [e1,e2];
                         if d < this.merge_threshold && e(j) == 0
+                            disp(sprintf('Merging character %d...',char_idx);
                             this=this.do_merge_characters(ci(j), ...
                                                           char_idx);
                         end
