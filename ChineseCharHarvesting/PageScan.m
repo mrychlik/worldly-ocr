@@ -670,7 +670,7 @@ classdef PageScan
                     % Two neighbors
                     c0 = this.Characters(char_idx);
                     c = this.Characters(ci);
-                    if c0.Ignore
+                    if c0.Ignore || any([c.Ignore])
                         continue;
                     end
                     if ~any([c.IsShort])
