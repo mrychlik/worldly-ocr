@@ -650,6 +650,7 @@ classdef PageScan
             end
         end
 
+
         function this = do_merge_characters_all(this)
         %DO_MERGE_CHARACTERS_ALL - merge character parts into characters
         %  THIS = DO_MERGE_CHARACTERS_ALL(THIS) processes all 
@@ -662,17 +663,27 @@ classdef PageScan
         %  - a short character followed by another short character
         %    is merged with this character
         % 
+            this = do_merge_all_rule_sss(this);
+            this = do_merge_all_rule_tst(this);            
+            this = do_merge_all_rule_xss(this);
+        end
+
+        function this = do_merge_all_rule_sss(this)
+        %DO_MERGE_ALL_RULE_SSS - merge three short chars in a row
             for i=1:numel(this.MergeCharacters)
                 nb = this.MergeCharacters(i).MergedWith;
                 ci = [nb.idx];
                 char_idx = this.MergeCharacters(i).Idx;
                 c0 = this.Characters(char_idx);
+
                 if c0.Ignore
                     continue;
                 end
+
                 if numel(ci) == 2
                     % Two neighbors
                     c = this.Characters(ci);
+
                     if all([c.IsShort])
                         % Both neighbors are short. If close enough, merge both 
                         d1 = PageScan.bbox_vert_dist(...
@@ -695,7 +706,26 @@ classdef PageScan
                             this=this.do_merge_characters(char_idx,ci(1));
                             this=this.do_merge_characters(char_idx,ci(2));
                         end
-                    elseif ~any([c.IsShort])
+                    end
+                end
+                
+            end
+        end
+
+        function this = do_merge_all_rule_tst(this)
+        %DO_MERGE_ALL_RULE_TST - merge short char between two tall ones
+            for i=1:numel(this.MergeCharacters)
+                nb = this.MergeCharacters(i).MergedWith;
+                ci = [nb.idx];
+                char_idx = this.MergeCharacters(i).Idx;
+                c0 = this.Characters(char_idx);
+
+                if c0.Ignore
+                    continue;
+                end
+
+                if numel(ci) == 2
+                    if ~any([c.IsShort])
                         % Both neightbors are tall, find the closer, and if close enough, merge.
                         d1 = PageScan.bbox_vert_dist(...
                             c(1).Stats.BoundingBox,...
@@ -717,26 +747,41 @@ classdef PageScan
                             this=this.do_merge_characters(ci(j), ...
                                                           char_idx);
                         end
-                    elseif ~c(2).IsShort && ~c(2).Ignore
-                         % One neighbor is short, the other is long
-                         % Find the short one and merge
-                         d = PageScan.bbox_vert_dist(...
-                             c(2).Stats.BoundingBox,...
-                             c0.Stats.BoundingBox);
-                         e = PageScan.bbox_hor_dist(...
-                             c(2).Stats.BoundingBox,...
-                             c0.Stats.BoundingBox);
-                         if d < 2*this.merge_threshold && e == 0
-                            disp(sprintf('Merging character %d: Rule 3',char_idx));
-                            this=this.do_merge_characters(char_idx,ci(2));
-                         end
                     end
                 end
             end
         end
 
+        function this = do_merge_all_rule_xss(this)
+        %DO_MERGE_ALL_RULE_XSS - merge two short chars
+            for i=1:numel(this.MergeCharacters)
+                nb = this.MergeCharacters(i).MergedWith;
+                ci = [nb.idx];
+                char_idx = this.MergeCharacters(i).Idx;
+                c0 = this.Characters(char_idx);
 
+                if c0.Ignore
+                    continue;
+                end
 
+                if numel(ci) == 2
+                    if c(2).IsShort && ~c(2).Ignore
+                        % One neighbor is short, the other is long
+                        % Find the short one and merge
+                        d = PageScan.bbox_vert_dist(...
+                            c(2).Stats.BoundingBox,...
+                            c0.Stats.BoundingBox);
+                        e = PageScan.bbox_hor_dist(...
+                            c(2).Stats.BoundingBox,...
+                            c0.Stats.BoundingBox);
+                        if d < this.merge_threshold && e == 0
+                            disp(sprintf('Merging character %d: Rule 3',char_idx));
+                            this=this.do_merge_characters(char_idx,ci(2));
+                        end
+                    end
+                end
+            end
+        end
 
 
         function this = do_merge_characters(this, idx1, idx2)
