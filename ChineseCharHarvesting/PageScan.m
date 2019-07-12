@@ -723,7 +723,7 @@ classdef PageScan
                         e = PageScan.bbox_hor_dist(...
                             c(j).Stats.BoundingBox,...
                             c0.Stats.BoundingBox);
-                        if d < 1.5*this.merge_threshold && e == 0
+                        if d < 2*this.merge_threshold && e == 0
                             this=this.do_merge_characters(char_idx,ci(j));
                         end
                     end
