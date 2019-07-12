@@ -788,7 +788,11 @@ classdef PageScan
                 end
             end
         end
+    end
 
+
+
+    methods(Access = private)
 
         function this = do_merge_characters(this, idx1, idx2)
         % DO_MERGE_CHARACTERS - Merge bounding boxes
@@ -799,11 +803,6 @@ classdef PageScan
             this.Characters(idx2).Ignore = true;
         end
 
-    end
-
-
-
-    methods(Access = private)
 
         function this = scanfile(this,filename,varargin)
             p = inputParser;
