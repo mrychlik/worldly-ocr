@@ -691,7 +691,7 @@ classdef PageScan
                         [d,j] = min([d1,d2]);
                         e = [e1,e2];
                         if d < this.merge_threshold && e(j) == 0
-                            disp(sprintf('Merging character %d: Rule 1',char_idx);
+                            disp(sprintf('Merging character %d: Rule 1',char_idx));
                             this=this.do_merge_characters(ci(j), ...
                                                           char_idx);
                         end
@@ -713,7 +713,7 @@ classdef PageScan
                         d = [d1,d2];
                         e = [e1,e2];
                         if all(d < this.merge_threshold) && all(e == 0)
-                            disp(sprintf('Merging character %d: Rule 2',char_idx);
+                            disp(sprintf('Merging character %d: Rule 2',char_idx));
                             this=this.do_merge_characters(char_idx,ci(1));
                             this=this.do_merge_characters(char_idx,ci(2));
                         end
@@ -727,8 +727,8 @@ classdef PageScan
                              c(1).Stats.BoundingBox,...
                              c0.Stats.BoundingBox);
                          if d < 2*this.merge_threshold && e == 0
-                            disp(sprintf('Merging character %d: Rule 3',char_idx);
-                             this=this.do_merge_characters(char_idx,ci(1));
+                            disp(sprintf('Merging character %d: Rule 3',char_idx));
+                            this=this.do_merge_characters(char_idx,ci(1));
                          end
                     end
                 end
