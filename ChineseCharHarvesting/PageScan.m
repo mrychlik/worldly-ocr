@@ -614,6 +614,7 @@ classdef PageScan
                     char_idx = sorted_chars(i);
                     if this.Characters(char_idx).IsShort
                         % Get neighbors
+                        nb=[];
                         j=1;
                         if i > 1 
                             nb(j).row = i-1;
@@ -623,6 +624,9 @@ classdef PageScan
                         if i < numel(sorted_chars)
                             nb(j).row = i+1;
                             nb(j).idx = sorted_chars(i+1);
+                        end
+                        if isempty(nb)
+                            continue;
                         end
                         ci = [nb.idx];
                         mc_count = mc_count + 1;
@@ -674,6 +678,26 @@ classdef PageScan
                         if d < this.merge_threshold && e(j) == 0
                             this=this.do_merge_characters(ci(j), ...
                                                           char_idx);
+                        end
+                    elseif all([c.IsShort])
+                        d1 = PageScan.bbox_vert_dist(...
+                            c(1).Stats.BoundingBox,...
+                            c0.Stats.BoundingBox);
+                        d2 = PageScan.bbox_vert_dist(...
+                            c(2).Stats.BoundingBox,...
+                            c0.Stats.BoundingBox);
+
+                        e1 = PageScan.bbox_hor_dist(...
+                            c(1).Stats.BoundingBox,...
+                            c0.Stats.BoundingBox);
+                        e2 = PageScan.bbox_hor_dist(...
+                            c(2).Stats.BoundingBox,...
+                            c0.Stats.BoundingBox);
+                        d = [d1,d2];
+                        e = [e1,e2];
+                        if all(d < this.merge_threshold) && all(e == 0)
+                            this=this.do_merge_characters(char_idx,ci(1));
+                            this=this.do_merge_characters(char_idx,ci(2));
                         end
                     end
                 end
