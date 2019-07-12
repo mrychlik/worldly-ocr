@@ -717,7 +717,7 @@ classdef PageScan
                             this=this.do_merge_characters(char_idx,ci(1));
                             this=this.do_merge_characters(char_idx,ci(2));
                         end
-                     elseif ~c(1).IsShort && && ~c(1).Ignore
+                    elseif ~c(1).IsShort && ~c(1).Ignore
                          % One neighbor is short, the other is long
                          % Find the short one and merge
                          d = PageScan.bbox_vert_dist(...
