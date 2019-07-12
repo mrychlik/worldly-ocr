@@ -718,7 +718,7 @@ classdef PageScan
                     else
                         % One neighbor is short, the other is long
                         % Find the short one and merge
-                        if ~c(2).IsShort
+                        if ~c(1).IsShort || c(1).Ignore
                             continue;
                         end
                         assert(~isempty(j));
