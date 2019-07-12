@@ -670,9 +670,6 @@ classdef PageScan
                     % Two neighbors
                     c0 = this.Characters(char_idx);
                     c = this.Characters(ci);
-                    if c0.Ignore || any([c.Ignore])
-                        continue;
-                    end
                     if ~any([c.IsShort])
                         % Both neightbors are tall, find the closer, and if close enough, merge.
                         d1 = PageScan.bbox_vert_dist(...
