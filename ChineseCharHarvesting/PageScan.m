@@ -646,6 +646,35 @@ classdef PageScan
             end
         end
 
+        function this = do_merge_characters_all(this)
+            for i=1:numel(this.MergeCharacters)
+                nb = this.MergeCharacters(i).MergedWith;
+                ci = [nb.idx];
+                char_idx = this.MergeCharacters(i).Idx;
+                if numel(ci) == 2
+                    % Two neighbors
+                    c0 = this.Characters(char_idx);
+                    c = this.Characters(ci);
+                    if ~any([c.IsShort])
+                        d1 = PageScan.bbox_vert_dist(...
+                            c(1).Stats.BoundingBox,...
+                            c0.Stats.BoundingBox)
+                        d2 = PageScan.bbox_vert_dist(...
+                            c(2).Stats.BoundingBox,...
+                            c0.Stats.BoundingBox)
+                        [d,j] = min([d1,d2]);
+                        if d < this.merge_threshold;
+                            this=this.do_merge_characters(char_idx, ...
+                                                          ci(j));
+                        end
+                    end
+                end
+            end
+        end
+
+
+
+
         function this = do_merge_characters(this, idx1, idx2)
             ;
             % Merge bounding boxes
@@ -779,12 +808,18 @@ end
             xrange = [x,x+w];
         end
 
-        function D = interval_hor_dist(a, b)
-        % INTERVAL_HOR_DIST - distance between intervals
+        function yrange = bbox_vert_range(bbox)
+        % BBOX_HOR_RANGE - horizontal range of BBOX
+            [x,y,w,h] = PageScan.dbox(bbox);
+            yrange = [y,y+h];
+        end
+
+        function D = interval_dist(a, b)
+        % INTERVAL_DIST - distance between intervals
             if a(2) < b(1) 
                 D = b(1) - a(2);
             elseif a(1) > b(2)
-                D = b(2) - a(1);
+                D = a(1) - b(2);
             else 
                 D = 0;
             end
@@ -792,8 +827,15 @@ end
 
         function D = bbox_dist(bbox1, bbox2)
         % BBOX_DIST - distance between BBOX1 and BBOX2
-            D = PageScan.interval_hor_dist(PageScan.bbox_hor_range(bbox1),...
+            D = PageScan.interval_dist(PageScan.bbox_hor_range(bbox1),...
                                            PageScan.bbox_hor_range(bbox2));
         end
+
+        function D = bbox_vert_dist(bbox1, bbox2)
+        % BBOX_VERT_DIST - vertical distance between BBOX1 and BBOX2            
+            D = PageScan.interval_dist(PageScan.bbox_vert_range(bbox1),...
+                                       PageScan.bbox_vert_range(bbox2));
+        end
+
     end
 end
