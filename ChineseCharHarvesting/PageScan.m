@@ -666,6 +666,9 @@ classdef PageScan
                 nb = this.MergeCharacters(i).MergedWith;
                 ci = [nb.idx];
                 char_idx = this.MergeCharacters(i).Idx;
+                % if c0.Ignore || any([c.Ignore])
+                %     continue;
+                % end
                 if numel(ci) == 2
                     % Two neighbors
                     c0 = this.Characters(char_idx);
@@ -743,7 +746,7 @@ classdef PageScan
             this.Characters(idx2).Ignore = true;
         end
 
-end
+    end
 
 
 
