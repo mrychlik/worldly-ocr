@@ -745,6 +745,7 @@ classdef PageScan
                         this=this.do_merge_characters(char_idx,ci(1));
                     end
                 end
+            end
         end
 
 
