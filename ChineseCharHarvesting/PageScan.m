@@ -666,12 +666,12 @@ classdef PageScan
                 nb = this.MergeCharacters(i).MergedWith;
                 ci = [nb.idx];
                 char_idx = this.MergeCharacters(i).Idx;
+                c0 = this.Characters(char_idx);
                 if c0.Ignore
                     continue;
                 end
                 if numel(ci) == 2
                     % Two neighbors
-                    c0 = this.Characters(char_idx);
                     c = this.Characters(ci);
                     if ~any([c.IsShort])
                         % Both neightbors are tall, find the closer, and if close enough, merge.
