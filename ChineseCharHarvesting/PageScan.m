@@ -651,6 +651,17 @@ classdef PageScan
         end
 
         function this = do_merge_characters_all(this)
+        %DO_MERGE_CHARACTERS_ALL - merge character parts into characters
+        %  THIS = DO_MERGE_CHARACTERS_ALL(THIS) processes all 
+        %  characters eligible for merging and does the merging,
+        %  using a rule-based system:
+        %  - a short character between two tall ones is merged
+        %    with the nearby tall character
+        %  - a short character between two short ones absorbs both
+        %    of them, forming one (taller) character
+        %  - a short character followed by another short character
+        %    is merged with this character
+        % 
             for i=1:numel(this.MergeCharacters)
                 nb = this.MergeCharacters(i).MergedWith;
                 ci = [nb.idx];
@@ -698,6 +709,20 @@ classdef PageScan
                         if all(d < this.merge_threshold) && all(e == 0)
                             this=this.do_merge_characters(char_idx,ci(1));
                             this=this.do_merge_characters(char_idx,ci(2));
+                        end
+                    end
+                elseif numel(ci) == 1 
+                    c0 = this.Characters(char_idx);
+                    c = this.Characters(ci);
+                    if c.IsShort
+                        d = PageScan.bbox_vert_dist(...
+                            c.Stats.BoundingBox,...
+                            c0.Stats.BoundingBox);
+                        e = PageScan.bbox_hor_dist(...
+                            c.Stats.BoundingBox,...
+                            c0.Stats.BoundingBox);
+                        if d < this.merge_threshold && e == 0
+                            this=this.do_merge_characters(char_idx,ci);
                         end
                     end
                 end
