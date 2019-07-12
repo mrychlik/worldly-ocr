@@ -715,39 +715,25 @@ classdef PageScan
                             this=this.do_merge_characters(char_idx,ci(1));
                             this=this.do_merge_characters(char_idx,ci(2));
                         end
-                    end
-                end
-            end
-
-            for i=1:numel(this.MergeCharacters)
-                nb = this.MergeCharacters(i).MergedWith;
-                ci = [nb.idx];
-                char_idx = this.MergeCharacters(i).Idx;
-                if numel(ci) == 2
-                    % Two neighbors
-                    c0 = this.Characters(char_idx);
-                    c = this.Characters(ci);
-                    if c0.Ignore || any([c.Ignore])
-                        continue;
-                    end
-                    % One neighbor is short, the other is long
-                    % Find the short one and merge
-                    if ~c(1).IsShort || c(1).Ignore
-                        continue;
-                    end
-                    d = PageScan.bbox_vert_dist(...
-                        c(1).Stats.BoundingBox,...
-                        c0.Stats.BoundingBox);
-                    e = PageScan.bbox_hor_dist(...
-                        c(1).Stats.BoundingBox,...
-                        c0.Stats.BoundingBox);
-                    if d < 2*this.merge_threshold && e == 0
-                        this=this.do_merge_characters(char_idx,ci(1));
+                    else
+                        % One neighbor is short, the other is long
+                        % Find the short one and merge
+                        if ~c(1).IsShort || c(1).Ignore
+                            continue;
+                        end
+                        d = PageScan.bbox_vert_dist(...
+                            c(1).Stats.BoundingBox,...
+                            c0.Stats.BoundingBox);
+                        e = PageScan.bbox_hor_dist(...
+                            c(1).Stats.BoundingBox,...
+                            c0.Stats.BoundingBox);
+                        if d < 2*this.merge_threshold && e == 0
+                            this=this.do_merge_characters(char_idx,ci(1));
+                        end
                     end
                 end
             end
         end
-
 
 
 
