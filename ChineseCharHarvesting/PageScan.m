@@ -715,12 +715,9 @@ classdef PageScan
                             this=this.do_merge_characters(char_idx,ci(1));
                             this=this.do_merge_characters(char_idx,ci(2));
                         end
-                    else
+                    elseif ~c(1).IsShort
                         % One neighbor is short, the other is long
                         % Find the short one and merge
-                        if ~c(1).IsShort || c(1).Ignore
-                            continue;
-                        end
                         d = PageScan.bbox_vert_dist(...
                             c(1).Stats.BoundingBox,...
                             c0.Stats.BoundingBox);
