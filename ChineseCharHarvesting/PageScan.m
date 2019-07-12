@@ -715,7 +715,9 @@ classdef PageScan
                     else
                         % One neighbor is short, the other is long
                         % Find the short one and merge
-                        j = find([c.IsShort],1,'first');
+                        if ~c(2).IsSHort
+                            continue;
+                        end
                         assert(~isempty(j));
                         d = PageScan.bbox_vert_dist(...
                             c(j).Stats.BoundingBox,...
