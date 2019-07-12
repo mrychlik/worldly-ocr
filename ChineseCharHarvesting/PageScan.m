@@ -671,6 +671,7 @@ classdef PageScan
                     c0 = this.Characters(char_idx);
                     c = this.Characters(ci);
                     if ~any([c.IsShort])
+                        % Both neightbors are tall, find the closer, and if close enough, merge.
                         d1 = PageScan.bbox_vert_dist(...
                             c(1).Stats.BoundingBox,...
                             c0.Stats.BoundingBox);
@@ -691,6 +692,7 @@ classdef PageScan
                                                           char_idx);
                         end
                     elseif all([c.IsShort])
+                        % Both neighbors are short. If close enough, merge both 
                         d1 = PageScan.bbox_vert_dist(...
                             c(1).Stats.BoundingBox,...
                             c0.Stats.BoundingBox);
@@ -710,19 +712,19 @@ classdef PageScan
                             this=this.do_merge_characters(char_idx,ci(1));
                             this=this.do_merge_characters(char_idx,ci(2));
                         end
-                    end
-                elseif numel(ci) == 1 
-                    c0 = this.Characters(char_idx);
-                    c = this.Characters(ci);
-                    if c.IsShort
+                    else
+                        % One neighbor is short, the other is long
+                        % Find the short one and merge
+                        j = find([c.IsShort],1,'first');
+                        assert(~isempty(j));
                         d = PageScan.bbox_vert_dist(...
-                            c.Stats.BoundingBox,...
+                            c(j).Stats.BoundingBox,...
                             c0.Stats.BoundingBox);
                         e = PageScan.bbox_hor_dist(...
-                            c.Stats.BoundingBox,...
+                            c(j).Stats.BoundingBox,...
                             c0.Stats.BoundingBox);
                         if d < this.merge_threshold && e == 0
-                            this=this.do_merge_characters(char_idx,ci);
+                            this=this.do_merge_characters(char_idx,ci(j));
                         end
                     end
                 end
