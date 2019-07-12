@@ -670,6 +670,7 @@ classdef PageScan
 
         function this = do_merge_all_rule_sss(this)
         %DO_MERGE_ALL_RULE_SSS - merge three short chars in a row
+            disp('Merging by rule short-short-short...');
             for i=1:numel(this.MergeCharacters)
                 nb = this.MergeCharacters(i).MergedWith;
                 ci = [nb.idx];
@@ -702,7 +703,7 @@ classdef PageScan
                         d = [d1,d2];
                         e = [e1,e2];
                         if all(d < this.merge_threshold) && all(e == 0) && ~any([c.Ignore])
-                            disp(sprintf('Merging character %d: Rule 2',char_idx));
+                            disp(sprintf('Merging character %d',char_idx));
                             this=this.do_merge_characters(char_idx,ci(1));
                             this=this.do_merge_characters(char_idx,ci(2));
                         end
@@ -714,6 +715,7 @@ classdef PageScan
 
         function this = do_merge_all_rule_tst(this)
         %DO_MERGE_ALL_RULE_TST - merge short char between two tall ones
+            disp('Merging by rule tall-short-tall...');
             for i=1:numel(this.MergeCharacters)
                 nb = this.MergeCharacters(i).MergedWith;
                 ci = [nb.idx];
@@ -757,6 +759,7 @@ classdef PageScan
 
         function this = do_merge_all_rule_xss(this)
         %DO_MERGE_ALL_RULE_XSS - merge two short chars
+            disp('Merging by ?-short-short...');
             for i=1:numel(this.MergeCharacters)
                 nb = this.MergeCharacters(i).MergedWith;
                 ci = [nb.idx];
