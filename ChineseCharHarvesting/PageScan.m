@@ -52,6 +52,18 @@ classdef PageScan
 
     methods
         function this = PageScan(filename, varargin)
+            p = inputParser;
+
+            addOptional(p, 'PageDir', this.DefaultPageDir, @(x)ischar(x));
+            addOptional(p, 'PageImgPattern', this.DefaultPageImgPattern, @(x)ischar(x));
+            addOptional(p, 'Pages', this.DefaultPages, @(x)isnumeric(x));
+
+            parse(p, varargin{:});
+
+            this.PageDir = p.Results.PageDir;
+            this.PageImgPattern = p.Results.PageImgPattern;
+            this.Pages = p.Results.Pages;
+
             this = this.scanfile(filename,varargin{:});
         end
 
