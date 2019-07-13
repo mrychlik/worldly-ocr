@@ -52,6 +52,13 @@ classdef PageScan
 
     methods
         function this = PageScan(source, varargin)
+        %PAGESCAN - Constructor
+        % THIS = PAGESCAN(SOURCE) constructs a page scan of a SOURCE,
+        % which can be a filename or a numeric array representing the
+        % page image. Optional arguments:
+        % - KeepOutliers - if true all objects in the image are kept,
+        % even if they do not look like characters.
+        % 
             p = inputParser;
             addRequired(p, 'source', @(x)(ischar(x)||isnumeric(x)));
             addOptional(p, 'KeepOutliers', false, @(x)islogical(x));            
