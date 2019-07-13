@@ -54,6 +54,7 @@ classdef PageScan
         function this = PageScan(source, varargin)
             p = inputParser;
             addRequired(p, 'source', @(x)(ischar(x)||isnumeric(x)));
+            addOptional(p, 'KeepOutliers', false, @(x)islogical(x));            
             parse(p, source, varargin{:});
 
             if ischar(source)
