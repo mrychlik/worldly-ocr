@@ -120,7 +120,13 @@ classdef PageScan
             end
         end
 
-        function ocrResults = ocr_char(this, char_idx)
+        function ocrResults = ocr_char(this, varargin)
+            p = inputParser;
+            addRequired(p, 'this', @(x)isa(x,'PageScan'));            
+            addParameter(p,'CharIndices', 1:this.CharacterCount,...
+                         @(x)(isnumeric(x) && min(x)>=1 && max(x) <= this.CharacterCount)):
+            parse(p, this,varargin{:});
+
             roi = this.ROI(char_idx, :)
             ocrResults = ocr(this.PageImage, roi,...
                              'TextLayout','Character',...
