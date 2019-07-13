@@ -116,6 +116,12 @@ classdef PageScan
             end
         end
 
+        function ocrResults = ocr_char(this, char_idx)
+            roi = this.ROI(char_idx, :);
+            ocrResults = ocr(this.PageImage, roi,'TextLayout','Character');
+        end
+
+
 
         function ColumnCenters = get.ColumnCenters(this)
             ColumnCenters = zeros(this.ColumnCount, 1);
