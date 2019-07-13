@@ -51,20 +51,21 @@ classdef PageScan
     end
 
     methods
-        function this = PageScan(filename, varargin)
+        function this = PageScan(source, varargin)
             p = inputParser;
+            addRequired(p, 'source', @(x)(ischar(x)||isnumeric(x)));
+            parse(p, source, varargin{:});
 
-            addOptional(p, 'PageDir', this.DefaultPageDir, @(x)ischar(x));
-            addOptional(p, 'PageImgPattern', this.DefaultPageImgPattern, @(x)ischar(x));
-            addOptional(p, 'Pages', this.DefaultPages, @(x)isnumeric(x));
-
-            parse(p, varargin{:});
-
-            this.PageDir = p.Results.PageDir;
-            this.PageImgPattern = p.Results.PageImgPattern;
-            this.Pages = p.Results.Pages;
-
-            this = this.scanfile(filename,varargin{:});
+            if ischar(source)
+                filename = source;
+                this.PageImage = imread(filename);
+                this = this.scan_image(varargin{:});
+            elseif isnumeric(source)
+                this.PageImage = img;
+                this.scan_image(source,varargin{:});
+            else
+                error('First argument must be a filename or an image');
+            end
         end
 
 
@@ -819,13 +820,12 @@ classdef PageScan
         end
 
 
-        function this = scanfile(this,filename,varargin)
+        function this = scan_image(this, varargin)
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
             addOptional(p, 'KeepOutliers', false, @(x)islogical(x));            
             parse(p, this,varargin{:});
 
-            this.PageImage = imread(filename);
             I1 = 255 - this.PageImage; 
             this.PageImageMono = im2bw(I1);
             this.DilatedImage = imdilate(this.PageImageMono, this.DilationSE);
