@@ -48,6 +48,7 @@ classdef PageScan
         % VerticalBoundary              % Currently function, as we want to pass some options
         Binding;                        % Information about book binding
         MergeCharacters;
+        ROI;
     end
 
     methods
