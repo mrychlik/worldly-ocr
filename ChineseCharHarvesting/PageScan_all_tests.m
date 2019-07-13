@@ -1,3 +1,7 @@
+% This runs all essential tests of PageScan class.  Set 'pages' to any
+% subset of valid pages (6:95) outside the script and you will run the tests
+% on just that subset
+% 
 if ~exist('pages','var') pages = 6:95; end
 
 PageScan_test1;
