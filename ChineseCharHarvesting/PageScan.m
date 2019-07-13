@@ -19,6 +19,10 @@
 % to be small enough to separate distinct characters.
 % 
 classdef PageScan
+    properties(Constant,Access=private)
+        % Whwere Tesseract data are for Traditional Chinese
+        lang_traineddata = 'tesseract-ocr/tessdata/chi_tra.traineddata';
+    end
     properties
         DilationSE = strel('rectangle', [5,15]); % for imdilate
         Characters = [];
@@ -112,13 +116,15 @@ classdef PageScan
             for char_idx = 1:this.CharacterCount
                 bbox = this.Characters(char_idx).Stats.BoundingBox;                
                 [x,y,w,h] = PageScan.dbox(bbox);
-                ROI(char_idx,:) = [x,y,x+w,y+h];
+                ROI(char_idx,:) = [x,y,w,h];
             end
         end
 
         function ocrResults = ocr_char(this, char_idx)
-            roi = this.ROI(char_idx, :);
-            ocrResults = ocr(this.PageImage, roi,'TextLayout','Character');
+            roi = this.ROI(char_idx, :)
+            ocrResults = ocr(this.PageImage, roi,...
+                             'TextLayout','Character',...
+                             'Language', this.lang_traineddata);
         end
 
 
