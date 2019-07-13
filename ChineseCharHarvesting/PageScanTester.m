@@ -19,7 +19,7 @@ classdef PageScanTester
             p = inputParser;
 
             addOptional(p, 'PageDir', this.DefaultPageDir, @(x)ischar(x));
-            addOptional(p, 'PageImgPattern', this. DefaultPageImgPattern, @(x)ischar(x));
+            addOptional(p, 'PageImgPattern', this.DefaultPageImgPattern, @(x)ischar(x));
             addOptional(p, 'Pages', this.DefaultPages, @(x)isnumeric(x));
 
             parse(p, this,varargin{:});
