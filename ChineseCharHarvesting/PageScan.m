@@ -127,6 +127,8 @@ classdef PageScan
                          @(x)(isnumeric(x) && min(x)>=1 && max(x) <= this.CharacterCount)):
             parse(p, this,varargin{:});
 
+            char_idx = p.Results.CharIndices;
+
             roi = this.ROI(char_idx, :)
             ocrResults = ocr(this.PageImage, roi,...
                              'TextLayout','Character',...
