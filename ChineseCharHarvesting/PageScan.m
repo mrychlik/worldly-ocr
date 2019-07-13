@@ -107,6 +107,16 @@ classdef PageScan
             Size = size(this.PageImageMono);
         end
 
+        function ROI = get.ROI(this)
+            ROI = zeros(this.CharacterCount, 4);
+            for char_idx = 1:this.CharacterCount
+                bbox = this.Characters(char_idx).Stats.BoundingBox;                
+                [x,y,w,h] = PageScan.dbox(bbox);
+                ROI(char_idx,:) = [x,y,x+w,y+h];
+            end
+        end
+
+
         function ColumnCenters = get.ColumnCenters(this)
             ColumnCenters = zeros(this.ColumnCount, 1);
             for col=1:this.ColumnCount
