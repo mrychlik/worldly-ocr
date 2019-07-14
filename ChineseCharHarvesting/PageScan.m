@@ -20,9 +20,15 @@
 % 
 classdef PageScan
     properties(Constant,Access=private)
-        % Whwere Tesseract data are for Traditional Chinese
-        lang_traineddata = {'tesseract-ocr/tessdata/chi_tra.traineddata',...
-                            'tesseract-ocr/tessdata/chi_sim.traineddata'};
+        %
+        % One way to specify the language is by giving the path to
+        % trained data. These files Must be compatible with the version
+        % of Tesseract used in MATLAB, currently 3.0.2.
+        %
+        % Where Tesseract data are for Traditional Chinese
+        % language_spec = {'tesseract-ocr/tessdata/chi_tra.traineddata',...
+        %                  'tesseract-ocr/tessdata/chi_sim.traineddata'};
+        language_spec = {'ChineseTraditional','ChineseSimplified'};
     end
     properties
         DilationSE = strel('rectangle', [5,15]); % for imdilate
