@@ -21,7 +21,8 @@
 classdef PageScan
     properties(Constant,Access=private)
         % Whwere Tesseract data are for Traditional Chinese
-        lang_traineddata = {'tesseract-ocr/tessdata/chi_tra.traineddata'};
+        lang_traineddata = {'tesseract-ocr/tessdata/chi_tra.traineddata',...
+                            'tesseract-ocr/tessdata/chi_sim.traineddata',...};
     end
     properties
         DilationSE = strel('rectangle', [5,15]); % for imdilate
