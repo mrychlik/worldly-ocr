@@ -137,13 +137,17 @@ classdef PageScan
             char_idx = setdiff(char_idx, ignored);
 
             roi = this.ROI(char_idx, :);
-            ocrResults = ocr(this.PageImage, roi,...
+            %I = this.PageImage;
+            I = ~this.PageImageMono;
+
+
+            ocrResults = ocr(I, roi,...
                              'TextLayout','Character',...
                              'Language', this.lang_traineddata);
 
             c = this.ROI(char_idx,1:2);
             x = c(:,1); y = c(:,2);
-            fontsize = 18;
+            fontsize = 24;
             if p.Results.ShowImage
 
                 h1 = subplot(1,2,1);
