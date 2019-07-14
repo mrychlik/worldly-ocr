@@ -143,11 +143,11 @@ classdef PageScan
             fontsize = 32;
             if p.Results.ShowImage
 
-                subplot(2,1,1);
+                subplot(1,2,1);
                 im = imagesc(this.PageImage);
                 this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
 
-                subplot(2,1,2);
+                subplot(1,2,2);
                 im = imagesc(this.PageImage);
                 im.AlphaData = 0.1;
 
