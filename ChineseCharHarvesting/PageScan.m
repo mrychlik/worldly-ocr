@@ -154,11 +154,10 @@ classdef PageScan
                 h2 = subplot(1,2,2);
                 im = imagesc(~this.PageImageMono);
                 im.AlphaData = 0.1;
-                %this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
-
                 label_str = {ocrResults.Text};
                 lab = text(x, y,label_str,'FontSize', fontsize, ...
                            'Color','blue');
+                %this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
 
                 set(h1,'Position',[.1,.1,.4,.8]);
                 set(h2,'Position',[.5,.1,.4,.8]);
