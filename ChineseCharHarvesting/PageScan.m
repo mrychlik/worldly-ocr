@@ -879,7 +879,7 @@ classdef PageScan
                                           c0.Stats.BoundingBox);
                         if d < 2*this.merge_threshold && e == 0
                             disp(sprintf('Merging character %d',char_idx));
-                            this=this.do_merge_characters(char_idx,ci(2));
+                            this = this.do_merge_characters(char_idx,ci(2));
                         end
                     end
                 end
