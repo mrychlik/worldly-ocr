@@ -7,13 +7,14 @@ if ~exist('pages','var') pages=6:95; end;
 %bg='Mono';
 %bg='Foo';                               % Invalid option - test
 bg='Original';
+keep_outliers = true;
 show_dilation = false;
 show_outliers = false;
 
 
 for page=pages
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
-    ps = PageScan(filename);
+    ps = PageScan(filename,'KeepOutliers',keep_outliers);
     ps.show_marked_page_img('Background',bg,...
                             'ShowDilation',show_dilation,...
                             'ShowOutliers',show_outliers);
