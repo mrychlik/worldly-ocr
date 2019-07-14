@@ -840,8 +840,8 @@ classdef PageScan
                         e = [e1,e2];
                         if d < this.merge_threshold && e(j) == 0 && ~c(j).Ignore
                             disp(sprintf('Merging character %d',char_idx));
-                            this=this.do_merge_characters(ci(j), ...
-                                                          char_idx);
+                            this = this.do_merge_characters(ci(j), ...
+                                                            char_idx);
                         end
                     end
                 end
