@@ -149,7 +149,7 @@ classdef PageScan
 
             ocrResults = ocr(I, roi,...
                              'TextLayout','Character',...
-                             'Language', this.lang_traineddata);
+                             'Language', this.language_spec);
 
             c = this.ROI(char_idx,1:2);
             x = c(:,1); y = c(:,2);
