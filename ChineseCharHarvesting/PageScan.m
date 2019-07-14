@@ -139,7 +139,20 @@ classdef PageScan
                              'Language', this.lang_traineddata);
 
             if p.Results.ShowImage
-                this.show_bounding_boxes(char_idx);
+                im = imagesc(this.PageImage);
+                im.AlphaData = 0.5;
+
+                label_str = {ocrResults.Text};
+
+                txtRegion = insertObjectAnnotation(...
+                    im, ...
+                    'Rectangle', roi ,...
+                    label_str,...
+                    'LineWidth',4, ...
+                    'Color',{'green'});
+
+                
+                this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
             end
         end
 
