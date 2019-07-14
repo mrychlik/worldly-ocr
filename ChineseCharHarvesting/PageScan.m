@@ -122,7 +122,7 @@ classdef PageScan
             ROI = zeros(this.CharacterCount, 4);
             for char_idx = 1:this.CharacterCount
                 bbox = this.Characters(char_idx).Stats.BoundingBox;                
-                [x,y,w,h] = PageScan.dbox(bbox);
+                [x,y,w,h] = dbox(bbox);
                 ROI(char_idx,:) = [x,y,w,h];
             end
         end
