@@ -28,3 +28,12 @@ in this video:
 
 ## Research Problem
 Classify characters using unsupervised learning
+
+
+## Fix-up of page segmentation
+
+In the file PageScan.m we have an implementation of 3 fix-up rules which handle most of
+the cases (perhaps 100%) of incorrect breaking up Chinese characters into separate parts.
+A significant effort went into discovery of the problems and visualization of the fix-up.
+It turns out that most of the problems are created by bars (horizontal, long strokes)
+at the top of the characters. 
