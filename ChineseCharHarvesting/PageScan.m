@@ -154,7 +154,6 @@ classdef PageScan
             x = c(:,1); y = c(:,2); w = c(:,3); h = c(:,4);
             fontsize = 21;
             if p.Results.ShowImage
-
                 ax1 = subplot(1,2,1);
                 im = imagesc(~this.PageImageMono);
                 this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
@@ -176,7 +175,6 @@ classdef PageScan
                 set(ax2,'Position',[.55,.05,.425,.95]);
                 % This makes zoom and pan synchronous for both axes
                 linkaxes([ax1,ax2]);
-
             end
         end
 
