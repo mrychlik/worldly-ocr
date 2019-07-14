@@ -132,7 +132,7 @@ classdef PageScan
             parse(p, this,varargin{:});
 
             char_idx = p.Results.CharIndices;
-            ignored=find([ps.Characters.Ignore]);
+            ignored=find([this.Characters.Ignore]);
             char_idx = setdiff(char_idx, ignored);
 
             roi = this.ROI(char_idx, :);
