@@ -146,7 +146,6 @@ classdef PageScan
             %I = this.PageImage;
             I = ~this.PageImageMono;
 
-
             ocrResults = ocr(I, roi,...
                              'TextLayout','Character',...
                              'Language', this.language_spec);
