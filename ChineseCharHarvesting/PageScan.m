@@ -140,7 +140,7 @@ classdef PageScan
 
             c = this.Centroids(char_idx,:);
             x = c(:,1); y = c(:,2);
-            fontsize = 32;
+            fontsize = 18;
             if p.Results.ShowImage
 
                 subplot(1,2,1);
