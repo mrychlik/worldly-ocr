@@ -132,6 +132,8 @@ classdef PageScan
             parse(p, this,varargin{:});
 
             char_idx = p.Results.CharIndices;
+            ignored=find([ps.Characters.Ignore]);
+            char_idx = setdiff(char_idx, ignored);
 
             roi = this.ROI(char_idx, :);
             ocrResults = ocr(this.PageImage, roi,...
@@ -144,7 +146,7 @@ classdef PageScan
             if p.Results.ShowImage
 
                 subplot(1,2,1);
-                im = imagesc(this.PageImage);
+                im = imagesc(this.PageImageMono);
                 this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
 
                 subplot(1,2,2);
