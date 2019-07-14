@@ -991,52 +991,63 @@ classdef PageScan
             end
         end
 
-        function [x,y,w,h] = dbox(bbox)
-        % DBOX - extract components of bbox
-            x = bbox(1);
-            y = bbox(2);
-            w = bbox(3);
-            h = bbox(4);
-        end
-
-        function rv = bbox_union(bbox1, bbox2);
-            [x1,y1,w1,h1] = PageScan.dbox(bbox1);
-            [x2,y2,w2,h2] = PageScan.dbox(bbox2);            
-            x = min(x1,x2);
-            y = min(y1,y2);            
-            x_max = max(x1+w1, x2+w2);
-            y_max = max(y1+h1, y2+h2);            
-            w = x_max-x;
-            h = y_max-y;
-            rv = [x,y,w,h];
-        end
-
-
-        function xrange = bbox_hor_range(bbox)
-        % BBOX_HOR_RANGE - horizontal range of BBOX
-            [x,y,w,h] = PageScan.dbox(bbox);
-            xrange = [x,x+w];
-        end
-
-        function yrange = bbox_vert_range(bbox)
-        % BBOX_VERT_RANGE - vertical range of BBOX
-            [x,y,w,h] = PageScan.dbox(bbox);
-            yrange = [y,y+h];
-        end
-
-        function D = bbox_hor_dist(bbox1, bbox2)
-        % BBOX_HOR_DIST - distance between BBOX1 and BBOX2 in horizontal direction
-            D = interval_dist(PageScan.bbox_hor_range(bbox1),...
-                                       PageScan.bbox_hor_range(bbox2));
-        end
-
-        function D = bbox_vert_dist(bbox1, bbox2)
-        % BBOX_VERT_DIST - vertical distance between BBOX1 and BBOX2            
-            D = interval_dist(PageScan.bbox_vert_range(bbox1),...
-                              PageScan.bbox_vert_range(bbox2));
-        end
-
     end
+end
+
+
+%================================================================
+%
+% Box operations
+% NOTE: They could be static methods in PageScan
+% but just as well can be ordinary function in the class file.
+% We chose to make them ordinary functions due to their
+% general nature.
+%
+%================================================================
+
+function [x,y,w,h] = dbox(bbox)
+% DBOX - extract components of bbox
+    x = bbox(1);
+    y = bbox(2);
+    w = bbox(3);
+    h = bbox(4);
+end
+
+function rv = bbox_union(bbox1, bbox2);
+    [x1,y1,w1,h1] = dbox(bbox1);
+    [x2,y2,w2,h2] = dbox(bbox2);            
+    x = min(x1,x2);
+    y = min(y1,y2);            
+    x_max = max(x1+w1, x2+w2);
+    y_max = max(y1+h1, y2+h2);            
+    w = x_max-x;
+    h = y_max-y;
+    rv = [x,y,w,h];
+end
+
+
+function xrange = bbox_hor_range(bbox)
+% BBOX_HOR_RANGE - horizontal range of BBOX
+    [x,y,w,h] = dbox(bbox);
+    xrange = [x,x+w];
+end
+
+function yrange = bbox_vert_range(bbox)
+% BBOX_VERT_RANGE - vertical range of BBOX
+    [x,y,w,h] = dbox(bbox);
+    yrange = [y,y+h];
+end
+
+function D = bbox_hor_dist(bbox1, bbox2)
+% BBOX_HOR_DIST - distance between BBOX1 and BBOX2 in horizontal direction
+    D = interval_dist(bbox_hor_range(bbox1),...
+                      bbox_hor_range(bbox2));
+end
+
+function D = bbox_vert_dist(bbox1, bbox2)
+% BBOX_VERT_DIST - vertical distance between BBOX1 and BBOX2            
+    D = interval_dist(bbox_vert_range(bbox1),...
+                      bbox_vert_range(bbox2));
 end
 
 
