@@ -21,7 +21,7 @@
 classdef PageScan
     properties(Constant,Access=private)
         % Whwere Tesseract data are for Traditional Chinese
-        lang_traineddata = 'tesseract-ocr/tessdata/chi_tra.traineddata';
+        lang_traineddata = {'tesseract-ocr/tessdata/chi_tra.traineddata','eng'};
     end
     properties
         DilationSE = strel('rectangle', [5,15]); % for imdilate
@@ -148,6 +148,7 @@ classdef PageScan
                 subplot(1,2,1);
                 im = imagesc(this.PageImageMono);
                 this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
+                colormap(gray);
 
                 subplot(1,2,2);
                 im = imagesc(this.PageImage);
