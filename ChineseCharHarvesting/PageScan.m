@@ -138,20 +138,14 @@ classdef PageScan
                              'TextLayout','Character',...
                              'Language', this.lang_traineddata);
 
+            c = this.Centroids(char_idx,:);
+            x = c(:,1); y = c(:,2);
+            fontsize = 32;
             if p.Results.ShowImage
                 im = imagesc(this.PageImage);
-                im.AlphaData = 0.5;
-
                 label_str = {ocrResults.Text};
-
-                txtRegion = insertObjectAnnotation(...
-                    im, ...
-                    'Rectangle', roi ,...
-                    label_str,...
-                    'LineWidth',4, ...
-                    'Color',{'green'});
-
-                
+                lab = text(x, y,label_str,'FontSize', fontsize, ...
+                           'Color','magenta');
                 this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
             end
         end
