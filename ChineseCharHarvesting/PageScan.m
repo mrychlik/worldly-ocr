@@ -147,7 +147,7 @@ classdef PageScan
 
             c = this.ROI(char_idx,1:2);
             x = c(:,1); y = c(:,2);
-            fontsize = 21;
+            fontsize = 10;
             if p.Results.ShowImage
 
                 h1 = subplot(1,2,1);
