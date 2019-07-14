@@ -160,6 +160,7 @@ classdef PageScan
                 im.AlphaData = 0.1;
                 label_str = {ocrResults.Text};
                 lab = text(x, y,label_str,'FontSize', fontsize, ...
+                           'FontUnits','normalized',...
                            'Color','blue');
                 %this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
 
