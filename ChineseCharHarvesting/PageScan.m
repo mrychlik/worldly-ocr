@@ -128,6 +128,7 @@ classdef PageScan
                              min(x) >= 1  && ...
                              max(x) <= this.CharacterCount) ...
                         );
+            addOptional(p, 'ShowImage', true,  @(x)islogical(x));
             parse(p, this,varargin{:});
 
             char_idx = p.Results.CharIndices;
@@ -136,6 +137,10 @@ classdef PageScan
             ocrResults = ocr(this.PageImage, roi,...
                              'TextLayout','Character',...
                              'Language', this.lang_traineddata);
+
+            if p.Results.ShowImage
+                this.show_bounding_boxes(char_idx);
+            end
         end
 
 
