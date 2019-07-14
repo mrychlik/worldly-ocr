@@ -1025,28 +1025,30 @@ classdef PageScan
             yrange = [y,y+h];
         end
 
-        function D = interval_dist(a, b)
-        % INTERVAL_DIST - distance between intervals
-            if a(2) < b(1) 
-                D = b(1) - a(2);
-            elseif a(1) > b(2)
-                D = a(1) - b(2);
-            else 
-                D = 0;
-            end
-        end
-
         function D = bbox_hor_dist(bbox1, bbox2)
         % BBOX_HOR_DIST - distance between BBOX1 and BBOX2 in horizontal direction
-            D = PageScan.interval_dist(PageScan.bbox_hor_range(bbox1),...
+            D = interval_dist(PageScan.bbox_hor_range(bbox1),...
                                        PageScan.bbox_hor_range(bbox2));
         end
 
         function D = bbox_vert_dist(bbox1, bbox2)
         % BBOX_VERT_DIST - vertical distance between BBOX1 and BBOX2            
-            D = PageScan.interval_dist(PageScan.bbox_vert_range(bbox1),...
-                                       PageScan.bbox_vert_range(bbox2));
+            D = interval_dist(PageScan.bbox_vert_range(bbox1),...
+                              PageScan.bbox_vert_range(bbox2));
         end
 
     end
 end
+
+
+function D = interval_dist(a, b)
+% INTERVAL_DIST - distance between intervals
+    if a(2) < b(1) 
+        D = b(1) - a(2);
+    elseif a(1) > b(2)
+        D = a(1) - b(2);
+    else 
+        D = 0;
+    end
+end
+
