@@ -146,18 +146,22 @@ classdef PageScan
             fontsize = 18;
             if p.Results.ShowImage
 
-                subplot(1,2,1);
+                h1 = subplot(1,2,1);
                 im = imagesc(~this.PageImageMono);
                 this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
                 colormap(gray);
 
-                subplot(1,2,2);
+                h2 = subplot(1,2,2);
                 im = imagesc(~this.PageImageMono);
                 im.AlphaData = 0.1;
 
                 label_str = {ocrResults.Text};
                 lab = text(x, y,label_str,'FontSize', fontsize, ...
                            'Color','blue');
+
+                set(h1,'Position',[.1,.1,.4,.8]);
+                set(h2,'Position',[.5,.1,.4,.8]);
+
             end
         end
 
