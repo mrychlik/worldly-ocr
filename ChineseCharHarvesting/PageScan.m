@@ -170,6 +170,7 @@ classdef PageScan
 
                 set(h1,'Position',[.05,.05,.425,.95]);
                 set(h2,'Position',[.55,.05,.425,.95]);
+                linkaxes([h1,h2]);
 
             end
         end
