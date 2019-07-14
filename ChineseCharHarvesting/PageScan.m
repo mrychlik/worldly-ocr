@@ -148,6 +148,9 @@ classdef PageScan
                 this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
 
                 subplot(2,1,2);
+                im = imagesc(this.PageImage);
+                im.AlphaData = 0.1;
+
                 label_str = {ocrResults.Text};
                 lab = text(x, y,label_str,'FontSize', fontsize, ...
                            'Color','magenta');
