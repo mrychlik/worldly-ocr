@@ -146,7 +146,7 @@ classdef PageScan
             if p.Results.ShowImage
 
                 subplot(1,2,1);
-                im = imagesc(this.PageImageMono);
+                im = imagesc(~this.PageImageMono);
                 this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
                 colormap(gray);
 
