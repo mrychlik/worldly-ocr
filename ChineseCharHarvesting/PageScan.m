@@ -141,7 +141,7 @@ classdef PageScan
                              'TextLayout','Character',...
                              'Language', this.lang_traineddata);
 
-            c = this.Centroids(char_idx,:);
+            c = this.ROI(char_idx,1:2);
             x = c(:,1); y = c(:,2);
             fontsize = 18;
             if p.Results.ShowImage
