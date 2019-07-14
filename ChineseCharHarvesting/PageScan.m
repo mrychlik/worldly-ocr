@@ -159,8 +159,8 @@ classdef PageScan
                            'Color','blue');
                 %this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
 
-                set(h1,'Position',[.05,.1,.4,.8]);
-                set(h2,'Position',[.55,.1,.4,.8]);
+                set(h1,'Position',[.05,.05,.45,.85]);
+                set(h2,'Position',[.55,.05,.45,.85]);
 
             end
         end
