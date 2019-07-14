@@ -150,27 +150,30 @@ classdef PageScan
                              'TextLayout','Character',...
                              'Language', this.language_spec);
 
-            c = this.ROI(char_idx,1:2);
-            x = c(:,1); y = c(:,2);
-            fontsize = 21;
+            c = this.ROI(char_idx,:);
+            x = c(:,1); y = c(:,2); w = c(:,3); h = c(:,4);
+            fontsize = .05;
             if p.Results.ShowImage
 
-                h1 = subplot(1,2,1);
+                ax1 = subplot(1,2,1);
                 im = imagesc(~this.PageImageMono);
                 this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
                 colormap(gray);
 
-                h2 = subplot(1,2,2);
+                ax2 = subplot(1,2,2);
                 im = imagesc(~this.PageImageMono);
                 im.AlphaData = 0.1;
                 label_str = {ocrResults.Text};
-                lab = text(x, y,label_str,'FontSize', fontsize, ...
-                           'Color','blue');
+
+                lab = text(x, y, label_str,...
+                           'FontSize', fontsize, ...
+                           'Color','blue',...
+                           'FontUnits','normalized');
                 %this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
 
-                set(h1,'Position',[.05,.05,.425,.95]);
-                set(h2,'Position',[.55,.05,.425,.95]);
-                linkaxes([h1,h2]);
+                set(ax1,'Position',[.05,.05,.425,.95]);
+                set(ax2,'Position',[.55,.05,.425,.95]);
+                linkaxes([ax1,ax2]);
 
             end
         end
