@@ -151,12 +151,12 @@ classdef PageScan
                 colormap(gray);
 
                 subplot(1,2,2);
-                im = imagesc(this.PageImage);
+                im = imagesc(~this.PageImageMono);
                 im.AlphaData = 0.1;
 
                 label_str = {ocrResults.Text};
                 lab = text(x, y,label_str,'FontSize', fontsize, ...
-                           'Color','magenta');
+                           'Color','blue');
             end
         end
 
