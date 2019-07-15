@@ -130,13 +130,13 @@ classdef PageScan
             end
         end
 
-        function ocrResults = get.OcrResults(this)
+        function OcrResults = get.OcrResults(this)
             char_idx = 1:this.CharacterCount;
             roi = this.ROI(char_idx, :);
-            I = this.PageImage;
-            %I = ~this.PageImageMono;
 
-            ocrResults = ocr(I, roi,...
+            % NOTE: Tesseract results are significantly better when
+            % the grayscale is passed rather than monochrome image
+            OcrResults = ocr(this.PageImage, roi,...
                              'TextLayout','Character',...
                              'Language', this.language_spec);
 
