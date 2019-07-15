@@ -33,7 +33,7 @@ classdef TesseractRecognizer
             addOptional(p, 'PageSegmentationMode', 10,...
                         @(x)(isscalar(x)&&(x<=13)&&(x>=0)));
             addOptional(p, 'Language', 'chi_tra',...
-                        @(x)validatestring(x,{'chi_tra','chi_tra_vert'}));
+                        @(x)any(validatestring(x,{'chi_tra','chi_tra_vert'})));
             parse(p, varargin{:});
 
             this.psm = p.Results.PageSegmentationMode;
