@@ -93,7 +93,6 @@ classdef PageScan
 
 
         function CharacterCount = get.CharacterCount(this)
-            disp('get.CharacterCount');
             CharacterCount = numel(this.Characters);
         end
 
