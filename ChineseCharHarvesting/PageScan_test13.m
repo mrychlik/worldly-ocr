@@ -5,7 +5,7 @@ page_img_pattern='page-%02d.ppm';
 if ~exist('pages','var') pages=6:95; end;
 keep_outliers=false;
 
-r = TesseractRecognizer('Language','chi_tra','PageSegmentationMode',7);
+r = TesseractRecognizer('Language','chi_tra','PageSegmentationMode',10);
 
 for page=pages
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
