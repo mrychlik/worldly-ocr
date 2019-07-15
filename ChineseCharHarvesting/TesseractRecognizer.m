@@ -27,10 +27,10 @@ classdef TesseractRecognizer
     end
 
     methods
-        function this = TesseractRecognizer(psm, language)
+        function this = TesseractRecognizer(varargin)
             p = inputParser;
-            % NOTE: Default psm is line
-            addOptional(p, 'PageSegmentationMode', 7,...
+            % NOTE: Default psm is character
+            addOptional(p, 'PageSegmentationMode', 10,...
                         @(x)(isscalar(x)&&(x<=13)&&(x>=0)));
             addOptional(p, 'Language', 'chi_tra',...
                         @(x)(isscalar(x)&&(x<=13)&&(x>=0)));
