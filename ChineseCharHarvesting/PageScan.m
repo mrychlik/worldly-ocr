@@ -1109,7 +1109,6 @@ function BW = draw_unicode_char(c, Font, FontSize)
     axis off;
     th = text(ax, 0,0,c,'FontSize', FontSize, 'Interpreter','none','Units', ...
               'pixels','HorizontalAlignment','Left','VerticalAlignment','Bottom');
-    get(th)
     ex = get(th,'Extent');
     F = getframe(fh);
     BW = im2bw(F.cdata);
