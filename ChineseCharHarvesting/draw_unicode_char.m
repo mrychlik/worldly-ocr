@@ -3,7 +3,7 @@ FontSize = 60;
 
 fh = gcf;
 set(fh, 'Units', 'pixels', 'Color', [1,1,1]);
-ax=axes(fh,'Position',[0 0 1 1],'Units','Normalized','visible','on');
+ax = axes(fh,'Position',[0 0 1 1],'Units','Normalized','visible','on');
 axis off;
 
 th = text(ax, 0,0,c,'FontSize', FontSize, 'Interpreter','none','Units', ...
