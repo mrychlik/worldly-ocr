@@ -168,6 +168,71 @@ classdef PageScan
                 set(ax1,'Position',[.05,.05,.425,.95]);
                 set(ax2,'Position',[.55,.05,.425,.95]);
 
+                set (ax2,'YDir','reverse');
+
+                hold on;
+                im2 = imagesc(~this.PageImageMono);
+                im2.AlphaData = 0.1;
+
+                label_str = {ocrResults.Text};
+
+                % NOTE: Set interpreter to one, as the default is 'latex'
+                % and will not like backslashes
+
+                 lab = text(x, y, label_str,...
+                       'FontSize',20,...
+                       'Color','blue',...
+                       'Clipping','on',...
+                       'Interpreter','none');
+                
+                h = zoom; % get handle to zoom utility
+                set(h,'ActionPostCallback',@zoomCallBack);
+                %set(h,'Enable','on');
+
+                % This makes zoom and pan synchronous for both axes
+                linkaxes([ax1,ax2]);
+                hold off;
+            end
+
+            % everytime you zoom in, this function is executed
+            function zoomCallBack(~, evd)      
+            % Since i expect to zoom in ax(4)-ax(3) gets smaller, so fontsize
+            % gets bigger.
+                ax = axis(evd.Axes); % get axis size
+                                     % change font size accordingly      
+                set(lab,'FontSize', fontsize * (ax(4)-ax(3))); 
+            end
+
+        end
+
+
+        function show_ocr_slowly(this, varargin)
+            p = inputParser;
+            addRequired(p, 'this', @(x)isa(x,'PageScan'));            
+            addOptional(p,'CharIndices', 1:this.CharacterCount, ...
+                        @(x)(isnumeric(x) &&  ...
+                             min(x) >= 1  && ...
+                             max(x) <= this.CharacterCount) ...
+                        );
+            addOptional(p, 'ShowImage', true,  @(x)islogical(x));
+            parse(p, this,varargin{:});
+
+            char_idx = p.Results.CharIndices;
+            c = this.ROI(char_idx,:);
+            x = c(:,1); y = c(:,2); w = c(:,3); h = c(:,4);
+            fontsize = 60;
+            padding = 5;
+            if p.Results.ShowImage
+                ax1 = subplot(1,2,1);
+                im1 = imagesc(ax1, ~this.PageImageMono);
+                this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
+                colormap(gray);
+
+                ax2 = subplot(1,2,2);
+
+                set(ax1,'Position',[.05,.05,.425,.95]);
+                set(ax2,'Position',[.55,.05,.425,.95]);
+
                 % This makes zoom and pan synchronous for both axes
                 linkaxes([ax1,ax2]);
 
