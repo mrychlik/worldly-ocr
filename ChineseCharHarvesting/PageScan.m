@@ -93,6 +93,7 @@ classdef PageScan
 
 
         function CharacterCount = get.CharacterCount(this)
+            disp('get.CharacterCount');
             CharacterCount = numel(this.Characters);
         end
 
@@ -133,8 +134,8 @@ classdef PageScan
         function ocrResults = get.OcrResults(this)
             char_idx = 1:this.CharacterCount;
             roi = this.ROI(char_idx, :);
-            %I = this.PageImage;
-            I = ~this.PageImageMono;
+            I = this.PageImage;
+            %I = ~this.PageImageMono;
 
             ocrResults = ocr(I, roi,...
                              'TextLayout','Character',...
