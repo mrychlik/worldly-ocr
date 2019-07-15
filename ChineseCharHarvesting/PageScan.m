@@ -969,7 +969,7 @@ classdef PageScan
             rv = this.Characters(char_idx).IsShort;
         end
 
-        function rv=filter_out_image(this, K)
+        function rv = filter_out_image(this, K)
         % FILTER_OUT_IMAGE - filter out base
             rv=false;
             % Filter out tall and narrow images
