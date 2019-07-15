@@ -262,7 +262,7 @@ classdef PageScan
             im2 = imagesc(~this.PageImageMono);
             im2.AlphaData = 0.1;
 
-            label_str = {this.OcrResults(char_idx).Text};
+            label_str = {this.OcrText(char_idx)};
             str = cell2mat(label_str);
 
             for i = 1:numel(str)
