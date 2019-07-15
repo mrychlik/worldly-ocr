@@ -131,7 +131,6 @@ classdef PageScan
         end
 
         function ocrResults = get.OcrResults(this)
-            char_idx = 1:this.CharacterCount
             roi = this.ROI(char_idx, :);
             %I = this.PageImage;
             I = ~this.PageImageMono;
