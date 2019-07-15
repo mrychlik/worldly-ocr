@@ -163,6 +163,9 @@ classdef PageScan
                 colormap(gray);
 
                 ax2 = subplot(1,2,2);
+                set (ax2,'YDir','reverse');
+                hold on;
+
                 im = imagesc(~this.PageImageMono);
                 im.AlphaData = 0.1;
                 label_str = {ocrResults.Text};
@@ -177,14 +180,18 @@ classdef PageScan
                 %       'Interpreter','none');
                 
                 str = cell2mat(label_str);
+
                 for i = 1:numel(str)
                     Font = BitmapFont('Helvetica',fontsize, str(i), padding);
                     if isempty(Font.Bitmaps{1})
                         continue;
                     end
-                    I = imresize(Font.Bitmaps{1},[h(i),w(i)]);
-                    im = image(x(i),y(i),I);
+                    %imagesc(Font.Bitmaps{1}); drawnow; pause(2);
+                    I = imresize(~Font.Bitmaps{1},[h(i),w(i)]);
+                    im = imagesc(x(i),y(i),I);
+                    im.AlphaData = 0.4;
                 end
+                hold off;
                 
 
                 %this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
