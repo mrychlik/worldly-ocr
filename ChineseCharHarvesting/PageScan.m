@@ -169,12 +169,26 @@ classdef PageScan
                 % NOTE: Set interpreter to one, as the default is 'latex'
                 % and will not like backslashes
                 lab = text(x, y, label_str,...
+                           'fontsize',fontsize/(ax2(4)-ax2(3)),...
                            'FontSize', fontsize, ...
                            'Color','blue',...
                            'FontUnits','normalized',...
                            'Clipping','on',...
                            'Interpreter','none');
                 %this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
+
+                h = zoom; % get handle to zoom utility
+                set(h,'ActionPostCallback',@zoomCallBack);
+                set(h,'Enable','on');
+
+                % everytime you zoom in, this function is executed
+                function zoomCallBack(~, evd)      
+                % Since i expect to zoom in ax(4)-ax(3) gets smaller, so fontsize
+                % gets bigger.
+                    ax = axis(evd.Axes); % get axis size
+                                         % change font size accordingly      
+                    set(lab,'FontSize',fontsize/(ax(4)-ax(3))); 
+                end
 
                 set(ax1,'Position',[.05,.05,.425,.95]);
                 set(ax2,'Position',[.55,.05,.425,.95]);
