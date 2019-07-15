@@ -954,6 +954,12 @@ classdef PageScan
             end
         end
 
+
+    end
+
+
+
+    methods(Access=private)
         function rv = is_outlier(this, char_idx)
         % IS_OUTLIER returns true if character is outlier
             rv = this.Characters(char_idx).IsOutlier;
@@ -964,9 +970,6 @@ classdef PageScan
             rv = this.Characters(char_idx).IsShort;
         end
 
-    end
-
-    methods(Access=private)
         function rv=filter_out_image(K)
         % FILTER_OUT_IMAGE - filter out base
             rv=false;
