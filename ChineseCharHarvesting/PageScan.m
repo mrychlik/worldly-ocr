@@ -131,6 +131,7 @@ classdef PageScan
         end
 
         function ocrResults = get.OcrResults(this)
+            char_idx = 1:this.CharacterCount;
             roi = this.ROI(char_idx, :);
             %I = this.PageImage;
             I = ~this.PageImageMono;
@@ -152,47 +153,50 @@ classdef PageScan
             addOptional(p, 'ShowImage', true,  @(x)islogical(x));
             parse(p, this,varargin{:});
 
-            char_idx = p.Results.CharIndices;
+            % Do not show characters marked as ignored
+            ignored=find([this.Characters.Ignore]);
+            char_idx = setdiff(p.Results.CharIndices, ignored);
+
             c = this.ROI(char_idx,:);
             x = c(:,1); y = c(:,2); w = c(:,3); h = c(:,4);
             fontsize = 60;
             padding = 5;
-            if p.Results.ShowImage
-                ax1 = subplot(1,2,1);
-                im1 = imagesc(ax1, ~this.PageImageMono);
-                this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
-                colormap(gray);
 
-                ax2 = subplot(1,2,2);
+            ax1 = subplot(1,2,1);
+            im1 = imagesc(ax1, ~this.PageImageMono);
+            this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
+            colormap(gray);
 
-                set(ax1,'Position',[.05,.05,.425,.95]);
-                set(ax2,'Position',[.55,.05,.425,.95]);
+            ax2 = subplot(1,2,2);
 
-                set (ax2,'YDir','reverse');
+            set(ax1,'Position',[.05,.05,.425,.95]);
+            set(ax2,'Position',[.55,.05,.425,.95]);
 
-                hold on;
-                im2 = imagesc(~this.PageImageMono);
-                im2.AlphaData = 0.1;
+            set (ax2,'YDir','reverse');
 
-                label_str = {ocrResults.Text};
+            hold on;
+            im2 = imagesc(~this.PageImageMono);
+            im2.AlphaData = 0.1;
 
-                % NOTE: Set interpreter to one, as the default is 'latex'
-                % and will not like backslashes
+            label_str = {this.OcrResults(char_idx).Text};
 
-                 lab = text(x, y, label_str,...
+            % NOTE: Set interpreter to one, as the default is 'latex'
+            % and will not like backslashes
+
+            lab = text(x, y, label_str,...
                        'FontSize',20,...
                        'Color','blue',...
                        'Clipping','on',...
                        'Interpreter','none');
-                
-                h = zoom; % get handle to zoom utility
-                set(h,'ActionPostCallback',@zoomCallBack);
-                %set(h,'Enable','on');
+            
+            h = zoom; % get handle to zoom utility
+            set(h,'ActionPostCallback',@zoomCallBack);
+            %set(h,'Enable','on');
 
-                % This makes zoom and pan synchronous for both axes
-                linkaxes([ax1,ax2]);
-                hold off;
-            end
+            % This makes zoom and pan synchronous for both axes
+            linkaxes([ax1,ax2]);
+            hold off;
+
 
             % everytime you zoom in, this function is executed
             function zoomCallBack(~, evd)      
@@ -217,71 +221,45 @@ classdef PageScan
             addOptional(p, 'ShowImage', true,  @(x)islogical(x));
             parse(p, this,varargin{:});
 
-            char_idx = p.Results.CharIndices;
+            % Do not show characters marked as ignored
+            ignored=find([this.Characters.Ignore]);
+            char_idx = setdiff(p.Results.CharIndices, ignored);
+
             c = this.ROI(char_idx,:);
             x = c(:,1); y = c(:,2); w = c(:,3); h = c(:,4);
             fontsize = 60;
             padding = 5;
-            if p.Results.ShowImage
-                ax1 = subplot(1,2,1);
-                im1 = imagesc(ax1, ~this.PageImageMono);
-                this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
-                colormap(gray);
 
-                ax2 = subplot(1,2,2);
+            ax1 = subplot(1,2,1);
+            im1 = imagesc(ax1, ~this.PageImageMono);
+            this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
+            colormap(gray);
 
-                set(ax1,'Position',[.05,.05,.425,.95]);
-                set(ax2,'Position',[.55,.05,.425,.95]);
+            ax2 = subplot(1,2,2);
 
-                % This makes zoom and pan synchronous for both axes
-                linkaxes([ax1,ax2]);
-
-                set (ax2,'YDir','reverse');
-
-                hold on;
-                im2 = imagesc(~this.PageImageMono);
-                im2.AlphaData = 0.1;
-
-                label_str = {ocrResults.Text};
-
-                % NOTE: Set interpreter to one, as the default is 'latex'
-                % and will not like backslashes
-
-                % lab = text(x, y, label_str,...
-                %       'FontSize',20,...
-                %       'Color','blue',...
-                %       'Clipping','on',...
-                %       'Interpreter','none');
-                
-                str = cell2mat(label_str);
-
-                for i = 1:numel(str)
-                    BW = draw_unicode_char(str(i), 'Helvetica', fontsize);
-                    %imagesc(Font.Bitmaps{1}); drawnow; pause(2);
-                    I = imresize(BW,[h(i),w(i)]);
-                    im = image(x(i),y(i),255*I);
-                end
-                
-
-                %this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
-
-                %h = zoom; % get handle to zoom utility
-                          %set(h,'ActionPostCallback',@zoomCallBack);
-                %set(h,'Enable','on');
+            set(ax1,'Position',[.05,.05,.425,.95]);
+            set(ax2,'Position',[.55,.05,.425,.95]);
 
 
-                hold off;
+            set (ax2,'YDir','reverse');
+
+            hold on;
+            im2 = imagesc(~this.PageImageMono);
+            im2.AlphaData = 0.1;
+
+            label_str = {this.OcrResults(char_idx).Text};
+            str = cell2mat(label_str);
+
+            for i = 1:numel(str)
+                BW = draw_unicode_char(str(i), 'Helvetica', fontsize);
+                %imagesc(Font.Bitmaps{1}); drawnow; pause(2);
+                I = imresize(BW,[h(i),w(i)]);
+                im = image(x(i),y(i),255*I);
             end
 
-            % everytime you zoom in, this function is executed
-            function zoomCallBack(~, evd)      
-            % Since i expect to zoom in ax(4)-ax(3) gets smaller, so fontsize
-            % gets bigger.
-                ax = axis(evd.Axes); % get axis size
-                                     % change font size accordingly      
-                set(lab,'FontSize', fontsize * (ax(4)-ax(3))); 
-            end
-
+            % This makes zoom and pan synchronous for both axes
+            linkaxes([ax1,ax2]);
+            hold off;
         end
 
 
