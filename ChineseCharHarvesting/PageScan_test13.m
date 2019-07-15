@@ -3,6 +3,7 @@ disp(mfilename);
 pagedir='Pages';
 page_img_pattern='page-%02d.ppm';
 if ~exist('pages','var') pages=6:95; end;
+keep_outliers=false;
 
 r = TesseractRecognizer;
 
@@ -12,7 +13,8 @@ for page=pages
     ps = ps.do_merge_characters_all;
 
     for i=1:ps.CharacterCount
-        BW = ps.Characters(i).AltImage;
+        BW = ps.Characters(i).CroppedMonoImage;
+        BW = padarray(BW,[10 10],0,'both');
         str=r.recognize(BW);
         imshow(BW);
         title(str(1));
