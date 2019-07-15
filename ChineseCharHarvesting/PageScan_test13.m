@@ -5,7 +5,7 @@ page_img_pattern='page-%02d.ppm';
 if ~exist('pages','var') pages=6:95; end;
 keep_outliers=false;
 
-r = TesseractRecognizer('Language','chi_tra');
+r = TesseractRecognizer('Language','chi_tra','PageSegmentationMode',7);
 
 for page=pages
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
@@ -13,8 +13,8 @@ for page=pages
     ps = ps.do_merge_characters_all;
 
     for i=1:ps.CharacterCount
-        I = ps.Characters(i).AltImage;
-        I = padarray(I,[10 10],0,'both');
+        I = ps.Characters(i).CroppedMonoImage;
+        %I = padarray(I,[10 10],0,'both');
         str = r.recognize(I);
         imagesc(I);
         title(str(1));
