@@ -168,8 +168,9 @@ classdef PageScan
 
                 % NOTE: Set interpreter to one, as the default is 'latex'
                 % and will not like backslashes
+                ax = axis;
                 lab = text(x, y, label_str,...
-                           'FontSize',fontsize/(ax2(4)-ax2(3)),...
+                           'FontSize',fontsize/(ax(4)-ax(3)),...
                            'Color','blue',...
                            'FontUnits','normalized',...
                            'Clipping','on',...
@@ -193,7 +194,7 @@ classdef PageScan
             % gets bigger.
                 ax = axis(evd.Axes); % get axis size
                                      % change font size accordingly      
-                set(lab,'FontSize',fontsize/(ax(4)-ax(3))); 
+                set(lab,'FontSize', fontsize / (ax(4)-ax(3))); 
             end
 
         end
