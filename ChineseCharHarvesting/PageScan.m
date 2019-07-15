@@ -144,7 +144,7 @@ classdef PageScan
         end
 
         function OcrText = get.OcrText(this)
-            {this.OcrResults.Text};
+            OcrText = {this.OcrResults.Text};
         end
 
 
