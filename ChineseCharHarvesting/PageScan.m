@@ -1103,8 +1103,7 @@ function BW = draw_unicode_char(c, Font, FontSize)
 %   BW = DRAW_UNICODE_CHAR(C, FONT, FONTSIZE) draws
 %   Unicode character C in font FONT, using font size
 %   FONTSIZE in pixels. It returns the generated image
-    fh = figure;
-    set(fh, 'Units', 'pixels', 'Color', [1,1,1]);
+    fh = figure('Units', 'pixels', 'Color', [1,1,1]);
     ax = axes(fh,'Position',[0 0 1 1],'Units','Normalized','visible','off');
     axis off;
     th = text(ax, 0,0,c,'FontSize', FontSize, 'Interpreter','none','Units', ...
