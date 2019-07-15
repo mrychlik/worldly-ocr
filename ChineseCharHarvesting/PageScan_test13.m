@@ -16,7 +16,7 @@ for page=pages
         BW = ps.Characters(i).CroppedMonoImage;
         BW = padarray(BW,[10 10],0,'both');
         str=r.recognize(~BW);
-        imshow(BW);
+        imagesc(BW);
         title(str(1));
         pause(2);
     end
