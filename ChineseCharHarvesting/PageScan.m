@@ -163,11 +163,11 @@ classdef PageScan
                 colormap(gray);
 
                 ax2 = subplot(1,2,2);
-                set (ax2,'YDir','reverse');
                 hold on;
 
                 im = imagesc(~this.PageImageMono);
                 im.AlphaData = 0.1;
+
                 label_str = {ocrResults.Text};
 
                 % NOTE: Set interpreter to one, as the default is 'latex'
@@ -188,10 +188,9 @@ classdef PageScan
                     end
                     %imagesc(Font.Bitmaps{1}); drawnow; pause(2);
                     I = imresize(~Font.Bitmaps{1},[h(i),w(i)]);
-                    im = imagesc(x(i),y(i),I);
-                    im.AlphaData = 0.4;
+                    im = image(x(i),y(i),255*I);
                 end
-                hold off;
+                %set (ax2,'YDir','reverse');
                 
 
                 %this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
@@ -206,6 +205,7 @@ classdef PageScan
 
                 % This makes zoom and pan synchronous for both axes
                 linkaxes([ax1,ax2]);
+                hold off;
             end
 
             % everytime you zoom in, this function is executed
