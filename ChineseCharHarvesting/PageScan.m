@@ -130,21 +130,8 @@ classdef PageScan
             end
         end
 
-        function ocrResults = get.OcrResults(this, varargin)
-            p = inputParser;
-            addRequired(p, 'this', @(x)isa(x,'PageScan'));            
-            addOptional(p,'CharIndices', 1:this.CharacterCount, ...
-                        @(x)(isnumeric(x) &&  ...
-                             min(x) >= 1  && ...
-                             max(x) <= this.CharacterCount) ...
-                        );
-            addOptional(p, 'ShowImage', true,  @(x)islogical(x));
-            parse(p, this,varargin{:});
-
-            char_idx = p.Results.CharIndices;
-            ignored=find([this.Characters.Ignore]);
-            char_idx = setdiff(char_idx, ignored);
-
+        function ocrResults = get.OcrResults(this)
+            char_idx = 1:this.CharacterCount
             roi = this.ROI(char_idx, :);
             %I = this.PageImage;
             I = ~this.PageImageMono;
@@ -156,6 +143,17 @@ classdef PageScan
         end
 
         function show_ocr(this, varargin)
+            p = inputParser;
+            addRequired(p, 'this', @(x)isa(x,'PageScan'));            
+            addOptional(p,'CharIndices', 1:this.CharacterCount, ...
+                        @(x)(isnumeric(x) &&  ...
+                             min(x) >= 1  && ...
+                             max(x) <= this.CharacterCount) ...
+                        );
+            addOptional(p, 'ShowImage', true,  @(x)islogical(x));
+            parse(p, this,varargin{:});
+
+            char_idx = p.Results.CharIndices;
             c = this.ROI(char_idx,:);
             x = c(:,1); y = c(:,2); w = c(:,3); h = c(:,4);
             fontsize = 60;
