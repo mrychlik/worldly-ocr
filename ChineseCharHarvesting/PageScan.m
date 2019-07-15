@@ -933,7 +933,7 @@ classdef PageScan
                 BW = this.PageImageMono( y1 : y2, x1 : x2 );
                 BW = imautocrop(BW);
 
-                if PageScan.filter_out_image(BW)
+                if this.filter_out_image(BW)
                     is_outlier = true;
                 end
 
