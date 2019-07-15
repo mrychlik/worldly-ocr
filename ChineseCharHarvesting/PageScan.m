@@ -958,8 +958,8 @@ classdef PageScan
     end
 
 
-
     methods(Access=private)
+
         function rv = is_outlier(this, char_idx)
         % IS_OUTLIER returns true if character is outlier
             rv = this.Characters(char_idx).IsOutlier;
