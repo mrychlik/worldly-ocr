@@ -28,10 +28,16 @@ classdef TesseractRecognizer
 
     methods
         function this = TesseractRecognizer(psm, language)
-            if nargin < 1; psm = 7; end % Default is line
-            if nargin < 2; language = 'pus'; end % Default is Pashto
-            assert(psm >=0 && psm <= 13);
-            this.psm = psm;
+            p = inputParser;
+            % NOTE: Default psm is line
+            addOptional(p, 'PageSegmentationMode', 7,...
+                        @(x)(isscalar(x)&&(x<=13)&&(x>=0)));
+            addOptional(p, 'Language', 'chi_tra',...
+                        @(x)(isscalar(x)&&(x<=13)&&(x>=0)));
+            parse(p, source, varargin{:});
+
+            this.psm = p.Results.PageSegmentationMode;
+            this.language = p.Results.Language;
             TesseractRecognizer.locate_tesseract_exec;
         end
     end
@@ -99,9 +105,10 @@ classdef TesseractRecognizer
             fname = tempname;
             imwrite(BW, fname, 'PNG');
             base = fname;
-            cmd = sprintf('%s --psm %d -l pus %s %s', ...
+            cmd = sprintf('%s --psm %d -l %s %s %s', ...
                           this.tesseract_path,...
                           this.psm, ...
+                          this.language,...
                           fname, ...
                           base);
             [status,result] = system(cmd);
