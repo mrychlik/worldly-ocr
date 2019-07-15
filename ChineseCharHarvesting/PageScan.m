@@ -143,6 +143,15 @@ classdef PageScan
         end
 
         function show_ocr(this, varargin)
+        % SHOW_OCR - show the Unicode characters 
+        % SHOW_OCR(THIS) displays Unicode characters discovered by the
+        % OCR subsystem. The positions of the characters are aligned
+        % with the bounding boxes discovered by our page segmentation.
+        % The figure is split into two subplots: left and right.
+        % The left plot shows the original page image. The right
+        % one shows the original page image as semi-transparent
+        % background. The axes of the subplots are linked,
+        % so that zoom and pan are synchronized.
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
             addOptional(p,'CharIndices', 1:this.CharacterCount, ...
