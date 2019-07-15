@@ -262,7 +262,6 @@ classdef PageScan
             hold off;
         end
 
-
         function ColumnCenters = get.ColumnCenters(this)
             ColumnCenters = zeros(this.ColumnCount, 1);
             for col=1:this.ColumnCount
