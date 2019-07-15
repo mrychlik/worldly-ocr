@@ -176,8 +176,8 @@ classdef PageScan
                 %       'Clipping','on',...
                 %       'Interpreter','none');
                 
-                str=cell2mat(label_str);
-                Font = BitmapFont('Helvetica',fontsize, str, padding);
+                str = cell2mat(label_str);
+                Font = BitmapFont('Helvetica',fontsize, str, padding)
                 for i = 1:numel(label_str)
                     if isempty(Font.Bitmaps{i})
                         continue;
