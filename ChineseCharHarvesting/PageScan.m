@@ -63,6 +63,7 @@ classdef PageScan
         MergeCharacters;
         ROI;                            % An Nx4 array, rows are char. boxes
         OcrResults;                     % Output of OCR on ROI
+        OcrText;                        % The text output of OCR on ROI        
     end
 
     methods
