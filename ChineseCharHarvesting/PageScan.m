@@ -154,7 +154,7 @@ classdef PageScan
 
             c = this.ROI(char_idx,:);
             x = c(:,1); y = c(:,2); w = c(:,3); h = c(:,4);
-            fontsize = 20;
+            fontsize = 0.03;
             if p.Results.ShowImage
                 ax1 = subplot(1,2,1);
                 im = imagesc(~this.PageImageMono);
@@ -168,17 +168,17 @@ classdef PageScan
 
                 % NOTE: Set interpreter to one, as the default is 'latex'
                 % and will not like backslashes
-                lab = text(x, y, label_str,...
-                           'FontSize',fontsize,...
+                ax = axis;
+                lab = text(x, y+h, label_str,...
+                           'FontSize',(ax(4)-ax(3))*fontsize,...
                            'Color','blue',...
                            'Clipping','on',...
-                           'FontUnits', 'normalized',...
                            'Interpreter','none');
 
                 %this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
 
-                %h = zoom; % get handle to zoom utility
-                %set(h,'ActionPostCallback',@zoomCallBack);
+                h = zoom; % get handle to zoom utility
+                set(h,'ActionPostCallback',@zoomCallBack);
                 %set(h,'Enable','on');
 
 
@@ -195,7 +195,7 @@ classdef PageScan
             % gets bigger.
                 ax = axis(evd.Axes); % get axis size
                                      % change font size accordingly      
-                set(lab,'FontSize', fontsize / (ax(4)-ax(3))); 
+                set(lab,'FontSize', fontsize * (ax(4)-ax(3))); 
             end
 
         end
