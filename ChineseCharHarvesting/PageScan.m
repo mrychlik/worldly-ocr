@@ -142,6 +142,12 @@ classdef PageScan
 
         end
 
+        function OcrText = get.OcrText(this, char_idx)
+            this.OcrResults(char_idx).Text;
+        end
+
+
+
         function show_ocr(this, varargin)
         % SHOW_OCR - show the Unicode characters 
         % SHOW_OCR(THIS) displays Unicode characters discovered by the
@@ -185,7 +191,7 @@ classdef PageScan
             im2 = imagesc(~this.PageImageMono);
             im2.AlphaData = 0.1;
 
-            label_str = {this.OcrResults(char_idx).Text};
+            label_str = {this.OcrText(char_idx)};
 
             % NOTE: Set interpreter to one, as the default is 'latex'
             % and will not like backslashes
