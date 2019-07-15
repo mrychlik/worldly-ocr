@@ -966,6 +966,18 @@ classdef PageScan
 
     end
 
+    methods(Access=private)
+        function rv=filter_out_image(K)
+        % FILTER_OUT_IMAGE - filter out base
+            rv=false;
+            % Filter out tall and narrow images
+            if size(K,1) > this.max_char_width || size(K,2) < this.min_char_height;
+                rv=true;
+            end
+        end
+
+    end
+
     methods(Static)
         function rv=filter_out(stat)
         % FILTER_OUT - filter out object based on stat
@@ -976,14 +988,6 @@ classdef PageScan
             end
         end
 
-        function rv=filter_out_image(K)
-        % FILTER_OUT_IMAGE - filter out base
-            rv=false;
-            % Filter out tall and narrow images
-            if size(K,1) > this.max_char_width || size(K,2) < this.min_char_height;
-                rv=true;
-            end
-        end
 
     end
 end
