@@ -170,14 +170,21 @@ classdef PageScan
                 % NOTE: Set interpreter to one, as the default is 'latex'
                 % and will not like backslashes
 
-                lab = text(x, y, label_str,...
-                      'FontSize',20,...
-                      'Color','blue',...
-                      'Clipping','on',...
-                      'Interpreter','none');
+                % lab = text(x, y, label_str,...
+                %       'FontSize',20,...
+                %       'Color','blue',...
+                %       'Clipping','on',...
+                %       'Interpreter','none');
                 
                 str=cell2mat(label_str);
                 Font = BitmapFont('Helvetica',fontsize, str, padding);
+                for i = 1:numel(label_str)
+                    if isempty(Font.Bitmaps{i})
+                        continue;
+                    end
+                    I = imresize(Font.Bitmaps{i},[h(i),w(i)]);
+                    im = image(x(i),y(i),I);
+                end
                 
 
                 %this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
