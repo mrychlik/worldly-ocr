@@ -13,9 +13,6 @@ get(th)
 
 ex = round(get(th,'Extent'));
 
-%xlim([bbox(1),bbox(1)+bbox(3)]);
-%ylim([bbox(2),bbox(2)+bbox(4)]);
-
 F = getframe(fh);
 
 BW = im2bw(F.cdata);
