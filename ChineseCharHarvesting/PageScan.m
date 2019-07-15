@@ -40,6 +40,7 @@ classdef PageScan
         column_dist_threshold = 60;
         row_dist_threshold = 40;        
         merge_threshold = 15;           % For attaching "cloud"
+        max_char_width = 100;           % Maximum width of a valid character
     end
 
     properties(Dependent)
@@ -977,7 +978,7 @@ classdef PageScan
         % FILTER_OUT_IMAGE - filter out base
             rv=false;
             % Filter out tall and narrow images
-            if size(K,1) > 100 || size(K,2) < 10
+            if size(K,1) > this.max_char_width || size(K,2) < 10
                 rv=true;
             end
         end
