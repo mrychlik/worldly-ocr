@@ -168,17 +168,17 @@ classdef PageScan
 
                 % NOTE: Set interpreter to one, as the default is 'latex'
                 % and will not like backslashes
-                ax = axis;
                 lab = text(x, y, label_str,...
-                           'FontSize',fontsize / ( ax(4)-ax(3) ),...
+                           'FontSize',fontsize,...
                            'Color','blue',...
                            'Clipping','on',...
                            'FontUnits', 'normalized',...
                            'Interpreter','none');
+
                 %this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
 
-                h = zoom; % get handle to zoom utility
-                set(h,'ActionPostCallback',@zoomCallBack);
+                %h = zoom; % get handle to zoom utility
+                %set(h,'ActionPostCallback',@zoomCallBack);
                 %set(h,'Enable','on');
 
 
