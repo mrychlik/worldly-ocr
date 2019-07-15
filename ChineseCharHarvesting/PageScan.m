@@ -179,7 +179,7 @@ classdef PageScan
 
                 h = zoom; % get handle to zoom utility
                 set(h,'ActionPostCallback',@zoomCallBack);
-                set(h,'Enable','on');
+                %set(h,'Enable','on');
 
 
                 set(ax1,'Position',[.05,.05,.425,.95]);
