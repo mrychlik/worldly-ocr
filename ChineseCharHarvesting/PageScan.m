@@ -177,12 +177,12 @@ classdef PageScan
                 %       'Interpreter','none');
                 
                 str = cell2mat(label_str);
-                Font = BitmapFont('Helvetica',fontsize, str, padding)
-                for i = 1:numel(label_str)
-                    if isempty(Font.Bitmaps{i})
+                for i = 1:numel(str)
+                    Font = BitmapFont('Helvetica',fontsize, str(i), padding);
+                    if isempty(Font.Bitmaps{1})
                         continue;
                     end
-                    I = imresize(Font.Bitmaps{i},[h(i),w(i)]);
+                    I = imresize(Font.Bitmaps{1},[h(i),w(i)]);
                     im = image(x(i),y(i),I);
                 end
                 
