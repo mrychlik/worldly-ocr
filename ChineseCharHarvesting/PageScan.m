@@ -164,8 +164,8 @@ classdef PageScan
 
                 ax2 = subplot(1,2,2);
                 hold on;
-                im = imagesc(~this.PageImageMono);
-                im.AlphaData = 0.1;
+                %im = imagesc(~this.PageImageMono);
+                %im.AlphaData = 0.1;
 
                 label_str = {ocrResults.Text};
 
