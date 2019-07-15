@@ -154,7 +154,8 @@ classdef PageScan
 
             c = this.ROI(char_idx,:);
             x = c(:,1); y = c(:,2); w = c(:,3); h = c(:,4);
-            fontsize = 0.03;
+            fontsize = 60;
+            padding = 5;
             if p.Results.ShowImage
                 ax1 = subplot(1,2,1);
                 im = imagesc(~this.PageImageMono);
@@ -168,18 +169,20 @@ classdef PageScan
 
                 % NOTE: Set interpreter to one, as the default is 'latex'
                 % and will not like backslashes
-                ax = axis;
-                for i=1:numel(x)
-                    lab{i} = text(x(i), y(i)+h(i), label_str{i},...
-                                  'FontSize',h(i),...
-                                  'Color','blue',...
-                                  'Clipping','on',...
-                                  'Interpreter','none');
-                end
+
+                lab = text(x, y, label_str,...
+                      'FontSize',20,...
+                      'Color','blue',...
+                      'Clipping','on',...
+                      'Interpreter','none');
+                
+                str=cell2mat(label_str);
+                Font = BitmapFont('Helvetica',fontsize, str, padding);
+                
 
                 %this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
 
-                h = zoom; % get handle to zoom utility
+                %h = zoom; % get handle to zoom utility
                           %set(h,'ActionPostCallback',@zoomCallBack);
                 %set(h,'Enable','on');
 
