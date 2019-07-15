@@ -41,7 +41,6 @@ classdef PageScan
         row_dist_threshold = 40;        
         merge_threshold = 15;           % For attaching "cloud"
         max_char_width = 100;           % Maximum width of a valid character
-        max_char_width = 100;           % Maximum width of a valid character
         min_char_height = 10;           % Minimum height of a valid character
     end
 
