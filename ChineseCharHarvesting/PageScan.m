@@ -159,6 +159,7 @@ classdef PageScan
             if p.Results.ShowImage
                 ax1 = subplot(1,2,1);
                 im = imagesc(~this.PageImageMono);
+                im.AlphaData = 0.2;
                 %this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
                 colormap(gray);
 
