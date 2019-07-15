@@ -34,7 +34,7 @@ classdef TesseractRecognizer
                         @(x)(isscalar(x)&&(x<=13)&&(x>=0)));
             addOptional(p, 'Language', 'chi_tra',...
                         @(x)(isscalar(x)&&(x<=13)&&(x>=0)));
-            parse(p, source, varargin{:});
+            parse(p, varargin{:});
 
             this.psm = p.Results.PageSegmentationMode;
             this.language = p.Results.Language;
