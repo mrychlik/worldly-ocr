@@ -148,8 +148,8 @@ classdef PageScan
         end
 
         function OcrResults = get.OcrResultsAlt(this)
-            r = TesseractRecognizer('Language','chi_tra','PageSegmentationMode',10);
-            for i=1:this.CharacterCount
+            parfor i=1:this.CharacterCount
+                r = TesseractRecognizer('Language','chi_tra','PageSegmentationMode',10);
                 I = this.Characters(i).CroppedMonoImage;
                 I = padarray(I,[10 10],0,'both');
                 OcrResults(i).Text = r.recognize(~I);
@@ -157,7 +157,7 @@ classdef PageScan
         end
 
         function OcrText = get.OcrText(this)
-            switch this.TesseractVersion,
+            switch this.tesseract_version,
               case 'builtin',
                 OcrText = {this.OcrResults.Text};
               case  'external',
