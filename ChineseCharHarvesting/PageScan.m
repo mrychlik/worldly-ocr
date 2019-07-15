@@ -158,16 +158,15 @@ classdef PageScan
             padding = 5;
             if p.Results.ShowImage
                 ax1 = subplot(1,2,1);
-                im = imagesc(~this.PageImageMono);
-                im.AlphaData = 0.2;
-                %this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
+                im1 = imagesc(ax1, ~this.PageImageMono);
+                this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
                 colormap(gray);
 
                 ax2 = subplot(1,2,2);
                 set (ax2,'YDir','reverse');
                 hold on;
-                %im = imagesc(~this.PageImageMono);
-                %im.AlphaData = 0.1;
+                im2 = imagesc(~this.PageImageMono);
+                im2.AlphaData = 0.1;
 
                 label_str = {ocrResults.Text};
 
