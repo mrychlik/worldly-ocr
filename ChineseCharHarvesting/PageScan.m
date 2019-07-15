@@ -578,7 +578,7 @@ classdef PageScan
             % Dilate in the horizontal direction equally to erosion
             BW = imdilate(BW, se1);
             % Erode slightly in the vertical direction
-            BW = imerode(BW,se2);
+            BW = imerode(BW, se2);
             HorizontalBoundary = BW;
        end
 
