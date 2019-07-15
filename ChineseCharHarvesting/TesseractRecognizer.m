@@ -126,7 +126,7 @@ classdef TesseractRecognizer
                 delete(txtfname);
                 try
                     str = native2unicode(bytes,'UTF-8');
-                    disp(str);
+                    %disp(str);
                 catch ME
                     rethrow(ME);
                 end
