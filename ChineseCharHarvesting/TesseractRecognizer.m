@@ -20,6 +20,7 @@ classdef TesseractRecognizer
         %       bypassing hacks that are Tesseract-specific.
         psm;
         language;
+        oem;
     end
 
     properties(Access = private)
@@ -34,6 +35,8 @@ classdef TesseractRecognizer
                         @(x)(isscalar(x)&&(x<=13)&&(x>=0)));
             addOptional(p, 'Language', 'chi_tra',...
                         @(x)any(validatestring(x,{'chi_tra','chi_tra_vert'})));
+            addOptional(p, 'OCREngineMode', 3,...
+                        @(x)(isscalar(x)&&(x<=3)&&(x>=0)));
             parse(p, varargin{:});
 
             this.psm = p.Results.PageSegmentationMode;
@@ -110,7 +113,7 @@ classdef TesseractRecognizer
                           this.psm, ...
                           this.language,...
                           fname, ...
-                          base);
+                          base)
             [status,result] = system(cmd);
             delete(fname);
             if status == 0
