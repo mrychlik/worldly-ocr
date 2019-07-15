@@ -17,7 +17,7 @@ for page=pages
         I = padarray(I,[10 10],0,'both');
         str = r.recognize(I);
         imagesc(I);
-        title(str(1));
+        title(str(1),'FontSize',50);
         pause(2);
     end
     ps.show_ocr;
