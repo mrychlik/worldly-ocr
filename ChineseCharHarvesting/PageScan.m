@@ -190,8 +190,8 @@ classdef PageScan
                        'Clipping','on',...
                        'Interpreter','none');
             
-            h = zoom; % get handle to zoom utility
-            set(h,'ActionPostCallback',@zoomCallBack);
+            %h = zoom; % get handle to zoom utility
+                      %set(h,'ActionPostCallback',@zoomCallBack);
             %set(h,'Enable','on');
 
             % This makes zoom and pan synchronous for both axes
