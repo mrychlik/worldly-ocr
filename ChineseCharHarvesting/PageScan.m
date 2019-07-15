@@ -164,7 +164,6 @@ classdef PageScan
 
                 ax2 = subplot(1,2,2);
                 hold on;
-
                 im = imagesc(~this.PageImageMono);
                 im.AlphaData = 0.1;
 
@@ -182,15 +181,11 @@ classdef PageScan
                 str = cell2mat(label_str);
 
                 for i = 1:numel(str)
-                    Font = BitmapFont('Helvetica',fontsize, str(i), padding);
-                    if isempty(Font.Bitmaps{1})
-                        continue;
-                    end
+                    BW = draw_unicode_char(str(i), 'Helvetica', fontsize);
                     %imagesc(Font.Bitmaps{1}); drawnow; pause(2);
-                    I = imresize(~Font.Bitmaps{1},[h(i),w(i)]);
+                    I = imresize(BW,[h(i),w(i)]);
                     im = image(x(i),y(i),255*I);
                 end
-                %set (ax2,'YDir','reverse');
                 
 
                 %this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
@@ -205,6 +200,8 @@ classdef PageScan
 
                 % This makes zoom and pan synchronous for both axes
                 linkaxes([ax1,ax2]);
+                set (ax2,'YDir','reverse');
+
                 hold off;
             end
 
@@ -1100,3 +1097,24 @@ function D = interval_dist(a, b)
     end
 end
 
+
+function BW = draw_unicode_char(c, Font, FontSize) 
+% DRAW_UNICODE_CHAR - draw a single unicode character
+%   BW = DRAW_UNICODE_CHAR(C, FONT, FONTSIZE) draws
+%   Unicode character C in font FONT, using font size
+%   FONTSIZE in pixels. It returns the generated image
+    fh = figure;
+    set(fh, 'Units', 'pixels', 'Color', [1,1,1]);
+    ax = axes(fh,'Position',[0 0 1 1],'Units','Normalized','visible','off');
+    axis off;
+    th = text(ax, 0,0,c,'FontSize', FontSize, 'Interpreter','none','Units', ...
+              'pixels','HorizontalAlignment','Left','VerticalAlignment','Bottom');
+    get(th)
+    ex = get(th,'Extent');
+    F = getframe(fh);
+    BW = im2bw(F.cdata);
+    [h,~] = size(BW);
+    bbox=round([ex(1)+1,h-ex(4)-1,ex(3),ex(4)]);
+    BW = BW( bbox(2):(bbox(2)+bbox(4)), bbox(1):(bbox(1)+bbox(3)));
+    delete(fh);
+end
