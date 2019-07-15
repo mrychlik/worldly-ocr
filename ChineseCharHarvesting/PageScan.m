@@ -159,7 +159,7 @@ classdef PageScan
                              min(x) >= 1  && ...
                              max(x) <= this.CharacterCount) ...
                         );
-            addOptional(p, 'FontSize', 40,  @(x)islogical(x));
+            addOptional(p, 'FontSize', 40,  @(x)isscalar(x));
             parse(p, this,varargin{:});
 
             % Do not show characters marked as ignored
@@ -169,7 +169,6 @@ classdef PageScan
             c = this.ROI(char_idx,:);
             x = c(:,1); y = c(:,2); w = c(:,3); h = c(:,4);
             fontsize = p.Results.FontSize;
-            padding = 5;
 
             ax1 = subplot(1,2,1);
             im1 = imagesc(ax1, ~this.PageImageMono);
@@ -229,7 +228,7 @@ classdef PageScan
                              min(x) >= 1  && ...
                              max(x) <= this.CharacterCount) ...
                         );
-            addOptional(p, 'ShowImage', true,  @(x)islogical(x));
+            addOptional(p, 'FontSize', 60,  @(x)isscalar(x));
             parse(p, this,varargin{:});
 
             % Do not show characters marked as ignored
@@ -238,8 +237,7 @@ classdef PageScan
 
             c = this.ROI(char_idx,:);
             x = c(:,1); y = c(:,2); w = c(:,3); h = c(:,4);
-            fontsize = 60;
-            padding = 5;
+
 
             ax1 = subplot(1,2,1);
             im1 = imagesc(ax1, ~this.PageImageMono);
