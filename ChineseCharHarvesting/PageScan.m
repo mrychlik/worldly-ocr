@@ -163,7 +163,15 @@ classdef PageScan
                 colormap(gray);
 
                 ax2 = subplot(1,2,2);
+
+                set(ax1,'Position',[.05,.05,.425,.95]);
+                set(ax2,'Position',[.55,.05,.425,.95]);
+
+                % This makes zoom and pan synchronous for both axes
+                linkaxes([ax1,ax2]);
+
                 set (ax2,'YDir','reverse');
+
                 hold on;
                 im2 = imagesc(~this.PageImageMono);
                 im2.AlphaData = 0.1;
@@ -195,12 +203,6 @@ classdef PageScan
                           %set(h,'ActionPostCallback',@zoomCallBack);
                 %set(h,'Enable','on');
 
-
-                set(ax1,'Position',[.05,.05,.425,.95]);
-                set(ax2,'Position',[.55,.05,.425,.95]);
-
-                % This makes zoom and pan synchronous for both axes
-                linkaxes([ax1,ax2]);
 
                 hold off;
             end
