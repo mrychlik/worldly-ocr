@@ -15,7 +15,7 @@ for page=pages
     for i=1:ps.CharacterCount
         I = ps.Characters(i).CroppedMonoImage;
         I = padarray(I,[10 10],0,'both');
-        str = r.recognize(I);
+        str = r.recognize(~I);
         imagesc(I);
         title(str(1),'FontSize',50);
         pause(2);
