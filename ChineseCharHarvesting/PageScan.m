@@ -144,9 +144,13 @@ classdef PageScan
         end
 
         function OcrText = get.OcrText(this)
-            OcrText = {this.OcrResults.Text};
+            switch this.TesseractVersion,
+              case 'builtin',
+                OcrText = {this.OcrResults.Text};
+              case  'external',
+                OcrText = {this.OcrResultsAlt.Text}};                
+            end
         end
-
 
 
         function show_ocr(this, varargin)
@@ -192,7 +196,7 @@ classdef PageScan
             im2 = imagesc(~this.PageImageMono);
             im2.AlphaData = 0.1;
 
-            label_str = {this.OcrText(char_idx)};
+            label_str = this.OcrText(char_idx);
 
             % NOTE: Set interpreter to one, as the default is 'latex'
             % and will not like backslashes
@@ -262,7 +266,7 @@ classdef PageScan
             im2 = imagesc(~this.PageImageMono);
             im2.AlphaData = 0.1;
 
-            label_str = {this.OcrText(char_idx)};
+            label_str = this.OcrText{char_idx};
             str = cell2mat(label_str);
 
             for i = 1:numel(str)
