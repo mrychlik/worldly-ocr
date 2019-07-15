@@ -12,7 +12,7 @@ for page=pages
     ps = ps.do_merge_characters_all;
 
     for i=1:ps.CharacterCount
-        BW = ps.Characters(i).CroppedMonoImage;
+        BW = ps.Characters(i).AltImage;
         str=r.recognize(BW);
         imshow(BW);
         title(str(1));
