@@ -163,6 +163,7 @@ classdef PageScan
                 colormap(gray);
 
                 ax2 = subplot(1,2,2);
+                set (ax2,'YDir','reverse');
                 hold on;
                 %im = imagesc(~this.PageImageMono);
                 %im.AlphaData = 0.1;
@@ -200,7 +201,6 @@ classdef PageScan
 
                 % This makes zoom and pan synchronous for both axes
                 linkaxes([ax1,ax2]);
-                set (ax2,'YDir','reverse');
 
                 hold off;
             end
