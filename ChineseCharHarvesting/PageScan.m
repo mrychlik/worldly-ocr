@@ -151,7 +151,7 @@ classdef PageScan
               case 'builtin',
                 OcrText = {this.OcrResults.Text};
               case  'external',
-                OcrText = {this.OcrResultsAlt.Text}};                
+                OcrText = {this.OcrResultsAlt.Text};                
             end
         end
 
