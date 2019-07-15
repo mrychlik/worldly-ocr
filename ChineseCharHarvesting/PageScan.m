@@ -146,6 +146,15 @@ classdef PageScan
 
         end
 
+        function OcrResults = get.OcrResultsAlt(this)
+            r = TesseractRecognizer('Language','chi_tra','PageSegmentationMode',10);
+            for i=1:ps.CharacterCount
+                I = ps.Characters(i).CroppedMonoImage;
+                I = padarray(I,[10 10],0,'both');
+                OcrResults(i).Text = r.recognize(~I);
+            end
+        end
+
         function OcrText = get.OcrText(this)
             switch this.TesseractVersion,
               case 'builtin',
