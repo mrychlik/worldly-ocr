@@ -61,7 +61,8 @@ classdef PageScan
         % VerticalBoundary              % Currently function, as we want to pass some options
         Binding;                        % Information about book binding
         MergeCharacters;
-        ROI;
+        ROI;                            % An Nx4 array, rows are char. boxes
+        OcrResults;                     % Output of OCR on ROI
     end
 
     methods
@@ -129,7 +130,7 @@ classdef PageScan
             end
         end
 
-        function ocrResults = ocr_char(this, varargin)
+        function ocrResults = get.OcrResults(this, varargin)
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
             addOptional(p,'CharIndices', 1:this.CharacterCount, ...
@@ -152,6 +153,9 @@ classdef PageScan
                              'TextLayout','Character',...
                              'Language', this.language_spec);
 
+        end
+
+        function show_ocr(this, varargin)
             c = this.ROI(char_idx,:);
             x = c(:,1); y = c(:,2); w = c(:,3); h = c(:,4);
             fontsize = 60;
