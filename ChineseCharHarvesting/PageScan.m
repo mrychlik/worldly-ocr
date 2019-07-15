@@ -159,7 +159,7 @@ classdef PageScan
             if p.Results.ShowImage
                 ax1 = subplot(1,2,1);
                 im = imagesc(~this.PageImageMono);
-                this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
+                %this.draw_bounding_boxes('CharacterIndices', char_idx,'ShowOutliers',true);
                 colormap(gray);
 
                 ax2 = subplot(1,2,2);
@@ -1103,7 +1103,7 @@ function BW = draw_unicode_char(c, Font, FontSize)
 %   BW = DRAW_UNICODE_CHAR(C, FONT, FONTSIZE) draws
 %   Unicode character C in font FONT, using font size
 %   FONTSIZE in pixels. It returns the generated image
-    fh = figure('Units', 'pixels', 'Color', [1,1,1]);
+    fh = figure('Units', 'pixels', 'Color', [1,1,1],'visible','off');
     ax = axes(fh,'Position',[0 0 1 1],'Units','Normalized','visible','off');
     axis off;
     th = text(ax, 0,0,c,'FontSize', FontSize, 'Interpreter','none','Units', ...
