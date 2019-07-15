@@ -168,7 +168,6 @@ classdef PageScan
 
             c = this.ROI(char_idx,:);
             x = c(:,1); y = c(:,2); w = c(:,3); h = c(:,4);
-            fontsize = p.Results.FontSize;
 
             ax1 = subplot(1,2,1);
             im1 = imagesc(ax1, ~this.PageImageMono);
@@ -192,7 +191,7 @@ classdef PageScan
             % and will not like backslashes
 
             lab = text(x, y, label_str,...
-                       'FontSize',fontsize,...
+                       'FontSize',p.Results.FontSize,...
                        'Color','blue',...
                        'Clipping','on',...
                        'Interpreter','none',...
@@ -207,14 +206,14 @@ classdef PageScan
             linkaxes([ax1,ax2]);
             hold off;
 
-
+            
             % everytime you zoom in, this function is executed
             function zoomCallBack(~, evd)      
             % Since i expect to zoom in ax(4)-ax(3) gets smaller, so fontsize
             % gets bigger.
                 ax = axis(evd.Axes); % get axis size
                                      % change font size accordingly      
-                set(lab,'FontSize', fontsize * (ax(4)-ax(3))); 
+                set(lab,'FontSize', p.Results.FontSize * (ax(4)-ax(3))); 
             end
 
         end
@@ -260,7 +259,7 @@ classdef PageScan
             str = cell2mat(label_str);
 
             for i = 1:numel(str)
-                BW = draw_unicode_char(str(i), 'Helvetica', fontsize);
+                BW = draw_unicode_char(str(i), 'Helvetica', p.Results.FontSize);
                 %imagesc(Font.Bitmaps{1}); drawnow; pause(2);
                 I = imresize(BW,[h(i),w(i)]);
                 im = image(x(i),y(i),255*I);
