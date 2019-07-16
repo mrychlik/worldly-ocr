@@ -273,12 +273,16 @@ classdef PageScan < handle
             label_str = this.OcrText{char_idx};
             str = cell2mat(label_str);
 
-            for i = 1:numel(str)
+            bh = waitbar(0,'Running external OCR...');
+            len = numel(str);
+            for i = 1:len
+                waitbar(i/len,bh);
                 BW = draw_unicode_char(str(i), 'Helvetica', p.Results.FontSize);
                 %imagesc(Font.Bitmaps{1}); drawnow; pause(2);
                 I = imresize(BW,[h(i),w(i)]);
                 im = image(x(i),y(i),255*I);
             end
+            close(bh);
 
             % This makes zoom and pan synchronous for both axes
             linkaxes([ax1,ax2]);
