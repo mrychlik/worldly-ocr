@@ -1058,7 +1058,7 @@ classdef PageScan < handle
             r = TesseractRecognizer('Language','chi_tra','PageSegmentationMode',10);
             ignored=[this.Characters.Ignore];
             this.ExternalOcrResultsCache = struct('Text',[]);
-            bh=waitbar(0,'Running external OCR...');
+            bh = waitbar(0,'Running external OCR...');
             for i=1:this.CharacterCount
                 waitbar(i/this.CharacterCount,bh);
                 if ignored(i)
