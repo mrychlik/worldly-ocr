@@ -47,8 +47,6 @@ classdef PageScan < handle
         MergeCharacters;
         ROI;                            % An Nx4 array, rows are char. boxes
         OcrResults;                     % Output of OCR on ROI
-        ExternalOcrResults;% Output of OCR on ROI - external tesseract       
-        OcrText;                        % The text output of OCR on ROI        
     end
 
     properties(Access=private)
@@ -133,14 +131,14 @@ classdef PageScan < handle
 
         end
 
-        function ExternalOcrResults = get.ExternalOcrResults(this)
+        function ExternalOcrResults = ExternalOcrResults(this)
             if isempty(this.ExternalOcrResultsCache)
                 this.updateExternalOcrResultsCache
             end
             ExternalOcrResults = this.ExternalOcrResultsCache;
         end
 
-        function OcrText = get.OcrText(this)
+        function OcrText = OcrText(this)
             switch this.tesseract_version,
               case 'builtin',
                 OcrText = {this.OcrResults.Text};
