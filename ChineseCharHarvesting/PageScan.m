@@ -1084,7 +1084,7 @@ classdef PageScan < handle
                 end
                 I = this.Characters(i).CroppedMonoImage;
                 I = padarray(I,[10 10],0,'both');
-                this.ExternalOcrResultsCache(i).Text = r.recognize(~I);
+                this.ExternalOcrResultsCache(i).Text = fix_tess_output(r.recognize(~I));
             end
             close(bh);
         end
