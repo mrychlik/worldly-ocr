@@ -1017,6 +1017,7 @@ classdef PageScan < handle
             parse(p, this, img, varargin{:});
 
             this.PageImage = img;
+            this.tesseract_version = p.Results.TesseractVersion;
 
             I1 = 255 - this.PageImage; 
             this.PageImageMono = im2bw(I1);
