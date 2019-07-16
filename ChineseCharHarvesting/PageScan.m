@@ -3,9 +3,10 @@ classdef PageScan < handle
 % This class inherits from HANDLE class, so that we can internally
 % modify fields, such as caches
     properties(Constant,Access=private)
-        % One way to specify the language is by giving the path to trained
-        % data. These files Must be compatible with the version of Tesseract
-        % used in MATLAB, currently 3.0.2.
+        %
+        % One way to specify the language is by giving the path to
+        % trained data. These files Must be compatible with the version
+        % of Tesseract used in MATLAB, currently 3.0.2.
         %
         % Where Tesseract data are for Traditional Chinese
         % language_spec = {'tesseract-ocr/tessdata/chi_tra.traineddata',...
@@ -62,13 +63,13 @@ classdef PageScan < handle
         % which can be a filename or a numeric array representing the
         % page image. Optional arguments:
         %
-        % * KeepOutliers - if true all objects in the image are kept,
-        %   even if they do not look like characters.
+        %   * KeepOutliers - if true all objects in the image are kept, even
+        %   if they do not look like characters.
         % 
-        % * TesseractVersion - either 'builtin' or 'external'; if 
-        %    'builtin' then Vision Toolkit 'ocr' function is invoked to
-        %    perform OCR; if 'external', the version of Tesseract
-        %    available to the OS is invoked
+        %   * TesseractVersion - either 'builtin' or 'external'; if
+        %     'builtin' then Vision Toolkit 'ocr' function is invoked to
+        %     perform OCR; if 'external', the version of Tesseract available
+        %     to the OS is invoked
         % 
             p = inputParser;
             addRequired(p, 'source', @(x)(ischar(x)||isnumeric(x)));
