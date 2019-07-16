@@ -849,7 +849,9 @@ classdef PageScan < handle
                 this.draw_bounding_boxes('CharacterIndices',[ci,char_idx]);
             end
         end
+    end
 
+    methods(Access = private)
 
         function this = do_merge_characters_all(this)
         %DO_MERGE_CHARACTERS_ALL - merge character parts into characters
@@ -982,11 +984,11 @@ classdef PageScan < handle
                 end
             end
         end
-    end
 
 
 
-    methods(Access = private)
+
+
 
         function this = do_merge_characters(this, idx1, idx2)
         % DO_MERGE_CHARACTERS - Merge bounding boxes
