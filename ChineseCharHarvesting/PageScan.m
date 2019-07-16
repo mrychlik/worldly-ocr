@@ -51,7 +51,7 @@ classdef PageScan < handle
         OcrText;                        % The text output of OCR on ROI        
     end
 
-    properties(Access=public)
+    properties(Access=private)
         ExternalOcrResultsCache = [];   % A cache of OCR results
     end
 
