@@ -154,7 +154,7 @@ classdef PageScan
             for i=1:this.CharacterCount
                 waitbar(i/this.CharacterCount,bh);
                 if ignored(i)
-                    continue
+                    continue;
                 end
                 I = this.Characters(i).CroppedMonoImage;
                 I = padarray(I,[10 10],0,'both');
