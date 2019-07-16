@@ -1012,6 +1012,8 @@ classdef PageScan
         function this = scan_image(this, varargin)
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
+            addOptional(p, 'TesseractVersion', 'builtin',...
+                        @(x)any(validatestring(x,{'builtin','external'})));
             addOptional(p, 'KeepOutliers', false, @(x)islogical(x));            
             parse(p, this,varargin{:});
 
