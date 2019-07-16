@@ -13,6 +13,7 @@ classdef PageScan < handle
         %                  'tesseract-ocr/tessdata/chi_sim.traineddata'};
         language_spec = {'ChineseTraditional','ChineseSimplified'};
     end
+
     properties
         DilationSE = strel('rectangle', [5,15]); % for imdilate
         Characters = [];
@@ -27,6 +28,11 @@ classdef PageScan < handle
         min_char_height = 10;           % Minimum height of a valid character
         tesseract_version = 'builtin';  % Whether use MATLAB Tesseract or external
     end
+
+    properties(Access=private)
+        ExternalOcrResultsCache = [];   % A cache of OCR results
+    end
+
 
     properties(Dependent)
         CharacterCount;                 % Number of identified characters
@@ -49,9 +55,6 @@ classdef PageScan < handle
         OcrResults;                     % Output of OCR on ROI
     end
 
-    properties(Access=private)
-        ExternalOcrResultsCache = [];   % A cache of OCR results
-    end
 
     methods
         function this = PageScan(source, varargin)
