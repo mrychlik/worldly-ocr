@@ -62,8 +62,15 @@ classdef PageScan < handle
         % THIS = PAGESCAN(SOURCE) constructs a page scan of a SOURCE,
         % which can be a filename or a numeric array representing the
         % page image. Optional arguments:
-        % - KeepOutliers - if true all objects in the image are kept,
-        % even if they do not look like characters.
+        %
+        % * KeepOutliers - if true all objects in the image are kept,
+        %   even if they do not look like characters.
+        % 
+        % * TesseractVersion - either 'builtin' or 'external'; if 
+        %    'builtin' then Vision Toolkit 'ocr' function is invoked to
+        %    perform OCR; if 'external', the version of Tesseract
+        %    available to the OS is invoked
+
         % 
             p = inputParser;
             addRequired(p, 'source', @(x)(ischar(x)||isnumeric(x)));
