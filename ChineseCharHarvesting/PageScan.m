@@ -3,10 +3,9 @@ classdef PageScan < handle
 % This class inherits from HANDLE class, so that we can internally
 % modify fields, such as caches
     properties(Constant,Access=private)
-        %
-        % One way to specify the language is by giving the path to
-        % trained data. These files Must be compatible with the version
-        % of Tesseract used in MATLAB, currently 3.0.2.
+        % One way to specify the language is by giving the path to trained
+        % data. These files Must be compatible with the version of Tesseract
+        % used in MATLAB, currently 3.0.2.
         %
         % Where Tesseract data are for Traditional Chinese
         % language_spec = {'tesseract-ocr/tessdata/chi_tra.traineddata',...
