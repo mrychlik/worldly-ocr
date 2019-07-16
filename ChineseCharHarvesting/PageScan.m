@@ -68,6 +68,10 @@ classdef PageScan
         OcrText;                        % The text output of OCR on ROI        
     end
 
+    properties(Access=private)
+        ExternalOcrResultsCache = [];   % A cache of OCR results
+    end
+
     methods
         function this = PageScan(source, varargin)
         %PAGESCAN - Constructor
@@ -147,20 +151,11 @@ classdef PageScan
 
         end
 
-        function OcrResults = get.OcrResultsAlt(this)
-            r = TesseractRecognizer('Language','chi_tra','PageSegmentationMode',10);
-            ignored=[this.Characters.Ignore];
-            bh=waitbar(0,'Running external OCR...');
-            for i=1:this.CharacterCount
-                waitbar(i/this.CharacterCount,bh);
-                if ignored(i)
-                    continue;
-                end
-                I = this.Characters(i).CroppedMonoImage;
-                I = padarray(I,[10 10],0,'both');
-                OcrResults(i).Text = r.recognize(~I);
+        function OcrResults = get.ExternalOcrResults(this)
+            if isempty(this.ExternalOcrResultsCache)
+                this = this.updateExternalOcrResults
             end
-            close(bh);
+            OcrResults = this.ExternalOcrResultsCache;
         end
 
         function OcrText = get.OcrText(this)
