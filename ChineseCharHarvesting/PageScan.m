@@ -144,6 +144,10 @@ classdef PageScan < handle
             if isempty(this.ExternalOcrResultsCache)
                 this.updateExternalOcrResultsCache
             end
+            nargchk(nargin, 1, 2);
+            if nargin < 2 
+                char_idx = 1:this.CharacterCount;
+            end
             ExternalOcrResults = this.ExternalOcrResultsCache(char_idx);
         end
 
@@ -1068,6 +1072,7 @@ classdef PageScan < handle
         end
 
         function updateExternalOcrResultsCache(this)
+        % UPDATEEXTERNALOCRRESULTSCACHE - runs externsl OCR
             r = TesseractRecognizer('Language','chi_tra','PageSegmentationMode',10);
             ignored=[this.Characters.Ignore];
             this.ExternalOcrResultsCache = struct('Text',[]);
