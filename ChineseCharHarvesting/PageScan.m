@@ -90,14 +90,13 @@ classdef PageScan
 
             if ischar(source)
                 filename = source;
-                this.PageImage = imread(filename);
-                this = this.scan_image(varargin{:});
+                img = imread(filename);
             elseif isnumeric(source)
-                this.PageImage = img;
-                this.scan_image(source,varargin{:});
+                img = source;
             else
                 error('First argument must be a filename or an image');
             end
+            this = this.scan_image(img,varargin{:});
         end
 
 
