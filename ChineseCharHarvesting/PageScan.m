@@ -1,5 +1,7 @@
-classdef PageScan
+classdef PageScan < handle
 % PAGESCAN - class representing a scanned page
+% This class inherits from HANDLE class, so that we can internally
+% modify fields, such as caches
     properties(Constant,Access=private)
         %
         % One way to specify the language is by giving the path to
@@ -49,7 +51,7 @@ classdef PageScan
         OcrText;                        % The text output of OCR on ROI        
     end
 
-    properties(Access=private)
+    properties(Access=public)
         ExternalOcrResultsCache = [];   % A cache of OCR results
     end
 
