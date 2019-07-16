@@ -1016,6 +1016,7 @@ classdef PageScan
                         @(x)any(validatestring(x,{'builtin','external'})));
             addOptional(p, 'KeepOutliers', false, @(x)islogical(x));            
             parse(p, this,varargin{:});
+            this.PageImage = img;
 
             I1 = 255 - this.PageImage; 
             this.PageImageMono = im2bw(I1);
