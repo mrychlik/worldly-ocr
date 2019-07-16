@@ -79,7 +79,7 @@ classdef PageScan < handle
             else
                 error('First argument must be a filename or an image');
             end
-            this = this.scan_image(img, varargin{:});
+            this.scan_image(img, varargin{:});
         end
 
 
