@@ -1052,7 +1052,7 @@ classdef PageScan
             end
         end
 
-        function this = updateExternalOcrResults(this)
+        function this = updateExternalOcrResultsCache(this)
             r = TesseractRecognizer('Language','chi_tra','PageSegmentationMode',10);
             ignored=[this.Characters.Ignore];
             this.ExternalOcrResultsCache = struct('Text',[]);
@@ -1064,7 +1064,7 @@ classdef PageScan
                 end
                 I = this.Characters(i).CroppedMonoImage;
                 I = padarray(I,[10 10],0,'both');
-                this.ExternalOcrResults(i).Text = r.recognize(~I);
+                this.ExternalOcrResultsCache(i).Text = r.recognize(~I);
             end
             close(bh);
         end
