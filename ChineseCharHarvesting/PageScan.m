@@ -857,9 +857,6 @@ classdef PageScan < handle
                 this.draw_bounding_boxes('CharacterIndices',[ci,char_idx]);
             end
         end
-    end
-
-    methods(Access = private)
 
         function this = do_merge_characters_all(this)
         %DO_MERGE_CHARACTERS_ALL - merge character parts into characters
@@ -877,7 +874,9 @@ classdef PageScan < handle
             this = do_merge_all_rule_tst(this);            
             this = do_merge_all_rule_xss(this);
         end
+    end
 
+    methods(Access = private)
         function this = do_merge_all_rule_sss(this)
         %DO_MERGE_ALL_RULE_SSS - merge three short chars in a row
             disp('Merging by rule short-short-short...');
@@ -1218,3 +1217,10 @@ function BW = draw_unicode_char(c, Font, FontSize)
     BW = BW( bbox(2):(bbox(2)+bbox(4)), bbox(1):(bbox(1)+bbox(3)));
     delete(fh);
 end
+
+function fixedstr = fix_tess_output(str)
+% FIX_TESS_OUTPUT - fixes Tesseract output to be a single character
+%FIXEDSTR = FIX_TESS_OUTPUT(STR)
+    fixedstr = str
+
+end    
