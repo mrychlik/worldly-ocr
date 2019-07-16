@@ -33,4 +33,5 @@ int main()
       delete[] symbol;
     } while((ri->Next(level)));
   }
+  delete api;
 }
