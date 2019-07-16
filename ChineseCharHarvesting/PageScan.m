@@ -131,19 +131,19 @@ classdef PageScan < handle
 
         end
 
-        function ExternalOcrResults = ExternalOcrResults(this)
+        function ExternalOcrResults = ExternalOcrResults(this, char_idx)
             if isempty(this.ExternalOcrResultsCache)
                 this.updateExternalOcrResultsCache
             end
-            ExternalOcrResults = this.ExternalOcrResultsCache;
+            ExternalOcrResults = this.ExternalOcrResultsCache(char_idx);
         end
 
-        function OcrText = OcrText(this)
+        function OcrText = OcrText(this, char_idx)
             switch this.tesseract_version,
               case 'builtin',
-                OcrText = {this.OcrResults.Text};
+                OcrText = {this.OcrResults(char_idx).Text};
               case  'external',
-                OcrText = {this.ExternalOcrResults.Text};                
+                OcrText = {this.ExternalOcrResults(char_idx).Text};                
             end
         end
 
