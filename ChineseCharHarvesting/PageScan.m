@@ -70,7 +70,6 @@ classdef PageScan < handle
         %    'builtin' then Vision Toolkit 'ocr' function is invoked to
         %    perform OCR; if 'external', the version of Tesseract
         %    available to the OS is invoked
-
         % 
             p = inputParser;
             addRequired(p, 'source', @(x)(ischar(x)||isnumeric(x)));
