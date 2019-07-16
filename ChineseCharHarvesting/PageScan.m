@@ -991,7 +991,7 @@ classdef PageScan < handle
         end
 
 
-        function this = scan_image(this, img, varargin)
+        function scan_image(this, img, varargin)
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
             addRequired(p, 'img', @(x)isnumeric(x));            
