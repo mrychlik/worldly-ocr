@@ -133,7 +133,7 @@ classdef PageScan
 
         function ExternalOcrResults = get.ExternalOcrResults(this)
             if isempty(this.ExternalOcrResultsCache)
-                this = this.updateExternalOcrResults
+                this = this.updateExternalOcrResultsCache
             end
             ExternalOcrResults = this.ExternalOcrResultsCache;
         end
