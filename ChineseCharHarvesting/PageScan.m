@@ -1221,9 +1221,9 @@ end
 function fixedstr = fix_tess_output(str)
 % FIX_TESS_OUTPUT - fixes Tesseract output to be a single character
 %FIXEDSTR = FIX_TESS_OUTPUT(STR)
-    if numel(str)==0
-        fixedstr='?';
-    else
+    if numel(str)==3
         fixedstr=str(1);
+    else
+        fixedstr='?';
     end
 end    
