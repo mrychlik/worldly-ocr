@@ -1,24 +1,5 @@
-%
-% NOTE: This is parallelized version of scanner.m
-% It does not plot for speed.
-% It runs the book in about 30 seconds
-%
-% This script scans through the pages of a book in Chinese and
-% divides them into characters. 
-% 
-% Pages are asssumed to be images in directory PAGEDIR, with
-% filename pattern PAGE_IMG_PATTERN.
-%
-% The characters are written in grayscale to directory CHARDIR.
-% Additionally, monochromatic character images are placed in directory
-% BW_CHARDIR.
-%
-% The algorithm is based on dilation and dividing the dilated
-% image into regions. The structuring element should be picked
-% to be large enough to connect parts within characters, and
-% to be small enough to separate distinct characters.
-% 
 classdef PageScan
+% PAGESCAN - class representing a scanned page
     properties(Constant,Access=private)
         %
         % One way to specify the language is by giving the path to
