@@ -10,6 +10,7 @@
 
 #include <tesseract/baseapi.h>
 #include "mex.h"
+#include "matrix.h"
 
 /** 
  * A MEX wrapper around Tesseract 4
@@ -56,7 +57,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     mxGetString(prhs[2], tessbase, sizeof(tessbase));
   }
 
-  mexPrintf("Tessdata directory: %s", tessbase);
+  mexPrintf("Tessdata directory: %s\n", tessbase);
 
 
   tesseract::TessBaseAPI ocrApi;
@@ -124,10 +125,10 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
   if (nrhs >= 4) {
     // Get ROI
-    mxDouble *roi = (mxDouble *)mxGetPr(prhs[2]);
+    mxDouble *roi = mxGetPr(prhs[2]);
 
-    mexPrintf("ROI: %g %g %g %g", roi[1], roi[2], roi[3], roi[4]);
-    ocrApi.SetRectangle(roi[1], roi[2], roi[3], roi[4]);
+    mexPrintf("ROI: %g %g %g %g\n", roi[1], roi[2], roi[3], roi[4]);
+    // ocrApi.SetRectangle(roi[1], roi[2], roi[3], roi[4]);
   } 
 
   plhs[0] = mxCreateString(ocrApi.GetUTF8Text());
