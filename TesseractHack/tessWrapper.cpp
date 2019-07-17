@@ -1,3 +1,13 @@
+/**
+ * @file   tessWrapper.cpp
+ * @author Marek Rychlik <marek@cannonball.lan>
+ * @date   Tue Jul 16 20:15:37 2019
+ * 
+ * @brief  MEX wrapper around Tesseract 4.0
+ * 
+ * 
+ */
+
 #include "mex.h"
 #include <tesseract/baseapi.h>
 
