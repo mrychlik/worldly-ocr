@@ -135,7 +135,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
    * information can be calculated in results.  Call this after SetImage().
    *   void SetSourceResolution(int ppi);
    */
-  ocrApi.SetSourceResolution(240);
+  ocrApi.SetSourceResolution(70);
 
 
   plhs[0] = mxCreateString(ocrApi.GetUTF8Text());
