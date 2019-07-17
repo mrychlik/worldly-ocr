@@ -21,7 +21,7 @@
  *
  * Example usage from MATLAB:
  *
- *    [I,cmap]=imread('images/phototest.tif');
+ *    [I, cmap] = imread('images/phototest.tif');
  *    % NOTE: Must transpose the image to work.
  *    J = uint8(I');
  *    tessWrapper(J)
