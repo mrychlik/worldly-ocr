@@ -57,7 +57,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
   if (nrhs < 1 || !mxIsUint8(prhs[0])) mexErrMsgTxt("Must call tessWrapper with the image to OCR.");
 
   // char lang[16] = "chi_tra";
-  char lang[16] = "chi_tra";
+  char lang[16] = "chi_tra_vert";
 
   if (nrhs >= 2) {
 
@@ -91,9 +91,11 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     if (ocrApi.Init(path, lang)) {
       mexWarnMsgTxt("Can not find language, defaulting to English.");
     }
+#if 0
     if (ocrApi.Init(path, "eng")) {
       mexErrMsgTxt("error initializing tesseract");
     }
+#endif
 
     mxFree(path);
   }
