@@ -127,6 +127,14 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 		  1,
 		  width);
 
+  /**
+   * Set the resolution of the source image in pixels per inch so font size
+   * information can be calculated in results.  Call this after SetImage().
+   *   void SetSourceResolution(int ppi);
+   */
+  ocrApi.SetSourceResolution(70);
+
+
   plhs[0] = mxCreateString(ocrApi.GetUTF8Text());
 
   ocrApi.End();
