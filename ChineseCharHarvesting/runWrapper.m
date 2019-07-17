@@ -4,5 +4,5 @@ I = rgb2gray(I0);
 % we transposed the image, which allows us to use 'chi_tra'.
 % Too bad...
 J = uint8(I');
-out = tessWrapper(J,'chi_tra','/usr/local/share/tessdata');
+out = tessWrapper(J,'chi_tra_vert','/usr/local/share/tessdata');
 disp(out);
