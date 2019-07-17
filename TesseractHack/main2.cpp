@@ -34,5 +34,6 @@ int main()
     } while((ri->Next(level)));
   }
   delete image;
-  api.End();
+  pixDestroy(&image);
+  api->End();
 }
