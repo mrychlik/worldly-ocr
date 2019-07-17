@@ -291,7 +291,7 @@ classdef PageScan < handle
             label_str = this.OcrText{char_idx};
 
             bh = waitbar(0,'Running external OCR...');
-            len = numel(str);
+            len = numel(label_str);
             for i = 1:len
                 waitbar(i/len,bh);
                 BW = draw_unicode_char(str(i), 'Helvetica', p.Results.FontSize);
