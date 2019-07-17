@@ -29,6 +29,7 @@
 
 #include <tesseract/baseapi.h>
 #include "mex.h"
+#include <cassert>
 
 
 void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
