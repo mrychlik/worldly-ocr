@@ -211,7 +211,7 @@ classdef PageScan < handle
               case 'builtin',
                 color = 'blue';
               case 'external',
-                color = 'magenta'
+                color = 'magenta';
             end
 
 
