@@ -32,6 +32,17 @@
 #include <cassert>
 
 
+/** 
+ * A MEX wrapper around Tesseract 4
+ * The function accepts these arguments (passed in array prhs):
+ *    - An image, which must be a byte array (monochromatic)
+ * 
+ * @param nlhs 
+ * @param plhs 
+ * @param nrhs 
+ * @param prhs 
+ * 
+ */
 void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 {
   // This change required for Tesseract 4.0 (Marek Rychlik)
