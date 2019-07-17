@@ -73,9 +73,9 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
     if (ocrApi.Init(path, lang)) {
       mexWarnMsgTxt("Can not find language, defaulting to English.");
-    }
-    if (ocrApi.Init(path, "eng")) {
-      mexErrMsgTxt("error initializing tesseract");
+      if (ocrApi.Init(path, "eng")) {
+	mexErrMsgTxt("error initializing tesseract");
+      }
     }
 
     mxFree(path);
