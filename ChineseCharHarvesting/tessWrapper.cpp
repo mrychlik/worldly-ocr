@@ -36,6 +36,9 @@
  * A MEX wrapper around Tesseract 4
  * The function accepts these arguments (passed in array prhs):
  *    - An image, which must be a byte array (monochromatic)
+ *
+ * The output (passed to the caller in prhs[0]) is the Unicode
+ * encoded text.
  * 
  * @param nlhs 
  * @param plhs 
