@@ -29,7 +29,7 @@
 
 #include <tesseract/baseapi.h>
 #include "mex.h"
-#include <cassert>
+//#include <cassert>
 
 
 /** 
