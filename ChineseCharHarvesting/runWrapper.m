@@ -2,5 +2,5 @@
 % Must transpose the image to work? Why.
 I = rgb2gray(I0);
 J = uint8(I);
-out = tessWrapper(J,'chi_tra');
+out = tessWrapper(J,'chi_tra_vert');
 disp(out);
