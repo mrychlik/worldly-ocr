@@ -152,6 +152,10 @@ classdef PageScan < handle
         end
 
         function OcrText = OcrText(this, char_idx)
+            nargchk(nargin, 1, 2);
+            if nargin < 2 
+                char_idx = 1:this.CharacterCount;
+            end
             switch this.tesseract_version,
               case 'builtin',
                 OcrText = {this.OcrResults(char_idx).Text};
