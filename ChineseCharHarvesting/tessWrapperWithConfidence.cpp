@@ -124,7 +124,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
   if (nrhs >= 4) {
     // Get ROI
-    double *roi = (double *)mxGetPr(prhs[2]);
+    mxDouble *roi = (mxDouble *)mxGetPr(prhs[2]);
 
     mexPrintf("ROI: %g %g %g %g", roi[1], roi[2], roi[3], roi[4]);
     ocrApi.SetRectangle(roi[1], roi[2], roi[3], roi[4]);
