@@ -58,15 +58,6 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
   mexPrintf("Tessdata directory: %s", tessbase);
 
-  double *roi = nullptr; 
-
-  if (nrhs >= 4) {
-    // Get ROI
-    roi = (double *)mxGetPr(prhs[2]);
-  }
-
-  mexPrintf("ROI: [%d %d %d %d]", roi[0], roi[1], roi[2], roi[3]);
-
 
   tesseract::TessBaseAPI ocrApi;
   if (ocrApi.Init(tessbase, lang)) {
@@ -116,6 +107,11 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
   int width = mxGetM(prhs[0]);
   int height = mxGetN(prhs[0]);
 
+
+  mexPrintf("ROI: [%d %d %d %d]", roi[0], roi[1], roi[2], roi[3]);
+
+
+
   ocrApi.SetImage((unsigned char*)mxGetPr(prhs[0]),
 		  width,
 		  height,
@@ -129,6 +125,14 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
    */
   ocrApi.SetSourceResolution(70);
 
+
+  if (nrhs >= 4) {
+    // Get ROI
+    double *roi = (double *)mxGetPr(prhs[2]);
+
+    mexPrintf("ROI: %g %g %g %g", roi[0], roi[1], roi[2], roi[3]);
+    ocrApi.SetRectangle(roi[0], roi[1], roi[2], roi[3]);
+  } 
 
 
 
