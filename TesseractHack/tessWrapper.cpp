@@ -13,7 +13,7 @@
  *
  * Compile with:
  * 
- * mex -I/usr/local/include  tessWrapper.cpp  -L/usr/local/lib  -ltesseract -llept
+ * mex -I/usr/local/include  tessWrapper.cpp  -L/usr/local/lib  -ltesseract
  *
  * This assumes that Tesseract 4 was installed from source in the
  * /usr/local tree which is the default. Tesseract 3 may exist in /usr
