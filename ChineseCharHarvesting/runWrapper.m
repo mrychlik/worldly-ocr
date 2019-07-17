@@ -1,4 +1,4 @@
-[I0,cmap] = imread('Pages/page-06.ppm');
+[I0, cmap] = imread('Pages/page-06.ppm');
 I = rgb2gray(I0);
 J = uint8(fliplr(I));
 out = tessWrapper(J,'chi_tra','/usr/local/share/tessdata');
