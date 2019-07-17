@@ -288,7 +288,7 @@ classdef PageScan < handle
             im2 = imagesc(~this.PageImageMono);
             im2.AlphaData = 0.1;
 
-            label_str = this.OcrText{char_idx};
+            label_str = this.OcrText(char_idx);
 
             bh = waitbar(0,'Running external OCR...');
             len = numel(label_str);
