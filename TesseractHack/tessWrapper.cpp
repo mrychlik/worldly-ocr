@@ -83,7 +83,11 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
   int width = mxGetM(prhs[0]);
   int height = mxGetN(prhs[0]);
 
-  ocrApi.SetImage((unsigned char*)mxGetPr(prhs[0]), width, height, 1, width);
+  ocrApi.SetImage((unsigned char*)mxGetPr(prhs[0]),
+		  width,
+		  height,
+		  1,
+		  width);
 
   plhs[0] = mxCreateString(ocrApi.GetUTF8Text());
 
