@@ -14,6 +14,10 @@
 
 void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 {
+        // This change required for Tesseract 4.0 (Marek Rychlik)
+        setlocale (LC_ALL, "C");
+
+
 	if (nrhs < 1 || !mxIsUint8(prhs[0])) mexErrMsgTxt("Must call tessWrapper with the image to OCR.");
 //	if (nlhs != 1) mexErrMsgTxt("tessWrapper only returns one value: the ocr text");
 
