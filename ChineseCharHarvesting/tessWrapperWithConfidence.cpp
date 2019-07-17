@@ -126,11 +126,9 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     // Get ROI
     double *roi = (double *)mxGetPr(prhs[2]);
 
-    mexPrintf("ROI: %g %g %g %g", roi[0], roi[1], roi[2], roi[3]);
-    ocrApi.SetRectangle(roi[0], roi[1], roi[2], roi[3]);
+    mexPrintf("ROI: %g %g %g %g", roi[1], roi[2], roi[3], roi[4]);
+    ocrApi.SetRectangle(roi[1], roi[2], roi[3], roi[4]);
   } 
-
-
 
   plhs[0] = mxCreateString(ocrApi.GetUTF8Text());
 
