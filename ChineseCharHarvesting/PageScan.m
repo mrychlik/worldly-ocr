@@ -162,6 +162,8 @@ classdef PageScan < handle
               case  'external',
                 OcrText = {this.ExternalOcrResults(char_idx).Text};                
             end
+            % Replace blanks with '?'
+            OcrText = strrep(OcrText, ' ', '?');
         end
 
 
