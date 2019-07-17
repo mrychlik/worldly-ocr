@@ -18,6 +18,13 @@
  * This assumes that Tesseract 4 was installed from source in the
  * /usr/local tree which is the default. Tesseract 3 may exist in /usr
  * directory tree and there is no interference.
+ *
+ * Example usage from MATLAB:
+ *
+ *    [I,cmap]=imread('images/phototest.tif');
+ *    % Must transpose the image to work? Why.
+ *    J=uint8(I');
+ *    tessWrapper(J)
  */
 
 #include <tesseract/baseapi.h>
