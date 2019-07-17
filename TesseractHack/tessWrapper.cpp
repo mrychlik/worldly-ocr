@@ -80,9 +80,6 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     mxFree(path);
   }
 
-  int width = mxGetM(prhs[0]);
-  int height = mxGetN(prhs[0]);
-
   // This is the function used to pass an array
   // of bytes directly to the Tesseract engine.
   // We bypass Leptonica, no image file.
@@ -103,6 +100,9 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
   // functions. SetImage clears all recognition results, and sets the
   // rectangle to the full image, so it may be followed immediately by a
   // GetUTF8Text, and it will automatically perform recognition.
+
+  int width = mxGetM(prhs[0]);
+  int height = mxGetN(prhs[0]);
 
   ocrApi.SetImage((unsigned char*)mxGetPr(prhs[0]),
 		  width,
