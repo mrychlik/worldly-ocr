@@ -33,7 +33,7 @@ int main()
       delete[] symbol;
     } while((ri->Next(level)));
   }
-  delete image;
+  // delete image;
   pixDestroy(&image);
   api->End();
 }
