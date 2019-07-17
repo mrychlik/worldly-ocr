@@ -131,6 +131,32 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     ocrApi.SetRectangle(roi[0], roi[1], roi[2], roi[3]);
   } 
 
+  api->Recognize(NULL);
+
+  tesseract::ResultIterator* ri = api->GetIterator();
+  tesseract::PageIteratorLevel level = tesseract::RIL_SYMBOL;
+  if(ri != 0) {
+    do {
+      const char* symbol = ri->GetUTF8Text(level);
+      float conf = ri->Confidence(level);
+      if(symbol != 0) {
+	printf("symbol %s, conf: %f", symbol, conf);
+	bool indent = false;
+	tesseract::ChoiceIterator ci(*ri);
+	do {
+	  if (indent) printf("\t\t ");
+	  printf("\t- ");
+	  const char* choice = ci.GetUTF8Text();
+	  printf("%s conf: %f\n", choice, ci.Confidence());
+	  indent = true;
+	} while(ci.Next());
+      }
+      printf("---------------------------------------------\n");
+      delete[] symbol;
+    } while((ri->Next(level)));
+  }
+
+
   plhs[0] = mxCreateString(ocrApi.GetUTF8Text());
 
   ocrApi.End();
