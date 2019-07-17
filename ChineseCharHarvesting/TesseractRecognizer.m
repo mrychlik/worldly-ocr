@@ -20,6 +20,13 @@ classdef TesseractRecognizer
         %       bypassing hacks that are Tesseract-specific.
         psm;
         language;
+        % The meaning of the parameter '--oem' to Tesseract
+        % Specify OCR Engine mode. The options for N are:
+        %
+        %       0 = Original Tesseract only.
+        %       1 = Neural nets LSTM only.
+        %       2 = Tesseract + LSTM.
+        %       3 = Default, based on what is available.
         oem;
     end
 
