@@ -1,8 +1,5 @@
 [I0,cmap] = imread('Pages/page-06.ppm');
 I = rgb2gray(I0);
-% We tried 'chi_tra_vert', but it crashes. Therefore,
-% we transposed the image, which allows us to use 'chi_tra'.
-% Too bad...
-J = uint8(I);
-out = tessWrapperWithConfidence(J,'chi_tra','/usr/local/share/tessdata');
+J = uint8(fliplr(I));
+out = tessWrapperWithConfidence(J,'chi_tra_vert','/usr/local/share/tessdata');
 disp(out);
