@@ -40,10 +40,12 @@
  * The output (passed to the caller in prhs[0]) is the Unicode
  * encoded text.
  * 
- * @param nlhs 
- * @param plhs 
- * @param nrhs 
- * @param prhs 
+ * Explanations of arguments for MEX beginners below.
+ *
+ * @param nlhs              Number of left-hand sides.
+ * @param plhs              Pointers to left-hand sides (must be allocated in the wrapper!).
+ * @param nrhs              Number of right-hand sides passed as arguments.
+ * @param prhs              Pointers to right-hand sides.
  * 
  */
 void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
