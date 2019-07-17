@@ -39,7 +39,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
   if (nrhs < 1 || !mxIsUint8(prhs[0])) mexErrMsgTxt("Must call tessWrapper with the image to OCR.");
 
-  char lang[16] = "eng";
+  char lang[16] = "chi_tra";
 
   if (nrhs >= 2) {
 
