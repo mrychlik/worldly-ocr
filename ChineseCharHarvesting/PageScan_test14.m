@@ -4,7 +4,8 @@ pagedir='Pages';
 page_img_pattern='page-%02d.ppm';
 if ~exist('pages','var') pages=6:95; end;
 keep_outliers=false;
-tesseract_version='external';
+tesseract_version='builtin';
+%tesseract_version='external';
 
 for page=pages
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
