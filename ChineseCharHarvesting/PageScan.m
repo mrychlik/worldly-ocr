@@ -289,7 +289,6 @@ classdef PageScan < handle
             im2.AlphaData = 0.1;
 
             label_str = this.OcrText{char_idx};
-            str = cell2mat(label_str);
 
             bh = waitbar(0,'Running external OCR...');
             len = numel(str);
