@@ -89,7 +89,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
   //
   // From the documentation:
   // void tesseract::TessBaseAPI::SetImage(
-  //            const unsigned char *imagedata,
+  //            const   unsigned char *imagedata,
   // 		int  	width,
   // 		int  	height,
   // 		int  	bytes_per_pixel,
