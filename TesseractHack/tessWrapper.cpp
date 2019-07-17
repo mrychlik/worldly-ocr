@@ -5,7 +5,19 @@
  * 
  * @brief  MEX wrapper around Tesseract 4.0
  * 
+ * The original source is in: https://github.com/supersom/matlab-tesseract-ocr
+ * However, the file is significantly modified in incompatible ways.
  * 
+ * It turns out that only one line of code needs to be added, to compile
+ * properly under Linux/GCC, which sets locale.
+ *
+ * Compile with:
+ * 
+ * mex -I/usr/local/include  tessWrapper.cpp  -L/usr/local/lib  -ltesseract -llept
+ *
+ * This assumes that Tesseract 4 was installed from source in the
+ * /usr/local tree which is the default. Tesseract 3 may exist in /usr
+ * directory tree and there is no interference.
  */
 
 #include <tesseract/baseapi.h>
