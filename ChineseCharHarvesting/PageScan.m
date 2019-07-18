@@ -1126,14 +1126,16 @@ classdef PageScan < handle
             I = this.PageImage;
             J = uint8(fliplr(I));
 
-            x = this.ROI(:,1);
-            y = this.ROI(:,2);
+            x1 = this.ROI(:,1);
+            y1 = this.ROI(:,2);
             w = this.ROI(:,3);
             h = this.ROI(:,4);
+            x2 = x1 + w;
+            y2 = y1 + h;
 
             [H, W] = size(I);
 
-            ROI = [y, W-(x+h), h, w];
+            ROI = [y1, W - x2, y2 - y1, x2 - x1];
             out = tessWrapperWithConfidence(J, 'chi_tra_vert','/usr/local/share/tessdata',...
                                             ROI);
             
