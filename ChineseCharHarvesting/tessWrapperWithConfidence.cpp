@@ -155,6 +155,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
   if (nrhs >= 4) {
 
 #if DEBUG
+    mexPrintf("ROI:\n");
     mexCallMATLAB(0,NULL,1,(mxArray **)&prhs[3],"disp");
 #endif
 
@@ -171,8 +172,8 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     mxDouble *roi = mxGetPr(prhs[3]);
 
 
-    for(int r = 0; r < 4; ++r) {
-      ocrApi.SetRectangle(roi[0 + r * M], roi[1 + r * M], roi[2 + r * M], roi[3 + r * M]);
+    for(int r = 0; r < M; ++r) {
+      ocrApi.SetRectangle(roi[0 * M + r], roi[1 * M + r], roi[2 * M + r], roi[3 * M + r]);
       ocrApi.Recognize(NULL);
       parse_results(ocrApi);
     }
