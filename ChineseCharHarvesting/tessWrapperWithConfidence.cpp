@@ -158,7 +158,9 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     for(int r = 0; r < M; ++r) {
       ocrApi.SetRectangle(roi[0 * M + r], roi[1 * M + r], roi[2 * M + r], roi[3 * M + r]);
       ocrApi.Recognize(NULL);
+#if DEBUG
       mexPrintf("Processing ROI #%d...\n", r);
+#endif
 
       tesseract::ResultIterator* ri = ocrApi.GetIterator();
       tesseract::PageIteratorLevel level = tesseract::RIL_SYMBOL;
