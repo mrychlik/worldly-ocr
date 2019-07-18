@@ -14,6 +14,33 @@
 
 #define DEBUG 1
 
+void parse_results(  tesseract::TessBaseAPI &ocrApi)
+{
+  tesseract::ResultIterator* ri = ocrApi.GetIterator();
+  tesseract::PageIteratorLevel level = tesseract::RIL_SYMBOL;
+  if(ri != 0) {
+    do {
+      const char* symbol = ri->GetUTF8Text(level);
+      float conf = ri->Confidence(level);
+      if(symbol != 0) {
+	printf("symbol %s, conf: %f", symbol, conf);
+	bool indent = false;
+	tesseract::ChoiceIterator ci(*ri);
+	do {
+	  if (indent) printf("\t\t ");
+	  printf("\t- ");
+	  const char* choice = ci.GetUTF8Text();
+	  printf("%s conf: %f\n", choice, ci.Confidence());
+	  indent = true;
+	} while(ci.Next());
+      }
+      printf("---------------------------------------------\n");
+      delete[] symbol;
+    } while((ri->Next(level)));
+  }
+}
+
+
 /** 
  * A MEX wrapper around Tesseract 4
  * The function accepts these arguments (passed in array prhs):
@@ -144,34 +171,15 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     mxDouble *roi = mxGetPr(prhs[3]);
 
 
-    //mexPrintf("ROI: %g %g %g %g\n", roi[0], roi[1], roi[2], roi[3]);
-    //ocrApi.SetRectangle(roi[0], roi[1], roi[2], roi[3]);
+    for(int r = 0; r < 4; ++r) {
+      ocrApi.SetRectangle(roi[0 + r * M], roi[1 + r * M], roi[2 + r * M], roi[3 + r * M]);
+      ocrApi.Recognize(NULL);
+      parse_results(ocrApi);
+    }
   } 
 
-  ocrApi.Recognize(NULL);
 
-  tesseract::ResultIterator* ri = ocrApi.GetIterator();
-  tesseract::PageIteratorLevel level = tesseract::RIL_SYMBOL;
-  if(ri != 0) {
-    do {
-      const char* symbol = ri->GetUTF8Text(level);
-      float conf = ri->Confidence(level);
-      if(symbol != 0) {
-	printf("symbol %s, conf: %f", symbol, conf);
-	bool indent = false;
-	tesseract::ChoiceIterator ci(*ri);
-	do {
-	  if (indent) printf("\t\t ");
-	  printf("\t- ");
-	  const char* choice = ci.GetUTF8Text();
-	  printf("%s conf: %f\n", choice, ci.Confidence());
-	  indent = true;
-	} while(ci.Next());
-      }
-      printf("---------------------------------------------\n");
-      delete[] symbol;
-    } while((ri->Next(level)));
-  }
+
 
 
   plhs[0] = mxCreateString(ocrApi.GetUTF8Text());
