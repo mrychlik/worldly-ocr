@@ -26,7 +26,7 @@ classdef PageScan < handle
         merge_threshold = 15;           % For attaching "cloud"
         max_char_width = 100;           % Maximum width of a valid character
         min_char_height = 10;           % Minimum height of a valid character
-        tesseract_version = 'builtin';  % Whether use MATLAB Tesseract or external
+        tesseract_version = 'mex';% Whether use MATLAB Tesseract, % external or mex
     end
 
     properties(Access=private)
