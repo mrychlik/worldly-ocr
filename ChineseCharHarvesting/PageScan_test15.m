@@ -4,8 +4,6 @@ pagedir='Pages';
 page_img_pattern='page-%02d.ppm';
 if ~exist('pages','var') pages=6:95; end;
 
-%bg='Mono';
-%bg='Foo';                               % Invalid option - test
 keep_outliers = false;
 
 
