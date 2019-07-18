@@ -28,10 +28,13 @@ void parse_results(tesseract::TessBaseAPI &ocrApi)
     do {
       const char* symbol = ri->GetUTF8Text(level);
       float conf = ri->Confidence(level);
+
       if(symbol != 0) {
 	printf("symbol %s, conf: %f", symbol, conf);
+
 	bool indent = false;
 	tesseract::ChoiceIterator ci(*ri);
+
 	do {
 	  if (indent) printf("\t\t ");
 	  printf("\t- ");
@@ -39,6 +42,7 @@ void parse_results(tesseract::TessBaseAPI &ocrApi)
 	  printf("%s conf: %f\n", choice, ci.Confidence());
 	  indent = true;
 	} while(ci.Next());
+
       }
       printf("---------------------------------------------\n");
       delete[] symbol;
