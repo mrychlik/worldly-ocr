@@ -145,9 +145,9 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     mxDouble *roi = mxGetPr(prhs[3]);
 
     mwSize dims[2] = {M,1};
-    const char *field_names[] = {"Symbol", "Confidence"};
+    const char *field_names[] = {"Symbol", "Confidence", "Choices"};
     
-    const int NUMBER_OF_FIELDS = 2;
+    const int NUMBER_OF_FIELDS = 3;
     plhs[0] = mxCreateStructArray(2, dims, NUMBER_OF_FIELDS, field_names);
 
     /*
