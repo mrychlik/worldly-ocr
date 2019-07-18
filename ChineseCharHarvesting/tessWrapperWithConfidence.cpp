@@ -179,6 +179,9 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	    bool indent = false;
 	    tesseract::ChoiceIterator ci(*ri);
 
+	    /*
+	     * Compute alternatives
+	     */
 	    std::vector<std::pair<const char*, float>> buf;
 	    do {
 #if DEBUG
@@ -194,11 +197,13 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	      printf("%s conf: %f\n", choice, ci.Confidence());
 #endif
 
-	      buf.push_back(make_pair(choice, ci.Confidence()));
+	      buf.push_back(std::make_pair(choice, ci.Confidence()));
 
 
 	      indent = true;
 	    } while(ci.Next());
+	    
+	    
 
 	  }
 
