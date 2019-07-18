@@ -229,7 +229,6 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
       
 	} while((ri->Next(level)));
       }
-      mexPrintf("Text: %s\n", ocrApi.GetUTF8Text());
     }
   }
   ocrApi.End();
