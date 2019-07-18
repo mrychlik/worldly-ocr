@@ -14,6 +14,12 @@
 
 #define DEBUG 1
 
+/** 
+ * List symbols along with their confidence
+ * 
+ * @param ROI_idx 
+ * @param ocrApi 
+ */
 void parse_results(int ROI_idx, tesseract::TessBaseAPI &ocrApi)
 {
   mexPrintf("Processing ROI #%d...\n", ROI_idx);
