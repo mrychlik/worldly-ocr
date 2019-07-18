@@ -12,6 +12,8 @@
 #include "mex.h"
 #include "matrix.h"
 
+#define DEBUG 1
+
 /** 
  * A MEX wrapper around Tesseract 4
  * The function accepts these arguments (passed in array prhs):
@@ -124,6 +126,11 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
 
   if (nrhs >= 4) {
+
+#if DEBUG
+    mexCallMATLAB(0,NULL,1,(mxArray **)&prhs[3],"disp");
+#endif
+
     // Get ROI
     int M = mxGetM(prhs[3]);
     int N = mxGetN(prhs[3]);
@@ -137,8 +144,8 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     mxDouble *roi = mxGetPr(prhs[3]);
 
 
-    mexPrintf("ROI: %g %g %g %g\n", roi[0], roi[1], roi[2], roi[3]);
-    ocrApi.SetRectangle(roi[0], roi[1], roi[2], roi[3]);
+    //mexPrintf("ROI: %g %g %g %g\n", roi[0], roi[1], roi[2], roi[3]);
+    //ocrApi.SetRectangle(roi[0], roi[1], roi[2], roi[3]);
   } 
 
   ocrApi.Recognize(NULL);
