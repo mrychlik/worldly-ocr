@@ -4,6 +4,8 @@ J = uint8(fliplr(I));
 % ROI = [0,0,1000,100; 300,300,200,200];
 % ROI = [1,1,400,100; 1, 500,400,100];
 
+% A portion of the file PBoxes/page-06.txt which contains
+% previously computed boxes of characters
 boxes = [ 731 206 799 284
           808 320 875 397
           1036 321 1106 398
@@ -25,11 +27,11 @@ end
 
 % Translate boxe to ROI
 y = boxes(:,1);
-x = size(I,2) - boxes(:,2);
+x = size(I,2)  - boxes(:,2);
 h = boxes(:,3) - boxes(:,1);
 w = boxes(:,4) - boxes(:,2);
 
-ROI = [ y, x, h, w]
+ROI = [ y, x, y + h, x + w]
 
 out = tessWrapperWithConfidence(J,'chi_tra_vert','/usr/local/share/tessdata', ...
                                 ROI)
