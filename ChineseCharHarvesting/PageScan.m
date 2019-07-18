@@ -1122,7 +1122,8 @@ classdef PageScan < handle
         % UPDATEEXTERNALOCRRESULTSCACHE - runs externsl OCR
             ignored=[this.Characters.Ignore];
             this.MexOcrResultsCache = struct('Text',[]);
-            I = rgb2gray(this.PageImage);
+            %I = rgb2gray(this.PageImage);
+            I = this.PageImageMono;            
             J = uint8(fliplr(I));
 
             x = this.ROI(:,1);
