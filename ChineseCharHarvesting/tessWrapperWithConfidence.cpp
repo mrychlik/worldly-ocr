@@ -44,8 +44,11 @@ void parse_results(tesseract::TessBaseAPI &ocrApi)
 	} while(ci.Next());
 
       }
+
       printf("---------------------------------------------\n");
+
       delete[] symbol;
+      
     } while((ri->Next(level)));
   }
 }
