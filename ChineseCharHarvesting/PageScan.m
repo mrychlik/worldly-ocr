@@ -1130,7 +1130,8 @@ classdef PageScan < handle
             y = this.ROI(:,2);
             w = this.ROI(:,3);
             h = this.ROI(:,4);
-            [H,W] = size(I);
+
+            [H, W] = size(I);
 
             ROI = [max(y-3,0), max(W-(x+h)-3,0), h+6, w+6];
             out = tessWrapperWithConfidence(J, 'chi_tra_vert','/usr/local/share/tessdata',...
