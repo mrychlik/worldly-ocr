@@ -232,6 +232,8 @@ classdef PageScan < handle
                 color = 'blue';
               case 'external',
                 color = 'magenta';
+              case 'mex',
+                color = 'red';
             end
 
 
