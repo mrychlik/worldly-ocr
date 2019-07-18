@@ -30,7 +30,8 @@ classdef PageScan < handle
     end
 
     properties(Access=private)
-        ExternalOcrResultsCache = [];   % A cache of OCR results
+        ExternalOcrResultsCache = [];   % A cache of OCR results from OS Tesseract
+        MexOcrResultsCache = [];        % A cache of OCR results from Mex rapper
     end
 
 
@@ -149,6 +150,17 @@ classdef PageScan < handle
                 char_idx = 1:this.CharacterCount;
             end
             ExternalOcrResults = this.ExternalOcrResultsCache(char_idx);
+        end
+
+        function MexOcrResults = MexOcrResults(this, char_idx)
+            if isempty(this.MexOcrResultsCache)
+                this.updateMexOcrResultsCache
+            end
+            nargchk(nargin, 1, 2);
+            if nargin < 2 
+                char_idx = 1:this.CharacterCount;
+            end
+            MexOcrResults = this.MexOcrResultsCache(char_idx);
         end
 
         function OcrText = OcrText(this, char_idx)
