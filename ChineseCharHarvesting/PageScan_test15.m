@@ -6,7 +6,7 @@ if ~exist('pages','var') pages=6:95; end;
 
 %bg='Mono';
 %bg='Foo';                               % Invalid option - test
-keep_outliers = true;
+keep_outliers = false;
 
 
 for page=pages
