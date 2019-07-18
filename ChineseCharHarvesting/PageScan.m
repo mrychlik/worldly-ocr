@@ -1040,7 +1040,7 @@ classdef PageScan < handle
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
             addRequired(p, 'img', @(x)isnumeric(x));            
-            addOptional(p, 'TesseractVersion', 'builtin',...
+            addOptional(p, 'TesseractVersion', 'mex',...
                         @(x)any(validatestring(x,{'builtin','external'})));
             addOptional(p, 'KeepOutliers', false, @(x)islogical(x));            
             parse(p, this, img, varargin{:});
