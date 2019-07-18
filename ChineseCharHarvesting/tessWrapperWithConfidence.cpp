@@ -221,7 +221,9 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
 	  }
 
+#if DEBUG
 	  printf("---------------------------------------------\n");
+#endif
 
 	  delete[] symbol;
       
