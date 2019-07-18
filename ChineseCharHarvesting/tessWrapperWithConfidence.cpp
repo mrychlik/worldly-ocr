@@ -125,8 +125,6 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
   ocrApi.SetSourceResolution(70);
 
 
-  mxDouble *roi = nullptr;
-
   if (nrhs >= 4) {
 
 #if DEBUG
@@ -143,6 +141,8 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     if(N != 4) {
       mexErrMsgTxt("ROI matrix must have 4 columns");
     }
+
+    mxDouble *roi = mxGetPr(prhs[3]);
 
     /*
      * Process regions of interest in succession
