@@ -229,7 +229,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	  printf("---------------------------------------------\n");
 #endif
 
-	  delete[] symbol;
+	  //delete[] symbol;
       
 	} while((ri->Next(level)));
       }
