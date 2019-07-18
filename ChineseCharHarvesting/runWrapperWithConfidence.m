@@ -51,6 +51,7 @@ P=ceil(sqrt(M));
 for r = 1:M
     subplot(P,P,r);
     imagesc(I(y1(r):y2(r),x1(r):x2(r)));
+    title(sprintf('Region #%d', r));
 end
 
 [H,W] = size(I);
