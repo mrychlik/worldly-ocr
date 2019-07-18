@@ -50,12 +50,14 @@ boxes = [ 731 206 799 284
 
 y1 = boxes(:,1); x1 = boxes(:,2); y2 = boxes(:,3); x2 = boxes(:, 4);
 
-M=size(boxes,1);
-P=ceil(sqrt(M));
-for r = 1:M
-    subplot(P,P,r);
-    imagesc(I(y1(r):y2(r),x1(r):x2(r)));
-    title(sprintf('Region #%d', r-1));
+if false
+    M=size(boxes,1);
+    P=ceil(sqrt(M));
+    for r = 1:M
+        subplot(P,P,r);
+        imagesc(I(y1(r):y2(r),x1(r):x2(r)));
+        title(sprintf('Region #%d', r-1));
+    end
 end
 
 [H,W] = size(I);
