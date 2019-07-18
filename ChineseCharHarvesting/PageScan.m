@@ -1132,7 +1132,7 @@ classdef PageScan < handle
             [W,H] = size(I);
 
             ROI = [y, W-(x+w),h,w];
-            out = tessWrapperWithConfidence(I, 'chi_tra_vert','/usr/local/share/tessdata',...
+            out = tessWrapperWithConfidence(J, 'chi_tra_vert','/usr/local/share/tessdata',...
                                             ROI);
             
             for i=1:this.CharacterCount
