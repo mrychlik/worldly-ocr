@@ -11,6 +11,8 @@
 #include <tesseract/baseapi.h>
 #include "mex.h"
 #include "matrix.h"
+#include <vector>
+#include <utility>
 
 #define DEBUG 1
 
@@ -177,6 +179,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	    bool indent = false;
 	    tesseract::ChoiceIterator ci(*ri);
 
+	    std::vector<std::pair<const char*, float>> buf;
 	    do {
 #if DEBUG
 	      if (indent) printf("\t\t ");
@@ -190,6 +193,8 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 #if DEBUG
 	      printf("%s conf: %f\n", choice, ci.Confidence());
 #endif
+
+	      buf.push_back(make_pair(choice, ci.Confidence()));
 
 
 	      indent = true;
