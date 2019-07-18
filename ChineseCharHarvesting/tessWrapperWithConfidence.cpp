@@ -181,9 +181,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	} while((ri->Next(level)));
       }
 
-
-      parse_results(ocrApi);
-      printf("Text: %s\n", ocrApi.GetUTF8Text());
+      mexPrintf("Text: %s\n", ocrApi.GetUTF8Text());
     }
   } 
 
