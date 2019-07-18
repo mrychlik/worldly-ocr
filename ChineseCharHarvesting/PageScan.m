@@ -159,8 +159,10 @@ classdef PageScan < handle
             switch this.tesseract_version,
               case 'builtin',
                 OcrText = {this.OcrResults(char_idx).Text};
-              case  'external',
+              case 'external',
                 OcrText = {this.ExternalOcrResults(char_idx).Text};                
+              case 'mex',
+                OcrText = {this.MexOcrResults(char_idx).Text};                
             end
             % Replace blanks with '?'
             OcrText = strrep(OcrText, ' ', '?');
