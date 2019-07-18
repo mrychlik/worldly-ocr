@@ -149,7 +149,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     
     const int NUMBER_OF_FIELDS = 2;
     plhs[0] = mxCreateStructArray(2, dims, NUMBER_OF_FIELDS, field_names);
-    mxArray* cf = mxCreateDoubleMatrix(1,1,mxREAL);
+    mxArray* cf = mxCreateDoubleMatrix(1, 1, mxREAL);
     double *cfp = mxGetPr(cf);
 
 
