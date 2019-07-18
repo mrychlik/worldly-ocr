@@ -181,7 +181,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
       ocrApi.SetRectangle(roi[0 * M + r], roi[1 * M + r], roi[2 * M + r], roi[3 * M + r]);
       ocrApi.Recognize(NULL);
       mexPrintf("Processing ROI #%d...\n", ROI_idx);
-      parse_results(r, ocrApi);
+      parse_results(ocrApi);
     }
   } 
 
