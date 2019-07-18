@@ -204,7 +204,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	    if(buf.size() > 0) {
 	      // Skip the "Choices" field
 	      mwSize alt_dims[2] = {buf.size(),1};
-	      mxArray *alt = mxCreateStructArray(2, dims, NUMBER_OF_FIELDS-1, field_names);
+	      mxArray *alt = mxCreateStructArray(2, alt_dims, NUMBER_OF_FIELDS-1, field_names);
 
 	      for(int i = 0; i < buf.size(); ++i) {
 		auto& choice = buf[i].first;
