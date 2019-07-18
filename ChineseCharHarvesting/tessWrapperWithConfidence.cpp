@@ -133,8 +133,8 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 #endif
 
     // Get ROI
-    int M = mxGetM(prhs[3]);
-    int N = mxGetN(prhs[3]);
+    mwSize M = mxGetM(prhs[3]);
+    mwSize N = mxGetN(prhs[3]);
 
     mexPrintf("ROI rows: %d, ROI cols: %d\n", M, N);
 
@@ -144,8 +144,15 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
     mxDouble *roi = mxGetPr(prhs[3]);
 
-    mwSize dims[2] = {1,NumChans};
+    mwSize dims[2] = {M,1};
+    const char *field_names[] = {"UTF8Text", "Confidence"};
+    
+    const int NUMBER_OF_FIELDS = 2;
     plhs[0] = mxCreateStructArray(2, dims, NUMBER_OF_FIELDS, field_names);
+    mxArray* cf = mxCreateDoubleMatrix(1,1,mxREAL);
+    mxSetField(plhs[0],1,field_names[1],cf);
+    double *cfp = mxGetPr(cf);
+
 
     /*
      * Process regions of interest in succession
@@ -172,8 +179,15 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	    do {
 	      if (indent) printf("\t\t ");
 	      printf("\t- ");
+
 	      const char* choice = ci.GetUTF8Text();
+	      
+	      mxSetFieldByNumber(plhs[0],r,0,mxCreateString(choice));
+
+
 	      printf("%s conf: %f\n", choice, ci.Confidence());
+	      cfp[r] = ci.Confidence();
+
 	      indent = true;
 	    } while(ci.Next());
 
@@ -189,9 +203,5 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
       mexPrintf("Text: %s\n", ocrApi.GetUTF8Text());
     }
   }
-
-  // Fix this to return meaningful information
-  plhs[0] = mxCreateString(ocrApi.GetUTF8Text());
-
   ocrApi.End();
 }
