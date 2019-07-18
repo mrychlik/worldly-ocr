@@ -66,5 +66,5 @@ end
 ROI = [ y1, W - x2, y2 - y1, x2 - x1];
 
 out = tessWrapperWithConfidence(J,'chi_tra_vert','/usr/local/share/tessdata', ...
-                                ROI)
+                                ROI);
 disp(out);
