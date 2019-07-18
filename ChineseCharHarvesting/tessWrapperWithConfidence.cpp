@@ -144,6 +144,9 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
     mxDouble *roi = mxGetPr(prhs[3]);
 
+    mwSize dims[2] = {1,NumChans};
+    plhs[0] = mxCreateStructArray(2, dims, NUMBER_OF_FIELDS, field_names);
+
     /*
      * Process regions of interest in succession
      */
