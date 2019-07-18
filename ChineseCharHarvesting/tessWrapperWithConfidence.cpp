@@ -196,7 +196,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	      printf("%s conf: %f\n", choice, choice_conf);
 #endif
 
-	      buf.push_back(std::make_pair(choice, ci.Confidence()));
+	      buf.push_back(std::make_pair(choice, choice_conf));
 
 	      indent = true;
 	    } while(ci.Next());
