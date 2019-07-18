@@ -203,7 +203,22 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	      indent = true;
 	    } while(ci.Next());
 	    
-	    
+	    if(buf.size() > 0) {
+	      // Skip the "Choices" field
+	      mxArray *alt = mxCreateStructArray(2, dims, NUMBER_OF_FIELDS-1, field_names);
+
+	      for(int i = 0; i < buf.size(); ++i) {
+		auto& choice = buf[i].first;
+		auto& conf = buf[i].second;
+
+		mxSetFieldByNumber(alt,i,0,mxCreateString(choice));
+
+		mxArray *field_value = mxCreateDoubleMatrix(1,1,mxREAL);
+		*mxGetPr(field_value) = conf;
+		mxSetFieldByNumber(alt,r,1,field_value);
+	      }
+	      mxSetFieldByNumber(plhs[0],r,2,alt);	      
+	    }
 
 	  }
 
