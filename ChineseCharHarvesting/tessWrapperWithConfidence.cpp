@@ -14,7 +14,7 @@
 #include <vector>
 #include <utility>
 
-#define DEBUG 1
+#define DEBUG 0
 
 /** 
  * A MEX wrapper around Tesseract 4
