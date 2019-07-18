@@ -1240,4 +1240,4 @@ function fixedstr = fix_tess_output(str)
     else
         fixedstr='?';
     end
-end    
+end
