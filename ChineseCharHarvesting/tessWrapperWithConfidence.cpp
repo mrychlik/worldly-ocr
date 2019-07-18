@@ -151,6 +151,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     plhs[0] = mxCreateStructArray(2, dims, NUMBER_OF_FIELDS, field_names);
     mxArray* cf = mxCreateDoubleMatrix(M, 1, mxREAL);
     double *cfp = mxGetPr(cf);
+    mxSetField(plhs[0],1,field_names[1],cf);
 
 
     /*
@@ -185,7 +186,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
 
 	      printf("%s conf: %f\n", choice, ci.Confidence());
-	      cfp[r] = ci.Confidence();
+	      mxSetFieldByNumber(plhs[0],r,1,ci.Confidence());
 
 	      indent = true;
 	    } while(ci.Next());
@@ -200,7 +201,6 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
       }
       mexPrintf("Text: %s\n", ocrApi.GetUTF8Text());
     }
-    mxSetField(plhs[0],1,field_names[1],cf);
   }
   ocrApi.End();
 }
