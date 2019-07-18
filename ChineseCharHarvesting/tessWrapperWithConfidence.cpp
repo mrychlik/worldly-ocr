@@ -194,10 +194,6 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     }
   } 
 
-
-
-
-
   plhs[0] = mxCreateString(ocrApi.GetUTF8Text());
 
   ocrApi.End();
