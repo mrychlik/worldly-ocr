@@ -166,6 +166,13 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	  const char* symbol = ri->GetUTF8Text(level);
 	  float conf = ri->Confidence(level);
 
+	  mxSetFieldByNumber(plhs[0],r,0,mxCreateString(symbol));
+
+	  mxArray *field_value = mxCreateDoubleMatrix(1,1,mxREAL);
+	  *mxGetPr(field_value) = conf;
+	  mxSetFieldByNumber(plhs[0],r,1,field_value);
+
+
 	  if(symbol != 0) {
 	    printf("symbol %s, conf: %f", symbol, conf);
 
@@ -180,15 +187,12 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
 	      const char* choice = ci.GetUTF8Text();
 	      
-	      mxSetFieldByNumber(plhs[0],r,0,mxCreateString(choice));
+
 
 #if DEBUG
 	      printf("%s conf: %f\n", choice, ci.Confidence());
 #endif
 
-	      mxArray *field_value = mxCreateDoubleMatrix(1,1,mxREAL);
-	      *mxGetPr(field_value) = ci.Confidence();
-	      mxSetFieldByNumber(plhs[0],r,1,field_value);
 
 	      indent = true;
 	    } while(ci.Next());
