@@ -1133,7 +1133,7 @@ classdef PageScan < handle
             out = tessWrapperWithConfidence(I, 'chi_tra_vert','/usr/local/share/tessdata',...
                                             ROI);
             
-            this.MexOcrResultsCache.Text = out.Symbols;
+            this.MexOcrResultsCache.Text = out.Symbol;
         end
 
 
