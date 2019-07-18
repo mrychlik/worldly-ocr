@@ -14,7 +14,7 @@
 
 #define DEBUG 1
 
-void parse_results(int ROI_idx  tesseract::TessBaseAPI &ocrApi)
+void parse_results(int ROI_idx, tesseract::TessBaseAPI &ocrApi)
 {
   mexPrintf("Processing ROI #%d...\n", ROI_idx);
 
