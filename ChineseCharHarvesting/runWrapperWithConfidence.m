@@ -1,3 +1,16 @@
+% Runs MEX wrapper around Tesseract 4 which computes the confidence
+% of individual characters.
+%
+% The main effort is to understand how ROI are translated
+% to Tesseract API rectangle.
+%
+% Also, we need to apply fliplr to the image, so that
+% the Chinese characters are oriented propertly
+% for chi_tra_vert language.
+%
+
+mfilename;
+
 [I0,cmap] = imread('Pages/page-06.ppm');
 I = rgb2gray(I0);
 J = uint8(fliplr(I));
