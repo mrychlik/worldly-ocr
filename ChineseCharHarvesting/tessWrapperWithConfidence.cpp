@@ -173,14 +173,18 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	    tesseract::ChoiceIterator ci(*ri);
 
 	    do {
+#if DEBUG
 	      if (indent) printf("\t\t ");
 	      printf("\t- ");
+#endif
 
 	      const char* choice = ci.GetUTF8Text();
 	      
 	      mxSetFieldByNumber(plhs[0],r,0,mxCreateString(choice));
 
+#if DEBUG
 	      printf("%s conf: %f\n", choice, ci.Confidence());
+#endif
 
 	      mxArray *field_value = mxCreateDoubleMatrix(1,1,mxREAL);
 	      *mxGetPr(field_value) = ci.Confidence();
