@@ -190,6 +190,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
       ocrApi.Recognize(NULL);
       mexPrintf("Processing ROI #%d...\n", r);
       parse_results(ocrApi);
+      printf("Text: %s\n", ocrApi.GetUTF8Text());
     }
   } 
 
