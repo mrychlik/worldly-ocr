@@ -190,11 +190,10 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 #endif
 
 	      const char* choice = ci.GetUTF8Text();
-	      
-
+	      float choice_conf = ci.Confidence();
 
 #if DEBUG
-	      printf("%s conf: %f\n", choice, ci.Confidence());
+	      printf("%s conf: %f\n", choice, choice_conf);
 #endif
 
 	      buf.push_back(std::make_pair(choice, ci.Confidence()));
@@ -215,7 +214,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
 		mxArray *field_value = mxCreateDoubleMatrix(1,1,mxREAL);
 		*mxGetPr(field_value) = conf;
-		mxSetFieldByNumber(alt,r,1,field_value);
+		mxSetFieldByNumber(alt,i,1,field_value);
 	      }
 	      mxSetFieldByNumber(plhs[0],r,2,alt);	      
 	    }
