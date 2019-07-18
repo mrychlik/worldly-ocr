@@ -198,7 +198,6 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
 	      buf.push_back(std::make_pair(choice, ci.Confidence()));
 
-
 	      indent = true;
 	    } while(ci.Next());
 	    
