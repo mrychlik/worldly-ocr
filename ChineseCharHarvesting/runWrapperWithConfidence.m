@@ -15,19 +15,21 @@ boxes = [ 731 206 799 284
           1800 322 1868 400 ];
 
 % Let us see what is in the original boxes
-for r = 1:size(boxes,1)
+M=size(boxes,1);
+P=ceil(sqrt(M));
+for r = 1:M
     y1 = boxes(r,1); x1 = boxes(r,2); y2 = boxes(r,3); x2 = boxes(r, 4);
+    subplot(P,P,r);
     imagesc(I(y1:y2,x1:x2));
-    pause(0.5);
 end
 
 % Translate boxe to ROI
 y = boxes(:,1);
-x = boxes(:,2);
-h = boxes(:,3)-boxes(:,1);
-w = boxes(:,4)-boxes(:,2);
+x = size(I,2) - boxes(:,2);
+h = boxes(:,3) - boxes(:,1);
+w = boxes(:,4) - boxes(:,2);
 
-ROI = [ x, y, w, h];
+ROI = [ y, x, h, w]
 
 out = tessWrapperWithConfidence(J,'chi_tra_vert','/usr/local/share/tessdata', ...
                                 ROI)
