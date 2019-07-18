@@ -128,7 +128,9 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     int M = mxGetM(prhs[3]);
     int N = mxGetN(prhs[3]);
 
-    if(N!=4) {
+    mexPrintf("ROI rows: %d, ROI cols: %d\n", M, N);
+
+    if(N != 4) {
       mexErrMsgTxt("ROI matrix must have 4 columns");
     }
 
