@@ -75,7 +75,7 @@ classdef PageScan < handle
             addRequired(p, 'source', @(x)(ischar(x)||isnumeric(x)));
             addOptional(p, 'KeepOutliers', false, @(x)islogical(x));            
             addOptional(p, 'TesseractVersion', 'builtin',...
-                        @(x)any(validatestring(x,{'builtin','external'})));
+                        @(x)any(validatestring(x,{'builtin','external','mex'})));
             parse(p, source, varargin{:});
 
             if ischar(source)
