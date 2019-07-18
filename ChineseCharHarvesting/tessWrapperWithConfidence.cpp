@@ -150,7 +150,6 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     const int NUMBER_OF_FIELDS = 2;
     plhs[0] = mxCreateStructArray(2, dims, NUMBER_OF_FIELDS, field_names);
     mxArray* cf = mxCreateDoubleMatrix(1,1,mxREAL);
-    mxSetField(plhs[0],1,field_names[1],cf);
     double *cfp = mxGetPr(cf);
 
 
@@ -199,9 +198,9 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
       
 	} while((ri->Next(level)));
       }
-
       mexPrintf("Text: %s\n", ocrApi.GetUTF8Text());
     }
+    mxSetField(plhs[0],1,field_names[1],cf);
   }
   ocrApi.End();
 }
