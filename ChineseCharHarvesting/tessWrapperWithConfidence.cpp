@@ -165,16 +165,14 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	do {
 	  const char* symbol = ri->GetUTF8Text(level);
 	  float conf = ri->Confidence(level);
-
-	  mxSetFieldByNumber(plhs[0],r,0,mxCreateString(symbol));
-
-	  mxArray *field_value = mxCreateDoubleMatrix(1,1,mxREAL);
-	  *mxGetPr(field_value) = conf;
-	  mxSetFieldByNumber(plhs[0],r,1,field_value);
-
-
 	  if(symbol != 0) {
 	    printf("symbol %s, conf: %f", symbol, conf);
+
+	    mxSetFieldByNumber(plhs[0],r,0,mxCreateString(symbol));
+
+	    mxArray *field_value = mxCreateDoubleMatrix(1,1,mxREAL);
+	    *mxGetPr(field_value) = conf;
+	    mxSetFieldByNumber(plhs[0],r,1,field_value);
 
 	    bool indent = false;
 	    tesseract::ChoiceIterator ci(*ri);
