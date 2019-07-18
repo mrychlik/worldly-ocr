@@ -67,7 +67,7 @@ classdef PageScan < handle
         %   * KeepOutliers - if true all objects in the image are kept, even
         %   if they do not look like characters.
         % 
-        %   * TesseractVersion - either 'builtin' or 'external'; if
+        %   * TesseractVersion - either 'builtin', 'external' or 'mex'; if
         %     'builtin' then Vision Toolkit 'ocr' function is invoked to
         %     perform OCR; if 'external', the version of Tesseract available
         %     to the OS is invoked
