@@ -143,7 +143,7 @@ classdef PageScan < handle
 
         function ExternalOcrResults = ExternalOcrResults(this, char_idx)
             if isempty(this.ExternalOcrResultsCache)
-                this.updateExternalOcrResultsCache
+                this.updateExternalOcrResultsCache;
             end
             nargchk(nargin, 1, 2);
             if nargin < 2 
@@ -154,7 +154,7 @@ classdef PageScan < handle
 
         function MexOcrResults = MexOcrResults(this, char_idx)
             if isempty(this.MexOcrResultsCache)
-                this.updateMexOcrResultsCache
+                this.updateMexOcrResultsCache;
             end
             nargchk(nargin, 1, 2);
             if nargin < 2 
