@@ -149,10 +149,6 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     
     const int NUMBER_OF_FIELDS = 2;
     plhs[0] = mxCreateStructArray(2, dims, NUMBER_OF_FIELDS, field_names);
-    mxArray* cf = mxCreateDoubleMatrix(M, 1, mxREAL);
-    double *cfp = mxGetPr(cf);
-    mxSetField(plhs[0],1,field_names[1],cf);
-
 
     /*
      * Process regions of interest in succession
@@ -184,9 +180,11 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	      
 	      mxSetFieldByNumber(plhs[0],r,0,mxCreateString(choice));
 
-
 	      printf("%s conf: %f\n", choice, ci.Confidence());
-	      mxSetFieldByNumber(plhs[0],r,1,ci.Confidence());
+
+	      mxArray *field_value = mxCreateDoubleMatrix(1,1,mxREAL);
+	      *mxGetPr(field_value) = ci.Confidence();
+	      mxSetFieldByNumber(plhs[0],r,1,field_value);
 
 	      indent = true;
 	    } while(ci.Next());
