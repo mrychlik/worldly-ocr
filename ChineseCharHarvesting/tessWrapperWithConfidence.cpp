@@ -125,7 +125,15 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
   if (nrhs >= 4) {
     // Get ROI
+    int M = mxGetM(prhs[3]);
+    int N = mxGetN(prhs[3]);
+
+    if(N!=4) {
+      mexErrMsgTxt("ROI matrix must have 4 columns");
+    }
+
     mxDouble *roi = mxGetPr(prhs[3]);
+
 
     mexPrintf("ROI: %g %g %g %g\n", roi[0], roi[1], roi[2], roi[3]);
     ocrApi.SetRectangle(roi[0], roi[1], roi[2], roi[3]);
