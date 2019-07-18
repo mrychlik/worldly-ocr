@@ -23,6 +23,7 @@ void parse_results(tesseract::TessBaseAPI &ocrApi)
 {
   tesseract::ResultIterator* ri = ocrApi.GetIterator();
   tesseract::PageIteratorLevel level = tesseract::RIL_SYMBOL;
+
   if(ri != 0) {
     do {
       const char* symbol = ri->GetUTF8Text(level);
