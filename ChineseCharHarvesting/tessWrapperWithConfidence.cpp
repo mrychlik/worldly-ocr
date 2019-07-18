@@ -145,6 +145,9 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     mxDouble *roi = mxGetPr(prhs[3]);
 
 
+    /*
+     * Process regions of interest in succession
+     */
     for(int r = 0; r < M; ++r) {
       ocrApi.SetRectangle(roi[0 * M + r], roi[1 * M + r], roi[2 * M + r], roi[3 * M + r]);
       ocrApi.Recognize(NULL);
