@@ -14,8 +14,10 @@
 
 #define DEBUG 1
 
-void parse_results(  tesseract::TessBaseAPI &ocrApi)
+void parse_results(int ROI_idx  tesseract::TessBaseAPI &ocrApi)
 {
+  mexPrintf("Processing ROI #%d...\n", ROI_idx);
+
   tesseract::ResultIterator* ri = ocrApi.GetIterator();
   tesseract::PageIteratorLevel level = tesseract::RIL_SYMBOL;
   if(ri != 0) {
