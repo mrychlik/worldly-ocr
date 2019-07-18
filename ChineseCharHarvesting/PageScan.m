@@ -1116,6 +1116,25 @@ classdef PageScan < handle
             close(bh);
         end
 
+        function updateMexOcrResultsCache(this)
+        % UPDATEEXTERNALOCRRESULTSCACHE - runs externsl OCR
+            ignored=[this.Characters.Ignore];
+            this.MexOcrResultsCache = struct('Text',[]);
+            I = rgb2gray(this.PageImage);
+            J = uint8(fliplr(I));
+
+            x = this.ROI(:,1);
+            y = this.ROI(:,2);
+            w = this.ROI(:,3);
+            h = this.ROI(:,4);
+            [W,H] = size(I);
+
+            ROI = [y, W-(x+h),h,w];
+            out = tessWrapperWithConfidence(I, 'chi_tra_vert','/usr/local/share/tessdata',...
+                                            ROI);
+            
+            this.MexOcrResultsCache.Text = out.Symbols;
+        end
 
 
     end
