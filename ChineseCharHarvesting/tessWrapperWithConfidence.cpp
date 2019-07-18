@@ -17,13 +17,10 @@
 /** 
  * List symbols along with their confidence
  * 
- * @param ROI_idx 
  * @param ocrApi 
  */
-void parse_results(int ROI_idx, tesseract::TessBaseAPI &ocrApi)
+void parse_results(tesseract::TessBaseAPI &ocrApi)
 {
-  mexPrintf("Processing ROI #%d...\n", ROI_idx);
-
   tesseract::ResultIterator* ri = ocrApi.GetIterator();
   tesseract::PageIteratorLevel level = tesseract::RIL_SYMBOL;
   if(ri != 0) {
@@ -183,6 +180,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     for(int r = 0; r < M; ++r) {
       ocrApi.SetRectangle(roi[0 * M + r], roi[1 * M + r], roi[2 * M + r], roi[3 * M + r]);
       ocrApi.Recognize(NULL);
+      mexPrintf("Processing ROI #%d...\n", ROI_idx);
       parse_results(r, ocrApi);
     }
   } 
