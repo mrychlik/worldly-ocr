@@ -168,7 +168,9 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 	  const char* symbol = ri->GetUTF8Text(level);
 	  float conf = ri->Confidence(level);
 	  if(symbol != 0) {
+#if DEBUG
 	    printf("symbol %s, conf: %f", symbol, conf);
+#endif
 
 	    mxSetFieldByNumber(plhs[0],r,0,mxCreateString(symbol));
 
