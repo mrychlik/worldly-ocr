@@ -1,8 +1,6 @@
 disp(mfilename);
 
-pagedir='Pages';
-page_img_pattern='page-%02d.ppm';
-if ~exist('pages','var') pages=6:95; end;
+config_pages;
 
 show_outliers=false;
 keep_outliers=false;
