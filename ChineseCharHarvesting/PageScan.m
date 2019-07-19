@@ -1050,8 +1050,7 @@ classdef PageScan < handle
             this.tesseract_version = p.Results.TesseractVersion;
 
             I1 = 255 - this.PageImage; 
-            %this.PageImageMono = im2bw(I1,this.bin_threshold);
-            this.PageImageMono = im2bw(I1); % Use default threshold
+            this.PageImageMono = im2bw(I1,this.bin_threshold);
             this.DilatedImage = imdilate(this.PageImageMono, this.DilationSE);
             stats = regionprops(this.DilatedImage,...
                                 'BoundingBox',...
