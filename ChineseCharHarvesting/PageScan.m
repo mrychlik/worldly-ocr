@@ -982,6 +982,17 @@ classdef PageScan < handle
                             disp(sprintf('Merging character %d',char_idx));
                             this = this.do_merge_characters(ci(j), ...
                                                             char_idx);
+                        else
+                            % Enlarge the bounding box 
+                            s = this.Character.Stats;
+                            bbox = s.BoundingBox;
+                            bbox1 = [bbox(1), bbox(2),...
+                                     bbox(3),...
+                                     bbox(4) + 2*this.merge_threshold
+                                     ];
+
+                            s.BoundingBox = bbox1;
+                            this.Character.Stats = s;
                         end
                     end
                 end
