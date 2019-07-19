@@ -22,11 +22,14 @@ for page=pages
             continue;
         end
         I = ps.Characters(i).CroppedMonoImage;
+
         Ipad = padarray(I, padding, 0, 'both');
         Iskel = imdilate(Iskel, se);
+
         Iskel = bwskel(I);
         Iskel = imdilate(Iskel, se);
         Iskel = padarray(Iskel,padding,0,'both');
+
         str1 = r.recognize(~Iskel);
         str2 = r.recognize(~Ipad);
         subplot(1,2,1);
