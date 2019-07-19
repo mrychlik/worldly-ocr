@@ -12,7 +12,6 @@ classdef PageScan < handle
                 'ChineseTraditional',...
                 'ChineseSimplified'
             };
-pp    end
 
     properties
         DilationSE = strel('rectangle', [5,15]); % for imdilate
