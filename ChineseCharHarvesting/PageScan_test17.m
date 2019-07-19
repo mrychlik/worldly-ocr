@@ -9,6 +9,8 @@ keep_outliers=false;
 se = strel('rectangle',[3,3]);
 padding = [5 5];
 
+r = TesseractRecognizer('Language','chi_tra','PageSegmentationMode',10);
+
 for page=pages
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
     ps = PageScan(filename,'KeepOutliers',keep_outliers);
@@ -24,7 +26,7 @@ for page=pages
         Iskel = bwskel(I);
         %Iskel = imdilate(Iskel, se);
         Iskel = padarray(Iskel,padding,0,'both');
-        str = ps.OcrText(i);
+        str = r.recognize(~I);
         subplot(1,2,1);
         imagesc(Iskel);
         title(str(1),'FontSize',100);
