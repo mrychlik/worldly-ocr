@@ -225,8 +225,6 @@ classdef PageScan < handle
               case 'mex',
                 OcrText = {this.MexOcrResults(char_idx).Text};                
             end
-            % Replace blanks with '?'
-            OcrText = strrep(OcrText, ' ', '?');
         end
 
 
