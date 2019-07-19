@@ -33,7 +33,7 @@ for page=pages
         imagesc(Iskel);
         title(str1,'FontSize',100);
         subplot(1,2,2);
-        imagesc(I);
+        imagesc(Ipad);
         title(str2,'FontSize',100);
         pause(2);
     end
