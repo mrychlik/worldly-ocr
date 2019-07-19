@@ -34,6 +34,7 @@ classdef PageScan < handle
     properties(Access=private)
         ExternalOcrResultsCache = [];   % A cache of OCR results from OS Tesseract
         MexOcrResultsCache = [];        % A cache of OCR results from Mex rapper
+        opts = [];                      % Various options
     end
 
 
@@ -89,6 +90,8 @@ classdef PageScan < handle
             else
                 error('First argument must be a filename or an image');
             end
+
+            this.opts = p.Results;
             this.scan_image(img, p.Results);
         end
 
@@ -1051,9 +1054,8 @@ classdef PageScan < handle
             this.Characters(idx2).Ignore = true;
         end
 
-        function scan_image(this, img, opts)
+        function scan_image(this, img)
             this.PageImage = img;
-            this.tesseract_version = opts.TesseractVersion;
 
             I1 = 255 - this.PageImage; 
             this.PageImageMono = im2bw(I1,this.bin_threshold);
@@ -1073,7 +1075,7 @@ classdef PageScan < handle
                 if PageScan.filter_out(stats(n))
                     is_outlier = true;
                 end
-                if ~opts.KeepOutliers && is_outlier
+                if ~this.opts.KeepOutliers && is_outlier
                     continue;
                 end
 
@@ -1109,7 +1111,7 @@ classdef PageScan < handle
                     is_outlier = true;
                 end
 
-                if ~opts.KeepOutliers && is_outlier
+                if ~this.opts.KeepOutliers && is_outlier
                     continue;
                 end
                 char_count = char_count + 1;
