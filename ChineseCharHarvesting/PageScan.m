@@ -982,9 +982,9 @@ classdef PageScan < handle
                             disp(sprintf('Merging character %d',char_idx));
                             this = this.do_merge_characters(ci(j), ...
                                                             char_idx);
-                        else
+                        elseif ~c0.Ignore
                             % Enlarge the bounding box 
-                            s = this.Character.Stats;
+                            s = c0.Stats;
                             bbox = s.BoundingBox;
                             bbox1 = [bbox(1), bbox(2) - this.merge_threshold,...
                                      bbox(3),...
@@ -992,7 +992,7 @@ classdef PageScan < handle
                                      ];
 
                             s.BoundingBox = bbox1;
-                            this.Character.Stats = s;
+                            this.Characters(char_idx).Stats = s;
                         end
                     end
                 end
