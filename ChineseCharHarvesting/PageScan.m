@@ -1139,6 +1139,7 @@ classdef PageScan < handle
             ignored=[this.Characters.Ignore];
             this.ExternalOcrResultsCache = struct('Text',[]);
             bh = waitbar(0,'Running external OCR...');
+
             for i=1:this.CharacterCount
                 waitbar(i/this.CharacterCount,bh);
                 if ignored(i)
@@ -1148,6 +1149,7 @@ classdef PageScan < handle
                 I = padarray(I,[10 10],0,'both');
                 this.ExternalOcrResultsCache(i).Text = fix_tess_output(r.recognize(~I));
             end
+
             close(bh);
         end
 
