@@ -1,4 +1,4 @@
-config_num = 3;
+config_num = 1;
 
 switch config_num
   case 1,
