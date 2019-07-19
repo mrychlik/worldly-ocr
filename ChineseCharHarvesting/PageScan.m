@@ -60,25 +60,36 @@ classdef PageScan < handle
         %
         %   * KeepOutliers - if true all objects in the image are kept, even
         %   if they do not look like characters.
-        % 
+        %   * MergeCharacters - if true, automatically try to merge
+        %     short (i.e. not tall) characters into bigger ones
+        %
         %   * TesseractVersion - either 'builtin', 'external' or 'mex'; if
         %     'builtin' then Vision Toolkit 'ocr' function is invoked to
         %     perform OCR; if 'external', the version of Tesseract available
         %     to the OS is invoked
+        %
         %   * ShortHeightThreshold - below this height the character is
         %     short
+        %
         %   * ColumnDistThreshold  - distinct columns must be at least
         %     this pixels apart
+        % 
         %   * RowDistThreshold     - distinct rows must be at least this
         %     pixels apart
+        % 
         %   * MergeThreshold       - only merge if bboxes of characters
         %     are this pixels apart in vert. direction
+        % 
         %   * MaxCharWidth         - objects wider than this pixels are not
         %   considered characters
+        % 
         %   * MinCharHeight        - objects shorter than this are not
         %   characters
+        % 
         %   * BinThreshold         - used to binarize images
+        % 
         %   * MinVertGap           - The minimum vertical gap between bboxes
+        % 
         %   * LanguageSpec         - language specification
         %     One way to specify the language is by giving the path to
         %     trained data. These files Must be compatible with the version
@@ -95,6 +106,7 @@ classdef PageScan < handle
 
             addRequired(p, 'source', @(x)(ischar(x)||isnumeric(x)));
             addOptional(p, 'KeepOutliers', false, @(x)islogical(x));            
+            addOptional(p, 'MergeCharacters', false, @(x)islogical(x));
             addOptional(p, 'TesseractVersion', 'mex',...
                         @(x)any(validatestring(x,{'builtin','external','mex'})));
             addOptional(p, 'ShortHeightThreshold', 30);
@@ -107,7 +119,6 @@ classdef PageScan < handle
             addOptional(p, 'MinVertGap', 10);% Min. vert. gap between bboxes.
             addOptional(p, 'LanguageSpec', 'ChineseTraditional',...
                         @(x)any(validatestring, this.SupportedLanguages));
-
             parse(p, source, varargin{:});
 
             if ischar(source)
