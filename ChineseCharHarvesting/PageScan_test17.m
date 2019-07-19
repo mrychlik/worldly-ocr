@@ -20,12 +20,17 @@ for page=pages
             continue;
         end
         I = ps.Characters(i).CroppedMonoImage;
-        Iskel = bwskel(I);
         Iskel = imdilate(Iskel, se);
+        Iskel = bwskel(I);
+        %Iskel = imdilate(Iskel, se);
         Iskel = padarray(Iskel,padding,0,'both');
         str = ps.OcrText(i);
+        subplot(2,1,1);
         imagesc(Iskel);
         title(str(1),'FontSize',100);
+        subplot(2,1,2);
+        imagesc(I);
+        title('Original image');
         pause(2);
     end
     ps.show_ocr;
