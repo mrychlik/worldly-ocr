@@ -79,6 +79,11 @@ classdef PageScan < handle
         %   characters
         %   * BinThreshold         - used to binarize images
         %   * MinVertGap           - The minimum vertical gap between bboxes
+        % 
+        %  NOTE TO DEVELOPERS: If you have an option to the constructor
+        %  which you would like to add, do not add a property. Instead,
+        %  use the addOption(p,...) in the code of the
+        %  constructor. Add documentation above.
             p = inputParser;
 
             addRequired(p, 'source', @(x)(ischar(x)||isnumeric(x)));
