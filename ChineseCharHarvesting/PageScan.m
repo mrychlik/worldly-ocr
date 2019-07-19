@@ -1145,6 +1145,7 @@ classdef PageScan < handle
 
             %I = 255*(~this.PageImageMono);
             I = this.PageImage;
+            I = rgb2gray(I);
             J = uint8(fliplr(I));
 
             x1 = this.ROI(:,1);
