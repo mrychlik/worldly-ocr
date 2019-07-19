@@ -9,8 +9,6 @@ se = strel('disk',2);
 %se = strel('rectangle',[4,4]);
 padding = [10 10];
 
-r = TesseractRecognizer('Language','chi_tra','PageSegmentationMode',10);
-
 for page=pages
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
     ps = PageScan(filename,'KeepOutliers',keep_outliers);
@@ -25,7 +23,7 @@ for page=pages
         Iskel = bwskel(I);
         Iskel = imdilate(Iskel, se);
         Iskel = padarray(Iskel,padding,0,'both');
-        str = r.recognize(~Iskel);
+        str = ps.OcrText(i);
         imagesc(Iskel);
         title(str(1),'FontSize',100);
         pause(1);
