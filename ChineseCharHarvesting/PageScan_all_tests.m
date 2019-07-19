@@ -14,3 +14,7 @@ PageScan_test7;
 PageScan_test9;
 PageScan_test10;
 PageScan_test11;
+PageScan_test12;
+PageScan_test13;
+PageScan_test14;
+PageScan_test15;
