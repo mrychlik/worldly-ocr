@@ -1092,7 +1092,6 @@ classdef PageScan < handle
                 [h2,w2] = size(BW);
 
                 s = stats(n);
-                
                 % Adjust bounding box.  This makes a tight box around cropped character
                 bbox1 = [bbox(1)+rect(1),...
                          bbox(2)+rect(2), ...
