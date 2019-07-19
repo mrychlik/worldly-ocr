@@ -16,7 +16,7 @@ for page=pages
     ps = PageScan(filename,'KeepOutliers',keep_outliers);
     ps = ps.do_merge_characters_all;
 
-    ignored = [ps.Character.Ignore];
+    ignored = [ps.Characters.Ignore];
     for i=1:ps.CharacterCount
         if ignore(i)
             continue;
