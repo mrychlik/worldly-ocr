@@ -1143,7 +1143,7 @@ classdef PageScan < handle
             ignored=[this.Characters.Ignore];
             this.MexOcrResultsCache = struct('Text',[]);
 
-            I = ~this.PageImageMono;
+            I = 255*(~this.PageImageMono);
             %I = this.PageImage;
             J = uint8(fliplr(I));
 
