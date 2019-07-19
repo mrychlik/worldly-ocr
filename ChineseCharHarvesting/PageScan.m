@@ -1051,7 +1051,6 @@ classdef PageScan < handle
             this.Characters(idx2).Ignore = true;
         end
 
-
         function scan_image(this, img, opts)
             this.PageImage = img;
             this.tesseract_version = opts.TesseractVersion;
