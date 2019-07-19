@@ -18,7 +18,7 @@ for page=pages
 
     ignored = [ps.Characters.Ignore];
     for i=1:ps.CharacterCount
-        if ignore(i)
+        if ignored(i)
             continue;
         end
         I = ps.Characters(i).CroppedMonoImage;
