@@ -17,7 +17,7 @@ for page=pages
         I = ps.Characters(i).CroppedMonoImage;
         Iskel = bwskel(I);
         %I = padarray(I,[10 10],0,'both');
-        str = r.recognize(~I);
+        str = r.recognize(~Iskel);
         imagesc(I);
         title(str(1),'FontSize',100);
         pause(0.5);
