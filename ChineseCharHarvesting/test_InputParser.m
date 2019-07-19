@@ -1,4 +1,3 @@
-function test_InputParser
 p=make_parser;
 
 varargin1 = {'a',7,'c',false,'b',17,'d',[]};
