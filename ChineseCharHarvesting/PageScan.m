@@ -1135,7 +1135,7 @@ classdef PageScan < handle
                 this.Characters(char_count).Position = [x1,y1,x2,y2];
                 this.Characters(char_count).CroppedMonoImage = BW;
                 this.Characters(char_count).AltImage = K; % Carved out image
-                this.Characters(char_count).IsShort = bbox(4) < this.short_height_threshold;
+                this.Characters(char_count).IsShort = bbox(4) < this.ShortHeightThreshold;
                 this.Characters(char_count).IsOutlier = is_outlier;
                 this.Characters(char_count).Ignore = false;
             end
