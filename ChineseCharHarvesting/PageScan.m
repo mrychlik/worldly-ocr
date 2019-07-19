@@ -996,7 +996,7 @@ classdef PageScan < handle
                                            c0.Stats.BoundingBox);
                         [d,j] = min([d1,d2]);
                         e = [e1,e2];
-                        if d < this.merge_threshold && e(j) == 0 && ~c(j).Ignore
+                        if d < this.opts.MergeThreshold && e(j) == 0 && ~c(j).Ignore
                             disp(sprintf('Merging character %d',char_idx));
                             this = this.do_merge_characters(ci(j), ...
                                                             char_idx);
