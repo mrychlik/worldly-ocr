@@ -1230,9 +1230,6 @@ classdef PageScan < handle
                                             ROI);
             
             for i=1:this.CharacterCount
-                if ignored(i)
-                    continue;
-                end
                 if isempty(out(i).Symbol) 
                     this.MexOcrResultsCache(i).Text = '?';
                 else
