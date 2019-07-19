@@ -20,15 +20,6 @@ classdef PageScan < handle
         PageImage = [];
         PageImageMono = [];
         DilatedImage = [];
-        short_height_threshold = 30;
-        column_dist_threshold = 60;
-        row_dist_threshold = 40;        
-        merge_threshold = 20;           % For attaching "cloud"
-        max_char_width = 100;           % Maximum width of a valid character
-        min_char_height = 10;           % Minimum height of a valid character
-        bin_threshold = 0.45;           % Binarization threshold
-        min_vert_gap = 10;              % Min. vert. gap between b'boxes.
-        tesseract_version = 'builtin';% Whether use MATLAB Tesseract, % external or mex
     end
 
     properties(Access=private)
@@ -74,12 +65,35 @@ classdef PageScan < handle
         %     'builtin' then Vision Toolkit 'ocr' function is invoked to
         %     perform OCR; if 'external', the version of Tesseract available
         %     to the OS is invoked
-        % 
+        %   * ShortHeightThreshold - below this height the character is
+        %     short
+        %   * ColumnDistThreshold  - distinct columns must be at least
+        %     this pixels apart
+        %   * RowDistThreshold     - distinct rows must be at least this
+        %     pixels apart
+        %   * MergeThreshold       - only merge if bboxes of characters
+        %     are this pixels apart in vert. direction
+        %   * MaxCharWidth         - objects wider than this pixels are not
+        %   considered characters
+        %   * MinCharHeight        - objects shorter than this are not
+        %   characters
+        %   * BinThreshold         - used to binarize images
+        %   * MinVertGap           - The minimum vertical gap between bboxes
             p = inputParser;
+
             addRequired(p, 'source', @(x)(ischar(x)||isnumeric(x)));
             addOptional(p, 'KeepOutliers', false, @(x)islogical(x));            
             addOptional(p, 'TesseractVersion', 'mex',...
                         @(x)any(validatestring(x,{'builtin','external','mex'})));
+            addOptional(p, 'ShortHeightThreshold', 30);
+            addOptional(p, 'ColumnDistThreshold', 60)
+            addOptional(p, 'RowDistThreshold', 40);        
+            addOptional(p, 'MergeThreshold', 20);% For attaching "cloud"
+            addOptional(p, 'MaxCharWidth', 100);% Maximum width of a valid character
+            addOptional(p, 'MinCharHeight',10);% Minimum height of a valid character
+            addOptional(p, 'BinThreshold', 0.45);% Binarization threshold
+            addOptional(p, 'MinVertGap', 10);% Min. vert. gap between bboxes.
+
             parse(p, source, varargin{:});
 
             if ischar(source)
