@@ -6,7 +6,7 @@ config_pages;
 %bg='Mono';
 %bg='Foo';                               % Invalid option - test
 bg='Original';
-keep_outliers = true;
+keep_outliers = false;
 show_dilation = true;
 show_outliers = false;
 
