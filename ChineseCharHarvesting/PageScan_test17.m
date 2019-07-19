@@ -32,15 +32,14 @@ for page=pages
         Iskel = imdilate(Iskel, se);
         str2 = r.recognize(~Ipad);
 
-
-
-
         subplot(1,2,1);
         imagesc(Iskel);
         title(str1,'FontSize',100);
+
         subplot(1,2,2);
         imagesc(Ipad);
         title(str2,'FontSize',100);
+
         pause(2);
     end
     ps.show_ocr;
