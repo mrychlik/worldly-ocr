@@ -26,13 +26,14 @@ for page=pages
         Iskel = bwskel(I);
         Iskel = imdilate(Iskel, se);
         Iskel = padarray(Iskel,padding,0,'both');
-        str = r.recognize(~Iskel);
+        str1 = r.recognize(~Iskel);
+        str2 = r.recognize(I);
         subplot(1,2,1);
         imagesc(Iskel);
-        title(str(1),'FontSize',100);
+        title(str1,'FontSize',100);
         subplot(1,2,2);
         imagesc(I);
-        title('Original image');
+        title(str2,'FontSize',100);
         pause(2);
     end
     ps.show_ocr;
