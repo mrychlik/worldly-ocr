@@ -7,7 +7,7 @@ config_pages;
 %bg='Foo';                               % Invalid option - test
 bg='Original';
 keep_outliers = true;
-show_dilation = false;
+show_dilation = true;
 show_outliers = false;
 
 
