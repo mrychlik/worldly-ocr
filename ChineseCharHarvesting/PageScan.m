@@ -5,7 +5,7 @@ classdef PageScan < handle
     properties(Constant,Access=private)
         % Add supported language options here, Tesseract style. Note that
         % these options may depend on TesseractVersion option to the constructor.
-        languages = ...
+        SupportedLanguages = ...
             {
                 'chi_tra_vert, ...
                 'chi_tra_simp, ...
@@ -105,7 +105,7 @@ classdef PageScan < handle
             addOptional(p, 'BinThreshold', 0.45);% Binarization threshold
             addOptional(p, 'MinVertGap', 10);% Min. vert. gap between bboxes.
             addOptional(p, 'LanguageSpec', 'ChineseTraditional',...
-                        @(x)any(validatestring, this.languages));
+                        @(x)any(validatestring, this.SupportedLanguages));
 
             parse(p, source, varargin{:});
 
