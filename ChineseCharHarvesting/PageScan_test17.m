@@ -5,7 +5,7 @@ disp(mfilename);
 config_pages;
 
 keep_outliers=false;
-radius = 1;
+radius = 1.5;
 se = strel('disk',radius);
 padding = [5 5];
 
