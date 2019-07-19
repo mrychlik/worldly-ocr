@@ -1138,8 +1138,8 @@ classdef PageScan < handle
             [H, W] = size(I);
 
             % Enlarge boxes
-            dw = 3;
-            dh = 6;
+            dw = 2;
+            dh = 10;
             x1 = max(0, x1 - dw);
             y1 = max(0, y1 - dh);
             x2 = min(W, x2 + dw);
