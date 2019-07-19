@@ -132,6 +132,9 @@ classdef PageScan < handle
 
             this.opts = p.Results;
             this.scan_image(img);
+            if p.Results.MergeCharacters
+                this.do_merge_characters_all;
+            end
         end
 
 
