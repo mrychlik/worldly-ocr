@@ -18,7 +18,7 @@ for page=pages
         Iskel = bwskel(I);
         %I = padarray(I,[10 10],0,'both');
         str = r.recognize(~Iskel);
-        imagesc(I);
+        imagesc(Iskel);
         title(str(1),'FontSize',100);
         pause(0.5);
     end
