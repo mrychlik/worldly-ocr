@@ -988,9 +988,9 @@ classdef PageScan < handle
                             % very short character, like 'one' (bar)
                             s = c0.Stats;
                             bbox = s.BoundingBox;
-                            bbox1 = [bbox(1), bbox(2) - this.merge_threshold,...
+                            bbox1 = [bbox(1), bbox(2) - d,...
                                      bbox(3),...
-                                     bbox(4) + 2*this.merge_threshold
+                                     bbox(4) + 2*d
                                      ];
 
                             s.BoundingBox = bbox1;
