@@ -5,6 +5,7 @@ disp(mfilename);
 config_pages;
 
 keep_outliers=false;
+se = strel('disk',8);
 
 r = TesseractRecognizer('Language','chi_tra','PageSegmentationMode',10);
 
@@ -16,6 +17,7 @@ for page=pages
     for i=1:ps.CharacterCount
         I = ps.Characters(i).CroppedMonoImage;
         Iskel = bwskel(I);
+        Iskel = imdilate(Iskel, se);
         %I = padarray(I,[10 10],0,'both');
         str = r.recognize(~Iskel);
         imagesc(Iskel);
