@@ -92,7 +92,7 @@ classdef PageScan < handle
             end
 
             this.opts = p.Results;
-            this.scan_image(img, p.Results);
+            this.scan_image(img);
         end
 
 
