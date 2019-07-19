@@ -28,7 +28,7 @@ for page=pages
         Iskel = imdilate(Iskel, se);
         Iskel = padarray(Iskel,padding,0,'both');
         str1 = r.recognize(~Iskel);
-        str2 = r.recognize(Ipad);
+        str2 = r.recognize(~Ipad);
         subplot(1,2,1);
         imagesc(Iskel);
         title(str1,'FontSize',100);
