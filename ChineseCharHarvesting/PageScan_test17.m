@@ -23,7 +23,7 @@ for page=pages
         end
         I = ps.Characters(i).CroppedMonoImage;
         Iskel = bwskel(I);
-        %Iskel = imdilate(Iskel, se);
+        Iskel = imdilate(Iskel, se);
         Iskel = padarray(Iskel,padding,0,'both');
         str = r.recognize(~Iskel);
         imagesc(Iskel);
