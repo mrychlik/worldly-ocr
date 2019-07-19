@@ -3,6 +3,14 @@ classdef PageScan < handle
 % This class inherits from HANDLE class, so that we can internally
 % modify fields, such as caches
     properties(Constant,Access=private)
+        % Add language options here, Tesseract style
+        languages = ...
+            {
+                'chi_tra_vert, ...
+                'chi_tra_simp, ...
+                'ChineseTraditional',...
+                'ChineseSimplified'
+            };
     end
 
     properties
@@ -96,9 +104,8 @@ classdef PageScan < handle
             addOptional(p, 'MinCharHeight',10);% Minimum height of a valid character
             addOptional(p, 'BinThreshold', 0.45);% Binarization threshold
             addOptional(p, 'MinVertGap', 10);% Min. vert. gap between bboxes.
-        language_spec = {'ChineseTraditional','ChineseSimplified'};
-
-
+            addOptional(p, 'LanguageSpec', 'ChineseTraditional',...
+                        @(x)any(validatestring, this.languages));
 
             parse(p, source, varargin{:});
 
