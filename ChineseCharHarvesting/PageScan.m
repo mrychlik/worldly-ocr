@@ -983,7 +983,9 @@ classdef PageScan < handle
                             this = this.do_merge_characters(ci(j), ...
                                                             char_idx);
                         elseif ~c0.Ignore
-                            % Enlarge the bounding box 
+                            % Enlarge the bounding box; this is necessary
+                            % as OCR engine tends to be confused by the
+                            % very short character, like 'one' (bar)
                             s = c0.Stats;
                             bbox = s.BoundingBox;
                             bbox1 = [bbox(1), bbox(2) - this.merge_threshold,...
