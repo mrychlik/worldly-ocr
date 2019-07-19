@@ -3,9 +3,9 @@ disp(mfilename);
 
 config_pages;
 
-%bg='Mono';
+bg='Mono';
 %bg='Foo';                               % Invalid option - test
-bg='Original';
+%bg='Original';
 keep_outliers = false;
 show_dilation = true;
 show_outliers = false;

@@ -9,7 +9,7 @@ p=make_parser;
 varargin2 = {'a',7,'b',15,'c',23,'d',[]};
 parse(p, 'a',varargin2{:});
 p.Results
-end
+
 
 function p = make_parser
     p = inputParser;

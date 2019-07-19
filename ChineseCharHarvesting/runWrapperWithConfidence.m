@@ -50,7 +50,7 @@ boxes = [ 731 206 799 284
 
 y1 = boxes(:,1); x1 = boxes(:,2); y2 = boxes(:,3); x2 = boxes(:, 4);
 
-if false
+if true
     M=size(boxes,1);
     P=ceil(sqrt(M));
     for r = 1:M

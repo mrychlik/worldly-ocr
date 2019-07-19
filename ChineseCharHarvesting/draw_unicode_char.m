@@ -11,7 +11,7 @@ th = text(ax, 0,0,c,'FontSize', FontSize, 'Interpreter','none','Units', ...
 
 get(th)
 
-ex = round(get(th,'Extent'));
+ex = get(th,'Extent');
 
 F = getframe(fh);
 
@@ -19,7 +19,7 @@ BW = im2bw(F.cdata);
 [h,w] = size(BW);
 
 
-bbox=[ex(1)+1,h-ex(4),ex(3)-1,ex(4)];
+bbox=round([ex(1)+1,h-ex(4)-1,ex(3),ex(4)]);
 
 
 im = imshow(BW); im.AlphaData=0.5;
