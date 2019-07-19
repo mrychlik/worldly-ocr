@@ -25,10 +25,10 @@ for page=pages
         %Iskel = imdilate(Iskel, se);
         Iskel = padarray(Iskel,padding,0,'both');
         str = ps.OcrText(i);
-        subplot(2,1,1);
+        subplot(1,2,1);
         imagesc(Iskel);
         title(str(1),'FontSize',100);
-        subplot(2,1,2);
+        subplot(1,2,2);
         imagesc(I);
         title('Original image');
         pause(2);
