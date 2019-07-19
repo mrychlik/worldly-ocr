@@ -295,6 +295,7 @@ classdef PageScan < handle
                              min(x) >= 1  && ...
                              max(x) <= this.CharacterCount) ...
                         );
+            addOptional(p, 'Font', 'Helvetica', @(x)ischar(x));
             addOptional(p, 'FontSize', 60,  @(x)isscalar(x));
             parse(p, this,varargin{:});
 
@@ -329,7 +330,9 @@ classdef PageScan < handle
             len = numel(label_str);
             for i = 1:len
                 waitbar(i/len,bh);
-                BW = draw_unicode_char(label_str{i}, 'Helvetica', p.Results.FontSize);
+                BW = draw_unicode_char(label_str{i}, ...
+                                       p.Results.Font, ...
+                                       p.Results.FontSize);
                 %imagesc(Font.Bitmaps{1}); drawnow; pause(2);
                 I = imresize(BW,[h(i),w(i)]);
                 im = image(x(i),y(i),255*I);
