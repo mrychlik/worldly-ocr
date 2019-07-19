@@ -1083,7 +1083,22 @@ classdef PageScan < handle
 
                 K = I1( y1:y2, x1:x2 );
                 BW = this.PageImageMono( y1 : y2, x1 : x2 );
+
+                % Save old width and height
+                [h1,w1] = size(BW);
                 [BW,rect] = imautocrop(BW);
+
+                % New width and height
+                [h2,w2] = size(BW);
+
+                s = stats(n);
+                
+                % Adjust bounding box
+                bbox1 = [bbox(1)+rect(1),...
+                         bbox(2)+rect(2), ...
+                         bbox(3)-(w1-w2),...
+                         bbox(4)-(h1-h2)];
+                s.BoundingBox = bbox1;
 
                 if this.filter_out_image(BW)
                     is_outlier = true;
@@ -1095,7 +1110,7 @@ classdef PageScan < handle
                 char_count = char_count + 1;
 
                 %disp(sprintf('Recording object %d as character %d', n, char_count));
-                this.Characters(char_count).Stats = stats(n);
+                this.Characters(char_count).Stats = s;
                 this.Characters(char_count).Position = [x1,y1,x2,y2];
                 this.Characters(char_count).CroppedMonoImage = BW;
                 this.Characters(char_count).AltImage = K; % Carved out image
