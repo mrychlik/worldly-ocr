@@ -6,7 +6,7 @@ config_pages;
 
 keep_outliers=false;
 %se = strel('disk',2);
-se = strel('rectangle',[4,4]);
+se = strel('rectangle',[3,3]);
 padding = [5 5];
 
 for page=pages
