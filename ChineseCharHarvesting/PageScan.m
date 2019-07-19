@@ -23,7 +23,7 @@ classdef PageScan < handle
         short_height_threshold = 30;
         column_dist_threshold = 60;
         row_dist_threshold = 40;        
-        merge_threshold = 15;           % For attaching "cloud"
+        merge_threshold = 20;           % For attaching "cloud"
         max_char_width = 100;           % Maximum width of a valid character
         min_char_height = 10;           % Minimum height of a valid character
         bin_threshold = 0.5;            % Binarization threshold
