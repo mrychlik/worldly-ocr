@@ -17,7 +17,7 @@ for page=pages
         str = r.recognize(~I);
         imagesc(I);
         title(str(1),'FontSize',100);
-        pause(2);
+        pause(0.5);
     end
     ps.show_ocr;
     title(sprintf('Page %d', page));
