@@ -360,7 +360,7 @@ classdef PageScan < handle
               case 'Original',
                 im = imagesc(this.PageImage);
               case 'Mono',
-                im = imagesc(this.PageImageMono),
+                im = imagesc(this.PageImageMono);
               otherwise,
                 error('Something wrong.');
             end
