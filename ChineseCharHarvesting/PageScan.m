@@ -3,7 +3,7 @@ classdef PageScan < handle
 % This class inherits from HANDLE class, so that we can internally
 % modify fields, such as caches
     properties(Constant,Access=private)
-        % Add language options here, Tesseract style. Note that
+        % Add supported language options here, Tesseract style. Note that
         % these options may depend on TesseractVersion option to the constructor.
         languages = ...
             {
@@ -12,7 +12,7 @@ classdef PageScan < handle
                 'ChineseTraditional',...
                 'ChineseSimplified'
             };
-    end
+pp    end
 
     properties
         DilationSE = strel('rectangle', [5,15]); % for imdilate
