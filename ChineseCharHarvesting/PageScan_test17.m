@@ -16,7 +16,11 @@ for page=pages
     ps = PageScan(filename,'KeepOutliers',keep_outliers);
     ps = ps.do_merge_characters_all;
 
+    ignored = [this.Character.Ignore];
     for i=1:ps.CharacterCount
+        if ignore(i)
+            continue;
+        end
         I = ps.Characters(i).CroppedMonoImage;
         Iskel = bwskel(I);
         Iskel = imdilate(Iskel, se);
