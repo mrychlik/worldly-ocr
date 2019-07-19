@@ -15,6 +15,7 @@ for page=pages
 
     for i=1:ps.CharacterCount
         I = ps.Characters(i).CroppedMonoImage;
+        I = bwskel(I);
         I = padarray(I,[10 10],0,'both');
         str = r.recognize(~I);
         imagesc(I);
