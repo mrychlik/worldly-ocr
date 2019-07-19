@@ -5,8 +5,8 @@ disp(mfilename);
 config_pages;
 
 keep_outliers=false;
-radius = 2;
-se = strel('disk',radius);
+%se = strel('disk',2);
+se = strel('rectangle',[2,2]);
 padding = [5 5];
 
 r = TesseractRecognizer('Language','chi_tra','PageSegmentationMode',10);
