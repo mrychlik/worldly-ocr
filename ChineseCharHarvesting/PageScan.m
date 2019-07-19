@@ -1049,7 +1049,7 @@ classdef PageScan < handle
             this.tesseract_version = p.Results.TesseractVersion;
 
             I1 = 255 - this.PageImage; 
-            this.PageImageMono = im2bw(I1);
+            this.PageImageMono = imbinarize(I1,this.bin_threshold);
             this.DilatedImage = imdilate(this.PageImageMono, this.DilationSE);
             stats = regionprops(this.DilatedImage,...
                                 'BoundingBox',...
@@ -1124,9 +1124,8 @@ classdef PageScan < handle
             this.MexOcrResultsCache = struct('Text',[]);
 
             %I = ~this.PageImageMono;
-            %I = this.PageImage;
+            I = this.PageImage;
             %I = rgb2gray(this.PageImage);
-            I = imbinarize(this.PageImage,0.6);
             J = uint8(fliplr(I));
 
             x1 = this.ROI(:,1);
