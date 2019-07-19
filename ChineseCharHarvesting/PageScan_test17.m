@@ -6,7 +6,7 @@ config_pages;
 
 keep_outliers=false;
 %se = strel('disk',2);
-se = strel('rectangle',[5,5]);
+se = strel('rectangle',[2,2]);
 padding = [5 5];
 
 r = TesseractRecognizer('Language','chi_tra','PageSegmentationMode',10);
@@ -24,7 +24,7 @@ for page=pages
         I = ps.Characters(i).CroppedMonoImage;
         Iskel = imdilate(Iskel, se);
         Iskel = bwskel(I);
-        %Iskel = imdilate(Iskel, se);
+        Iskel = imdilate(Iskel, se);
         Iskel = padarray(Iskel,padding,0,'both');
         str = r.recognize(~Iskel);
         subplot(1,2,1);
