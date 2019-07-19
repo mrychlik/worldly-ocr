@@ -26,7 +26,7 @@ for page=pages
         Iskel = bwskel(I);
         %Iskel = imdilate(Iskel, se);
         Iskel = padarray(Iskel,padding,0,'both');
-        str = r.recognize(~I);
+        str = r.recognize(~Iskel);
         subplot(1,2,1);
         imagesc(Iskel);
         title(str(1),'FontSize',100);
