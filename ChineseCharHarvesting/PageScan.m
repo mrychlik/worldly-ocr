@@ -1075,6 +1075,7 @@ classdef PageScan < handle
                 bbox = stats(n).BoundingBox;
 
                 x1 = bbox(1); y1 = bbox(2); x2 = bbox(1) + bbox(3); y2 = bbox(2) + bbox(4);
+
                 sz = size(this.PageImageMono);
                 x1 = round( max(1,x1) ); x2 = round( min(x2, sz(2)));
                 y1 = round( max(1,y1) ); y2 = round( min(y2, sz(1)));
