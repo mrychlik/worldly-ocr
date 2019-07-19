@@ -26,7 +26,7 @@ for page=pages
         str = ps.OcrText(i);
         imagesc(Iskel);
         title(str(1),'FontSize',100);
-        pause(1);
+        pause(2);
     end
     ps.show_ocr;
     title(sprintf('Page %d', page));
