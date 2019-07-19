@@ -3,15 +3,6 @@ classdef PageScan < handle
 % This class inherits from HANDLE class, so that we can internally
 % modify fields, such as caches
     properties(Constant,Access=private)
-        %
-        % One way to specify the language is by giving the path to
-        % trained data. These files Must be compatible with the version
-        % of Tesseract used in MATLAB, currently 3.0.2.
-        %
-        % Where Tesseract data are for Traditional Chinese
-        % language_spec = {'tesseract-ocr/tessdata/chi_tra.traineddata',...
-        %                  'tesseract-ocr/tessdata/chi_sim.traineddata'};
-        language_spec = {'ChineseTraditional','ChineseSimplified'};
     end
 
     properties
@@ -79,6 +70,13 @@ classdef PageScan < handle
         %   characters
         %   * BinThreshold         - used to binarize images
         %   * MinVertGap           - The minimum vertical gap between bboxes
+        %   * LanguageSpec         - language specification
+        %     One way to specify the language is by giving the path to
+        %     trained data. These files Must be compatible with the version
+        %     of Tesseract used in MATLAB, currently 3.0.2.
+        %     where Tesseract data are, e.g. for Traditional Chinese
+        %     language_spec = {'tesseract-ocr/tessdata/chi_tra.traineddata',...
+        %                      'tesseract-ocr/tessdata/chi_sim.traineddata'};
         % 
         %  NOTE TO DEVELOPERS: If you have an option to the constructor
         %  which you would like to add, do not add a property. Instead,
@@ -98,6 +96,9 @@ classdef PageScan < handle
             addOptional(p, 'MinCharHeight',10);% Minimum height of a valid character
             addOptional(p, 'BinThreshold', 0.45);% Binarization threshold
             addOptional(p, 'MinVertGap', 10);% Min. vert. gap between bboxes.
+        language_spec = {'ChineseTraditional','ChineseSimplified'};
+
+
 
             parse(p, source, varargin{:});
 
