@@ -27,6 +27,7 @@ classdef PageScan < handle
         max_char_width = 100;           % Maximum width of a valid character
         min_char_height = 10;           % Minimum height of a valid character
         bin_threshold = 0.45;           % Binarization threshold
+        min_vert_gap = 10;              % Min. vert. gap between b'boxes.
         tesseract_version = 'builtin';% Whether use MATLAB Tesseract, % external or mex
     end
 
