@@ -1124,8 +1124,9 @@ classdef PageScan < handle
             this.MexOcrResultsCache = struct('Text',[]);
 
             %I = ~this.PageImageMono;
-            I = this.PageImage;
+            %I = this.PageImage;
             %I = rgb2gray(this.PageImage);
+            I = binarize(this.PageImage,'adaptive');
             J = uint8(fliplr(I));
 
             x1 = this.ROI(:,1);
