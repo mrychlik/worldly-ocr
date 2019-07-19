@@ -89,7 +89,7 @@ classdef PageScan < handle
             else
                 error('First argument must be a filename or an image');
             end
-            this.scan_image(img, varargin{:});
+            this.scan_image(img, p.Results);
         end
 
 
@@ -1052,17 +1052,9 @@ classdef PageScan < handle
         end
 
 
-        function scan_image(this, img, varargin)
-            p = inputParser;
-            addRequired(p, 'this', @(x)isa(x,'PageScan'));            
-            addRequired(p, 'img', @(x)isnumeric(x));            
-            addOptional(p, 'TesseractVersion', 'mex',...
-                        @(x)any(validatestring(x,{'builtin','external','mex'})));
-            addOptional(p, 'KeepOutliers', false, @(x)islogical(x));            
-            parse(p, this, img, varargin{:});
-
+        function scan_image(this, img, opts)
             this.PageImage = img;
-            this.tesseract_version = p.Results.TesseractVersion;
+            this.tesseract_version = opts.TesseractVersion;
 
             I1 = 255 - this.PageImage; 
             this.PageImageMono = im2bw(I1,this.bin_threshold);
@@ -1082,7 +1074,7 @@ classdef PageScan < handle
                 if PageScan.filter_out(stats(n))
                     is_outlier = true;
                 end
-                if ~p.Results.KeepOutliers && is_outlier
+                if ~opts.KeepOutliers && is_outlier
                     continue;
                 end
 
@@ -1118,7 +1110,7 @@ classdef PageScan < handle
                     is_outlier = true;
                 end
 
-                if ~p.Results.KeepOutliers && is_outlier
+                if ~opts.KeepOutliers && is_outlier
                     continue;
                 end
                 char_count = char_count + 1;
