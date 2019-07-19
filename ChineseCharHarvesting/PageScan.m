@@ -1225,7 +1225,7 @@ classdef PageScan < handle
         % FILTER_OUT_IMAGE - filter out base
             rv=false;
             % Filter out tall and narrow images
-            if size(K,1) > this.MaxCharWidth || size(K,2) < this.MinCharHeight;
+            if size(K,1) > this.opts.MaxCharWidth || size(K,2) < this.opts.MinCharHeight;
                 rv=true;
             end
         end
