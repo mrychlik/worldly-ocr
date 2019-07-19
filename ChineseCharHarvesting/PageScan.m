@@ -187,7 +187,7 @@ classdef PageScan < handle
             if nargin < 2 
                 char_idx = 1:this.CharacterCount;
             end
-            switch this.tesseract_version,
+            switch this.opts.TesseractVersion,
               case 'builtin',
                 OcrText = {this.OcrResults(char_idx).Text};
               case 'external',
@@ -246,7 +246,7 @@ classdef PageScan < handle
             label_str = this.OcrText(char_idx);
 
             % Label color is dependent on version of Tesseract
-            switch this.tesseract_version
+            switch this.opts.TesseractVersion
               case 'builtin',
                 color = 'blue';
               case 'external',
@@ -601,7 +601,7 @@ classdef PageScan < handle
             col = 1;
             for idx=1:numel(x)
                 if ~this.is_outlier(I(idx))
-                    if x_sorted(idx) <  min_x - this.column_dist_threshold
+                    if x_sorted(idx) <  min_x - this.opts.ColumnDistThreshold
                         col = col + 1;
                     end
                     min_x = x_sorted(idx);
@@ -628,7 +628,7 @@ classdef PageScan < handle
             for idx = 1:numel(y)
                 if ~this.is_outlier(I(idx)) 
                     col = this.Columns(I(idx));
-                    if ( col ~= binding_col ) && ( y_sorted(idx) >  max_y + this.row_dist_threshold ) 
+                    if ( col ~= binding_col ) && ( y_sorted(idx) >  max_y + this.RowDistThreshold ) 
                         row = row + 1;
                         max_y = y_sorted(idx);
                     end
@@ -955,7 +955,7 @@ classdef PageScan < handle
                                            c0.Stats.BoundingBox);
                         d = [d1,d2];
                         e = [e1,e2];
-                        if all(d < this.merge_threshold) && all(e == 0) && ~any([c.Ignore])
+                        if all(d < this.opts.MergeThreshold) && all(e == 0) && ~any([c.Ignore])
                             disp(sprintf('Merging character %d',char_idx));
                             this=this.do_merge_characters(char_idx,ci(1));
                             this=this.do_merge_characters(char_idx,ci(2));
@@ -1006,7 +1006,7 @@ classdef PageScan < handle
                             % very short character, like 'one' (bar)
                             s = c0.Stats;
                             bbox = s.BoundingBox;
-                            d1 = max(d - this.min_vert_gap, 0);
+                            d1 = max(d - this.opts.MinVertGap, 0);
                             bbox1 = [bbox(1), bbox(2) - d1,...
                                      bbox(3),...
                                      bbox(4) + 2*d1
@@ -1045,7 +1045,7 @@ classdef PageScan < handle
                         
                         e = bbox_hor_dist(c(2).Stats.BoundingBox,...
                                           c0.Stats.BoundingBox);
-                        if d < 2*this.merge_threshold && e == 0
+                        if d < 2*this.MergeThreshold && e == 0
                             disp(sprintf('Merging character %d', char_idx));
                             this = this.do_merge_characters(char_idx, ci(2));
                         end
@@ -1072,7 +1072,7 @@ classdef PageScan < handle
             this.PageImage = img;
 
             I1 = 255 - this.PageImage; 
-            this.PageImageMono = im2bw(I1,this.bin_threshold);
+            this.PageImageMono = im2bw(I1,this.opts.BinThreshold);
             this.DilatedImage = imdilate(this.PageImageMono, this.DilationSE);
 
             stats = regionprops(this.DilatedImage,...
@@ -1225,7 +1225,7 @@ classdef PageScan < handle
         % FILTER_OUT_IMAGE - filter out base
             rv=false;
             % Filter out tall and narrow images
-            if size(K,1) > this.max_char_width || size(K,2) < this.min_char_height;
+            if size(K,1) > this.MaxCharWidth || size(K,2) < this.MinCharHeight;
                 rv=true;
             end
         end
