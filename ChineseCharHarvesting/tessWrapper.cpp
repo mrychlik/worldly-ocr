@@ -30,10 +30,8 @@
 #include <tesseract/baseapi.h>
 #include "mex.h"
 //#include <cassert>
-
-
 /** 
- * A MEX wrapper around Tesseract 4
+ * A MEX wrapper around Tesseract 3
  * The function accepts these arguments (passed in array prhs):
  *    - An image, which must be a byte array (monochromatic)
  *
