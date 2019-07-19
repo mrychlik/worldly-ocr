@@ -1079,7 +1079,7 @@ classdef PageScan < handle
 
                 K = I1( y1:y2, x1:x2 );
                 BW = this.PageImageMono( y1 : y2, x1 : x2 );
-                [BW,bbox] = imautocrop(BW);
+                BW = imautocrop(BW);
 
                 if this.filter_out_image(BW)
                     is_outlier = true;
