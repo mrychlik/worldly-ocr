@@ -7,6 +7,7 @@ config_pages;
 keep_outliers=false;
 radius = 2;
 se = strel('disk',radius);
+padding = [5 5];
 
 r = TesseractRecognizer('Language','chi_tra','PageSegmentationMode',10);
 
@@ -19,7 +20,7 @@ for page=pages
         I = ps.Characters(i).CroppedMonoImage;
         Iskel = bwskel(I);
         Iskel = imdilate(Iskel, se);
-        Iskel = padarray(Iskel,[10 10],0,'both');
+        Iskel = padarray(Iskel,padding,0,'both');
         str = r.recognize(~Iskel);
         imagesc(Iskel);
         title(str(1),'FontSize',100);
