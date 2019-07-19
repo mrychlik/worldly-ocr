@@ -169,7 +169,7 @@ classdef PageScan < handle
             % the grayscale is passed rather than monochrome image
             OcrResults = ocr(this.PageImage, roi,...
                              'TextLayout','Character',...
-                             'Language', this.language_spec);
+                             'Language', this.opts.LanguageSpec);
 
         end
 
