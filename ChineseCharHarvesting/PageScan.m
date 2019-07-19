@@ -295,7 +295,7 @@ classdef PageScan < handle
                              min(x) >= 1  && ...
                              max(x) <= this.CharacterCount) ...
                         );
-            addOptional(p, 'Font', 'Helvetica', @(x)ischar(x));
+            addOptional(p, 'Font', 'TimesRoman', @(x)ischar(x));
             addOptional(p, 'FontSize', 60,  @(x)isscalar(x));
             parse(p, this,varargin{:});
 
