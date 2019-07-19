@@ -1126,7 +1126,7 @@ classdef PageScan < handle
             %I = ~this.PageImageMono;
             %I = this.PageImage;
             %I = rgb2gray(this.PageImage);
-            I = binarize(this.PageImage,'adaptive');
+            I = imbinarize(this.PageImage,'adaptive');
             J = uint8(fliplr(I));
 
             x1 = this.ROI(:,1);
