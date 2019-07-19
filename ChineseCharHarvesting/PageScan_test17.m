@@ -24,7 +24,7 @@ for page=pages
         str = r.recognize(~Iskel);
         imagesc(Iskel);
         title(str(1),'FontSize',100);
-        pause(0.5);
+        pause(1);
     end
     ps.show_ocr;
     title(sprintf('Page %d', page));
