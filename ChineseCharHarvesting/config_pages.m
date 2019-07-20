@@ -15,5 +15,7 @@ end
 if ~exist('pages','var') pages=6:95; end;
 
 
-% Create a font manager
-font_manager = FontManager;
+% Create a font manager (or use an existing one)
+if ~exist('font_manager')
+    font_manager = FontManager;
+end
