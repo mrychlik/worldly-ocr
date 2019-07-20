@@ -9,10 +9,10 @@ classdef FontManager < handle
     methods
         function this = FontManager(name, varargin)
             p = inputParser;
-            addRequired(p,'name'');
+            addRequired(p,'name');
             addOptional(p, 'FontName', 'TimesRoman', @(x)ischar(x));
             addOptional(p, 'FontSize', 100);            
-            parse(p, 'name', varargin{:});
+            parse(p, name, varargin{:});
 
             this.opts = p.Results;
             this.FontCache = containers.Map('KeyType','char','ValueType','any');
