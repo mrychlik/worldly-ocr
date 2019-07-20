@@ -27,7 +27,8 @@ classdef FontManager < handle
             if isKey(this.FontCache, c)
                 s = this.FontCache(c);
                 BW = s.Image;
-                this.FontCache(c).HitCount = s.HitCount + 1;
+                s.HitCount = s.HitCount + 1;
+                this.FontCache(c) = s;
             else
                 BW = this.draw_unicode_char(c);
                 this.FontCache(c) = struct('Image',BW,'HitCount',1);
