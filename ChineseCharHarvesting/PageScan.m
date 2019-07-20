@@ -140,7 +140,7 @@ classdef PageScan < handle
             this.opts = p.Results;
 
             if isempty(this.opts.FontManager)
-                this.FontManager = FontManager('Font', this.opts.Font, ...
+                this.FontManager = FontManager('FontName', this.opts.Font, ...
                                                'FontSize', this.opts.FontSize);
             else 
                 this.FontManager = this.opts.FontManager;
