@@ -97,6 +97,10 @@ classdef PageScan < handle
         %     where Tesseract data are, e.g. for Traditional Chinese
         %     language_spec = {'tesseract-ocr/tessdata/chi_tra.traineddata',...
         %                      'tesseract-ocr/tessdata/chi_sim.traineddata'};
+        %
+        %   * Font                 - the name of the font for rendering
+        %
+        %   * FontSize             - font size used for rendering
         % 
         %  NOTE TO DEVELOPERS: If you have an option to the constructor
         %  which you would like to add, do not add a property. Instead,
