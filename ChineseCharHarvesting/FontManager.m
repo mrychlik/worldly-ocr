@@ -18,7 +18,7 @@ classdef FontManager < handle
 
 
     methods(Access = private)
-        function BW = draw_unicode_char(this, c, Font, FontSize) 
+        function BW = draw_unicode_char(this, c) 
         % DRAW_UNICODE_CHAR - draw a single unicode character
         %   BW = DRAW_UNICODE_CHAR(C, FONT, FONTSIZE) draws
         %   Unicode character C in font FONT, using font size
@@ -26,8 +26,14 @@ classdef FontManager < handle
             fh = figure('Units', 'pixels', 'Color', [1,1,1],'visible','off');
             ax = axes(fh,'Position',[0 0 1 1],'Units','Normalized','visible','off');
             axis off;
-            th = text(ax, 0,0,c,'FontSize', FontSize, 'Interpreter','none','Units', ...
-                      'pixels','HorizontalAlignment','Left','VerticalAlignment','Bottom');
+
+            th = text(ax, 0,0,c,...
+                      'FontSize', this.FontSize, ...
+                      'Interpreter','none',...
+                      'Units', 'pixels',...
+                      'HorizontalAlignment','Left',...
+                      'VerticalAlignment','Bottom');
+
             ex = get(th,'Extent');
             F = getframe(fh);
             BW = im2bw(F.cdata);
