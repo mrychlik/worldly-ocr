@@ -9,6 +9,7 @@ classdef FontManager < handle
     properties(Dependent)
         FontName;
         FontSize;
+        Table;
     end
 
 
@@ -41,6 +42,12 @@ classdef FontManager < handle
         end
         function FontSize = get.FontSize(this)
             FontSize = this.opts.FontSize;
+        end
+        function Table = get.Table(this)
+            Character = cell2mat(keys(this.FontCache))';
+            s = cell2mat(values(this.FontCache));
+            HitCount = [s.HitCount]';
+            Table = table(Character, HitCount);
         end
     end
 
