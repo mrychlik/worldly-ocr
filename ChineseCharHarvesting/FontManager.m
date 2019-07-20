@@ -11,7 +11,7 @@ classdef FontManager < handle
         end
 
         function BW = get_char_image(this, c)
-            BW = this.draw_unicode_char(c, this.Font, this.FontSize);
+            BW = this.draw_unicode_char(c);
         end
     end
 
