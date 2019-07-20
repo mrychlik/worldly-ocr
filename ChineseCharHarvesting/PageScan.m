@@ -148,7 +148,7 @@ classdef PageScan < handle
                                                'FontSize', this.opts.FontSize);
             else 
                 this.FontManager = this.opts.FontManager;
-                this.opts = remfield(this.opts,'FontManager');
+                this.opts = rmfield(this.opts,'FontManager');
             end
 
             this.scan_image(img);
