@@ -42,9 +42,6 @@ classdef FontManager < handle
         function FontSize = get.FontSize(this)
             FontSize = this.opts.FontSize;
         end
-        function ItemCount = get.ItemCount(this)
-            ItemCount = this.FontCache.size();
-        end
     end
 
     methods(Access = private)
