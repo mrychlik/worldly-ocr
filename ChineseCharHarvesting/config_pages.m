@@ -13,3 +13,7 @@ switch config_num
 end
 
 if ~exist('pages','var') pages=6:95; end;
+
+
+% Create a font manager
+font_manager = FontManager;
