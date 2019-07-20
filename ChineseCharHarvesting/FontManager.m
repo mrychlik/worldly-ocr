@@ -11,7 +11,6 @@ classdef FontManager < handle
     methods
         function this = FontManager(varargin)
             p = inputParser;
-            %addRequired(p,'name');
             addParameter(p, 'FontName', 'TimesRoman', @(x)ischar(x));
             addParameter(p, 'FontSize', 100);            
             parse(p, varargin{:});
