@@ -24,10 +24,12 @@ classdef FontManager < handle
 
         function BW = get_char_image(this, c)
             if isKey(this.FontCache, c)
-                BW = this.FontCache(c);
+                s = this.FontCache(c);
+                BW = s.Image;
+                this.FontCache(c).HitCount = s.HitCount + 1;
             else
                 BW = this.draw_unicode_char(c);
-                this.FontCache(c) = BW;
+                this.FontCache(c) = struct('Image',BW,'HitCount',1);
             end
         end
         
