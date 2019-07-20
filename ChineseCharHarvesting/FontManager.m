@@ -1,6 +1,8 @@
 classdef FontManager < handle
     properties(Access=public)
         FontCache;                      % Cache of character images
+    end
+    properties(Access=private);
         opts;                           % Options passed to constructor
     end
 
