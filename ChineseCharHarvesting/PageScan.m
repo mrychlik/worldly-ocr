@@ -26,6 +26,7 @@ classdef PageScan < handle
         ExternalOcrResultsCache = [];   % A cache of OCR results from OS Tesseract
         MexOcrResultsCache = [];        % A cache of OCR results from Mex rapper
         opts = [];                      % Various options
+        FontManager;                    % A caching font manager
     end
 
 
@@ -141,6 +142,7 @@ classdef PageScan < handle
             end
 
             this.opts = p.Results;
+            this.opts
 
             if isempty(this.opts.FontManager)
                 this.FontManager = FontManager('FontName', this.opts.FontName, ...
