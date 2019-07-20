@@ -15,7 +15,7 @@ classdef FontManager < handle
             p = inputParser;
             addOptional(p, 'Font', 'TimesRoman', @(x)ischar(x));
             addOptional(p, 'FontSize', 100, @(x)isscalar(x));            
-            parse(p, source, varargin{:});
+            parse(p, varargin{:});
 
             this.FontCache = containers.Map('KeyType','char','ValueType','any');
         end
