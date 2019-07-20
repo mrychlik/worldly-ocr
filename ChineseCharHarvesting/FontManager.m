@@ -4,6 +4,11 @@ classdef FontManager < handle
         opts;                           % Options passed to constructor
     end
 
+    properties(Dependent)
+        FontName;
+        FontSize;
+    end
+
 
 % Responsible for rendering and caching Unicode characters
     methods
@@ -24,6 +29,13 @@ classdef FontManager < handle
                 BW = this.draw_unicode_char(c);
                 this.FontCache(c) = BW;
             end
+        end
+        
+        function FontName = get.FontName(this)
+            FontName = this.opts.FontName;
+        end
+        function FontSize = get.FontSize(this)
+            FontSize = this.opts.FontSize;
         end
     end
 
