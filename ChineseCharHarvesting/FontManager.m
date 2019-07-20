@@ -16,8 +16,7 @@ classdef FontManager < handle
         end
 
         function BW = get_char_image(this, c)
-            hasKey = isKey(this.FontCache, c);
-            if hasKey
+            if isKey(this.FontCache, c)
                 BW = this.FontCache(c);
             else
                 BW = this.draw_unicode_char(c);
