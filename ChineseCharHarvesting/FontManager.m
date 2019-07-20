@@ -15,8 +15,6 @@ classdef FontManager < handle
         end
     end
 
-
-
     methods(Access = private)
         function BW = draw_unicode_char(this, c) 
         % DRAW_UNICODE_CHAR - draw a single unicode character
