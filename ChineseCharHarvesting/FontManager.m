@@ -12,7 +12,7 @@ classdef FontManager < handle
         function this = FontManager(varargin)
             p = inputParser;
             addParameter(p, 'FontName', 'TimesRoman', @(x)ischar(x));
-            addParameter(p, 'FontSize', 100);            
+            addParameter(p, 'FontSize', 100, @(x)isscalar(x));            
             parse(p, varargin{:});
 
             this.opts = p.Results;
