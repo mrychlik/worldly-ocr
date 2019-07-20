@@ -4,14 +4,20 @@ classdef FontManager < handle
         FontSize = 100;
     end
 
+    properties(Access=private)
+        FontCache;
+    end
+
 
 % Responsible for rendering and caching Unicode characters
     methods
         function this = FontManager
+            this.FontCache = containers.Map('KeyType','char','ValueType','numeric');
         end
 
         function BW = get_char_image(this, c)
             BW = this.draw_unicode_char(c);
+            this.FontCache(c) = BW;
         end
     end
 
@@ -38,6 +44,7 @@ classdef FontManager < handle
             [h,~] = size(BW);
             bbox = round([ex(1)+1,h-ex(4)-1,ex(3),ex(4)]);
             BW = BW( bbox(2):(bbox(2)+bbox(4)), bbox(1):(bbox(1)+bbox(3)));
+            
             delete(fh);
         end
 
