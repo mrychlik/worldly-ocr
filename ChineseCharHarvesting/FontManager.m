@@ -16,6 +16,8 @@ classdef FontManager < handle
             addParameter(p, 'FontSize', 100);            
             parse(p, varargin{:});
 
+            p
+
             this.opts = p.Results;
             this.FontCache = containers.Map('KeyType','char','ValueType','any');
         end
