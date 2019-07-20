@@ -378,9 +378,9 @@ classdef PageScan < handle
             bh = waitbar(0,'Rendering character images...');
             len = numel(label_str);
             for i = 1:len
-                %waitbar(i/len,bh);
+                waitbar(i/len,bh);
                 BW = this.FontManager.get_char_image(label_str{i});
-                imagesc(Font.Bitmaps{1}); drawnow; pause(2);
+                %imagesc(Font.Bitmaps{1}); drawnow; pause(2);
                 I = imresize(BW,[h(i),w(i)]);
                 im = image(x(i),y(i),255*I);
             end
