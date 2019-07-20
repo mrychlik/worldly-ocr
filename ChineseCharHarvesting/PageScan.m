@@ -102,6 +102,9 @@ classdef PageScan < handle
         %
         %   * FontSize             - font size used for rendering
         % 
+        %   * FontManager          - an external FontManager object, used
+        %                            for rendering character images
+        % 
         %  NOTE TO DEVELOPERS: If you have an option to the constructor
         %  which you would like to add, do not add a property. Instead,
         %  use the addOption(p,...) in the code of the
