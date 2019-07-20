@@ -127,7 +127,7 @@ classdef PageScan < handle
             addOptional(p, 'LanguageSpec', 'ChineseTraditional',...
                         @(x)any(validatestring, this.SupportedLanguages));
             addOptional(p, 'FontName', 'TimesRoman', @(x)ischar(x));
-            addOptional(p, 'FontSize', 60,  @(x)isscalar(x));
+            addOptional(p, 'FontSize', 60);
             addOptional(p, 'FontManager', [], @(x)isa(x,'FontManager'));
             parse(p, source, varargin{:});
 
