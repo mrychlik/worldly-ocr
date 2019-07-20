@@ -138,6 +138,8 @@ classdef PageScan < handle
 
             this.opts = p.Results;
 
+            this.FontManager = FontManager(p.Results.Font, p.Results,FontSize);
+
             this.scan_image(img);
 
             if p.Results.MergeCharacters
