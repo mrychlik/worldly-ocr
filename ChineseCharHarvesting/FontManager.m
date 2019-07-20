@@ -17,7 +17,7 @@ classdef FontManager < handle
             addParameter(p, 'FontName', 'TimesRoman', @(x)ischar(x));
             addParameter(p, 'FontSize', 100, @(x)isscalar(x));            
             parse(p, varargin{:});
-
+            
             this.opts = p.Results;
             this.FontCache = containers.Map('KeyType','char','ValueType','any');
         end
