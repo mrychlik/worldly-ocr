@@ -47,7 +47,7 @@ classdef FontManager < handle
             Character = cell2mat(keys(this.FontCache))';
             s = cell2mat(values(this.FontCache));
             HitCount = [s.HitCount]';
-            Table = table(Character, HitCount);
+            Table = sortrows(table(Character, HitCount),2,'descend');
         end
     end
 
