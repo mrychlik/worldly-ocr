@@ -9,7 +9,6 @@ classdef FontManager < handle
     properties(Dependent)
         FontName;
         FontSize;
-        ItemCount;
     end
 
 
