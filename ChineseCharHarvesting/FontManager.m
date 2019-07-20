@@ -1,6 +1,7 @@
 classdef FontManager < handle
-    properties(Access=public)
+    properties(Access=private)
         FontCache;                      % Cache of character images
+        opts;                           % Options
     end
 
 
@@ -11,7 +12,7 @@ classdef FontManager < handle
             addOptional(p, 'Font', 'TimesRoman', @(x)ischar(x));
             addOptional(p, 'FontSize', 100, @(x)isscalar(x));            
             parse(p, varargin{:});
-
+            this.opts = p.Results;
             this.FontCache = containers.Map('KeyType','char','ValueType','any');
         end
 
