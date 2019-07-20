@@ -4,15 +4,15 @@ classdef FontManager < handle
         FontSize = 100;
     end
 
-    properties(Access=private)
-        FontCache;
+    properties(Access=public)
+        FontCache;                      % Cache of character images
     end
 
 
 % Responsible for rendering and caching Unicode characters
     methods
         function this = FontManager
-            this.FontCache = containers.Map('KeyType','char','ValueType','numeric');
+            this.FontCache = containers.Map('KeyType','char','ValueType','any');
         end
 
         function BW = get_char_image(this, c)
