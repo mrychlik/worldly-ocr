@@ -125,7 +125,6 @@ classdef PageScan < handle
                         @(x)any(validatestring, this.SupportedLanguages));
             addOptional(p, 'Font', 'TimesRoman', @(x)ischar(x));
             addOptional(p, 'FontSize', 60,  @(x)isscalar(x));
-            addOptional(p, 'FontManager', [], @(x)isa(x,'FontManager'));
             parse(p, source, varargin{:});
 
             if ischar(source)
