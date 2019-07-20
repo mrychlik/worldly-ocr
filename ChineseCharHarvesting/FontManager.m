@@ -9,12 +9,12 @@ classdef FontManager < handle
 
 % Responsible for rendering and caching Unicode characters
     methods
-        function this = FontManager(name, varargin)
+        function this = FontManager(varargin)
             p = inputParser;
-            addRequired(p,'name');
-            addOptional(p, 'FontName', 'TimesRoman', @(x)ischar(x));
-            addOptional(p, 'FontSize', 100);            
-            parse(p, name, varargin{:});
+            %addRequired(p,'name');
+            addParameter(p, 'FontName', 'TimesRoman', @(x)ischar(x));
+            addParameter(p, 'FontSize', 100);            
+            parse(p, varargin{:});
 
             this.opts = p.Results;
             this.FontCache = containers.Map('KeyType','char','ValueType','any');
