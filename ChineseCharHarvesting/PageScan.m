@@ -119,6 +119,8 @@ classdef PageScan < handle
             addOptional(p, 'MinVertGap', 10);% Min. vert. gap between bboxes.
             addOptional(p, 'LanguageSpec', 'ChineseTraditional',...
                         @(x)any(validatestring, this.SupportedLanguages));
+            addOptional(p, 'Font', 'TimesRoman', @(x)ischar(x));
+            addOptional(p, 'FontSize', 60,  @(x)isscalar(x));
             parse(p, source, varargin{:});
 
             if ischar(source)
