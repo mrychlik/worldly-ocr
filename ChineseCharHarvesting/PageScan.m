@@ -1362,7 +1362,7 @@ function BW = draw_unicode_char(c, Font, FontSize)
     F = getframe(fh);
     BW = im2bw(F.cdata);
     [h,~] = size(BW);
-    bbox=round([ex(1)+1,h-ex(4)-1,ex(3),ex(4)]);
+    bbox = round([ex(1)+1,h-ex(4)-1,ex(3),ex(4)]);
     BW = BW( bbox(2):(bbox(2)+bbox(4)), bbox(1):(bbox(1)+bbox(3)));
     delete(fh);
 end
