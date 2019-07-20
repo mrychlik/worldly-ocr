@@ -2,7 +2,7 @@ classdef FontManager < handle
     properties(Constant)
         Font = 'TimesRoman';
         FontSize = 100;
-g    end
+    end
 
     properties(Access=public)
         FontCache;                      % Cache of character images
