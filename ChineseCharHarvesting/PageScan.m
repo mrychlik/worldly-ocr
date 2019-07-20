@@ -139,11 +139,12 @@ classdef PageScan < handle
 
             this.opts = p.Results;
 
-            if isempty(opts.FontManager)
-                this.FontManager = FontManager(p.Results.Font, p.Results,FontSize);
+            if isempty(this.opts.FontManager)
+                this.FontManager = FontManager('Font', opts.Font, ...
+                                               'FontSize', opts,FontSize);
             else 
                 this.FontManager = opts.FontManager;
-                remfield(opts,'FontManager');
+                this.opts = remfield(opts,'FontManager');
             end
 
             this.scan_image(img);
