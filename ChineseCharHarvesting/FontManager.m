@@ -9,7 +9,7 @@ classdef FontManager < handle
     methods
         function this = FontManager(varargin)
             p = inputParser;
-            addOptional(p, 'Font', 'TimesRoman', @(x)ischar(x));
+            addOptional(p, 'FontName', 'TimesRoman', @(x)ischar(x));
             addOptional(p, 'FontSize', 100, @(x)isscalar(x));            
             parse(p, varargin{:});
             this.opts = p.Results;
