@@ -648,7 +648,11 @@ classdef PageScan < handle
         end
 
         function Columns = get.Columns(this)
-            Columns = zeros(this.CharacterCount,1);
+            N = this.CharacterCount;
+            Columns = zeros(N,1);
+            if N == 0
+                return;
+            end
             x = this.Centroids(:,1);
             % Sort centroids by x
             % For Traditional Chinese, right-to-left
