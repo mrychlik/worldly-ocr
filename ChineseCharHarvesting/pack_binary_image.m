@@ -12,5 +12,5 @@ function P = pack_binary_image(BW)
     BW = padarray(BW, 8*num_bytes-len, 0, 'post');
     P = reshape(BW,[num_bytes,8]);
     P = bi2de(P);
-    P = [h;w;P]';
+    P = uint8([h;w;P])';
 end
