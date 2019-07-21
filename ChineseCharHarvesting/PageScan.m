@@ -1186,6 +1186,12 @@ classdef PageScan < handle
                 this.Characters(char_count).IsOutlier = is_outlier;
                 this.Characters(char_count).Ignore = false;
             end
+            % If there are no characters, we create an empty array to 
+            % avoid exceptional handling when the page is empty
+            if isempty(this.Characters)
+                s = struct('Stats',{},'Position',{},'CroppedMonoImage',{},...
+                           'AltImage',{},'IsShort',{}, 'IsOutlier',{},'Ignore',{});
+            end
         end
 
         function updateExternalOcrResultsCache(this)
