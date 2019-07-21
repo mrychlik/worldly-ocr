@@ -175,6 +175,9 @@ classdef PageScan < handle
         function Centroids = get.Centroids(this)
             fh = @(s)s.Stats.Centroid';
             Centroids = cell2mat(arrayfun(fh,this.Characters,'UniformOutput',false))';
+            if isempty(Centroids)
+                Centroids = zeros(0,2);
+            end
         end
 
         function Width = get.Width(this)
