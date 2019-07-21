@@ -1,11 +1,17 @@
-dbfile=fullfile('example.db');
-conn = sqlite(dbfile);
-exec(conn, [ 'create table lucky ' ...
+dbfile = fullfile('example.db');
+
+if exist(dbfile,'file')~=2
+    mode = 'create';
+else
+    mode = 'connect';
+end
+conn = sqlite(dbfile, mode);
+exec(conn, [ 'create if not exists table lucky ' ...
              '(name VARCHAR, ' ...
              'lucky_number NUMERIC)' ]);
 
 
-insert(conn, 'people', ...
+insert(conn, 'lucky', ...
        {'name', 'lucky_number'}, ...
        {'John', 37} );
 
