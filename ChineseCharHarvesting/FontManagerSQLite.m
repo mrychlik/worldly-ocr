@@ -50,14 +50,15 @@ classdef FontManagerSQLite < handle
         end
 
         function BW = get_char_image(this, c)
-            results = fetch(this.conn, [ 'select * from bitmaps ' ...
+            results = fetch(this.conn, [ 'select (char, width, height, image) from bitmaps ' ...
                                 'where char = ', c]);
             if isempty(results) 
                 BW = this.draw_unicode_char(c);
                 BW = imautocrop(BW);
+                BW_data = pack_binary_image(BW);
                 insert(this.conn, 'bitmaps',...
                        {'char', 'image', 'hitcount'},...
-                       {c, BW, 1} );
+                       {c, BW_data, 1} );
             else
                 results = results(1);
                 BW = results{2};
