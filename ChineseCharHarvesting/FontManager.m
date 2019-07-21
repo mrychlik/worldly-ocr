@@ -1,4 +1,4 @@
-classdef(Abstract) FontManager 
+classdef(Abstract) FontManager < handle
 %FONTMANAGER - manages rendering of bitmaps of characters
     properties(Abstract)
         FontName;
