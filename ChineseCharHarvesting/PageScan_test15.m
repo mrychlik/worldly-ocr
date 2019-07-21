@@ -10,6 +10,7 @@ waitfun=@()pause(.2);
 
 
 for page=pages
+    movegui(gcf,'center');
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
     set(gcf, 'name', sprintf('Page %d', page));
     ps = PageScan(filename,'KeepOutliers',keep_outliers,...
