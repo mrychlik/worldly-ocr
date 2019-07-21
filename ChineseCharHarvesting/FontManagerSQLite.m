@@ -1,4 +1,4 @@
-classdef FontManagerSQLite < handle
+classdef FontManagerSQLite < handle & FontManager
 %FONTMANAGER - manages rendering of bitmaps of characters
 %  FONTMANAGER implements caching of generated bitmaps in memory.
 %  Since the manager does not use persistent storage, the cache goes away
@@ -49,7 +49,7 @@ classdef FontManagerSQLite < handle
 
         function BW = get_char_image(this, c)
             results = fetch(this.conn, [ 'select image from bitmaps ' ...
-                                'where char = ''', c, '''']);
+                                'where char = ''', c, ''''],1);
             if isempty(results) 
                 BW = this.draw_unicode_char(c);
                 BW = imautocrop(BW);
@@ -58,8 +58,7 @@ classdef FontManagerSQLite < handle
                        {'char', 'image', 'hitcount'},...
                        {c, char(BW_data), 1} );
             else
-                results = results(1);
-                BW_data = results{2};
+                BW_data = uint8(results{1});
                 BW = unpack_binary_image(BW_data);
             end
         end
