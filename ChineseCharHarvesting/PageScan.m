@@ -148,6 +148,7 @@ classdef PageScan < handle
                                                'FontSize', this.opts.FontSize);
             else 
                 this.FontManager = this.opts.FontManager;
+                % We should never use 'FontManager' option so we delete it
                 this.opts = rmfield(this.opts,'FontManager');
             end
 
