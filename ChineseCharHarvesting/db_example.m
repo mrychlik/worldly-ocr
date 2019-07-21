@@ -6,7 +6,7 @@ else
     mode = 'connect';
 end
 conn = sqlite(dbfile, mode);
-exec(conn, [ 'create if not exists table lucky ' ...
+exec(conn, [ 'create table if not exists lucky ' ...
              '(name VARCHAR, ' ...
              'lucky_number NUMERIC)' ]);
 
@@ -18,3 +18,5 @@ insert(conn, 'lucky', ...
 results = fetch(conn, 'select * from lucky');
 
 close(conn);
+
+results
