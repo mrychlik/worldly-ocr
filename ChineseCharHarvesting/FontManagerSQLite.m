@@ -6,7 +6,7 @@ classdef FontManagerSQLite < handle
     properties(Access=public)
         conn;
     end
-    properties(Access=private);
+    properties(Access=public);
         opts;                           % Options passed to constructor
     end
 
@@ -43,6 +43,8 @@ classdef FontManagerSQLite < handle
             this.conn = sqlite(this.opts.DBFileName, mode);
             exec(this.conn, [ 'create table if not exists bitmaps ' ...
                               '(char VARCHAR, ' ...
+                              'width NUMERIC, ' ...
+                              'height NUMERIC, ' ...
                               'image VARCHAR, ' ...
                               'hitcount NUMERIC)' ]);
         end
@@ -70,7 +72,7 @@ classdef FontManagerSQLite < handle
         end
     end
 
-    methods(Access = private)
+    methods(Access = public)
         function BW = draw_unicode_char(this, c) 
         % DRAW_UNICODE_CHAR - draw a single unicode character
         %   BW = DRAW_UNICODE_CHAR(C, FONT, FONTSIZE) draws
