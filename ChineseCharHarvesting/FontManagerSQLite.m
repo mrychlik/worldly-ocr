@@ -48,7 +48,7 @@ classdef FontManagerSQLite < handle
         end
 
         function BW = get_char_image(this, c)
-            results = fetch(this.conn, [ 'select * from bitmaps ' ...
+            results = fetch(this.conn, [ 'select image from bitmaps ' ...
                                 'where char = ''', c, '''']);
             if isempty(results) 
                 BW = this.draw_unicode_char(c);
