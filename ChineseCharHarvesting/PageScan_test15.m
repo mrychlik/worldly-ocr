@@ -4,15 +4,19 @@ config_pages;
 
 keep_outliers = false;
 
+% waitfun=@()uiwait(gcf);
+waitfun=@()pause(.2);
+
+
 
 for page=pages
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
+    set(gcf, 'name', sprintf('Page %d', page));
     ps = PageScan(filename,'KeepOutliers',keep_outliers,...
                   'FontManager', font_manager);
     ps = ps.do_merge_characters_all;
     ps.show_ocr_slowly;
     title(sprintf('Page %d', page));
     drawnow;
-    uiwait(gcf);
-    %pause;
+    waitfun;
 end;
