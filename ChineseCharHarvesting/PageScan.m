@@ -175,7 +175,8 @@ classdef PageScan < handle
         function Centroids = get.Centroids(this)
             fh = @(s)s.Stats.Centroid';
             Centroids = cell2mat(arrayfun(fh,this.Characters,'UniformOutput',false))';
-            % Set to empty array with 2 columns, to avoid exceptional processing
+            % Set to empty array with 2 columns, to avoid exceptional
+            % processing when page is empty
             if isempty(Centroids)
                 Centroids = zeros(0,2);
             end
