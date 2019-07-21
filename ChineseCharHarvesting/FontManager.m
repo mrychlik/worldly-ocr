@@ -8,6 +8,5 @@ classdef(Abstract) FontManager < handle
 
     methods(Abstract)
         BW = get_char_image(this, c)
-        BW = draw_unicode_char(this, c) 
     end
 end
