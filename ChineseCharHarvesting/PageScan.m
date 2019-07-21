@@ -1106,11 +1106,6 @@ classdef PageScan < handle
             end
         end
 
-
-
-
-
-
         function this = do_merge_characters(this, idx1, idx2)
         % DO_MERGE_CHARACTERS - Merge bounding boxes
             this.Characters(idx1).Stats.BoundingBox = ...
