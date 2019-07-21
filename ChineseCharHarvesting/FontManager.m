@@ -1,4 +1,5 @@
 classdef FontManager < handle
+%FONTMANAGER - manages rendering of bitmaps of characters
     properties(Access=public)
         FontCache;                      % Cache of character images
     end
