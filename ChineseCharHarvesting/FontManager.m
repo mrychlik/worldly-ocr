@@ -37,6 +37,7 @@ classdef FontManager < handle
                 this.FontCache(c) = s;
             else
                 BW = this.draw_unicode_char(c);
+                BW = imautocrop(BW);
                 this.FontCache(c) = struct('Image',BW,'HitCount',1);
             end
         end
