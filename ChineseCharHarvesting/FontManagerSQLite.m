@@ -30,6 +30,9 @@ classdef FontManagerSQLite < handle
             this.connect_db;
         end
 
+        function delete(this)
+            close(this.conn);
+        end
 
         function connect_db(this)
             if exist(this.opts.DBFileName, 'file') ~= 2
@@ -37,7 +40,7 @@ classdef FontManagerSQLite < handle
             else
                 mode = 'connect';
             end
-            this.conn = sqlite(opts.DBFileName, mode);
+            this.conn = sqlite(this.opts.DBFileName, mode);
             exec(this.conn, [ 'create table if not exists bitmaps ' ...
                               '(char VARCHAR, ' ...
                               'image VARCHAR, ' ...
