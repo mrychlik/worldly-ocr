@@ -17,5 +17,5 @@ if ~exist('pages','var') pages=6:95; end;
 
 % Create a font manager (or use an existing one)
 if ~exist('font_manager')
-    font_manager = FontManagerSQLite;
+    font_manager = FontManagerRAM;
 end
