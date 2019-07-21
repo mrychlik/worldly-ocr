@@ -113,23 +113,23 @@ classdef PageScan < handle
             p = inputParser;
 
             addRequired(p, 'source', @(x)(ischar(x)||isnumeric(x)));
-            addOptional(p, 'KeepOutliers', false, @(x)islogical(x));            
-            addOptional(p, 'MergeCharacters', false, @(x)islogical(x));
-            addOptional(p, 'TesseractVersion', 'mex',...
+            addParameter(p, 'KeepOutliers', false, @(x)islogical(x));            
+            addParameter(p, 'MergeCharacters', false, @(x)islogical(x));
+            addParameter(p, 'TesseractVersion', 'mex',...
                         @(x)any(validatestring(x,{'builtin','external','mex'})));
-            addOptional(p, 'ShortHeightThreshold', 30);
-            addOptional(p, 'ColumnDistThreshold', 60)
-            addOptional(p, 'RowDistThreshold', 40);        
-            addOptional(p, 'MergeThreshold', 20);% For attaching "cloud"
-            addOptional(p, 'MaxCharWidth', 100);% Maximum width of a valid character
-            addOptional(p, 'MinCharHeight',10);% Minimum height of a valid character
-            addOptional(p, 'BinThreshold', 0.45);% Binarization threshold
-            addOptional(p, 'MinVertGap', 10);% Min. vert. gap between bboxes.
-            addOptional(p, 'LanguageSpec', 'ChineseTraditional',...
+            addParameter(p, 'ShortHeightThreshold', 30);
+            addParameter(p, 'ColumnDistThreshold', 60)
+            addParameter(p, 'RowDistThreshold', 40);        
+            addParameter(p, 'MergeThreshold', 20);% For attaching "cloud"
+            addParameter(p, 'MaxCharWidth', 100);% Maximum width of a valid character
+            addParameter(p, 'MinCharHeight',10);% Minimum height of a valid character
+            addParameter(p, 'BinThreshold', 0.45);% Binarization threshold
+            addParameter(p, 'MinVertGap', 10);% Min. vert. gap between bboxes.
+            addParameter(p, 'LanguageSpec', 'ChineseTraditional',...
                         @(x)any(validatestring, this.SupportedLanguages));
-            addOptional(p, 'FontName', 'TimesRoman', @(x)ischar(x));
-            addOptional(p, 'FontSize', 60);
-            addOptional(p, 'FontManager', [], @(x)isa(x,'FontManager'));
+            addParameter(p, 'FontName', 'TimesRoman', @(x)ischar(x));
+            addParameter(p, 'FontSize', 60);
+            addParameter(p, 'FontManager', [], @(x)isa(x,'FontManager'));
             parse(p, source, varargin{:});
 
             if ischar(source)
@@ -263,12 +263,12 @@ classdef PageScan < handle
         % so that zoom and pan are synchronized.
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
-            addOptional(p,'CharIndices', 1:this.CharacterCount, ...
+            addParameter(p,'CharIndices', 1:this.CharacterCount, ...
                         @(x)(isnumeric(x) &&  ...
                              min(x) >= 1  && ...
                              max(x) <= this.CharacterCount) ...
                         );
-            addOptional(p, 'FontSize', 40,  @(x)isscalar(x));
+            addParameter(p, 'FontSize', 40,  @(x)isscalar(x));
             parse(p, this,varargin{:});
 
             % Do not show characters marked as ignored
@@ -341,7 +341,7 @@ classdef PageScan < handle
         function show_ocr_slowly(this, varargin)
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
-            addOptional(p,'CharIndices', 1:this.CharacterCount, ...
+            addParameter(p,'CharIndices', 1:this.CharacterCount, ...
                         @(x)(isnumeric(x) &&  ...
                              min(x) >= 1  && ...
                              max(x) <= this.CharacterCount) ...
@@ -408,14 +408,14 @@ classdef PageScan < handle
         % MARKED_PAGEIMAGE shows page with character bounding boxes
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
-            addOptional(p, 'Background', 'Original',...
+            addParameter(p, 'Background', 'Original',...
                         @(x)any(validatestring(x,{'Original','Mono'})));
-            addOptional(p, 'ShowCentroids', true, @(x)islogical(x));
-            addOptional(p, 'ShowDilation', false, @(x)islogical(x));            
-            addOptional(p, 'ShowOutliers', false, @(x)islogical(x));
-            addOptional(p, 'ShowHorizontal', true, @(x)islogical(x));
-            addOptional(p, 'ShowVertical', true, @(x)islogical(x));
-            addOptional(p, 'EraseVerticalLines', true, @(x)islogical(x));
+            addParameter(p, 'ShowCentroids', true, @(x)islogical(x));
+            addParameter(p, 'ShowDilation', false, @(x)islogical(x));            
+            addParameter(p, 'ShowOutliers', false, @(x)islogical(x));
+            addParameter(p, 'ShowHorizontal', true, @(x)islogical(x));
+            addParameter(p, 'ShowVertical', true, @(x)islogical(x));
+            addParameter(p, 'EraseVerticalLines', true, @(x)islogical(x));
 
             parse(p, this,varargin{:});
 
@@ -472,8 +472,8 @@ classdef PageScan < handle
         % SHORT_CHARS_IMG shows short characters, which may be parts
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
-            addOptional(p, 'ShowOutliers', false, @(x)islogical(x));            
-            addOptional(p, 'ShowBoundingBoxes', true, @(x)islogical(x));            
+            addParameter(p, 'ShowOutliers', false, @(x)islogical(x));            
+            addParameter(p, 'ShowBoundingBoxes', true, @(x)islogical(x));            
             parse(p, this,varargin{:});
 
             imagesc(this.PageImageMono);
@@ -507,7 +507,7 @@ classdef PageScan < handle
         % SHOW_COLUMNS shows column assignment
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
-            addOptional(p, 'ShowOutliers', false, @(x)islogical(x));            
+            addParameter(p, 'ShowOutliers', false, @(x)islogical(x));            
             parse(p, this,varargin{:});
 
             imagesc(this.PageImage);
@@ -539,7 +539,7 @@ classdef PageScan < handle
         % SHOW_ROWS shows row assignment
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
-            addOptional(p, 'ShowOutliers', false, @(x)islogical(x));            
+            addParameter(p, 'ShowOutliers', false, @(x)islogical(x));            
             parse(p, this,varargin{:});
 
             imagesc(this.PageImage);
@@ -571,10 +571,10 @@ classdef PageScan < handle
         % SHOW_CENTROIDS shows the centroid of each character
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
-            addOptional(p, 'ShowOutliers', false, @(x)islogical(x));            
-            addOptional(p, 'ShowColumns', true, @(x)islogical(x));            
-            addOptional(p, 'ShowRows', false, @(x)islogical(x));            
-            addOptional(p, 'ShowBoundingBoxes', true, @(x)islogical(x));
+            addParameter(p, 'ShowOutliers', false, @(x)islogical(x));            
+            addParameter(p, 'ShowColumns', true, @(x)islogical(x));            
+            addParameter(p, 'ShowRows', false, @(x)islogical(x));            
+            addParameter(p, 'ShowBoundingBoxes', true, @(x)islogical(x));
             parse(p, this,varargin{:});
 
             clf;
@@ -617,8 +617,8 @@ classdef PageScan < handle
         function show_column_centers(this, varargin)
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
-            addOptional(p, 'ShowOutliers', false, @(x)islogical(x));            
-            addOptional(p, 'ShowBoundingBoxes', true, @(x)islogical(x));
+            addParameter(p, 'ShowOutliers', false, @(x)islogical(x));            
+            addParameter(p, 'ShowBoundingBoxes', true, @(x)islogical(x));
             parse(p, this,varargin{:});
 
             clf;
@@ -708,7 +708,7 @@ classdef PageScan < handle
         % VERTICAL_BOUNDARY - Find left and right boundary
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
-            addOptional(p, 'EraseVerticalLines', false, @(x)islogical(x));
+            addParameter(p, 'EraseVerticalLines', false, @(x)islogical(x));
             parse(p, this,varargin{:});
             % Find left and right
             se1 = strel('line',80,90);
@@ -737,12 +737,12 @@ classdef PageScan < handle
         function show_boundary(this, varargin)
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));
-            addOptional(p, 'ShowText', true, @(x)islogical(x));
-            addOptional(p, 'ShowHorizontal', true, @(x)islogical(x));
-            addOptional(p, 'ShowVertical', true, @(x)islogical(x));
-            addOptional(p, 'ShowBoundingBoxes', true, @(x)islogical(x));
-            addOptional(p, 'ShowOutliers', false, @(x)islogical(x));
-            addOptional(p, 'EraseVerticalLines', true, @(x)islogical(x));
+            addParameter(p, 'ShowText', true, @(x)islogical(x));
+            addParameter(p, 'ShowHorizontal', true, @(x)islogical(x));
+            addParameter(p, 'ShowVertical', true, @(x)islogical(x));
+            addParameter(p, 'ShowBoundingBoxes', true, @(x)islogical(x));
+            addParameter(p, 'ShowOutliers', false, @(x)islogical(x));
+            addParameter(p, 'EraseVerticalLines', true, @(x)islogical(x));
             parse(p, this,varargin{:});
 
             
@@ -767,8 +767,8 @@ classdef PageScan < handle
         function draw_bounding_boxes(this, varargin)
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));
-            addOptional(p, 'ShowOutliers', false, @(x)islogical(x));
-            addOptional(p, 'CharacterIndices', 1:this.CharacterCount, @(x)isnumeric(x));
+            addParameter(p, 'ShowOutliers', false, @(x)islogical(x));
+            addParameter(p, 'CharacterIndices', 1:this.CharacterCount, @(x)isnumeric(x));
             parse(p, this,varargin{:});
 
             for char_idx = p.Results.CharacterIndices
@@ -795,7 +795,7 @@ classdef PageScan < handle
         % VERTICALLINES - returns parameters of vertical lines (up to 1)
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));
-            addOptional(p, 'NumberOfLines', 1, @(x)isscalar(x));
+            addParameter(p, 'NumberOfLines', 1, @(x)isscalar(x));
             parse(p, this,varargin{:});
 
             nhood_size = [199,199];                   % Suppression neighborhood size
@@ -812,7 +812,7 @@ classdef PageScan < handle
         % SHOW_VERTICAL_LINE - show page boundary (non-binding)
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));
-            addOptional(p, 'NumberOfLines', 1, @(x)isscalar(x));
+            addParameter(p, 'NumberOfLines', 1, @(x)isscalar(x));
             parse(p, this,varargin{:});
 
             set(gca,'YDir','reverse');
@@ -890,9 +890,9 @@ classdef PageScan < handle
         function draw_boundary(this, varargin)
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));
-            addOptional(p, 'ShowHorizontal', true, @(x)islogical(x));
-            addOptional(p, 'ShowVertical', true, @(x)islogical(x));
-            addOptional(p, 'EraseVerticalLines', true, @(x)islogical(x));
+            addParameter(p, 'ShowHorizontal', true, @(x)islogical(x));
+            addParameter(p, 'ShowVertical', true, @(x)islogical(x));
+            addParameter(p, 'EraseVerticalLines', true, @(x)islogical(x));
 
             parse(p, this,varargin{:});
 
