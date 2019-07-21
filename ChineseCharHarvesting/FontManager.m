@@ -1,9 +1,5 @@
 classdef(Abstract) FontManager 
 %FONTMANAGER - manages rendering of bitmaps of characters
-    properties(Access=private);
-        opts;                           % Options passed to constructor
-    end
-
     properties(Abstract)
         FontName;
         FontSize;
