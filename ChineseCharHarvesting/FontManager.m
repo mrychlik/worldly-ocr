@@ -1,8 +1,5 @@
 classdef(Abstract) FontManager 
 %FONTMANAGER - manages rendering of bitmaps of characters
-%  FONTMANAGER implements caching of generated bitmaps in memory.
-%  Since the manager does not use persistent storage, the cache goes away
-%  when the FONTMANAGER object is destroyed.
     properties(Access=private);
         opts;                           % Options passed to constructor
     end
