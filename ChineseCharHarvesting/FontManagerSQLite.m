@@ -1,8 +1,6 @@
 classdef FontManagerSQLite < handle & FontManager
 %FONTMANAGER - manages rendering of bitmaps of characters
-%  FONTMANAGERSQLITE implements caching of generated bitmaps in memory.
-%  Since the manager does not use persistent storage, the cache goes away
-%  when the FONTMANAGER object is destroyed.
+%  FONTMANAGERSQLITE implements caching of generated bitmaps in an SQLite database.
     properties(Access=public)
         conn;
     end
