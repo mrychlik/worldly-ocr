@@ -56,7 +56,6 @@ classdef TesseractRecognizer
         % TODO: Implement this carefully.
             if ismac
                 % Code to run on Mac platform
-                % Code to run on Linux platform
                 [status,result] = system('which tesseract');
                 if status == 0
                     fprintf('Found tesseract executable: %s\n', result);
@@ -75,7 +74,6 @@ classdef TesseractRecognizer
                 end
             elseif ispc
                 % Code to run on Windows platform
-                % Code to run on Linux platform
                 [status,result] = system('where tesseract');
                 if status == 0
                     fprintf('Found tesseract: %s', result);
