@@ -85,6 +85,7 @@ classdef LineBreaker
             xhat = (x-mu(1))/mu(2); % mu(1) is mean(x), and mu(2) is std(x)
             [yhat,delta] = polyval(p,xhat,S);
             [x_low,x_high] = bounds(x);
+            [y_low,y_high] = bounds(y);
 
             % Record the fit
             f = struct();
@@ -92,7 +93,9 @@ classdef LineBreaker
             f.S = S;
             f.mu = mu;
             f.x_low = x_low;
-            f.x_high = x_high;                    
+            f.x_high = x_high; 
+            f.y_low = y_low;
+            f.y_high = y_high;             
             f.yhat = yhat;
             f.delta = delta;
             [lo,hi]= bounds(y-yhat);
@@ -132,8 +135,13 @@ classdef LineBreaker
             x_low = cellfun(@(u)u.x_low, this.PolyFit);
             x_high = cellfun(@(u)u.x_high, this.PolyFit);
             x_dist = x_high-x_low;
-            shrt = find(x_dist < 2*this.HorDistance);
-            lng = find(x_dist >= 2*this.HorDistance);
+            y_low = cellfun(@(u)u.y_low, this.PolyFit);
+            y_high = cellfun(@(u)u.y_high, this.PolyFit);
+            y_dist = y_high-y_low;
+            
+            
+            shrt = find(x_dist < 2*this.HorDistance | y_dist  < 2*this.VertDistance);
+            lng = find(x_dist >= 2*this.HorDistance & y_dist >= 2*this.VertDistance);
         end
 
         function lines = long_neighbors(this, s)
