@@ -9,10 +9,11 @@ waitfun=@()pause(.2);
 
 
 
+movegui(gcf,'center');
 for page=pages
-    movegui(gcf,'center');
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
     set(gcf, 'name', sprintf('Page %d', page));
+
     ps = PageScan(filename,'KeepOutliers',keep_outliers,...
                   'FontManager', font_manager);
     ps = ps.do_merge_characters_all;
