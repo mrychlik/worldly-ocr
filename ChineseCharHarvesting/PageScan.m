@@ -116,7 +116,7 @@ classdef PageScan < handle
             addParameter(p, 'TesseractVersion', 'mex',...
                         @(x)any(validatestring(x,{'builtin','external','mex'})));
             addParameter(p, 'ShortHeightThreshold', 30, @(x)isscalar(x));
-            addParameter(p, 'ColumnDistThreshold', 60, @(x)isscalar(x));
+            addParameter(p, 'ColumnDistThreshold', 50, @(x)isscalar(x));
             addParameter(p, 'RowDistThreshold', 40, @(x)isscalar(x));        
             addParameter(p, 'MergeThreshold', 20, @(x)isscalar(x));
             addParameter(p, 'MaxCharWidth', 100, @(x)isscalar(x));
