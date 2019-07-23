@@ -120,11 +120,11 @@ classdef PageScan < handle
             addParameter(p, 'ShortHeightThreshold', 30);
             addParameter(p, 'ColumnDistThreshold', 60)
             addParameter(p, 'RowDistThreshold', 40);        
-            addParameter(p, 'MergeThreshold', 20);% For attaching "cloud"
-            addParameter(p, 'MaxCharWidth', 100);% Maximum width of a valid character
-            addParameter(p, 'MinCharHeight',10);% Minimum height of a valid character
-            addParameter(p, 'BinThreshold', 0.45);% Binarization threshold
-            addParameter(p, 'MinVertGap', 10);% Min. vert. gap between bboxes.
+            addParameter(p, 'MergeThreshold', 20);
+            addParameter(p, 'MaxCharWidth', 100);
+            addParameter(p, 'MinCharHeight',10);
+            addParameter(p, 'BinThreshold', 0.45);
+            addParameter(p, 'MinVertGap', 10);
             addParameter(p, 'LanguageSpec', 'ChineseTraditional',...
                         @(x)any(validatestring, this.SupportedLanguages));
             addParameter(p, 'FontName', 'TimesRoman', @(x)ischar(x));
