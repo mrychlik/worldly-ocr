@@ -1048,11 +1048,11 @@ classdef PageScan < handle
 
                     if ~any([c.IsShort])
                         % Both neightbors are tall, find the closer, and if close enough, merge.
-                        d1 = bbox_vert_dist(c(1).Stats.BoundingBox, c0.Stats.BoundingBox)
-                        d2 = bbox_vert_dist(c(2).Stats.BoundingBox, c0.Stats.BoundingBox)
+                        d1 = bbox_vert_dist(c(1).Stats.BoundingBox, c0.Stats.BoundingBox);
+                        d2 = bbox_vert_dist(c(2).Stats.BoundingBox, c0.Stats.BoundingBox);
 
-                        e1 = bbox_hor_dist(c(1).Stats.BoundingBox, c0.Stats.BoundingBox)
-                        e2 = bbox_hor_dist(c(2).Stats.BoundingBox, c0.Stats.BoundingBox)
+                        e1 = bbox_hor_dist(c(1).Stats.BoundingBox, c0.Stats.BoundingBox);
+                        e2 = bbox_hor_dist(c(2).Stats.BoundingBox, c0.Stats.BoundingBox);
 
                         [d,j] = min([d1,d2]);
                         e = [e1,e2];
