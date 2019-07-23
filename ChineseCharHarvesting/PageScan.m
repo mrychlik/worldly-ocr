@@ -1057,7 +1057,7 @@ classdef PageScan < handle
                         [d,j] = min([d1,d2]);
                         e = [e1,e2];
                         if e(j) == 0 && ~c(j).Ignore
-                            if d < this.opts.MergeThreshold && 
+                            if d < this.opts.MergeThreshold
                                 col = this.Columns(char_idx);
                                 row = this.Rows(char_idx);
                                 disp(sprintf('\tMerging character %d, col=%d, row=%d',...
