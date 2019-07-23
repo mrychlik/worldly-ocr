@@ -979,14 +979,14 @@ classdef PageScan < handle
         %  - a short character followed by another short character
         %    is merged with this character
         % 
-            this = do_merge_all_rule_sss(this);
-            this = do_merge_all_rule_tst(this);            
-            this = do_merge_all_rule_xss(this);
+            do_merge_all_rule_sss(this);
+            do_merge_all_rule_tst(this);            
+            do_merge_all_rule_xss(this);
         end
     end
 
     methods(Access = private)
-        function this = do_merge_all_rule_sss(this)
+        function do_merge_all_rule_sss(this)
         %DO_MERGE_ALL_RULE_SSS - merge three short chars in a row
             disp('Merging by rule short-short-short...');
             for i=1:numel(this.MergeCharacters)
@@ -1021,8 +1021,8 @@ classdef PageScan < handle
                             row = this.Rows(char_idx);
                             disp(sprintf('Merging character %d, col=%d, row=%d',...
                                          char_idx, col, row));
-                            this=this.do_merge_characters(char_idx,ci(1));
-                            this=this.do_merge_characters(char_idx,ci(2));
+                            this.do_merge_characters(char_idx,ci(1));
+                            this.do_merge_characters(char_idx,ci(2));
                         end
                     end
                 end
@@ -1030,7 +1030,7 @@ classdef PageScan < handle
             end
         end
 
-        function this = do_merge_all_rule_tst(this)
+        function do_merge_all_rule_tst(this)
         %DO_MERGE_ALL_RULE_TST - merge short char between two tall ones
             disp('Merging by rule tall-short-tall...');
             for i=1:numel(this.MergeCharacters)
@@ -1065,8 +1065,7 @@ classdef PageScan < handle
                             row = this.Rows(char_idx);
                             disp(sprintf('Merging character %d, col=%d, row=%d',...
                                          char_idx, col, row));
-                            this = this.do_merge_characters(ci(j), ...
-                                                            char_idx);
+                            this.do_merge_characters(ci(j), char_idx);
                         elseif ~c0.Ignore
                             % Enlarge the bounding box; this is necessary
                             % as OCR engine tends to be confused by the
@@ -1093,7 +1092,7 @@ classdef PageScan < handle
             end
         end
 
-        function this = do_merge_all_rule_xss(this)
+        function do_merge_all_rule_xss(this)
         %DO_MERGE_ALL_RULE_XSS - merge two short chars
             disp('Merging by ?-short-short...');
             for i=1:numel(this.MergeCharacters)
@@ -1124,14 +1123,14 @@ classdef PageScan < handle
                             row = this.Rows(char_idx);
                             disp(sprintf('Merging character %d, col=%d, row=%d', ...
                                          char_idx, col, row));
-                            this = this.do_merge_characters(char_idx, ci(2));
+                            this.do_merge_characters(char_idx, ci(2));
                         end
                     end
                 end
             end
         end
 
-        function this = do_merge_characters(this, idx1, idx2)
+        function do_merge_characters(this, idx1, idx2)
         % DO_MERGE_CHARACTERS - Merge bounding boxes
             this.Characters(idx1).Stats.BoundingBox = ...
                 bbox_union(...
