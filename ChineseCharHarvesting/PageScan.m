@@ -124,7 +124,7 @@ classdef PageScan < handle
             addParameter(p, 'BinThreshold', 0.45, @(x)isscalar(x));
             addParameter(p, 'MinVertGap', 10, @(x)isscalar(x));
             addParameter(p, 'LanguageSpec', 'ChineseTraditional',...
-                        @(x)any(validatestring, this.SupportedLanguages));
+                         @(x)any(validatestring, this.SupportedLanguages));
             addParameter(p, 'FontName', 'TimesRoman', @(x)ischar(x));
             addParameter(p, 'FontSize', 60, @(x)isscalar(x));
             addParameter(p, 'FontManager', [], @(x)isa(x,'FontManager'));
