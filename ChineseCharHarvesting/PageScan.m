@@ -1059,10 +1059,7 @@ classdef PageScan < handle
                         %if e(j) == 0 && ~c(j).Ignore
                         if ~c(j).Ignore                            
                             if d < this.opts.MergeThreshold
-                                col = this.Columns(char_idx);
-                                row = this.Rows(char_idx);
-                                disp(sprintf('\tMerging character %d, col=%d, row=%d',...
-                                             char_idx, col, row));
+                                disp(sprintf('\tMerging character %d', char_idx));
                                 this.do_merge_characters(ci(j), char_idx);
                             elseif ~c0.Ignore
                                 % Enlarge the bounding box; this is necessary
@@ -1076,13 +1073,7 @@ classdef PageScan < handle
                                              bbox(3),...
                                              bbox(4) + 2*d1
                                             ];
-
-                                    col = this.Columns(char_idx);
-                                    row = this.Rows(char_idx);
-                                    disp(sprintf(['\tEnlarging bbox of character %d, ' ...
-                                                  'col=%d, row=%d'],...
-                                                 char_idx, col, row));
-
+                                    disp(sprintf('\tEnlarging bbox of character %d', char_idx));
                                     s.BoundingBox = bbox1;
                                     this.Characters(char_idx).Stats = s;
                                 end
