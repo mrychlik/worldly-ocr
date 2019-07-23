@@ -977,9 +977,10 @@ classdef PageScan < handle
         %  - a short character followed by another short character
         %    is merged with this character
         % 
-            do_merge_all_rule_sss(this);
+            ;
+            %do_merge_all_rule_sss(this);
             do_merge_all_rule_tst(this);            
-            do_merge_all_rule_xss(this);
+            %do_merge_all_rule_xss(this);
         end
     end
 
@@ -1071,19 +1072,21 @@ classdef PageScan < handle
                             s = c0.Stats;
                             bbox = s.BoundingBox;
                             d1 = max(d - this.opts.MinVertGap, 0);
-                            bbox1 = [bbox(1), bbox(2) - d1,...
-                                     bbox(3),...
-                                     bbox(4) + 2*d1
-                                     ];
+                            if d1 > 0 
+                                bbox1 = [bbox(1), bbox(2) - d1,...
+                                         bbox(3),...
+                                         bbox(4) + 2*d1
+                                        ];
 
-                            col = this.Columns(char_idx);
-                            row = this.Rows(char_idx);
-                            disp(sprintf(['Enlarging bbox of character %d, ' ...
-                                          'col=%d, row=%d'],...
-                                         char_idx, col, row));
+                                col = this.Columns(char_idx);
+                                row = this.Rows(char_idx);
+                                disp(sprintf(['Enlarging bbox of character %d, ' ...
+                                              'col=%d, row=%d'],...
+                                             char_idx, col, row));
 
-                            s.BoundingBox = bbox1;
-                            this.Characters(char_idx).Stats = s;
+                                s.BoundingBox = bbox1;
+                                this.Characters(char_idx).Stats = s;
+                            end
                         end
                     end
                 end
