@@ -1016,10 +1016,7 @@ classdef PageScan < handle
                         d = [d1,d2];
                         e = [e1,e2];
                         if all(d < this.opts.MergeThreshold) && all(e == 0) && ~any([c.Ignore])
-                            col = this.Columns(char_idx);
-                            row = this.Rows(char_idx);
-                            disp(sprintf('\tMerging character %d, col=%d, row=%d',...
-                                         char_idx, col, row));
+                            disp(sprintf('\tMerging character %d', char_idx));
                             this.do_merge_characters(char_idx,ci(1));
                             this.do_merge_characters(char_idx,ci(2));
                         end
