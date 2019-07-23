@@ -967,7 +967,7 @@ classdef PageScan < handle
             end
         end
 
-        function this = do_merge_characters_all(this)
+        function do_merge_characters_all(this)
         %DO_MERGE_CHARACTERS_ALL - merge character parts into characters
         %  THIS = DO_MERGE_CHARACTERS_ALL(THIS) processes all 
         %  characters eligible for merging and does the merging,
