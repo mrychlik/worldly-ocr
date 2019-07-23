@@ -1075,11 +1075,13 @@ classdef PageScan < handle
                                      bbox(3),...
                                      bbox(4) + 2*d1
                                      ];
+
                             col = this.Columns(char_idx);
                             row = this.Rows(char_idx);
                             disp(sprintf(['Enlarging box of character %d, ' ...
                                           'col=%d, row=%d'],...
-                                         char_idx, col, row);
+                                         char_idx, col, row));
+
                             s.BoundingBox = bbox1;
                             this.Characters(char_idx).Stats = s;
                         end
