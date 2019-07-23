@@ -821,7 +821,7 @@ classdef PageScan < handle
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));
             addParameter(p, 'NumberOfLines', 1, @(x)isscalar(x));
-            parse(p, this,varargin{:});
+            parse(p, this, varargin{:});
 
             set(gca,'YDir','reverse');
             hold on;
@@ -1054,9 +1054,10 @@ classdef PageScan < handle
                         e1 = bbox_hor_dist(c(1).Stats.BoundingBox, c0.Stats.BoundingBox);
                         e2 = bbox_hor_dist(c(2).Stats.BoundingBox, c0.Stats.BoundingBox);
 
-                        [d,j] = min([d1,d2])
-                        e = [e1,e2]
-                        if e(j) == 0 && ~c(j).Ignore
+                        [d,j] = min([d1,d2]);
+                        e = [e1,e2];
+                        %if e(j) == 0 && ~c(j).Ignore
+                        if ~c(j).Ignore                            
                             if d < this.opts.MergeThreshold
                                 col = this.Columns(char_idx);
                                 row = this.Rows(char_idx);
