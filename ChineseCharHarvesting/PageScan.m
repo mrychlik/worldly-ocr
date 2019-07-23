@@ -827,7 +827,7 @@ classdef PageScan < handle
             hold on;
             im = image(255*this.PageImageMono);
             im.AlphaData = 0.2;
-            [T,R] = this.VerticalLines(p.Results.NumberOfLines);
+            [T,R] = this.VerticalLines('NumberOfLines', p.Results.NumberOfLines);
             % The equation of the line is R=cos(T)*x+sin(T)*y
             % where T is small, thus cos(T)~=0. Hence, x = (R-sin(T)*y)/cos(T)
             for j=1:size(T,1)
