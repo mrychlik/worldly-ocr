@@ -81,11 +81,10 @@ classdef PageScan < handle
         %   * MergeThreshold       - only merge if bboxes of characters
         %     are this pixels apart in vert. direction
         % 
-        %   * MaxCharWidth         - objects wider than this pixels are not
+        %   * MaxCharWidth - objects wider than this pixels are not
         %   considered characters
         % 
-        %   * MinCharHeight        - objects shorter than this are not
-        %   characters
+        %   * MinCharHeight - objects shorter than this are not characters
         % 
         %   * BinThreshold         - used to binarize images
         % 
