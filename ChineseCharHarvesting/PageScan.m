@@ -1106,6 +1106,7 @@ classdef PageScan < handle
                         
                         e = bbox_hor_dist(c(2).Stats.BoundingBox,...
                                           c0.Stats.BoundingBox);
+
                         if d < 2*this.opts.MergeThreshold && e == 0
                             disp(sprintf('Merging character %d', char_idx));
                             this = this.do_merge_characters(char_idx, ci(2));
