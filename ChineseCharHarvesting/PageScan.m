@@ -1108,7 +1108,10 @@ classdef PageScan < handle
                                           c0.Stats.BoundingBox);
 
                         if d < 2*this.opts.MergeThreshold && e == 0
-                            disp(sprintf('Merging character %d', char_idx));
+                            col = this.Characters(char_idx);
+                            row = this.Rows(char_idx);
+                            disp(sprintf('Merging character %d, col=%d, row=%d\n', ...
+                                         char_idx, col, row));
                             this = this.do_merge_characters(char_idx, ci(2));
                         end
                     end
