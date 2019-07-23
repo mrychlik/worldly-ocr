@@ -120,7 +120,7 @@ classdef PageScan < handle
             addParameter(p, 'ShortHeightThreshold', 30);
             addParameter(p, 'ColumnDistThreshold', 60)
             addParameter(p, 'RowDistThreshold', 40);        
-            addParameter(p, 'MergeThreshold', 25);% For attaching "cloud"
+            addParameter(p, 'MergeThreshold', 20);% For attaching "cloud"
             addParameter(p, 'MaxCharWidth', 100);% Maximum width of a valid character
             addParameter(p, 'MinCharHeight',10);% Minimum height of a valid character
             addParameter(p, 'BinThreshold', 0.45);% Binarization threshold
