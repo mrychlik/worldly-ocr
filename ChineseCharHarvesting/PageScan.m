@@ -1054,8 +1054,8 @@ classdef PageScan < handle
                         e1 = bbox_hor_dist(c(1).Stats.BoundingBox, c0.Stats.BoundingBox);
                         e2 = bbox_hor_dist(c(2).Stats.BoundingBox, c0.Stats.BoundingBox);
 
-                        [d,j] = min([d1,d2]);
-                        e = [e1,e2];
+                        [d,j] = min([d1,d2])
+                        e = [e1,e2]
                         if e(j) == 0 && ~c(j).Ignore
                             if d < this.opts.MergeThreshold
                                 col = this.Columns(char_idx);
@@ -1381,6 +1381,8 @@ end
 
 function D = interval_dist(a, b)
 % INTERVAL_DIST - distance between intervals
+    assert(a(1) < a(2));
+    assert(b(1) < b(2));
     if a(2) < b(1) 
         D = b(1) - a(2);
     elseif a(1) > b(2)
