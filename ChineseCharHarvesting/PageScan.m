@@ -1048,41 +1048,43 @@ classdef PageScan < handle
 
                     if ~any([c.IsShort])
                         % Both neightbors are tall, find the closer, and if close enough, merge.
-                        d1 = bbox_vert_dist(c(1).Stats.BoundingBox, c0.Stats.BoundingBox);
-                        d2 = bbox_vert_dist(c(2).Stats.BoundingBox, c0.Stats.BoundingBox);
+                        d1 = bbox_vert_dist(c(1).Stats.BoundingBox, c0.Stats.BoundingBox)
+                        d2 = bbox_vert_dist(c(2).Stats.BoundingBox, c0.Stats.BoundingBox)
 
-                        e1 = bbox_hor_dist(c(1).Stats.BoundingBox, c0.Stats.BoundingBox);
-                        e2 = bbox_hor_dist(c(2).Stats.BoundingBox, c0.Stats.BoundingBox);
+                        e1 = bbox_hor_dist(c(1).Stats.BoundingBox, c0.Stats.BoundingBox)
+                        e2 = bbox_hor_dist(c(2).Stats.BoundingBox, c0.Stats.BoundingBox)
 
                         [d,j] = min([d1,d2]);
                         e = [e1,e2];
-                        if d < this.opts.MergeThreshold && e(j) == 0 && ~c(j).Ignore
-                            col = this.Columns(char_idx);
-                            row = this.Rows(char_idx);
-                            disp(sprintf('\tMerging character %d, col=%d, row=%d',...
-                                         char_idx, col, row));
-                            this.do_merge_characters(ci(j), char_idx);
-                        elseif ~c0.Ignore
-                            % Enlarge the bounding box; this is necessary
-                            % as OCR engine tends to be confused by the
-                            % very short character, like 'one' (bar)
-                            s = c0.Stats;
-                            bbox = s.BoundingBox;
-                            d1 = max(d - this.opts.MinVertGap, 0);
-                            if d1 > 0 
-                                bbox1 = [bbox(1), bbox(2) - d1,...
-                                         bbox(3),...
-                                         bbox(4) + 2*d1
-                                        ];
-
+                        if e(j) == 0 && ~c(j).Ignore
+                            if d < this.opts.MergeThreshold && 
                                 col = this.Columns(char_idx);
                                 row = this.Rows(char_idx);
-                                disp(sprintf(['\tEnlarging bbox of character %d, ' ...
-                                              'col=%d, row=%d'],...
+                                disp(sprintf('\tMerging character %d, col=%d, row=%d',...
                                              char_idx, col, row));
+                                this.do_merge_characters(ci(j), char_idx);
+                            elseif ~c0.Ignore
+                                % Enlarge the bounding box; this is necessary
+                                % as OCR engine tends to be confused by the
+                                % very short character, like 'one' (bar)
+                                s = c0.Stats;
+                                bbox = s.BoundingBox;
+                                d1 = max(d - this.opts.MinVertGap, 0);
+                                if d1 > 0 
+                                    bbox1 = [bbox(1), bbox(2) - d1,...
+                                             bbox(3),...
+                                             bbox(4) + 2*d1
+                                            ];
 
-                                s.BoundingBox = bbox1;
-                                this.Characters(char_idx).Stats = s;
+                                    col = this.Columns(char_idx);
+                                    row = this.Rows(char_idx);
+                                    disp(sprintf(['\tEnlarging bbox of character %d, ' ...
+                                                  'col=%d, row=%d'],...
+                                                 char_idx, col, row));
+
+                                    s.BoundingBox = bbox1;
+                                    this.Characters(char_idx).Stats = s;
+                                end
                             end
                         end
                     end
