@@ -117,18 +117,18 @@ classdef PageScan < handle
             addParameter(p, 'MergeCharacters', false, @(x)islogical(x));
             addParameter(p, 'TesseractVersion', 'mex',...
                         @(x)any(validatestring(x,{'builtin','external','mex'})));
-            addParameter(p, 'ShortHeightThreshold', 30);
-            addParameter(p, 'ColumnDistThreshold', 60)
-            addParameter(p, 'RowDistThreshold', 40);        
-            addParameter(p, 'MergeThreshold', 20);
-            addParameter(p, 'MaxCharWidth', 100);
-            addParameter(p, 'MinCharHeight',10);
-            addParameter(p, 'BinThreshold', 0.45);
-            addParameter(p, 'MinVertGap', 10);
+            addParameter(p, 'ShortHeightThreshold', 30, @(x)isscalar(x));
+            addParameter(p, 'ColumnDistThreshold', 60, @(x)isscalar(x));
+            addParameter(p, 'RowDistThreshold', 40, @(x)isscalar(x));        
+            addParameter(p, 'MergeThreshold', 20, @(x)isscalar(x));
+            addParameter(p, 'MaxCharWidth', 100, @(x)isscalar(x));
+            addParameter(p, 'MinCharHeight',10, @(x)isscalar(x));
+            addParameter(p, 'BinThreshold', 0.45, @(x)isscalar(x));
+            addParameter(p, 'MinVertGap', 10, @(x)isscalar(x));
             addParameter(p, 'LanguageSpec', 'ChineseTraditional',...
                         @(x)any(validatestring, this.SupportedLanguages));
             addParameter(p, 'FontName', 'TimesRoman', @(x)ischar(x));
-            addParameter(p, 'FontSize', 60);
+            addParameter(p, 'FontSize', 60, @(x)isscalar(x));
             addParameter(p, 'FontManager', [], @(x)isa(x,'FontManager'));
             parse(p, source, varargin{:});
 
