@@ -978,9 +978,9 @@ classdef PageScan < handle
         %    is merged with this character
         % 
             ;
-            %do_merge_all_rule_sss(this);
+            do_merge_all_rule_sss(this);
             do_merge_all_rule_tst(this);            
-            %do_merge_all_rule_xss(this);
+            do_merge_all_rule_xss(this);
         end
     end
 
