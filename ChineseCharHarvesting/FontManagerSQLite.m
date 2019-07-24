@@ -14,6 +14,11 @@ classdef FontManagerSQLite < handle & FontManager
         Table;
     end
 
+    properties(Access=private);
+            fh;                         % Hidden figure handle
+    end
+
+
 
 % Responsible for rendering and caching Unicode characters
     methods
@@ -38,6 +43,7 @@ classdef FontManagerSQLite < handle & FontManager
             parse(p, varargin{:});
             
             this.opts = p.Results;
+            this.fh = figure('Units', 'pixels', 'Color', [1,1,1],'visible','off');
             this.connect_db;
         end
 
@@ -114,7 +120,6 @@ classdef FontManagerSQLite < handle & FontManager
         %   BW = DRAW_UNICODE_CHAR(C, FONT, FONTSIZE) draws
         %   Unicode character C in font FONT, using font size
         %   FONTSIZE in pixels. It returns the generated image
-            fh = figure('Units', 'pixels', 'Color', [1,1,1],'visible','off');
             ax = axes(fh,'Position',[0 0 1 1],'Units','Normalized','visible','off');
             axis off;
 
