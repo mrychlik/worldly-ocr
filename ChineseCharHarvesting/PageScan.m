@@ -121,6 +121,7 @@ classdef PageScan < handle
             addParameter(p, 'MergeThreshold', 20, @(x)isscalar(x));
             addParameter(p, 'MaxCharWidth', 100, @(x)isscalar(x));
             addParameter(p, 'MinCharHeight',10, @(x)isscalar(x));
+            addParameter(p, 'MaxCharHeight',100, @(x)isscalar(x));            
             addParameter(p, 'BinThreshold', 0.45, @(x)isscalar(x));
             addParameter(p, 'MinVertGap', 10, @(x)isscalar(x));
             addParameter(p, 'LanguageSpec', 'ChineseTraditional',...
@@ -1063,7 +1064,7 @@ classdef PageScan < handle
                             % very short character, like 'one' (bar)
                             s = c0.Stats;
                             bbox = s.BoundingBox;
-                            d1 = min(max(d - this.opts.MinVertGap, 0), this.opts.MergeThreshold);
+                            d1 = min(max(d - this.opts.MinVertGap, 0), this.opts.MaxCharHeight);
                             if d1 > 0 
                                 bbox1 = [bbox(1), bbox(2) - d1,...
                                          bbox(3),...
