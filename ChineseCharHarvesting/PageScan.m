@@ -1003,23 +1003,20 @@ classdef PageScan < handle
                     continue;
                 end
 
-                if numel(ci) == 2
-                    % Two neighbors
-                    c = this.Characters(ci);
+                % Two neighbors
+                c = this.Characters(ci);
 
-                    if all([c.IsShort])
-                        % All neighbors are short. If close enough, merge both 
-                        d = arrayfun(@(x)bbox_vert_dist(x.Stats.BoundingBox, c0.Stats.BoundingBox),c);
-                        e = arrayfun(@(x)bbox_hor_dist(x.Stats.BoundingBox, c0.Stats.BoundingBox),c);
+                if all([c.IsShort])
+                    % All neighbors are short. If close enough, merge both 
+                    d = arrayfun(@(x)bbox_vert_dist(x.Stats.BoundingBox, c0.Stats.BoundingBox),c);
+                    e = arrayfun(@(x)bbox_hor_dist(x.Stats.BoundingBox, c0.Stats.BoundingBox),c);
 
-                        if all(d < 1.5*this.opts.MergeThreshold) && all(e == 0) && ~any([c.Ignore])
-                            disp(sprintf('\tMerging character %d', char_idx));
-                            this.do_merge_characters(char_idx,ci(1));
-                            this.do_merge_characters(char_idx,ci(2));
-                        end
+                    if all(d < 1.5*this.opts.MergeThreshold) && all(e == 0) && ~any([c.Ignore])
+                        disp(sprintf('\tMerging character %d', char_idx));
+                        this.do_merge_characters(char_idx,ci(1));
+                        this.do_merge_characters(char_idx,ci(2));
                     end
                 end
-                
             end
         end
 
