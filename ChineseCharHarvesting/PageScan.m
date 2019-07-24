@@ -1043,20 +1043,17 @@ classdef PageScan < handle
                     continue;
                 end
 
-                if numel(ci) == 2
+                %if numel(ci) == 2
+                if true
                     % Two neighbors
                     c = this.Characters(ci);
 
                     if ~any([c.IsShort])
                         % Both neightbors are tall, find the closer, and if close enough, merge.
-                        d1 = bbox_vert_dist(c(1).Stats.BoundingBox, c0.Stats.BoundingBox);
-                        d2 = bbox_vert_dist(c(2).Stats.BoundingBox, c0.Stats.BoundingBox);
+                        d = arrayfun(@(x)bbox_vert_dist(x.Stats.BoundingBox, c0.Stats.BoundingBox),c);
+                        e = arrayfun(@(x)bbox_hor_dist(x.Stats.BoundingBox, c0.Stats.BoundingBox),c);
 
-                        e1 = bbox_hor_dist(c(1).Stats.BoundingBox, c0.Stats.BoundingBox);
-                        e2 = bbox_hor_dist(c(2).Stats.BoundingBox, c0.Stats.BoundingBox);
-
-                        [d,j] = min([d1,d2]);
-                        e = [e1,e2];
+                        [d,j] = min(d);
                         %if e(j) == 0 && ~c(j).Ignore
                         if ~c(j).Ignore                            
                             if d < this.opts.MergeThreshold
