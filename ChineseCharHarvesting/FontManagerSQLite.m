@@ -49,7 +49,7 @@ classdef FontManagerSQLite < handle & FontManager
 
         function delete(this)
             close(this.conn);
-            delete(this.fh);
+            close(this.fh);
         end
 
         function connect_db(this)
