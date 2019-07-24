@@ -8,7 +8,7 @@ keep_outliers = false;
 waitfun=@()pause(.2);
 
 
-
+figure;
 movegui(gcf,'center');
 for page=pages
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
