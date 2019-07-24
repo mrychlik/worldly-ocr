@@ -1043,38 +1043,35 @@ classdef PageScan < handle
                     continue;
                 end
 
-                %if numel(ci) == 2
-                if true
-                    % Two neighbors
-                    c = this.Characters(ci);
+                % These are the neighbor characters, 1 or 2.
+                c = this.Characters(ci);
 
-                    if ~any([c.IsShort])
-                        % Both neightbors are tall, find the closer, and if close enough, merge.
-                        d = arrayfun(@(x)bbox_vert_dist(x.Stats.BoundingBox, c0.Stats.BoundingBox),c);
-                        e = arrayfun(@(x)bbox_hor_dist(x.Stats.BoundingBox, c0.Stats.BoundingBox),c);
+                if ~any([c.IsShort])
+                    % All neightbors are tall, find the closer, and if close enough, merge.
+                    d = arrayfun(@(x)bbox_vert_dist(x.Stats.BoundingBox, c0.Stats.BoundingBox),c);
+                    e = arrayfun(@(x)bbox_hor_dist(x.Stats.BoundingBox, c0.Stats.BoundingBox),c);
 
-                        [d,j] = min(d);
-                        %if e(j) == 0 && ~c(j).Ignore
-                        if ~c(j).Ignore                            
-                            if d < this.opts.MergeThreshold
-                                disp(sprintf('\tMerging character %d', char_idx));
-                                this.do_merge_characters(ci(j), char_idx);
-                            elseif ~c0.Ignore
-                                % Enlarge the bounding box; this is necessary
-                                % as OCR engine tends to be confused by the
-                                % very short character, like 'one' (bar)
-                                s = c0.Stats;
-                                bbox = s.BoundingBox;
-                                d1 = max(d - this.opts.MinVertGap, 0);
-                                if d1 > 0 
-                                    bbox1 = [bbox(1), bbox(2) - d1,...
-                                             bbox(3),...
-                                             bbox(4) + 2*d1
-                                            ];
-                                    disp(sprintf('\tEnlarging bbox of character %d', char_idx));
-                                    s.BoundingBox = bbox1;
-                                    this.Characters(char_idx).Stats = s;
-                                end
+                    [d,j] = min(d);
+                    %if e(j) == 0 && ~c(j).Ignore
+                    if ~c(j).Ignore                            
+                        if d < this.opts.MergeThreshold
+                            disp(sprintf('\tMerging character %d', char_idx));
+                            this.do_merge_characters(ci(j), char_idx);
+                        elseif ~c0.Ignore
+                            % Enlarge the bounding box; this is necessary
+                            % as OCR engine tends to be confused by the
+                            % very short character, like 'one' (bar)
+                            s = c0.Stats;
+                            bbox = s.BoundingBox;
+                            d1 = max(d - this.opts.MinVertGap, 0);
+                            if d1 > 0 
+                                bbox1 = [bbox(1), bbox(2) - d1,...
+                                         bbox(3),...
+                                         bbox(4) + 2*d1
+                                        ];
+                                disp(sprintf('\tEnlarging bbox of character %d', char_idx));
+                                s.BoundingBox = bbox1;
+                                this.Characters(char_idx).Stats = s;
                             end
                         end
                     end
