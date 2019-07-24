@@ -120,7 +120,7 @@ classdef FontManagerSQLite < handle & FontManager
         %   BW = DRAW_UNICODE_CHAR(C, FONT, FONTSIZE) draws
         %   Unicode character C in font FONT, using font size
         %   FONTSIZE in pixels. It returns the generated image
-            ax = axes(fh,'Position',[0 0 1 1],'Units','Normalized','visible','off');
+            ax = axes(this.fh,'Position',[0 0 1 1],'Units','Normalized','visible','off');
             axis off;
 
             th = text(ax, 0,0,c,...
@@ -132,15 +132,17 @@ classdef FontManagerSQLite < handle & FontManager
                       'VerticalAlignment','Bottom');
 
             ex = get(th,'Extent');
-            F = getframe(fh);
+            F = getframe(this.fh);
             BW = im2bw(F.cdata);
             [h,~] = size(BW);
             bbox = round([ex(1)+1,h-ex(4)-1,ex(3),ex(4)]);
             BW = BW( bbox(2):(bbox(2)+bbox(4)), bbox(1):(bbox(1)+bbox(3)));
-            
-            delete(fh);
         end
 
+
+        function delete(this)
+            delete(fh);
+        end
     end
 
 end
