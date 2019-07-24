@@ -16,7 +16,7 @@ for page=pages
     set(gcf, 'name', sprintf('Page %d', page));
     ps = PageScan(filename,'KeepOutliers',keep_outliers,...
                   'FontManager', font_manager);
-    ps.do_merge_characters_all;
+    %ps.do_merge_characters_all;
     ps.show_ocr_slowly;
     title(sprintf('Page %d', page));
     drawnow;
