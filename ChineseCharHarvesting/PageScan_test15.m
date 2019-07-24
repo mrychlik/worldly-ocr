@@ -10,7 +10,6 @@ waitfun=@()pause(.2);
 
 % NOTE: This is needed as a workaround, because font manager now uses a hidden figure, which
 % would be used for drawing OCR results. 
-figure;                                 
 movegui(gcf,'center');
 for page=pages
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
