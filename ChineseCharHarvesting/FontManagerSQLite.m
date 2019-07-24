@@ -50,6 +50,7 @@ classdef FontManagerSQLite < handle & FontManager
         function delete(this)
             close(this.conn);
             delete(this.fh);
+            figure(gcf);                % Make current figure visible
         end
 
         function connect_db(this)
