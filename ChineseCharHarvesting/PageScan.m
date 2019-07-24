@@ -977,11 +977,14 @@ classdef PageScan < handle
         %  - a short character followed by another short character
         %    is merged with this character
         % 
-            mh = msgbox('Merging characters...','icon','none');
+            bh = waitbar(0,'Merging character bounding boxes...');
             do_merge_all_rule_sss(this);
+            waitbar(1/3,bh);
             do_merge_all_rule_tst(this);            
+            waitbar(2/3,bh);
             do_merge_all_rule_xss(this);
-            delete(mh);
+            waitbar(3/3,bh);
+            close(bh);
         end
     end
 
