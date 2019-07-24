@@ -977,7 +977,6 @@ classdef PageScan < handle
         %  - a short character followed by another short character
         %    is merged with this character
         % 
-            ;
             do_merge_all_rule_sss(this);
             do_merge_all_rule_tst(this);            
             do_merge_all_rule_xss(this);
