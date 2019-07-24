@@ -1011,9 +1011,8 @@ classdef PageScan < handle
                     d = arrayfun(@(x)bbox_vert_dist(x.Stats.BoundingBox, c0.Stats.BoundingBox),c);
                     e = arrayfun(@(x)bbox_hor_dist(x.Stats.BoundingBox, c0.Stats.BoundingBox),c);
 
-                    % Note that the usual MergeThreshold is doubled here,
-                    % as two short characters are typically further apart
-                    % (e.g. 'two')
+                    % Note that the usual MergeThreshold is doubled here, as two short
+                    % characters are typically further apart (e.g. 'two').
                     if all(d < 2*this.opts.MergeThreshold) && all(e == 0) && ~any([c.Ignore])
                         disp(sprintf('\tMerging character %d', char_idx));
                         arrayfun(@(x)this.do_merge_characters(char_idx,x), ...
