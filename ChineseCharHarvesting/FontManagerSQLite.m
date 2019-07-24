@@ -74,6 +74,9 @@ classdef FontManagerSQLite < handle & FontManager
 
         function show(this,chars_per_page)
         % SHOW - show all characters in the font manager
+        %   SHOW(THIS,CHARS_PER_PAGE) plots the characters
+        %   currently cached in the font manager, CHARS_PER_PAGE
+        %   characters in a grid.
             if nargin < 2
                 chars_per_page = 49;
             end
