@@ -67,6 +67,11 @@ classdef FontManagerSQLite < handle & FontManager
         function FontSize = get.FontSize(this)
             FontSize = this.opts.FontSize;
         end
+        
+        function Table = get.Table(this)
+            Table = fetch(this.conn, 'select * from bitmaps');
+        end
+
     end
 
     methods(Access = public)
