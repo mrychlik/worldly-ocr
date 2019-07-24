@@ -72,6 +72,23 @@ classdef FontManagerSQLite < handle & FontManager
             Table = fetch(this.conn, 'select * from bitmaps');
         end
 
+        function show(this,chars_per_page)
+            if nargin < 2
+                chars_per_page = 49;
+            end
+            P = ceil(sqrt(chars_per_page));
+            N = chars_per_page:size(this.Table,1);
+            for j = 1:N
+                for k = 1:chars_per_page
+                    idx = (j-1) * chars_per_page + k;
+                    BW = unpack_binary_image(uint8(this.Table{idx,2}));
+                    subplot(P,P,k);
+                    imagesc(BW);
+                end
+                drawnow;
+                pause(1);
+            end
+        end
     end
 
     methods(Access = public)
