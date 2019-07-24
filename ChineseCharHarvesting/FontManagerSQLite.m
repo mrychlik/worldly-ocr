@@ -23,14 +23,14 @@ classdef FontManagerSQLite < handle & FontManager
         %   of class 'FontManagerSQLite'. It accepts the following
         %   parameters:
         %
-        %    * FontName - e.g. 'TimesRoman'
+        %    * FontName - The name of the font used for rendering glyph
+        %    images. Default: 'TimesRoman'
         %
         %    * FontSize - the size of the font from which to draw
-        %      character glyphs
+        %    character glyphs, in pixels. Default: 100
         %
         %    * DBFileName - the name of the SQL database file
-        %     used for caching character images.
-        %
+        %    used for caching character images. Default: 'font.db'
             p = inputParser;
             addParameter(p, 'FontName', 'TimesRoman', @(x)ischar(x));
             addParameter(p, 'FontSize', 100, @(x)isscalar(x));
