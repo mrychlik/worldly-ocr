@@ -73,6 +73,7 @@ classdef FontManagerSQLite < handle & FontManager
         end
 
         function show(this,chars_per_page)
+        % SHOW - show all characters in the font manager
             if nargin < 2
                 chars_per_page = 49;
             end
