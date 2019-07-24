@@ -1,4 +1,4 @@
-config_num = 1;
+if ~exist('config_num','var') config_num = 1; end
 
 switch config_num
   case 1,
