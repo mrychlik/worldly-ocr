@@ -379,7 +379,7 @@ classdef PageScan < handle
 
             label_str = this.OcrText(char_idx);
 
-            bh = waitbar(0,'Rendering character images...');
+            bh = waitbar(0,'Rendering character images from Unicode...');
             len = numel(label_str);
             for i = 1:len
                 waitbar(i/len,bh);
