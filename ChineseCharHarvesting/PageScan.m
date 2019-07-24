@@ -1064,7 +1064,8 @@ classdef PageScan < handle
                             % very short character, like 'one' (bar)
                             s = c0.Stats;
                             bbox = s.BoundingBox;
-                            d1 = min(max(d - this.opts.MinVertGap, 0), this.opts.MaxCharHeight/2);
+                            d1 = min(max(d - this.opts.MinVertGap, 0),...
+                                     0.5*this.opts.MaxCharHeight);
                             if d1 > 0 
                                 bbox1 = [bbox(1), bbox(2) - d1,...
                                          bbox(3),...
