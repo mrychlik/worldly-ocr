@@ -31,6 +31,7 @@ classdef FontManagerSQLite < handle & FontManager
         %
         %    * DBFileName - the name of the SQL database file
         %    used for caching character images. Default: 'font.db'
+        %    
             p = inputParser;
             addParameter(p, 'FontName', 'TimesRoman', @(x)ischar(x));
             addParameter(p, 'FontSize', 100, @(x)isscalar(x));
