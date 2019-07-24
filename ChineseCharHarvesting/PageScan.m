@@ -1,7 +1,7 @@
 classdef PageScan < handle
 % PAGESCAN - class representing a scanned page
 % This class inherits from HANDLE class, so that we can internally
-% modify fields, such as caches
+% modify fields, such as caches.
     properties(Constant,Access=private)
         % Add supported language options here, Tesseract style. Note that
         % these options may depend on TesseractVersion option to the constructor.
