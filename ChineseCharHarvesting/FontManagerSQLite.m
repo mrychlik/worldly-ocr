@@ -49,6 +49,7 @@ classdef FontManagerSQLite < handle & FontManager
 
         function delete(this)
             close(this.conn);
+            delete(this.fh);
         end
 
         function connect_db(this)
@@ -137,11 +138,6 @@ classdef FontManagerSQLite < handle & FontManager
             [h,~] = size(BW);
             bbox = round([ex(1)+1,h-ex(4)-1,ex(3),ex(4)]);
             BW = BW( bbox(2):(bbox(2)+bbox(4)), bbox(1):(bbox(1)+bbox(3)));
-        end
-
-
-        function delete(this)
-            delete(fh);
         end
     end
 
