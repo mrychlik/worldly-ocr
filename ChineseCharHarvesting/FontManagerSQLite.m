@@ -18,6 +18,19 @@ classdef FontManagerSQLite < handle & FontManager
 % Responsible for rendering and caching Unicode characters
     methods
         function this = FontManagerSQLite(varargin)
+        % FONTMANAGERSQLITE - constructor
+        %   THIS = FONTMANAGERSQLITE(VARARGIN) constructs an instance
+        %   of class 'FontManagerSQLite'. It accepts the following
+        %   parameters:
+        %
+        %    * FontName - e.g. 'TimesRoman'
+        %
+        %    * FontSize - the size of the font from which to draw
+        %      character glyphs
+        %
+        %    * DBFileName - the name of the SQL database file
+        %     used for caching character images.
+        %
             p = inputParser;
             addParameter(p, 'FontName', 'TimesRoman', @(x)ischar(x));
             addParameter(p, 'FontSize', 100, @(x)isscalar(x));
