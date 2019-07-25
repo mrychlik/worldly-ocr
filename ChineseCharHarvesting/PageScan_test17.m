@@ -14,7 +14,7 @@ r = TesseractRecognizer('Language','chi_tra','PageSegmentationMode',10);
 for page=pages
     filename=fullfile(pagedir,sprintf(page_img_pattern,page));
     ps = PageScan(filename,'KeepOutliers',keep_outliers);
-    ps = ps.do_merge_characters_all;
+    ps.do_merge_characters_all;
 
     ignored = [ps.Characters.Ignore];
     for i=1:ps.CharacterCount

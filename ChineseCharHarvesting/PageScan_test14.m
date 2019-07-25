@@ -12,7 +12,7 @@ for page=pages
                   'KeepOutliers', keep_outliers,...
                   'TesseractVersion', tesseract_version);
 
-    ps = ps.do_merge_characters_all;
+    ps.do_merge_characters_all;
 
     ps.show_ocr;
     title(sprintf('Page %d', page));

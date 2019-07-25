@@ -18,9 +18,22 @@ classdef FontManagerSQLite < handle & FontManager
 % Responsible for rendering and caching Unicode characters
     methods
         function this = FontManagerSQLite(varargin)
+        % FONTMANAGERSQLITE - constructor
+        %   THIS = FONTMANAGERSQLITE(VARARGIN) constructs an instance
+        %   of class 'FontManagerSQLite'. It accepts the following
+        %   parameters:
+        %
+        %    * FontName - The name of the font used for rendering glyph
+        %    images. Default: 'TimesRoman'
+        %
+        %    * FontSize - the size of the font from which to draw
+        %    character glyphs, in pixels. Default: 100
+        %
+        %    * DBFileName - the name of the SQL database file
+        %    used for caching character images. Default: 'font.db'
             p = inputParser;
             addParameter(p, 'FontName', 'TimesRoman', @(x)ischar(x));
-            addParameter(p, 'FontSize', 100, @(x)isscalar(x));
+            addParameter(p, 'FontSize', 60, @(x)isscalar(x));
             addParameter(p, 'DBFileName', 'font.db', @(x)ischar(x));
             parse(p, varargin{:});
             
@@ -66,6 +79,32 @@ classdef FontManagerSQLite < handle & FontManager
         end
         function FontSize = get.FontSize(this)
             FontSize = this.opts.FontSize;
+        end
+        
+        function Table = get.Table(this)
+            Table = fetch(this.conn, 'select * from bitmaps');
+        end
+
+        function show(this,chars_per_page)
+        % SHOW - show all characters in the font manager
+        %   SHOW(THIS,CHARS_PER_PAGE) plots the characters
+        %   currently cached in the font manager, CHARS_PER_PAGE
+        %   characters in a grid.
+            if nargin < 2
+                chars_per_page = 49;
+            end
+            P = ceil(sqrt(chars_per_page));
+            N = chars_per_page:size(this.Table,1);
+            for j = 1:N
+                for k = 1:chars_per_page
+                    idx = (j-1) * chars_per_page + k;
+                    BW = unpack_binary_image(uint8(this.Table{idx,2}));
+                    subplot(P,P,k);
+                    imagesc(BW);
+                end
+                drawnow;
+                pause(1);
+            end
         end
     end
 

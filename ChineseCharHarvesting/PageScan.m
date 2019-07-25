@@ -81,11 +81,9 @@ classdef PageScan < handle
         %   * MergeThreshold       - only merge if bboxes of characters
         %     are this pixels apart in vert. direction
         % 
-        %   * MaxCharWidth         - objects wider than this pixels are not
-        %   considered characters
+        %   * MaxCharWidth - objects wider than this pixels are not considered characters
         % 
-        %   * MinCharHeight        - objects shorter than this are not
-        %   characters
+        %   * MinCharHeight        - objects shorter than this are not characters
         % 
         %   * BinThreshold         - used to binarize images
         % 
@@ -117,18 +115,18 @@ classdef PageScan < handle
             addParameter(p, 'MergeCharacters', false, @(x)islogical(x));
             addParameter(p, 'TesseractVersion', 'mex',...
                         @(x)any(validatestring(x,{'builtin','external','mex'})));
-            addParameter(p, 'ShortHeightThreshold', 30);
-            addParameter(p, 'ColumnDistThreshold', 60)
-            addParameter(p, 'RowDistThreshold', 40);        
-            addParameter(p, 'MergeThreshold', 20);% For attaching "cloud"
-            addParameter(p, 'MaxCharWidth', 100);% Maximum width of a valid character
-            addParameter(p, 'MinCharHeight',10);% Minimum height of a valid character
-            addParameter(p, 'BinThreshold', 0.45);% Binarization threshold
-            addParameter(p, 'MinVertGap', 10);% Min. vert. gap between bboxes.
+            addParameter(p, 'ShortHeightThreshold', 30, @(x)isscalar(x));
+            addParameter(p, 'ColumnDistThreshold', 50, @(x)isscalar(x));
+            addParameter(p, 'RowDistThreshold', 40, @(x)isscalar(x));        
+            addParameter(p, 'MergeThreshold', 20, @(x)isscalar(x));
+            addParameter(p, 'MaxCharWidth', 100, @(x)isscalar(x));
+            addParameter(p, 'MinCharHeight',10, @(x)isscalar(x));
+            addParameter(p, 'BinThreshold', 0.45, @(x)isscalar(x));
+            addParameter(p, 'MinVertGap', 10, @(x)isscalar(x));
             addParameter(p, 'LanguageSpec', 'ChineseTraditional',...
-                        @(x)any(validatestring, this.SupportedLanguages));
+                         @(x)any(validatestring, this.SupportedLanguages));
             addParameter(p, 'FontName', 'TimesRoman', @(x)ischar(x));
-            addParameter(p, 'FontSize', 60);
+            addParameter(p, 'FontSize', 60, @(x)isscalar(x));
             addParameter(p, 'FontManager', [], @(x)isa(x,'FontManager'));
             parse(p, source, varargin{:});
 
@@ -823,13 +821,13 @@ classdef PageScan < handle
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));
             addParameter(p, 'NumberOfLines', 1, @(x)isscalar(x));
-            parse(p, this,varargin{:});
+            parse(p, this, varargin{:});
 
             set(gca,'YDir','reverse');
             hold on;
             im = image(255*this.PageImageMono);
             im.AlphaData = 0.2;
-            [T,R] = this.VerticalLines(p.Results.NumberOfLines);
+            [T,R] = this.VerticalLines('NumberOfLines', p.Results.NumberOfLines);
             % The equation of the line is R=cos(T)*x+sin(T)*y
             % where T is small, thus cos(T)~=0. Hence, x = (R-sin(T)*y)/cos(T)
             for j=1:size(T,1)
@@ -967,7 +965,7 @@ classdef PageScan < handle
             end
         end
 
-        function this = do_merge_characters_all(this)
+        function do_merge_characters_all(this)
         %DO_MERGE_CHARACTERS_ALL - merge character parts into characters
         %  THIS = DO_MERGE_CHARACTERS_ALL(THIS) processes all 
         %  characters eligible for merging and does the merging,
@@ -979,14 +977,15 @@ classdef PageScan < handle
         %  - a short character followed by another short character
         %    is merged with this character
         % 
-            this = do_merge_all_rule_sss(this);
-            this = do_merge_all_rule_tst(this);            
-            this = do_merge_all_rule_xss(this);
+            ;
+            do_merge_all_rule_sss(this);
+            do_merge_all_rule_tst(this);            
+            do_merge_all_rule_xss(this);
         end
     end
 
     methods(Access = private)
-        function this = do_merge_all_rule_sss(this)
+        function do_merge_all_rule_sss(this)
         %DO_MERGE_ALL_RULE_SSS - merge three short chars in a row
             disp('Merging by rule short-short-short...');
             for i=1:numel(this.MergeCharacters)
@@ -1017,9 +1016,9 @@ classdef PageScan < handle
                         d = [d1,d2];
                         e = [e1,e2];
                         if all(d < this.opts.MergeThreshold) && all(e == 0) && ~any([c.Ignore])
-                            disp(sprintf('Merging character %d',char_idx));
-                            this=this.do_merge_characters(char_idx,ci(1));
-                            this=this.do_merge_characters(char_idx,ci(2));
+                            disp(sprintf('\tMerging character %d', char_idx));
+                            this.do_merge_characters(char_idx,ci(1));
+                            this.do_merge_characters(char_idx,ci(2));
                         end
                     end
                 end
@@ -1027,7 +1026,7 @@ classdef PageScan < handle
             end
         end
 
-        function this = do_merge_all_rule_tst(this)
+        function do_merge_all_rule_tst(this)
         %DO_MERGE_ALL_RULE_TST - merge short char between two tall ones
             disp('Merging by rule tall-short-tall...');
             for i=1:numel(this.MergeCharacters)
@@ -1046,42 +1045,43 @@ classdef PageScan < handle
 
                     if ~any([c.IsShort])
                         % Both neightbors are tall, find the closer, and if close enough, merge.
-                        d1 = bbox_vert_dist(c(1).Stats.BoundingBox,...
-                                            c0.Stats.BoundingBox);
-                        d2 = bbox_vert_dist(c(2).Stats.BoundingBox,...
-                                            c0.Stats.BoundingBox);
+                        d1 = bbox_vert_dist(c(1).Stats.BoundingBox, c0.Stats.BoundingBox);
+                        d2 = bbox_vert_dist(c(2).Stats.BoundingBox, c0.Stats.BoundingBox);
 
-                        e1 = bbox_hor_dist(c(1).Stats.BoundingBox,...
-                                           c0.Stats.BoundingBox);
-                        e2 = bbox_hor_dist(c(2).Stats.BoundingBox,...
-                                           c0.Stats.BoundingBox);
+                        e1 = bbox_hor_dist(c(1).Stats.BoundingBox, c0.Stats.BoundingBox);
+                        e2 = bbox_hor_dist(c(2).Stats.BoundingBox, c0.Stats.BoundingBox);
+
                         [d,j] = min([d1,d2]);
                         e = [e1,e2];
-                        if d < this.opts.MergeThreshold && e(j) == 0 && ~c(j).Ignore
-                            disp(sprintf('Merging character %d',char_idx));
-                            this = this.do_merge_characters(ci(j), ...
-                                                            char_idx);
-                        elseif ~c0.Ignore
-                            % Enlarge the bounding box; this is necessary
-                            % as OCR engine tends to be confused by the
-                            % very short character, like 'one' (bar)
-                            s = c0.Stats;
-                            bbox = s.BoundingBox;
-                            d1 = max(d - this.opts.MinVertGap, 0);
-                            bbox1 = [bbox(1), bbox(2) - d1,...
-                                     bbox(3),...
-                                     bbox(4) + 2*d1
-                                     ];
-
-                            s.BoundingBox = bbox1;
-                            this.Characters(char_idx).Stats = s;
+                        %if e(j) == 0 && ~c(j).Ignore
+                        if ~c(j).Ignore                            
+                            if d < this.opts.MergeThreshold
+                                disp(sprintf('\tMerging character %d', char_idx));
+                                this.do_merge_characters(ci(j), char_idx);
+                            elseif ~c0.Ignore
+                                % Enlarge the bounding box; this is necessary
+                                % as OCR engine tends to be confused by the
+                                % very short character, like 'one' (bar)
+                                s = c0.Stats;
+                                bbox = s.BoundingBox;
+                                d1 = max(d - this.opts.MinVertGap, 0);
+                                if d1 > 0 
+                                    bbox1 = [bbox(1), bbox(2) - d1,...
+                                             bbox(3),...
+                                             bbox(4) + 2*d1
+                                            ];
+                                    disp(sprintf('\tEnlarging bbox of character %d', char_idx));
+                                    s.BoundingBox = bbox1;
+                                    this.Characters(char_idx).Stats = s;
+                                end
+                            end
                         end
                     end
                 end
             end
         end
 
-        function this = do_merge_all_rule_xss(this)
+        function do_merge_all_rule_xss(this)
         %DO_MERGE_ALL_RULE_XSS - merge two short chars
             disp('Merging by ?-short-short...');
             for i=1:numel(this.MergeCharacters)
@@ -1106,16 +1106,17 @@ classdef PageScan < handle
                         
                         e = bbox_hor_dist(c(2).Stats.BoundingBox,...
                                           c0.Stats.BoundingBox);
+
                         if d < 2*this.opts.MergeThreshold && e == 0
-                            disp(sprintf('Merging character %d', char_idx));
-                            this = this.do_merge_characters(char_idx, ci(2));
+                            disp(sprintf('\tMerging character %d', char_idx));
+                            this.do_merge_characters(char_idx, ci(2));
                         end
                     end
                 end
             end
         end
 
-        function this = do_merge_characters(this, idx1, idx2)
+        function do_merge_characters(this, idx1, idx2)
         % DO_MERGE_CHARACTERS - Merge bounding boxes
             this.Characters(idx1).Stats.BoundingBox = ...
                 bbox_union(...
@@ -1366,6 +1367,8 @@ end
 
 function D = interval_dist(a, b)
 % INTERVAL_DIST - distance between intervals
+    assert(a(1) < a(2));
+    assert(b(1) < b(2));
     if a(2) < b(1) 
         D = b(1) - a(2);
     elseif a(1) > b(2)
