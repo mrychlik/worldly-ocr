@@ -1,7 +1,4 @@
 # worldly-ocr
-[Status] 
-
-# worldly-ocr
 [status]
  
 ## About
