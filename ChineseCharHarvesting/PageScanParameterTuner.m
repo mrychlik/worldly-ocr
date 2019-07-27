@@ -21,6 +21,7 @@ classdef PageScanParameterTuner < handle
             else
                 filepath = fullfile(path,file)
                 this.scan.Source = filepath;
+                this.show_marked_page_img;
             end
         end
 
