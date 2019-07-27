@@ -1,11 +1,15 @@
 classdef PageScanParameterTuner < handle
 % PAGESCANPARAMETERTUNER - A utility class for GUI app PageScanParameterTunerApp
     properties
+        app;
         scan;
     end
 
     methods
-        function this = PageScanParameterTuner
+        function this = PageScanParameterTuner(app)
+            if nargin > 0
+                this.app = app
+            end
             this.scan = PageScan;
         end
 
