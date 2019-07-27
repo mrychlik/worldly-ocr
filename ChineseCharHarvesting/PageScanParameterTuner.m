@@ -24,10 +24,16 @@ classdef PageScanParameterTuner < handle
                 disp('User selected Cancel');
             else
                 filepath = fullfile(path,file)
-                this.scan.Source = filepath;
-                this.show_marked_page_img;
+                this.LoadFile(filepath);
+
             end
         end
+
+        function this = LoadFile(this, filepath)
+            this.scan.Source = filepath;
+            this.show_marked_page_img;
+        end
+
 
         function show_marked_page_img(this)
             opts.Background = 'Original';
