@@ -169,7 +169,6 @@ classdef PageScan < handle
             if this.opts.MergeCharacters
                 this.do_merge_characters_all;
             end
-
         end
 
         function Source = get.Source(this)
