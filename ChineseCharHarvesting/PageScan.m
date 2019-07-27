@@ -453,11 +453,11 @@ classdef PageScan < handle
             end
             if p.Results.ShowDilation
                 im.AlphaData = 0.8;
-                in = imagesc(this.DilatedImage);
+                in = imagesc(ax,this.DilatedImage);
                 in.AlphaData = 0.2;
             end
             set (ax,'YDir','reverse');
-            colormap(hot);
+            colormap(ax,hot);
             for char_idx = 1:this.CharacterCount
                 if ~p.Results.ShowOutliers && this.is_outlier(char_idx)
                     continue;
