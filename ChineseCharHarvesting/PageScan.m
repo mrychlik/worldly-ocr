@@ -110,7 +110,7 @@ classdef PageScan < handle
         %  constructor. Add documentation above.
             p = inputParser;
 
-            addOptional(p, 'source', @(x)(ischar(x)||isnumeric(x)));
+            addOptional(p, 'Source', [], @(x)(ischar(x)||isnumeric(x)));
             addParameter(p, 'KeepOutliers', false, @(x)islogical(x));            
             addParameter(p, 'MergeCharacters', false, @(x)islogical(x));
             addParameter(p, 'TesseractVersion', 'mex',...
@@ -131,16 +131,17 @@ classdef PageScan < handle
             addParameter(p, 'FontManager', [], @(x)isa(x,'FontManager'));
             parse(p, varargin{:});
 
-            if ischar(source)
-                filename = source;
+            if ischar(p.Results.Source)
+                filename = p.Results.Source;
                 img = imread(filename);
-            elseif isnumeric(source)
-                img = source;
+            elseif isnumeric(p.Results.Source)
+                img = p.Results.Source;
             else
                 error('First argument must be a filename or an image');
             end
 
             this.opts = p.Results;
+            this.opts = rmfield(this.opts,'Source');
 
             if isempty(this.opts.FontManager)
                 this.FontManager = FontManagerRAM('FontName', this.opts.FontName, ...
