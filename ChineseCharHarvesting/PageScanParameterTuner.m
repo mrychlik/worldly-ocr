@@ -6,7 +6,7 @@ classdef PageScanParameterTuner < handle
 
     methods
         function this = PageScanParameterTuner
-            scan = PageScan;
+            this.scan = PageScan;
         end
 
 
