@@ -30,7 +30,7 @@ classdef PageScanParameterTuner < handle
             opts.ShowDilation = true;
             opts.ShowOutliers = false;
 
-            scan.show_marked_page_img(opts);
+            this.scan.show_marked_page_img(opts);
         end
 
     end
