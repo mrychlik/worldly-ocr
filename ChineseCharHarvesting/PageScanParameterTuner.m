@@ -23,5 +23,14 @@ classdef PageScanParameterTuner < handle
                 this.scan.Source = filepath;
             end
         end
+
+        function show_marked_page_img(this)
+            opts.Background = 'Original';
+            opts.ShowDilation = true;
+            opts.ShowOutliers = false;
+
+            scan.show_marked_page_img(opts);
+        end
+
     end
 end
