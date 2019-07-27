@@ -429,7 +429,7 @@ classdef PageScan < handle
         % MARKED_PAGEIMAGE shows page with character bounding boxes
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
-            addOptional(p, 'Axes', gca, @(x)(isa(x,'matlab.graphics.axis.Axes')||isa(x,'matlab.ui.control.UIAxes')));
+            addOptional(p, 'Axes', gca, @axes_test_fun);
             addParameter(p, 'Background', 'Original',...
                         @(x)any(validatestring(x,{'Original','Mono'})));
             addParameter(p, 'ShowCentroids', true, @(x)islogical(x));
@@ -917,9 +917,7 @@ classdef PageScan < handle
         function draw_boundary(this, varargin)
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));
-            addOptional(p, 'Axes', [], @(x)(isempty(x) || ...
-                                            isa(x,'matlab.graphics.axis.Axes')||...
-                                            isa(x,'matlab.ui.control.UIAxes')));
+            addOptional(p, 'Axes', [], @axes_test_fun);
             addParameter(p, 'ShowHorizontal', true, @(x)islogical(x));
             addParameter(p, 'ShowVertical', true, @(x)islogical(x));
             addParameter(p, 'EraseVerticalLines', true, @(x)islogical(x));
@@ -1012,6 +1010,7 @@ classdef PageScan < handle
     end
 
     methods(Access = private)
+
         function do_merge_all_rule_sss(this)
         %DO_MERGE_ALL_RULE_SSS - merge three short chars in a row
             disp('Merging by rule short-short-short...');
@@ -1400,3 +1399,12 @@ function fixedstr = fix_tess_output(str)
         fixedstr='?';
     end
 end
+
+
+function rv = axes_test_fun(x)
+% AXES_TEST_FUN - test of object is an axis, or empty
+    rv = isempty(x) || ...
+         isa(x,'matlab.graphics.axis.Axes') ||...
+         isa(x,'matlab.ui.control.UIAxes');
+end
+
