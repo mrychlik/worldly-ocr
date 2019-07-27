@@ -1,5 +1,5 @@
 classdef PageScanParameterTuner < handle
-% A utility class for GUI app PageScanParameterTunerApp
+% PAGESCANPARAMETERTUNER - A utility class for GUI app PageScanParameterTunerApp
     properties
         scan;
     end
