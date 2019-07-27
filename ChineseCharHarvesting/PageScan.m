@@ -133,20 +133,6 @@ classdef PageScan < handle
 
             this.opts = p.Results;
 
-            if ischar(p.Results.Source)
-                filename = p.Results.Source;
-                img = imread(filename);
-            elseif isnumeric(p.Results.Source)
-                img = p.Results.Source;
-            else
-                error('First argument must be a filename or an image');
-            end
-
-            this.scan_image(img);
-
-            if p.Results.MergeCharacters
-                this.do_merge_characters_all;
-            end
 
             if isempty(this.opts.FontManager)
                 this.FontManager = FontManagerRAM('FontName', this.opts.FontName, ...
@@ -157,6 +143,28 @@ classdef PageScan < handle
                 this.opts = rmfield(this.opts,'FontManager');
             end
 
+            if ~isempty(this.opts.Source)
+                this.Source = this.opts.Source;
+                this.opts = rmfield(this.opts,'Source'); % We don't need
+            end
+
+        end
+
+        function this = set.Source(this, Source)
+            if ischar(Source)
+                filename = Source;
+                img = imread(filename);
+            elseif isnumeric(Source)
+                img = Source;
+            else
+                error('First argument must be a filename or an image');
+            end
+
+            this.scan_image(img);
+            
+            if this.opts.MergeCharacters
+                this.do_merge_characters_all;
+            end
         end
 
 
