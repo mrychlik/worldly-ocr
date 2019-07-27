@@ -487,7 +487,7 @@ classdef PageScan < handle
             this.draw_boundary(ax,'ShowVertical',p.Results.ShowVertical,...
                                'ShowHorizontal',p.Results.ShowHorizontal,...
                                'EraseVerticalLines',p.Results.EraseVerticalLines);
-            drawnow(ax);
+            %drawnow(ax);
             hold(ax, 'off');
         end
 
