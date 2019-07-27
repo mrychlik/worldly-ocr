@@ -53,7 +53,7 @@ classdef PageScan < handle
 
 
     methods
-        function this = PageScan(source, varargin)
+        function this = PageScan(varargin)
         %PAGESCAN - Constructor
         % THIS = PAGESCAN(SOURCE) constructs a page scan of a SOURCE,
         % which can be a filename or a numeric array representing the
@@ -110,7 +110,7 @@ classdef PageScan < handle
         %  constructor. Add documentation above.
             p = inputParser;
 
-            addRequired(p, 'source', @(x)(ischar(x)||isnumeric(x)));
+            addOptional(p, 'source', @(x)(ischar(x)||isnumeric(x)));
             addParameter(p, 'KeepOutliers', false, @(x)islogical(x));            
             addParameter(p, 'MergeCharacters', false, @(x)islogical(x));
             addParameter(p, 'TesseractVersion', 'mex',...
