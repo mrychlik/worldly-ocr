@@ -20,7 +20,7 @@ classdef PageScanParameterTuner < handle
                 disp('User selected Cancel');
             else
                 filepath = fullfile(path,file)
-                this = this.scan.set_source(filepath);
+                this.scan.Source = filepath;
             end
         end
     end
