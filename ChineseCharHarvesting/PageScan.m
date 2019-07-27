@@ -429,7 +429,7 @@ classdef PageScan < handle
         % MARKED_PAGEIMAGE shows page with character bounding boxes
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
-            addOptional(p, 'Axes', gca, @(x)isa(x,'Axes'));
+            addOptional(p, 'Axes', gca, @(x)isa(x,'matlab.graphics.axis.Axes'));
             addParameter(p, 'Background', 'Original',...
                         @(x)any(validatestring(x,{'Original','Mono'})));
             addParameter(p, 'ShowCentroids', true, @(x)islogical(x));
@@ -455,7 +455,8 @@ classdef PageScan < handle
                 in = imagesc(this.DilatedImage);
                 in.AlphaData = 0.2;
             end
-            set (gca,'YDir','reverse');
+            ax = p.Results.Axes;
+            set (ax,'YDir','reverse');
             colormap(hot);
             for char_idx = 1:this.CharacterCount
                 if ~p.Results.ShowOutliers && this.is_outlier(char_idx)
@@ -463,7 +464,7 @@ classdef PageScan < handle
                 end
                 % Mark bounding box
                 bbox = this.Characters(char_idx).Stats.BoundingBox;
-                r = rectangle('Position',bbox);
+                r = rectangle(ax,'Position',bbox);
                 set(r,'EdgeColor','red');
                 % Paint the face
                 if this.Characters(char_idx).Ignore
@@ -475,7 +476,7 @@ classdef PageScan < handle
                 end
                 % Show centroid
                 if p.Results.ShowCentroids
-                    s=scatter(this.Centroids(:,1),this.Centroids(:,2),'o',...
+                    s=scatter(ax,this.Centroids(:,1),this.Centroids(:,2),'o',...
                               'MarkerEdgeColor','red',...
                               'MarkerFaceColor','red',...
                               'MarkerFaceAlpha',0.3,...                      
@@ -483,11 +484,11 @@ classdef PageScan < handle
                 end
             end
 
-            this.draw_boundary('ShowVertical',p.Results.ShowVertical,...
+            this.draw_boundary(ax,'ShowVertical',p.Results.ShowVertical,...
                                'ShowHorizontal',p.Results.ShowHorizontal,...
                                'EraseVerticalLines',p.Results.EraseVerticalLines);
-            drawnow;
-            hold off;
+            drawnow(ax);
+            hold(ax, 'off');
         end
 
         function show_short_chars_img(this,varargin)
@@ -916,11 +917,13 @@ classdef PageScan < handle
         function draw_boundary(this, varargin)
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));
+            addOptional(p, 'Axes', gca, @(x)isa(x,'matlab.graphics.axis.Axes'));
             addParameter(p, 'ShowHorizontal', true, @(x)islogical(x));
             addParameter(p, 'ShowVertical', true, @(x)islogical(x));
             addParameter(p, 'EraseVerticalLines', true, @(x)islogical(x));
 
             parse(p, this,varargin{:});
+            ax = p.Results.Axes;
 
             BW = zeros(this.Size);
 
@@ -931,7 +934,7 @@ classdef PageScan < handle
                 BW = BW | this.VerticalBoundary('EraseVerticalLines',...
                                                 p.Results.EraseVerticalLines);
             end
-            im = imagesc(~BW);
+            im = imagesc(ax,~BW);
             im.AlphaData = 0.5;            
         end
 
