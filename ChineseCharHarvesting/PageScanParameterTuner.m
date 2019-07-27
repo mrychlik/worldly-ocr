@@ -16,7 +16,7 @@ classdef PageScanParameterTuner < handle
 
         function this = LoadFcn(this, event)
         % LOADFCN loads saved state from file
-            [file, path] = uigetfile({'*.bmp', '*.png', '*.tif', '*.ppm'},...
+            [file, path] = uigetfile({'*.bmp;*.png;*.tif;*.ppm'},...
                                      'Select an image file', 'page-06.ppm');
 
             if isequal(file,0)
