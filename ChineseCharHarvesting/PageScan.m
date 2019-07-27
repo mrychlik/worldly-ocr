@@ -442,6 +442,9 @@ classdef PageScan < handle
             parse(p, this,varargin{:});
 
             ax = p.Results.Axes;
+            if empty(ax) 
+                ax = gca;
+            end
             hold(ax, 'on');
             switch p.Results.Background
               case 'Original',
