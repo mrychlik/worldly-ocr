@@ -442,7 +442,7 @@ classdef PageScan < handle
             parse(p, this,varargin{:});
 
             ax = p.Results.Axes;
-            if empty(ax) 
+            if isempty(ax) 
                 ax = gca;
             end
             hold(ax, 'on');
