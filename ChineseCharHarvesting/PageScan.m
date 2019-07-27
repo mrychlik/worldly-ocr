@@ -155,6 +155,7 @@ classdef PageScan < handle
         end
 
         function update_source(this, Source);
+            this.opts.Source = Source;
             if ischar(Source)
                 filename = Source;
                 img = imread(filename);
@@ -163,7 +164,6 @@ classdef PageScan < handle
             else
                 error('First argument must be a filename or an image');
             end
-            this.opts.Source = Source;
             this.scan_image(img);
             
             if this.opts.MergeCharacters
