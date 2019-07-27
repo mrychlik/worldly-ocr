@@ -429,7 +429,7 @@ classdef PageScan < handle
         % MARKED_PAGEIMAGE shows page with character bounding boxes
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
-            addOptional(p, 'Axes', gca, @(x)(isa(x,'matlab.graphics.axis.Axes')||isa(x,'matlab.ui.control.UIAxes'));
+            addOptional(p, 'Axes', gca, @(x)(isa(x,'matlab.graphics.axis.Axes')||isa(x,'matlab.ui.control.UIAxes')));
             addParameter(p, 'Background', 'Original',...
                         @(x)any(validatestring(x,{'Original','Mono'})));
             addParameter(p, 'ShowCentroids', true, @(x)islogical(x));
@@ -917,7 +917,7 @@ classdef PageScan < handle
         function draw_boundary(this, varargin)
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));
-            addOptional(p, 'Axes', gca, @(x)(isa(x,'matlab.graphics.axis.Axes')||isa(x,'matlab.ui.control.UIAxes'));
+            addOptional(p, 'Axes', gca, @(x)(isa(x,'matlab.graphics.axis.Axes')||isa(x,'matlab.ui.control.UIAxes')));
             addParameter(p, 'ShowHorizontal', true, @(x)islogical(x));
             addParameter(p, 'ShowVertical', true, @(x)islogical(x));
             addParameter(p, 'EraseVerticalLines', true, @(x)islogical(x));
