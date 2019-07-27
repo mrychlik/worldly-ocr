@@ -108,7 +108,7 @@ classdef PageScan < handle
         %  which you would like to add, do not add a property. Instead,
         %  use the addOption(p,...) in the code of the
         %  constructor. Add documentation above.
-            p = inputParser('StructExpand',true);
+            p = inputParser;
 
             addRequired(p, 'source', @(x)(ischar(x)||isnumeric(x)));
             addParameter(p, 'KeepOutliers', false, @(x)islogical(x));            
