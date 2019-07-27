@@ -61,6 +61,10 @@ classdef PageScanParameterTuner < handle
             rv = this.scan.opts.ColumnDistThreshold;
         end
 
+        function this = set.ColumnDistThreshold(this, value)
+            this.scan.opts.ColumnDistThreshold = value;
+        end
+
         function rv = get.MinCharHeight(this)
             rv = this.scan.opts.MinCharHeight;
         end
