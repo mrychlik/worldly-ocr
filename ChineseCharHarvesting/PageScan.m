@@ -49,6 +49,7 @@ classdef PageScan < handle
         MergeCharacters;
         ROI;                            % An Nx4 array, rows are char. boxes
         OcrResults;                     % Output of OCR on ROI
+        Source;                         % File or image
     end
 
 
