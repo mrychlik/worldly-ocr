@@ -146,7 +146,6 @@ classdef PageScan < handle
 
             if ~isempty(this.opts.Source)
                 this.Source = this.opts.Source;
-                this.opts = rmfield(this.opts,'Source'); % We don't need
             end
 
         end
@@ -168,6 +167,10 @@ classdef PageScan < handle
             end
         end
 
+
+        function Source = get.Source(this)
+            Source = this.opts.Source;
+        end
 
         function CharacterCount = get.CharacterCount(this)
             CharacterCount = numel(this.Characters);
