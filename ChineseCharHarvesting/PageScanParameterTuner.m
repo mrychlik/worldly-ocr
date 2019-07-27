@@ -40,7 +40,8 @@ classdef PageScanParameterTuner < handle
             opts.ShowDilation = true;
             opts.ShowOutliers = false;
             opts.Axes = this.app.UIAxes;
-
+            
+            cla(opts.Axes);
             this.scan.show_marked_page_img(opts);
         end
 
