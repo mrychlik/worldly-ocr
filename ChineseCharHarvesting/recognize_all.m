@@ -1,3 +1,6 @@
+% Run tesseract recognition on all individual characters
+% in a folder.
+
 datadir='BWChars';
 out='OutputsAsUTF8';
 image_files = dir(fullfile(datadir,'*.pbm'));
