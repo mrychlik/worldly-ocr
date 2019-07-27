@@ -445,7 +445,7 @@ classdef PageScan < handle
             hold(ax, 'on');
             switch p.Results.Background
               case 'Original',
-                im = imagesc(this.PageImage);
+                im = imagesc(ax,this.PageImage);
               case 'Mono',
                 im = imagesc(ax,this.PageImageMono);
               otherwise,
