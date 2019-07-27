@@ -429,7 +429,7 @@ classdef PageScan < handle
         % MARKED_PAGEIMAGE shows page with character bounding boxes
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
-            addOptional(p, 'Axes', gca, @axes_test_fun);
+            addOptional(p, 'Axes', [], @axes_test_fun);
             addParameter(p, 'Background', 'Original',...
                         @(x)any(validatestring(x,{'Original','Mono'})));
             addParameter(p, 'ShowCentroids', true, @(x)islogical(x));
