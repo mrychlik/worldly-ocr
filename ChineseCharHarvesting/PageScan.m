@@ -167,7 +167,6 @@ classdef PageScan < handle
             end
         end
 
-
         function Source = get.Source(this)
             Source = this.opts.Source;
         end
