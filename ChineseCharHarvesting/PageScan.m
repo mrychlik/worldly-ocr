@@ -129,7 +129,7 @@ classdef PageScan < handle
             addParameter(p, 'FontName', 'TimesRoman', @(x)ischar(x));
             addParameter(p, 'FontSize', 60, @(x)isscalar(x));
             addParameter(p, 'FontManager', [], @(x)isa(x,'FontManager'));
-            parse(p, source, varargin{:});
+            parse(p, varargin{:});
 
             if ischar(source)
                 filename = source;
