@@ -22,7 +22,7 @@ classdef PageScan < handle
         DilatedImage = [];
     end
 
-    properties(Access=private)
+    properties(Access=public)
         ExternalOcrResultsCache = [];   % A cache of OCR results from OS Tesseract
         MexOcrResultsCache = [];        % A cache of OCR results from Mex rapper
         opts = [];                      % Various options
@@ -131,6 +131,8 @@ classdef PageScan < handle
             addParameter(p, 'FontManager', [], @(x)isa(x,'FontManager'));
             parse(p, varargin{:});
 
+            this.opts = p.Results;
+
             if ischar(p.Results.Source)
                 filename = p.Results.Source;
                 img = imread(filename);
@@ -140,8 +142,11 @@ classdef PageScan < handle
                 error('First argument must be a filename or an image');
             end
 
-            this.opts = p.Results;
-            this.opts = rmfield(this.opts,'Source');
+            this.scan_image(img);
+
+            if p.Results.MergeCharacters
+                this.do_merge_characters_all;
+            end
 
             if isempty(this.opts.FontManager)
                 this.FontManager = FontManagerRAM('FontName', this.opts.FontName, ...
@@ -152,11 +157,6 @@ classdef PageScan < handle
                 this.opts = rmfield(this.opts,'FontManager');
             end
 
-            this.scan_image(img);
-
-            if p.Results.MergeCharacters
-                this.do_merge_characters_all;
-            end
         end
 
 
