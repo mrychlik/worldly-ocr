@@ -917,7 +917,9 @@ classdef PageScan < handle
         function draw_boundary(this, varargin)
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));
-            addOptional(p, 'Axes', gca, @(x)(isa(x,'matlab.graphics.axis.Axes')||isa(x,'matlab.ui.control.UIAxes')));
+            addOptional(p, 'Axes', [], @(x)(isempty(x) || ...
+                                            isa(x,'matlab.graphics.axis.Axes')||...
+                                            isa(x,'matlab.ui.control.UIAxes')));
             addParameter(p, 'ShowHorizontal', true, @(x)islogical(x));
             addParameter(p, 'ShowVertical', true, @(x)islogical(x));
             addParameter(p, 'EraseVerticalLines', true, @(x)islogical(x));
