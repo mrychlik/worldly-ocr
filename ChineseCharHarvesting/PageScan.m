@@ -143,13 +143,18 @@ classdef PageScan < handle
                 this.opts = rmfield(this.opts,'FontManager');
             end
 
+            % If source provided, initialize for this source
             if ~isempty(this.opts.Source)
-                this.Source = this.opts.Source;
+                this.update_source(this.opts.Source);
             end
 
         end
 
         function this = set.Source(this, Source)
+            this.update_source(Source);
+        end
+
+        function update_source(this, Source);
             if ischar(Source)
                 filename = Source;
                 img = imread(filename);
@@ -158,12 +163,13 @@ classdef PageScan < handle
             else
                 error('First argument must be a filename or an image');
             end
-
+            this.opts.Source = Source;
             this.scan_image(img);
             
             if this.opts.MergeCharacters
                 this.do_merge_characters_all;
             end
+
         end
 
         function Source = get.Source(this)
