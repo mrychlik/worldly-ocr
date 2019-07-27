@@ -5,6 +5,11 @@ classdef PageScanParameterTuner < handle
         scan;
     end
 
+    properties(Dependent)
+        ShortHeightThreshold;
+        ColumnDistThreshold;
+    end
+
     methods
         function this = PageScanParameterTuner(app)
             if nargin > 0
@@ -44,6 +49,27 @@ classdef PageScanParameterTuner < handle
             cla(opts.Axes);
             this.scan.show_marked_page_img(opts);
         end
+
+        function rv = get.ShortHeightThreshold(this)
+            rv = this.scan.opts.ShortHeightThreshold;
+        end
+        function rv = get.ColumnDistThreshold(this)
+            rv = this.scan.opts.ColumnDistThreshold;
+        end
+
+        function rv = get.MinCharHeight(this)
+            rv = this.scan.opts.MinCharHeight;
+        end
+        function rv = get.MaxCharHeight(this)
+            rv = this.scan.opts.MaxCharHeight;
+        end
+        function rv = get.MinCharWidth(this)
+            rv = this.scan.opts.MinCharWidth;
+        end
+        function rv = get.MaxCharWidth(this)
+            rv = this.scan.opts.MaxCharWidth;
+        end
+
 
     end
 end
