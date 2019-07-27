@@ -441,12 +441,13 @@ classdef PageScan < handle
 
             parse(p, this,varargin{:});
 
-            hold on;
+            ax = p.Results.Axes;
+            hold(ax, 'on');
             switch p.Results.Background
               case 'Original',
                 im = imagesc(this.PageImage);
               case 'Mono',
-                im = imagesc(this.PageImageMono);
+                im = imagesc(ax,this.PageImageMono);
               otherwise,
                 error('Something wrong.');
             end
@@ -455,7 +456,6 @@ classdef PageScan < handle
                 in = imagesc(this.DilatedImage);
                 in.AlphaData = 0.2;
             end
-            ax = p.Results.Axes;
             set (ax,'YDir','reverse');
             colormap(hot);
             for char_idx = 1:this.CharacterCount
