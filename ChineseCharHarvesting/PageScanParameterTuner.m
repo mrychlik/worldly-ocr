@@ -8,6 +8,10 @@ classdef PageScanParameterTuner < handle
     properties(Dependent)
         ShortHeightThreshold;
         ColumnDistThreshold;
+        MinCharHeight;
+        MaxCharHeight;
+        MinCharWidth;
+        MaxCharWidth;
     end
 
     methods
