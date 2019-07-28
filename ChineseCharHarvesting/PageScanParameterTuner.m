@@ -45,7 +45,7 @@ classdef PageScanParameterTuner < handle
 
 
         function show_marked_page_img(this)
-            opts.Background = 'Original';
+            opts.Background = 'Mono';
             opts.ShowDilation = true;
             opts.ShowOutliers = false;
             opts.Axes = this.app.UIAxes;
