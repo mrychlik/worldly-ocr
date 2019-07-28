@@ -109,6 +109,7 @@ classdef PageScanParameterTuner < handle
         
         function this = set.VerticalDilation(this,value)
             this.scan.opts.VerticalDilation = value;
+            this.scan.update;
         end
 
         function rv = get.HorizontalDilation(this)
