@@ -15,7 +15,6 @@ classdef PageScan < handle
     end
 
     properties
-        DilationSE = strel('rectangle', [5,15]); % for imdilate
         Characters = [];
         PageImage = [];
         PageImageMono = [];
@@ -50,6 +49,7 @@ classdef PageScan < handle
         ROI;                            % An Nx4 array, rows are char. boxes
         OcrResults;                     % Output of OCR on ROI
         Source;                         % File or image
+        DilationSE;
     end
 
 
@@ -173,6 +173,12 @@ classdef PageScan < handle
             end
             this.PageImage = img;
             this.update;
+        end
+
+        function DilationSE = get.DilationSE(this)
+            w = this.opts.HorizontalDilation;
+            h = this.opts.VerticalDilation;
+            DilationSE = strel('rectangle', [w,h]); % for imdilate
         end
 
         function Source = get.Source(this)
