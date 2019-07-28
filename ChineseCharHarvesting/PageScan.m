@@ -164,7 +164,8 @@ classdef PageScan < handle
             else
                 error('First argument must be a filename or an image');
             end
-            this.scan_image(img);
+            this.PageImg = img;
+            this.update;
             
             if this.opts.MergeCharacters
                 this.do_merge_characters_all;
@@ -1014,7 +1015,7 @@ classdef PageScan < handle
             close(bh);
         end
 
-        function update_image_scan(this)
+        function update(this)
             I1 = 255 - this.PageImage; 
             this.PageImageMono = im2bw(I1,this.opts.BinThreshold);
             this.DilatedImage = imdilate(this.PageImageMono, this.DilationSE);
@@ -1096,14 +1097,6 @@ classdef PageScan < handle
     end
 
     methods(Access = private)
-
-        function scan_image(this, img)
-        % SCAN_IMAGE - process image
-            if nargin > 0
-                this.PageImage = img;
-            end
-            update_image_scan;
-        end
 
         function do_merge_all_rule_sss(this)
         %DO_MERGE_ALL_RULE_SSS - merge three short chars in a row
