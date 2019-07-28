@@ -1091,6 +1091,7 @@ classdef PageScan < handle
                 this.Characters(char_count).IsOutlier = is_outlier;
                 this.Characters(char_count).Ignore = false;
             end
+            close(bh);
             % If there are no characters, we create an empty array to 
             % avoid exceptional handling when the page is empty
             if isempty(this.Characters)
@@ -1099,8 +1100,6 @@ classdef PageScan < handle
                                          'AltImage',{},'IsShort',{}, ...
                                          'IsOutlier',{},'Ignore',{});
             end
-            waitbar(1,bh);
-            close(bh);
         end
 
     end
