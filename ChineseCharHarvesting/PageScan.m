@@ -139,8 +139,8 @@ classdef PageScan < handle
             addParameter(p, 'FontName', 'TimesRoman', @(x)ischar(x));
             addParameter(p, 'FontSize', 60, @(x)isscalar(x));
             addParameter(p, 'FontManager', [], @(x)isa(x,'FontManager'));
-            addParameter(p, 'HorizontalDilation', 5, @(x)isscalar(x));
-            addParameter(p, 'VerticalDilation', 15, @(x)isscalar(x));
+            addParameter(p, 'HorizontalDilation', 15, @(x)isscalar(x));
+            addParameter(p, 'VerticalDilation', 5, @(x)isscalar(x));
             parse(p, varargin{:});
 
             this.opts = p.Results;
