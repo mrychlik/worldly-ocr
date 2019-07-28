@@ -164,7 +164,7 @@ classdef PageScan < handle
             else
                 error('First argument must be a filename or an image');
             end
-            this.PageImg = img;
+            this.PageImage = img;
             this.update;
             
             if this.opts.MergeCharacters
