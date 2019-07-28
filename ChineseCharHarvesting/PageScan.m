@@ -1013,9 +1013,97 @@ classdef PageScan < handle
             waitbar(3/3,bh);
             close(bh);
         end
+
+        function update_image_scan(this)
+            I1 = 255 - this.PageImage; 
+            this.PageImageMono = im2bw(I1,this.opts.BinThreshold);
+            this.DilatedImage = imdilate(this.PageImageMono, this.DilationSE);
+
+            stats = regionprops(this.DilatedImage,...
+                                'BoundingBox',...
+                                'MajorAxisLength',...
+                                'MinorAxisLength',...
+                                'Orientation',...
+                                'Image',...
+                                'Centroid');
+            N = numel(stats);
+            char_count = 0;
+            for n=1:N
+                is_outlier = false;
+                if PageScan.filter_out(stats(n))
+                    is_outlier = true;
+                end
+                if ~this.opts.KeepOutliers && is_outlier
+                    continue;
+                end
+
+                J = zeros(size(this.PageImageMono));
+                bbox = stats(n).BoundingBox;
+
+                x1 = bbox(1); y1 = bbox(2); x2 = bbox(1) + bbox(3); y2 = bbox(2) + bbox(4);
+
+                sz = size(this.PageImageMono);
+
+                x1 = round( max(1,x1) ); x2 = round( min(x2, sz(2)));
+                y1 = round( max(1,y1) ); y2 = round( min(y2, sz(1)));
+
+                K = I1( y1:y2, x1:x2 );
+                BW = this.PageImageMono( y1 : y2, x1 : x2 );
+
+                % Save old width and height
+                [h1,w1] = size(BW);
+                [BW,rect] = imautocrop(BW);
+
+                % New width and height
+                [h2,w2] = size(BW);
+
+                s = stats(n);
+                % Adjust bounding box.  This makes a tight box around cropped character
+                bbox1 = [bbox(1) + (rect(1)-0.5),...
+                         bbox(2) + (rect(2)-0.5), ...
+                         bbox(3)-(w1-w2)+1,...
+                         bbox(4)-(h1-h2)+1];
+                s.BoundingBox = bbox1;
+
+                if this.filter_out_image(BW)
+                    is_outlier = true;
+                end
+
+                if ~this.opts.KeepOutliers && is_outlier
+                    continue;
+                end
+                char_count = char_count + 1;
+
+                %disp(sprintf('Recording object %d as character %d', n, char_count));
+                this.Characters(char_count).Stats = s;
+                this.Characters(char_count).Position = [x1,y1,x2,y2];
+                this.Characters(char_count).CroppedMonoImage = BW;
+                this.Characters(char_count).AltImage = K; % Carved out image
+                this.Characters(char_count).IsShort = bbox(4) < this.opts.ShortHeightThreshold;
+                this.Characters(char_count).IsOutlier = is_outlier;
+                this.Characters(char_count).Ignore = false;
+            end
+            % If there are no characters, we create an empty array to 
+            % avoid exceptional handling when the page is empty
+            if isempty(this.Characters)
+                this.Characters = struct('Stats',{},'Position',{},...
+                                         'CroppedMonoImage',{},...
+                                         'AltImage',{},'IsShort',{}, ...
+                                         'IsOutlier',{},'Ignore',{});
+            end
+        end
+
     end
 
     methods(Access = private)
+
+        function scan_image(this, img)
+        % SCAN_IMAGE - process image
+            if nargin > 0
+                this.PageImage = img;
+            end
+            update_image_scan;
+        end
 
         function do_merge_all_rule_sss(this)
         %DO_MERGE_ALL_RULE_SSS - merge three short chars in a row
@@ -1144,86 +1232,6 @@ classdef PageScan < handle
         end
 
 
-        function scan_image(this, img)
-            this.PageImage = img;
-
-            I1 = 255 - this.PageImage; 
-            this.PageImageMono = im2bw(I1,this.opts.BinThreshold);
-            this.DilatedImage = imdilate(this.PageImageMono, this.DilationSE);
-
-            stats = regionprops(this.DilatedImage,...
-                                'BoundingBox',...
-                                'MajorAxisLength',...
-                                'MinorAxisLength',...
-                                'Orientation',...
-                                'Image',...
-                                'Centroid');
-            N = numel(stats);
-            char_count = 0;
-            for n=1:N
-                is_outlier = false;
-                if PageScan.filter_out(stats(n))
-                    is_outlier = true;
-                end
-                if ~this.opts.KeepOutliers && is_outlier
-                    continue;
-                end
-
-                J = zeros(size(this.PageImageMono));
-                bbox = stats(n).BoundingBox;
-
-                x1 = bbox(1); y1 = bbox(2); x2 = bbox(1) + bbox(3); y2 = bbox(2) + bbox(4);
-
-                sz = size(this.PageImageMono);
-
-                x1 = round( max(1,x1) ); x2 = round( min(x2, sz(2)));
-                y1 = round( max(1,y1) ); y2 = round( min(y2, sz(1)));
-
-                K = I1( y1:y2, x1:x2 );
-                BW = this.PageImageMono( y1 : y2, x1 : x2 );
-
-                % Save old width and height
-                [h1,w1] = size(BW);
-                [BW,rect] = imautocrop(BW);
-
-                % New width and height
-                [h2,w2] = size(BW);
-
-                s = stats(n);
-                % Adjust bounding box.  This makes a tight box around cropped character
-                bbox1 = [bbox(1) + (rect(1)-0.5),...
-                         bbox(2) + (rect(2)-0.5), ...
-                         bbox(3)-(w1-w2)+1,...
-                         bbox(4)-(h1-h2)+1];
-                s.BoundingBox = bbox1;
-
-                if this.filter_out_image(BW)
-                    is_outlier = true;
-                end
-
-                if ~this.opts.KeepOutliers && is_outlier
-                    continue;
-                end
-                char_count = char_count + 1;
-
-                %disp(sprintf('Recording object %d as character %d', n, char_count));
-                this.Characters(char_count).Stats = s;
-                this.Characters(char_count).Position = [x1,y1,x2,y2];
-                this.Characters(char_count).CroppedMonoImage = BW;
-                this.Characters(char_count).AltImage = K; % Carved out image
-                this.Characters(char_count).IsShort = bbox(4) < this.opts.ShortHeightThreshold;
-                this.Characters(char_count).IsOutlier = is_outlier;
-                this.Characters(char_count).Ignore = false;
-            end
-            % If there are no characters, we create an empty array to 
-            % avoid exceptional handling when the page is empty
-            if isempty(this.Characters)
-                this.Characters = struct('Stats',{},'Position',{},...
-                                         'CroppedMonoImage',{},...
-                                         'AltImage',{},'IsShort',{}, ...
-                                         'IsOutlier',{},'Ignore',{});
-            end
-        end
 
         function updateExternalOcrResultsCache(this)
         % UPDATEEXTERNALOCRRESULTSCACHE - runs externsl OCR
