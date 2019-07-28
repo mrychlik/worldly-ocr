@@ -466,7 +466,9 @@ classdef PageScan < handle
             N = this.CharacterCount;
             bh = waitbar(0,'Rendering character bounding boxes...');
             for char_idx = 1:N
-                waitbar(char_idx/N, bh);
+                if mod(char_idx,10)==0
+                    waitbar(char_idx/N, bh);
+                end
                 if ~p.Results.ShowOutliers && this.is_outlier(char_idx)
                     continue;
                 end
