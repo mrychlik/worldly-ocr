@@ -182,6 +182,7 @@ classdef PageScan < handle
         function DilationSE = get.DilationSE(this)
             w = this.opts.HorizontalDilation;
             h = this.opts.VerticalDilation;
+            % NOTE: strel specifies the number of rows before columns
             DilationSE = strel('rectangle', [h,w]); % for imdilate
         end
 
