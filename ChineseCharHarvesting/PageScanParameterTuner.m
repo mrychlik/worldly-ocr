@@ -57,6 +57,9 @@ classdef PageScanParameterTuner < handle
         function rv = get.ShortHeightThreshold(this)
             rv = this.scan.opts.ShortHeightThreshold;
         end
+
+
+
         function rv = get.ColumnDistThreshold(this)
             rv = this.scan.opts.ColumnDistThreshold;
         end
@@ -66,9 +69,11 @@ classdef PageScanParameterTuner < handle
             this.scan.update;           % Rescan image with new params
         end
 
+
         function rv = get.MinCharHeight(this)
             rv = this.scan.opts.MinCharHeight;
         end
+
 
         function rv = get.MaxCharHeight(this)
             rv = this.scan.opts.MaxCharHeight;
@@ -78,6 +83,8 @@ classdef PageScanParameterTuner < handle
             this.scan.opts.MaxCharHeight = value;
             this.scan.update;           % Rescan image with new params
         end            
+
+
 
         function rv = get.MinCharWidth(this)
             rv = this.scan.opts.MinCharWidth;
