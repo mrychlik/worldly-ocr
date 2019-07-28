@@ -130,7 +130,7 @@ classdef PageScan < handle
             addParameter(p, 'RowDistThreshold', 40, @(x)isscalar(x));        
             addParameter(p, 'MergeThreshold', 20, @(x)isscalar(x));
             addParameter(p, 'MaxCharWidth', 100, @(x)isscalar(x));
-            addParameter(p, 'MinCharWidth', 10, @(x)isscalar(x));
+            addParameter(p, 'MinCharWidth', 40, @(x)isscalar(x));
             addParameter(p, 'MinCharHeight',10, @(x)isscalar(x));
             addParameter(p, 'MaxCharHeight',100, @(x)isscalar(x));            
             addParameter(p, 'BinThreshold', 0.45, @(x)isscalar(x));
