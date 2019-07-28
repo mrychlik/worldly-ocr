@@ -61,7 +61,7 @@ classdef PageScanParameterTuner < handle
             rv = this.scan.opts.ShortHeightThreshold;
         end
 
-
+        %----------------------------------------------------------------
 
         function rv = get.ColumnDistThreshold(this)
             rv = this.scan.opts.ColumnDistThreshold;
@@ -72,11 +72,20 @@ classdef PageScanParameterTuner < handle
             this.scan.update;           % Rescan image with new params
         end
 
+        %----------------------------------------------------------------
+
 
         function rv = get.MinCharHeight(this)
             rv = this.scan.opts.MinCharHeight;
         end
 
+
+        function this = set.MinCharHeight(this, value)
+            this.scan.opts.MinCharHeight = value;
+            this.scan.update;
+        end
+
+        %----------------------------------------------------------------
 
         function rv = get.MaxCharHeight(this)
             rv = this.scan.opts.MaxCharHeight;
@@ -87,11 +96,18 @@ classdef PageScanParameterTuner < handle
             this.scan.update;           % Rescan image with new params
         end            
 
-
+        %----------------------------------------------------------------
 
         function rv = get.MinCharWidth(this)
             rv = this.scan.opts.MinCharWidth;
         end
+
+        function this = set.MinCharWidth(this, value)
+            this.scan.opts.MinCharWidth = value;
+            this.scan.update;
+        end
+
+        %----------------------------------------------------------------
 
         function rv = get.MaxCharWidth(this)
             rv = this.scan.opts.MaxCharWidth;
@@ -102,6 +118,7 @@ classdef PageScanParameterTuner < handle
             this.scan.update;
         end
 
+        %----------------------------------------------------------------
 
         function rv = get.VerticalDilation(this)
             rv = this.scan.opts.VerticalDilation;
@@ -111,6 +128,8 @@ classdef PageScanParameterTuner < handle
             this.scan.opts.VerticalDilation = value;
             this.scan.update;
         end
+
+        %----------------------------------------------------------------
 
         function rv = get.HorizontalDilation(this)
             rv = this.scan.opts.HorizontalDilation;
