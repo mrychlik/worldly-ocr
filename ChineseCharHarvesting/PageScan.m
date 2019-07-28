@@ -464,7 +464,7 @@ classdef PageScan < handle
             colormap(ax,hot);
 
             N = this.CharacterCount;
-            bh = waitbar(0,'Rendering marked page image...');
+            bh = waitbar(0,'Rendering character bounding boxes...');
             for char_idx = 1:N
                 waitbar(char_idx/N, bh);
                 if ~p.Results.ShowOutliers && this.is_outlier(char_idx)
