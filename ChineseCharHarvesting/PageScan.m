@@ -462,7 +462,11 @@ classdef PageScan < handle
             end
             set (ax,'YDir','reverse');
             colormap(ax,hot);
-            for char_idx = 1:this.CharacterCount
+
+            N = this.CharacterCount;
+            bh = waitbar(0,'Rendering marked page image...');
+            for char_idx = 1:N
+                waitbar(idx/N, bh);
                 if ~p.Results.ShowOutliers && this.is_outlier(char_idx)
                     continue;
                 end
@@ -487,6 +491,7 @@ classdef PageScan < handle
                               'MarkerEdgeAlpha',0.5);
                 end
             end
+            close(bh);
 
             this.draw_boundary(ax,'ShowVertical',p.Results.ShowVertical,...
                                'ShowHorizontal',p.Results.ShowHorizontal,...
