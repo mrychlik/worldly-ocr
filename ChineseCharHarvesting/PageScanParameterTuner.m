@@ -96,6 +96,7 @@ classdef PageScanParameterTuner < handle
         function rv = get.MaxCharWidth(this)
             rv = this.scan.opts.MaxCharWidth;
         end
+
         function this = set.MaxCharWidh(this, value)
             this.scan.opts.MaxCharWidth = value;
             this.scan.update;
