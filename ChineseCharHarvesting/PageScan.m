@@ -471,7 +471,7 @@ classdef PageScan < handle
             if p.Results.ShowDilation
                 im.AlphaData = 0.8;
                 in = imagesc(ax,this.DilatedImage);
-                in.AlphaData = 0.35;
+                in.AlphaData = 0.5;
             end
             set (ax,'YDir','reverse');
             colormap(ax,hot);
