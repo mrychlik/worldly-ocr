@@ -1016,6 +1016,7 @@ classdef PageScan < handle
         end
 
         function update(this)
+            bh = waitbar(0,'Scanning page image...');
             I1 = 255 - this.PageImage; 
             this.PageImageMono = im2bw(I1,this.opts.BinThreshold);
             this.DilatedImage = imdilate(this.PageImageMono, this.DilationSE);
@@ -1030,6 +1031,7 @@ classdef PageScan < handle
             N = numel(stats);
             char_count = 0;
             for n=1:N
+                waitbar(n/N,bh);
                 is_outlier = false;
                 if PageScan.filter_out(stats(n))
                     is_outlier = true;
@@ -1092,6 +1094,8 @@ classdef PageScan < handle
                                          'AltImage',{},'IsShort',{}, ...
                                          'IsOutlier',{},'Ignore',{});
             end
+            waitbar(1,bh);
+            close(bh);
         end
 
     end
