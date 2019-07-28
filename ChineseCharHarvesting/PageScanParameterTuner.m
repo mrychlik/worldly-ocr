@@ -12,6 +12,8 @@ classdef PageScanParameterTuner < handle
         MaxCharHeight;
         MinCharWidth;
         MaxCharWidth;
+        VerticalDilation;
+        HorizontalDilation;
     end
 
     methods
