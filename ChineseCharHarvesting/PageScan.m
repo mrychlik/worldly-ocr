@@ -166,10 +166,6 @@ classdef PageScan < handle
             end
             this.PageImage = img;
             this.update;
-            
-            if this.opts.MergeCharacters
-                this.do_merge_characters_all;
-            end
         end
 
         function Source = get.Source(this)
@@ -1101,6 +1097,10 @@ classdef PageScan < handle
                                          'CroppedMonoImage',{},...
                                          'AltImage',{},'IsShort',{}, ...
                                          'IsOutlier',{},'Ignore',{});
+            end
+            
+            if this.opts.MergeCharacters
+                this.do_merge_characters_all;
             end
         end
 
