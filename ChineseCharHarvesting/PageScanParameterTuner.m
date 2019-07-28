@@ -69,9 +69,16 @@ classdef PageScanParameterTuner < handle
         function rv = get.MinCharHeight(this)
             rv = this.scan.opts.MinCharHeight;
         end
+
         function rv = get.MaxCharHeight(this)
             rv = this.scan.opts.MaxCharHeight;
         end
+
+        function this = set.MaxCharHeight(this,value);
+            this.scan.opts.MaxCharHeight = value;
+            this.scan.update;           % Rescan image with new params
+        end            
+
         function rv = get.MinCharWidth(this)
             rv = this.scan.opts.MinCharWidth;
         end
