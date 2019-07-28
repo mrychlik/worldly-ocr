@@ -104,6 +104,12 @@ classdef PageScan < handle
         % 
         %   * FontManager          - an external FontManager object, used
         %                            for rendering character images
+        %   * VerticalDilation     - the amount of vertical dilation
+        %                            which does not cause characters to
+        %                            overlap
+        %   * HorizontalDilation   - the amount of horizontal dilation
+        %                            which does not cause characters to
+        %                            overlap
         % 
         %  NOTE TO DEVELOPERS: If you have an option to the constructor
         %  which you would like to add, do not add a property. Instead,
@@ -130,6 +136,7 @@ classdef PageScan < handle
             addParameter(p, 'FontName', 'TimesRoman', @(x)ischar(x));
             addParameter(p, 'FontSize', 60, @(x)isscalar(x));
             addParameter(p, 'FontManager', [], @(x)isa(x,'FontManager'));
+            addParameter(p, 'VerticalDilation', 15, @(x)isscalar(x));
             parse(p, varargin{:});
 
             this.opts = p.Results;
