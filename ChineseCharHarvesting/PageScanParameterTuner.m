@@ -57,6 +57,8 @@ classdef PageScanParameterTuner < handle
             this.scan.show_marked_page_img(opts);
         end
 
+        %----------------------------------------------------------------
+
         function rv = get.ShortHeightThreshold(this)
             rv = this.scan.opts.ShortHeightThreshold;
         end
