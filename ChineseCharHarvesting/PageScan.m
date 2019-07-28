@@ -49,6 +49,9 @@ classdef PageScan < handle
         ROI;                            % An Nx4 array, rows are char. boxes
         OcrResults;                     % Output of OCR on ROI
         Source;                         % File or image
+    end
+        
+    properties(Dependent,Access=private)
         DilationSE;                     % Dilation structuring element
     end
 
