@@ -471,7 +471,7 @@ classdef PageScan < handle
             if p.Results.ShowDilation
                 im.AlphaData = 0.8;
                 in = imagesc(ax,this.DilatedImage);
-                in.AlphaData = 0.2;
+                in.AlphaData = 0.35;
             end
             set (ax,'YDir','reverse');
             colormap(ax,hot);
@@ -495,7 +495,7 @@ classdef PageScan < handle
                 elseif this.Characters(char_idx).IsShort
                     set(r,'FaceColor',[0,1,0,.5]);                    
                 else
-                    set(r,'FaceColor',[1,1,1,.3]);
+                    set(r,'FaceColor',[1,1,1,.3]); % Green
                 end
                 % Show centroid
                 if p.Results.ShowCentroids
