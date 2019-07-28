@@ -1021,7 +1021,6 @@ classdef PageScan < handle
         end
 
         function update(this)
-            bh = waitbar(0,'Scanning page image...');
             I1 = 255 - this.PageImage; 
             this.PageImageMono = im2bw(I1,this.opts.BinThreshold);
             this.DilatedImage = imdilate(this.PageImageMono, this.DilationSE);
@@ -1035,6 +1034,7 @@ classdef PageScan < handle
                                 'Centroid');
             N = numel(stats);
             char_count = 0;
+            bh = waitbar(0,'Scanning page image for characters...');
             for n=1:N
                 waitbar(n/N,bh);
                 is_outlier = false;
