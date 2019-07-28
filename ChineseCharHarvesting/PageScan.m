@@ -182,7 +182,7 @@ classdef PageScan < handle
         function DilationSE = get.DilationSE(this)
             w = this.opts.HorizontalDilation;
             h = this.opts.VerticalDilation;
-            DilationSE = strel('rectangle', [w,h]); % for imdilate
+            DilationSE = strel('rectangle', [h,w]); % for imdilate
         end
 
         function Source = get.Source(this)
