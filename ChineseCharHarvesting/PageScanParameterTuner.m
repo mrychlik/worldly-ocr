@@ -63,6 +63,11 @@ classdef PageScanParameterTuner < handle
             rv = this.scan.opts.ShortHeightThreshold;
         end
 
+        function this = set.ShortHeightThreshold(this, value)
+            this.scan.opts.ShortHeightThreshold = value;
+            this.scan.update;           % Rescan image with new params
+        end
+
         %----------------------------------------------------------------
 
         function rv = get.ColumnDistThreshold(this)
