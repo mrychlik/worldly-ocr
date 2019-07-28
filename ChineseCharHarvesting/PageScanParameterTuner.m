@@ -19,7 +19,8 @@ classdef PageScanParameterTuner < handle
             if nargin > 0
                 this.app = app
             end
-            this.scan = PageScan;
+            opts.MergeCharacters = true;
+            this.scan = PageScan(opts);
         end
 
 
