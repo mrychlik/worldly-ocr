@@ -30,7 +30,7 @@ im1 = image(blocks);
 im1.AlphaData = 0.5;
 
 I=I(1:sz(1),1:sz(2));
-im2 = image(I,[]);
+im2 = image(I);
 im2.AlphaData = 0.5;
 
 hold off;
