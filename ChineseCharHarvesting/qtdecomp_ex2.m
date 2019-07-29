@@ -47,17 +47,10 @@ function rv = thresh(B)
     [m,m,k] = size(B);
     disp(m);
     rv = zeros(k,1,'logical');
-    if m <= 16 
-        return;
-    end
     for j=1:k
-        Bk = B(:,:,k);
-        idx = Bk >= 90; imagesc(idx), pause(.1), drawnow;
-        Small = median(Bk(~idx),'all')
-        Large = median(Bk(idx),'all')
-        if Large > 128 && Small < 64
+        [Small,Large] = bounds( reshape(squeeze(B(:,:,k)), [m*m,1] ))
+        if Large > 128+64 && Small < 128-64
             rv(j) = logical(1);
         end
     end
-    disp(rv');
 end
