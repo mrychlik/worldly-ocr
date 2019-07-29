@@ -45,14 +45,14 @@ linkaxes([ax1,ax2]);
 
 function rv = thresh(B)
     [m,m,k] = size(B)
-    rv = ones(k,1,'logical');
+    rv = zeros(k,1,'logical');
     for j=1:k
         B1 = B(:,:,j);
         B2 = B(:);
         Bmax = max(B2)
         Bmin = min(B2)
         if Bmax - Bmin > 100
-            rv(j) = false;
+            rv(j) = logical(1);
         end
     end
 end
