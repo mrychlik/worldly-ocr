@@ -43,7 +43,7 @@ linkaxes([ax1,ax2]);
 % the corresponding block should be split, and 0 otherwise.  FUN must be a
 % FUNCTION_HANDLE.
 function rv = thresh(B)
-    [m,m,k] = size(B)
+    [m,m,k] = size(B);
     rv = zeros(k,1,'logical');
     for j=1:k
         B1 = B(:,:,j);
