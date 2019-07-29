@@ -52,9 +52,9 @@ function rv = thresh(B)
     end
     for j=1:k
         Bk = B(:,:,k);
-        idx = Bk >= 90; imagesc(idx), drawnow;
-        Small = mean(Bk(~idx),'all')
-        Large = mean(Bk(idx),'all')
+        idx = Bk >= 90; imagesc(idx), pause(.1), drawnow;
+        Small = median(Bk(~idx),'all')
+        Large = median(Bk(idx),'all')
         if Large > 128 && Small < 64
             rv(j) = logical(1);
         end
