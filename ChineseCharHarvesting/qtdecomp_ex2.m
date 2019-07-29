@@ -42,15 +42,14 @@ linkaxes([ax1,ax2]);
 % blocks. FUN should return a logical K-element vector whose values are 1 if
 % the corresponding block should be split, and 0 otherwise.  FUN must be a
 % FUNCTION_HANDLE.
-
 function rv = thresh(B)
     [m,m,k] = size(B)
     rv = zeros(k,1,'logical');
     for j=1:k
         B1 = B(:,:,j);
         B2 = B(:);
-        Bmax = max(B2)
-        Bmin = min(B2)
+        Bmax = max(B2);
+        Bmin = min(B2);
         if Bmax - Bmin > 100
             rv(j) = logical(1);
         end
