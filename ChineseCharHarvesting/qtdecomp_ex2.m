@@ -44,20 +44,15 @@ linkaxes([ax1,ax2]);
 % FUNCTION_HANDLE.
 
 function rv = thresh(B)
-    [m,m,k] = size(B);
-    level = log2(m);
-    rv = zeros(k,1);
-    if level > 8
-        return
-    end
+    [m,m,k] = size(B)
+    rv = ones(k,1,'logical');
     for j=1:k
         B1 = B(:,:,j);
         B2 = B(:);
-        Bmax = max(B2);
-        Bmin = min(B2);
+        Bmax = max(B2)
+        Bmin = min(B2)
         if Bmax - Bmin > 100
-            rv(j) = 1;
+            rv(j) = false;
         end
     end
-    rv=logical(rv);
 end
