@@ -45,11 +45,10 @@ linkaxes([ax1,ax2]);
 
 function rv = thresh(B)
     [m,m,k] = size(B);
+    rv = repmat(true,[m,m]);
     for j=1:k
         if max(B(:,:,j)) < 100
             rv(j) = false;
-        else
-            rv(j) = true;
         end
     end
 end
