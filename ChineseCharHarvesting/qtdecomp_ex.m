@@ -9,7 +9,7 @@ sz = size(I1);
 log2_sz = ceil(log2(sz));
 I = padarray(I1,2.^log2_sz-sz,0,'post');
 
-thresh = 0.28;
+thresh = 0.2;
 S = qtdecomp(I,thresh);
 blocks = repmat(uint8(0),size(S));
 
