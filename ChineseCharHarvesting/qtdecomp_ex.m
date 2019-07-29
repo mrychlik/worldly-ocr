@@ -7,11 +7,12 @@ I2 = im2bw(I0);
 
 sz = size(I1);
 log2_sz = ceil(log2(sz));
-I=padarray(I1,2.^log2_sz-sz,0,'post');
+I = padarray(I1,2.^log2_sz-sz,0,'post');
 
 thresh = 128;
 S = qtdecomp(I,thresh);
 blocks = repmat(uint8(0),size(S));
+
 for dim = [32,16 8 4 2 1];    
     numblocks = length(find(S==dim));    
     if (numblocks > 0)        
@@ -20,6 +21,7 @@ for dim = [32,16 8 4 2 1];
         blocks = qtsetblk(blocks,S,dim,values);
     end
 end
+
 blocks(end,1:end) = 1;
 blocks(1:end,end) = 1;
 hold on;
