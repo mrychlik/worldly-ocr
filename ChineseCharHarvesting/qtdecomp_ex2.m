@@ -46,7 +46,7 @@ function rv = thresh(B)
     [m,m,k] = size(B);
     disp(m);
     rv = zeros(k,1,'logical');
-    if m <= 32 
+    if m <= 16 
         return;
     end
     for j=1:k
