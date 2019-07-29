@@ -25,6 +25,7 @@ end
 blocks(end,1:end) = 1;
 blocks(1:end,end) = 1;
 
+figure;
 
 ax1=subplot(1,3,1);
 I = I(1:sz(1),1:sz(2));
@@ -50,12 +51,13 @@ function rv = thresh(B)
         return;
     end
     for j=1:k
-        B1 = B(:,:,j);
-        B2 = B(:);
-        Bmax = max(B2);
-        Bmin = min(B2);
-        if Bmax - Bmin > 100
+        Bk = B(:,:,k);
+        idx = Bk >= 90; imagesc(idx), drawnow;
+        Small = mean(Bk(~idx),'all')
+        Large = mean(Bk(idx),'all')
+        if Large > 128 && Small < 64
             rv(j) = logical(1);
         end
     end
+    disp(rv');
 end
