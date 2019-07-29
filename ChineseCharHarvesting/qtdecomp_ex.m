@@ -13,7 +13,7 @@ thresh = 0.28;
 S = qtdecomp(I,thresh);
 blocks = repmat(uint8(0),size(S));
 
-for dim = [256,128,64,32,16 8 4];    
+for dim = [256,128,64,32,16 8 4 2];    
     %c = 10*ceil(log2(dim));              % color
     c=uint8(255);
     numblocks = length(find(S==dim));    
