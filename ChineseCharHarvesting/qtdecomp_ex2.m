@@ -36,10 +36,20 @@ imshow(blocks,[]);
 
 linkaxes([ax1,ax2]);
 
+% S = QTDECOMP(I,FUN) uses the function FUN to determine whether to split a
+% block. QTDECOMP calls FUN with all the current blocks of size M-by-M
+% stacked into M-by-M-by-K array, where K is the number of M-by-M
+% blocks. FUN should return a logical K-element vector whose values are 1 if
+% the corresponding block should be split, and 0 otherwise.  FUN must be a
+% FUNCTION_HANDLE.
 
 function rv = thresh(B)
-    if max(B(:)) < 100
-        rv = false;
+    [m,m,k] = size(B);
+    for j=1:k
+        if max(B(:,:,j)) < 100
+            rv(j) = false;
+        else
+            rv(j) = true;
+        end
     end
-    rv = true;
 end
