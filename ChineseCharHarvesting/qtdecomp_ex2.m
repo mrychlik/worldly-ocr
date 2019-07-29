@@ -45,10 +45,19 @@ linkaxes([ax1,ax2]);
 
 function rv = thresh(B)
     [m,m,k] = size(B);
+    level = log2(m);
     rv = zeros(k,1);
+    if level > 8
+        return
+    end
     for j=1:k
-        if max(max(B(:,:,j))) - min(min(B(:,:,j))) > 100
+        B1 = B(:,:,j);
+        B2 = B(:);
+        Bmax = max(B2);
+        Bmin = min(B2);
+        if Bmax - Bmin > 100
             rv(j) = 1;
         end
     end
+    rv=logical(rv);
 end
