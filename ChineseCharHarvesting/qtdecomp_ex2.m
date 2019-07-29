@@ -46,6 +46,9 @@ function rv = thresh(B)
     [m,m,k] = size(B);
     disp(m);
     rv = zeros(k,1,'logical');
+    if m <= 8 
+        return;
+    end
     for j=1:k
         B1 = B(:,:,j);
         B2 = B(:);
