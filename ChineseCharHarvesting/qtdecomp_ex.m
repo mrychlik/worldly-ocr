@@ -26,21 +26,16 @@ end
 
 blocks(end,1:end) = 1;
 blocks(1:end,end) = 1;
-hold on;
 
-subplot(1,3,1);
+
+ax1=subplot(1,3,1);
 I = I(1:sz(1),1:sz(2));
-imshow(I),
+imshow(I,[]),
 
-
-
-subplot(1,3,[2,3]);
+ax2=subplot(1,3,[2,3]);
 blocks = blocks(1:sz(1),1:sz(2));
-im1 = imshow(blocks,[]);
-%im1.AlphaData = 0.5;
+imshow(blocks,[]);
 
-%I2=imdilate(I2,strel('rectangle',[2,2]));
-%im2 = imshow(I2);
+linkaxes([ax1,ax2]);
 
 
-hold off;
