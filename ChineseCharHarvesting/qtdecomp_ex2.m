@@ -12,9 +12,8 @@ I = padarray(I1,2.^log2_sz-sz,0,'post');
 S = qtdecomp(I,@thresh);
 blocks = repmat(uint8(0),size(S));
 
-for dim = [256,128,64,32,16 8 4];    
-    %c = 10*ceil(log2(dim));              % color
-    c=uint8(255);
+for dim = [256,128,64,32,16 8 4 2 1];    
+    c = 10*ceil(log2(dim));              % color
     numblocks = length(find(S==dim));    
     if (numblocks > 0)        
         values = repmat(uint8(255),[dim dim numblocks]);
