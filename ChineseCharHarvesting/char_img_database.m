@@ -69,7 +69,8 @@ try
                 insert(conn, 'char_bitmaps',...
                        {'page', 'idx', 'image'},...
                        {page, idx, char(BW_data)} );
-            end
+            else
+                disp(sprintf('image for page %d, char %d already exists\n', page, idx));                          end
         end
     end
 catch me
