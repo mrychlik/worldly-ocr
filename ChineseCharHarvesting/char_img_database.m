@@ -64,13 +64,14 @@ try
                 BW = im2bw(I);
                 BW = imautocrop(BW);
                 BW_data = pack_binary_image(BW);
-                disp(sprintf('Inserting image for page %d, char %d\n', page, idx));
+                disp(sprintf('Insert: page = %d, char %d\n', page, idx));
 
                 insert(conn, 'char_bitmaps',...
                        {'page', 'idx', 'image'},...
                        {page, idx, char(BW_data)} );
             else
-                disp(sprintf('image for page %d, char %d already exists\n', page, idx));                          end
+                disp(sprintf('Skip: page = %d, char = %d\n', page, idx));
+            end
         end
     end
 catch me
