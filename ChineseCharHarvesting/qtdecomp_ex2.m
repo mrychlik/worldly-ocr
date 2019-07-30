@@ -3,7 +3,6 @@
 %I = imread('liftingbody.png');
 I0 = imread('Pages3/page-06.ppm');
 I1 = rgb2gray(I0);                      % Must make an intensity image
-I2 = im2bw(I0);
 
 sz = size(I1);
 log2_sz = ceil(log2(sz));
@@ -49,9 +48,9 @@ function rv = thresh(B)
     display(m);
     rv = ones(k,1,'logical');
     for j=1:k
-        imagesc(B(:,:,k)),drawnow, pause(1);
-        M = means( B(:,:,k), 'all' )
-        if M < 64
+        imshow( B(:,:,k) ), drawnow, pause(1);
+        M = median( B(:,:,k), 'all' )
+        if M < 10
             rv(j) = logical(0);
         end
     end
