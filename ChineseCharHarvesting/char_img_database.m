@@ -51,9 +51,9 @@ try
                 continue;
             end
             I = imread(filename);
-            imshow(I);                
-            title(sprintf('Page %d, char %d', page, idx));
-            drawnow;
+            %imshow(I);                
+            %title(sprintf('Page %d, char %d', page, idx));
+            %drawnow;
 
             % Write to database
             results = fetch(conn, [ 'select page, idx from char_bitmaps ' ...
