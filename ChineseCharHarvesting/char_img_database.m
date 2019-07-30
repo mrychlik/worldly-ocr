@@ -62,7 +62,7 @@ try
 
             if isempty(results)
                 BW = im2bw(I);
-                BW = imautocrop(BW);
+                %BW = imautocrop(BW);
                 BW_data = pack_binary_image(BW);
                 disp(sprintf('Inserting image for page %d, char %d\n', page, idx));
 
