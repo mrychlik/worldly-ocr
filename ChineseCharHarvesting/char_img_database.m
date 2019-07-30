@@ -22,7 +22,7 @@ exec(conn, [ 'CREATE TABLE if NOT EXISTS char_bitmaps ' ...
              'ON char_bitmaps (page, idx); ']);
 
 exec(conn, ['EXPLAIN QUERY PLAN '...
-            'SELECT page,idx FROM char_bitmaps WHERE page = "6";']);
+            'SELECT page,idx FROM char_bitmaps WHERE page = "6";'])
 
 try
     for page=pages
