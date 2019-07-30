@@ -67,6 +67,7 @@ try
         end
     end
 catch me
-    disp(me);
     close(conn);
+    fprintf('Error id %s\n\tMessage:%s\tfile %s, line %d\n', ...
+            me.identifier, me.message, me.stack.file, me.stack.line);
 end
