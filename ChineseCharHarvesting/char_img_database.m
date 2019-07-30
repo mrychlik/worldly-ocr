@@ -38,9 +38,6 @@ try
             else
                 break;
             end
-            if found_first_char
-                disp(sprintf('\tChar: %d\n', idx));        
-            end
             
             if ~found_first_char
                 continue;
