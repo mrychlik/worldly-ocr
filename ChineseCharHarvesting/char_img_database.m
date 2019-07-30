@@ -58,3 +58,5 @@ for page=pages
                {page, idx, BW_data} );
     end
 end
+
+close(conn);
