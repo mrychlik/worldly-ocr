@@ -29,12 +29,12 @@ blocks(1:end,end) = 1;
 figure;
 
 ax1=subplot(1,2,1);
-I = I(1:sz(1),1:sz(2));
-imshow(I,[]),
+I_orig = I(1:sz(1),1:sz(2));
+imshow(I_orig,[]),
 
-ax2=subplot(1,2,2);
-blocks = blocks(1:sz(1),1:sz(2));
-imshow(blocks,[]);
+ax2 = subplot(1,2,2);
+blocks_orig = blocks(1:sz(1),1:sz(2));
+imshow(blocks_orig,[]);
 
 linkaxes([ax1,ax2]);
 
@@ -46,7 +46,7 @@ linkaxes([ax1,ax2]);
 % FUNCTION_HANDLE.
 function rv = thresh(B)
     [m,m,k] = size(B);
-    disp(m);
+    display(m);
     rv = ones(k,1,'logical');
     for j=1:k
         imagesc(B(:,:,k)),drawnow, pause(1);
