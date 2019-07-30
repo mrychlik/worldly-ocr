@@ -13,12 +13,15 @@ else
     mode = 'connect';
 end
 conn = sqlite(db_file, mode);
-exec(conn, [ 'create table if not exists char_bitmaps ' ...
+exec(conn, [ 'CREATE TABLE if NOT EXISTS char_bitmaps ' ...
              '(page NUMERIC, ' ...
              'idx NUMERIC, ' ...
              'image VARCHAR)' ]);
 
-exec(conn, 'create index if not exists page_idx on char_bitmaps (page, idx)');
+exec(conn, 'CREATE INDEX IF NOT EXISTS page_idx ON char_bitmaps (page, idx)');
+
+exec(conn, ['EXPLAIN QUERY PLAN '...
+            'SELECT page,idx FROM char_bitmaps WHERE page = "6";']);
 
 try
     for page=pages
