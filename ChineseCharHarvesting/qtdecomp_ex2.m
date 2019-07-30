@@ -50,8 +50,8 @@ function rv = thresh(B)
     rv = ones(k,1,'logical');
     for j=1:k
         imagesc(B(:,:,k)),drawnow, pause(1);
-        [Small,Large] = bounds( B(:,:,k), 'all' )
-        if Large - Small < 64
+        M = means( B(:,:,k), 'all' )
+        if M < 64
             rv(j) = logical(0);
         end
     end
