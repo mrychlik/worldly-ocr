@@ -50,7 +50,7 @@ for page=pages
         drawnow; pause(0.2);
 
         % Write to database
-        BW = img2bw(I);
+        BW = im2bw(I);
         BW = imautocrop(BW);
         BW_data = pack_binary_image(BW);
         insert(this.conn, 'bitmaps',...
