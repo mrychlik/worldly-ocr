@@ -19,6 +19,8 @@ exec(conn, [ 'create table if not exists char_bitmaps ' ...
              'image VARCHAR)' ]);
 
 
+exec(conn, 'create index page_idx on char_bitmaps (page, idx)');
+
 try
     for page=pages
         disp(sprintf('Page: %d', page));
