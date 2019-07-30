@@ -33,14 +33,9 @@ try
                                                  idx));
             if exist(filename, 'file') == 2
                 if ~found_first_char
-                    disp(sprintf('Found first char %d on page %d', idx, page));                
                     found_first_char = true;
                 end
             else
-                if found_first_char
-                    disp(sprintf('Reached last char %d on page %d', idx, ...
-                                 page));
-                end
                 break;
             end
             if found_first_char
