@@ -6,7 +6,8 @@ I1 = rgb2gray(I0);                      % Must make an intensity image
 
 sz = size(I1);
 log2_sz = ceil(log2(sz));
-I = padarray(I1,2.^log2_sz-sz,max(I1(:)),'post');
+I1=uint8(double(I1)./double(max(I1(:))));
+I = padarray(I1,2.^log2_sz-sz,1,'post');
 imagesc(I); pause(1);
 
 S = qtdecomp(I, @split_test);
@@ -48,7 +49,6 @@ function rv = split_test(B)
     display(m);
     rv = ones(1,k,'logical');
     for j=1:k
-        imshow( B(:,:,k) ), drawnow, pause(1);
         M = median( B(:,:,k), 'all' )
         if M < 10
             rv(j) = logical(0);
