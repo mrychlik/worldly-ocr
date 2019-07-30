@@ -56,18 +56,19 @@ try
             drawnow; pause(0.1);
 
             % Write to database
-            BW = im2bw(I);
-            BW = imautocrop(BW);
-            BW_data = pack_binary_image(BW);
-            disp(sprintf('Inserting image for page %d, char %d\n', page, idx));
-
             results = fetch(conn, [ 'select page,idx from char_bitmaps ' ...
                                 'where page = "', page, '" AND idx = "',idx,'";'],1);
 
+            if isempty(results)
+                BW = im2bw(I);
+                BW = imautocrop(BW);
+                BW_data = pack_binary_image(BW);
+                disp(sprintf('Inserting image for page %d, char %d\n', page, idx));
 
-            insert(conn, 'char_bitmaps',...
-                   {'page', 'idx', 'image'},...
-                   {page, idx, char(BW_data)} );
+                insert(conn, 'char_bitmaps',...
+                       {'page', 'idx', 'image'},...
+                       {page, idx, char(BW_data)} );
+            end
         end
     end
 catch me
