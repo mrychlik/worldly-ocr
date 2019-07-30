@@ -60,6 +60,11 @@ try
             BW = imautocrop(BW);
             BW_data = pack_binary_image(BW);
             disp(sprintf('Inserting image for page %d, char %d\n', page, idx));
+
+            results = fetch(conn, [ 'select page,idx from char_bitmaps ' ...
+                                'where page = "', page, '" AND idx = "',idx,'";'],1);
+
+
             insert(conn, 'char_bitmaps',...
                    {'page', 'idx', 'image'},...
                    {page, idx, char(BW_data)} );
