@@ -6,9 +6,11 @@ I1 = rgb2gray(I0);                      % Must make an intensity image
 
 sz = size(I1);
 log2_sz = ceil(log2(sz));
-I1=uint8(255*double(I1)./double(max(I1(:))));
-I = padarray(I1,2.^log2_sz-sz,1,'post');
-imagesc(I); pause(1);
+I1 = max(I1,[],'all')-I1;
+I1 = uint8(255*double(I1)./double(max(I1,[],'all')));
+
+I = padarray(I1,2.^log2_sz-sz,0,'post');
+imshow(I,[]); pause(1);
 
 S = qtdecomp(I, @split_test);
 blocks = repmat(uint8(0),size(S));
@@ -49,8 +51,8 @@ function rv = split_test(B)
     display(m);
     rv = ones(1,k,'logical');
     for j=1:k
-        M = median( B(:,:,k), 'all' )
-        if M < 10
+        [S,L] = bounds( B(:,:,k), 'all' )
+        if L - S < 32
             rv(j) = logical(0);
         end
     end
