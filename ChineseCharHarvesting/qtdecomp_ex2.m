@@ -27,11 +27,11 @@ blocks(1:end,end) = 1;
 
 figure;
 
-ax1=subplot(1,3,1);
+ax1=subplot(1,2,1);
 I = I(1:sz(1),1:sz(2));
 imshow(I,[]),
 
-ax2=subplot(1,3,[2,3]);
+ax2=subplot(1,2,2);
 blocks = blocks(1:sz(1),1:sz(2));
 imshow(blocks,[]);
 
@@ -46,11 +46,12 @@ linkaxes([ax1,ax2]);
 function rv = thresh(B)
     [m,m,k] = size(B);
     disp(m);
-    rv = zeros(k,1,'logical');
+    rv = ones(k,1,'logical');
     for j=1:k
-        [Small,Large] = bounds( reshape(squeeze(B(:,:,k)), [m*m,1] ))
-        if Large > 128+64 && Small < 128-64
-            rv(j) = logical(1);
+        [Small,Large] = bounds( B(:,:,k), 'all' )
+        if Large - Small < 64
+            rv(j) = logical(0);
         end
     end
+    disp(rv');
 end
