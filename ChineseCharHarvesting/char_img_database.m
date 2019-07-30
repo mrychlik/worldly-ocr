@@ -51,7 +51,7 @@ try
                 continue;
             end
             I = imread(filename);
-            imshow(I);
+            imshow(I);                
             title(sprintf('Page %d, char %d', page, idx));
             drawnow;
 
