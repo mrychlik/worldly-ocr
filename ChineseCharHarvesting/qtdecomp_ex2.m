@@ -6,7 +6,7 @@ I1 = rgb2gray(I0);                      % Must make an intensity image
 
 sz = size(I1);
 log2_sz = ceil(log2(sz));
-I1=uint8(double(I1)./double(max(I1(:))));
+I1=uint8(255*double(I1)./double(max(I1(:))));
 I = padarray(I1,2.^log2_sz-sz,1,'post');
 imagesc(I); pause(1);
 
