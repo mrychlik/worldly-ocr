@@ -9,7 +9,7 @@ log2_sz = ceil(log2(sz));
 I = padarray(I1,2.^log2_sz-sz,0,'post');
 imagesc(I); pause(1);
 
-S = qtdecomp(I,@thresh);
+S = qtdecomp(I, @split_test);
 blocks = repmat(uint8(0),size(S));
 
 for dim = [256,128,64,32,16 8 4 2 1];    
@@ -43,7 +43,7 @@ linkaxes([ax1,ax2]);
 % blocks. FUN should return a logical K-element vector whose values are 1 if
 % the corresponding block should be split, and 0 otherwise.  FUN must be a
 % FUNCTION_HANDLE.
-function rv = thresh(B)
+function rv = split_test(B)
     [m,m,k] = size(B);
     display(m);
     rv = ones(k,1,'logical');
