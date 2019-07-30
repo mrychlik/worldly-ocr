@@ -57,8 +57,8 @@ try
 
             % Write to database
             results = fetch(conn, [ 'select page, idx from char_bitmaps ' ...
-                                'WHERE page = ', num2str(page) AND ' '...
-                                'WHERE idx = ', num2str(idx), '; '] ,1);
+                                'WHERE page = ', num2str(page) ' AND '...
+                                'idx = ', num2str(idx) '; '] ,1);
 
             if isempty(results)
                 BW = im2bw(I);
