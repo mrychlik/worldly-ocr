@@ -298,6 +298,10 @@ classdef PageScan < handle
         % one shows the original page image as semi-transparent
         % background. The axes of the subplots are linked,
         % so that zoom and pan are synchronized.
+            this.show_ocr_rapidly(varargin{:});
+        end
+
+        function show_ocr_rapidly(this, varargin)
             p = inputParser;
             addRequired(p, 'this', @(x)isa(x,'PageScan'));            
             addParameter(p,'CharIndices', 1:this.CharacterCount, ...
