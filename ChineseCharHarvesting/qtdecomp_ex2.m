@@ -8,6 +8,7 @@ I2 = im2bw(I0);
 sz = size(I1);
 log2_sz = ceil(log2(sz));
 I = padarray(I1,2.^log2_sz-sz,0,'post');
+imagesc(I); pause(1);
 
 S = qtdecomp(I,@thresh);
 blocks = repmat(uint8(0),size(S));
@@ -48,6 +49,7 @@ function rv = thresh(B)
     disp(m);
     rv = ones(k,1,'logical');
     for j=1:k
+        imagesc(B(:,:,k)),drawnow, pause(1);
         [Small,Large] = bounds( B(:,:,k), 'all' )
         if Large - Small < 64
             rv(j) = logical(0);
