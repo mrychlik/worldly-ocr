@@ -53,7 +53,7 @@ try
             I = imread(filename);
             imshow(I);
             title(sprintf('Page %d, char %d', page, idx));
-            drawnow; pause(0.2);
+            drawnow; pause(0.1);
 
             % Write to database
             BW = im2bw(I);
