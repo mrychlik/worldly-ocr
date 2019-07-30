@@ -53,7 +53,7 @@ try
             I = imread(filename);
             imshow(I);
             title(sprintf('Page %d, char %d', page, idx));
-            drawnow; pause(0.1);
+            drawnow;
 
             % Write to database
             results = fetch(conn, [ 'select page, idx from char_bitmaps ' ...
