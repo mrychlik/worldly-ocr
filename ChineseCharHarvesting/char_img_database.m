@@ -1,8 +1,8 @@
 % Write images to a database as monochrome bitmaps
 
 % Directory full of character(part) images
-char_dir='PChars';
-db_file='chars.db';
+char_dir=fullfile('PChars');
+db_file=fullfile('chars.db');
 char_img_pattern='page%02d-char%05d.png';
 pages = 6:95;
 max_char = 999;                       % Number bigger than chars per page
