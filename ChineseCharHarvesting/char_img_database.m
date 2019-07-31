@@ -26,7 +26,7 @@ exec(conn, ['EXPLAIN QUERY PLAN '...
 
 try
     for page=pages
-        disp(sprintf('Page: %d', page));
+        fprintf('Page: %d', page);
         found_first_char = false;
         for idx=1:max_char
             filename = fullfile(char_dir,sprintf(char_img_pattern,page, ...
