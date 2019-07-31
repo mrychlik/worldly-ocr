@@ -54,7 +54,7 @@ try
 
             if isempty(results)
                 BW = im2bw(I);
-                BW = imautocrop(BW);
+                %BW = imautocrop(BW);
                 BW_data = pack_binary_image(BW);
                 disp(sprintf('Insert: page = %d, char %d\n', page, idx));
 
@@ -62,7 +62,7 @@ try
                        {'page', 'idx', 'image'},...
                        {page, idx, char(BW_data)} );
             else
-                disp(sprintf('Skip: page = %d, char = %d\n', page, idx));
+                disp(sprintf('Skip: page = %d, char = %d', page, idx));
             end
         end
     end
