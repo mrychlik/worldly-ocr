@@ -56,13 +56,13 @@ try
                 BW = im2bw(I);
                 %BW = imautocrop(BW);
                 BW_data = pack_binary_image(BW);
-                disp(sprintf('Insert: page = %d, char %d\n', page, idx));
+                fprintf('Insert: page = %d, char %d\n', page, idx);
 
                 insert(conn, 'char_bitmaps',...
                        {'page', 'idx', 'image'},...
                        {page, idx, char(BW_data)} );
             else
-                disp(sprintf('Skip: page = %d, char = %d', page, idx));
+                fprintf('Skip: page = %d, char = %d\n', page, idx);
             end
         end
     end
