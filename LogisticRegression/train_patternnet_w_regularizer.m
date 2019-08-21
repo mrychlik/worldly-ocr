@@ -43,7 +43,7 @@ function [Y,NErrors,W] = train_patternnet_w_regularizer(X, T, num_epochs)
         E = T - Y;
         DW = -E * X' - alpha * tanh(W);
 
-        G = loss(W,Y,T,alpha)          % Test on the original sample
+        G = loss(W,Y,T,alpha);          % Test on the original sample
         Gn = [Gn,G];
 
         % Adjust learning rate according to Barzilai-Borwein
