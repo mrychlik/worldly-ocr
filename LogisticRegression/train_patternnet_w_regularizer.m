@@ -10,7 +10,7 @@ function [Y,NErrors,W] = train_patternnet_w_regularizer(X, T, num_epochs)
     D = size(X, 1);                     % Dimension of data
     N = size(X, 2);                     % Number of samples
     C = size(T, 1);                     % Number of  classes
-    W = zeros([C, D]);                  % 0 Starting weihgts
+    W = zeros([C, D]);                  % 0 Starting weights
 
     Y = softmax(W * X);                 % Compute activations
     %% Update gradient
