@@ -12,15 +12,13 @@ digit3 = 3;
 X = [ones([1,size(X,2)]);X];
 
 % Regularize T
-[D,N] = size(X);
-[C,~]=size(T);
 
-t=.999;                % 1-t is the probability of assigning class at random
-                       %t=1;                                    % Don't regularize
+t=0.9;                % 1-t is the probability of assigning class at random
+                      %t=1;                                    % Don't regularize
                                         
 if t<1 
     X=[X,-X];
-    T=[t*T,(1-t)*T];
+    T=[t*T,(1-t)*(1-T)];
 end
 
 % Straight from PATTERNNET help page
