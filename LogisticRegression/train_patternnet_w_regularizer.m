@@ -11,7 +11,8 @@ function [Y,NErrors,W] = train_patternnet_w_regularizer(X, T, num_epochs)
     N = size(X, 2);                     % Number of samples
     C = size(T, 1);                     % Number of  classes
 
-    SigmaW = (1 / (2 * alpha)) * eye(D * C);
+    % SigmaW = (1 / (2 * alpha)) * eye(D * C);
+    SigmaW = eye(D * C);    
     W = mvnrnd(zeros([1, D * C]), SigmaW);   % Starting weihgts
     W = reshape(W, [C, D]);
 
