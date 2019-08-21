@@ -10,16 +10,16 @@ function [Y,NErrors,W] = train_patternnet_w_regularizer(X, T, num_epochs)
     D = size(X, 1);                     % Dimension of data
     N = size(X, 2);                     % Number of samples
     C = size(T, 1);                     % Number of  classes
-    W = zeros[C, D]);                   % 0 Starting weihgts
+    W = zeros([C, D]);                   % 0 Starting weihgts
 
     Y = softmax(W * X);                 % Compute activations
     %% Update gradient
     E = T - Y;
-    DW = -E * X' + alpha * tanh(W);
+    DW = -E * X' - alpha * tanh(W);
 
-    eta = 1 /(eps + norm(DW));          % Initial learning rate
+    eta = 1;                            % Initial learning rate
 
-    G = loss(W,Y,T,alpha);              % Test on the original sample
+    G = loss(W,Y,T,alpha)              % Test on the original sample
     Gn = [G];
 
     LearningHandle = figure;
@@ -37,9 +37,9 @@ function [Y,NErrors,W] = train_patternnet_w_regularizer(X, T, num_epochs)
         DW_old = DW;
         Y = softmax(W * X);                % Compute activations
         E = T - Y;
-        DW = -E * X' + alpha * W;
+        DW = -E * X' - alpha * tanh(W);
 
-        G = loss(W,Y,T,alpha);          % Test on the original sample
+        G = loss(W,Y,T,alpha)          % Test on the original sample
         Gn = [Gn,G];
 
         % Adjust learning rate according to Barzilai-Borwein
