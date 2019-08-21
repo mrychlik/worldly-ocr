@@ -1,7 +1,7 @@
 function [Y,NErrors,W] = train_patternnet_w_regularizer(X, T, num_epochs)
     if nargin < 3; num_epochs=10000; end;
     min_eta = 1e-5;                     % Stop if learning rate drops below
-    alpha = 0;                       % Regularizer constant
+    alpha = 1e-1;                       % Regularizer constant
 
     assert(size(X,2) == size(T,2), ['Inconsistent number of samples in ' ...
                         'data and targets.']);
@@ -19,7 +19,7 @@ function [Y,NErrors,W] = train_patternnet_w_regularizer(X, T, num_epochs)
     Y = softmax(W * X);                 % Compute activations
     %% Update gradient
     E = T - Y;
-    DW = -E * X';% - alpha * tanh(W);
+    DW = -E * X' - alpha * tanh(W);
 
     eta = 2*min_eta;          % Initial learning rate
     
@@ -41,7 +41,7 @@ function [Y,NErrors,W] = train_patternnet_w_regularizer(X, T, num_epochs)
         DW_old = DW;
         Y = softmax(W * X);                % Compute activations
         E = T - Y;
-        DW = -E * X';% - alpha * tanh(W);
+        DW = -E * X' - alpha * tanh(W);
 
         G = loss(W,Y,T,alpha)          % Test on the original sample
         Gn = [Gn,G];
