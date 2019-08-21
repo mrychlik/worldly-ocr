@@ -65,11 +65,11 @@ function [Y,NErrors,W] = train_patternnet_w_regularizer(X, T, num_epochs)
             disp(['Learning rate: ',num2str(eta)]);
             drawnow;
         end
-        %     % Re-center the weights
-        % if mod(epoch, 100) == 0 
-        %     W = W - mean(W);
-        % end;
-        %pause(.1);
+        % Re-center the weights
+        if mod(epoch, 100) == 0 
+            W = W - mean(W);
+        end;
+        pause(.1);
         if ~ishandle(H)
             break;
         end
