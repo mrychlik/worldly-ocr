@@ -10,12 +10,16 @@ function [Y,NErrors,W] = train_patternnet_w_regularizer(X, T, num_epochs)
     D = size(X, 1);                     % Dimension of data
     N = size(X, 2);                     % Number of samples
     C = size(T, 1);                     % Number of  classes
-    W = zeros([C, D]);                  % 0 Starting weights
+
+    SigmaW = (1 / (2 * alpha)) * eye(D * C);
+    W = mvnrnd(zeros([1, D * C]), SigmaW);   % Starting weihgts
+    W = reshape(W, [C, D]);
+
 
     Y = softmax(W * X);                 % Compute activations
     %% Update gradient
     E = T - Y;
-    DW = -E * X' - alpha * tanh(W);
+    DW = -E * X';% - alpha * tanh(W);
 
     eta = 2*min_eta;          % Initial learning rate
     
@@ -37,7 +41,7 @@ function [Y,NErrors,W] = train_patternnet_w_regularizer(X, T, num_epochs)
         DW_old = DW;
         Y = softmax(W * X);                % Compute activations
         E = T - Y;
-        DW = -E * X' - alpha * tanh(W);
+        DW = -E * X';% - alpha * tanh(W);
 
         G = loss(W,Y,T,alpha)          % Test on the original sample
         Gn = [Gn,G];
@@ -82,7 +86,7 @@ end
 
 function [G] = loss(W,Y,T,alpha)
     G = cross_entropy(W,Y,T);
-    G = G + alpha * sum(log(exp(W)+exp(-W)),'all');% Regularize
+    % G = G + alpha * sum(log(exp(W)+exp(-W)),'all');% Regularize
 end
 
 function [Z] = cross_entropy(W,Y,T)
