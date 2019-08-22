@@ -82,7 +82,7 @@ function [Y,NErrors,W] = train_patternnet_w_regularizer(X, T, num_epochs)
 
     NErrors = length(find(round(Y)~=round(T)));
     disp(['Number of errors: ',num2str(NErrors)]);
-
+    
 end
 
 function [G] = loss(W,Y,T,alpha)
@@ -91,5 +91,5 @@ function [G] = loss(W,Y,T,alpha)
 end
 
 function [Z] = cross_entropy(W,Y,T)
-    Z = -sum(T .* log(Y+eps),'all');
+    Z = -sum(T .* log(Y),'all');
 end
