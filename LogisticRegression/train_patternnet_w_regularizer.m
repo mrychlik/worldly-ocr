@@ -74,6 +74,12 @@ function [Y,NErrors,W] = train_patternnet_w_regularizer(X, T, num_epochs)
         if mod(epoch, 100) == 0 
              W = W - mean(W);
         end;
+
+        if mod(epoch, 100) == 0 
+             NErrors = length(find(round(Y)~=round(T)));
+             disp(['Number of errors: ',num2str(NErrors)]);
+        end
+
         pause(.1);
         if ~ishandle(H)
             break;
