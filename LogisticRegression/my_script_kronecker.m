@@ -23,11 +23,13 @@ digit3 = 3;
 %         U = W * X
 %         u = vec(U) = U(:);
 %         U = vec^(-1)(u) = reshape(u,[D,N])
-% 
+%
 A=sparse(kron(X',eye(C)));
 
-
-L=
+% Labels. L(n) is the index of the n-th label, n=1,2,...,N. L(n) is the
+% index of the digit (it follows that it is *not* the digit but an index
+% by 1 more than the digit.
+L=vec2ind(T);
 
 spy(A);
 
