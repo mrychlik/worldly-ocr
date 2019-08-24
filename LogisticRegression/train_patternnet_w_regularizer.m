@@ -94,6 +94,7 @@ end
 
 function [G] = loss(W,Y,T,alpha,gamma)
     G = cross_entropy(W,Y,T);
+    G = G + (alpha/gamma) * sum(log(exp(gamma*W)+exp(-gamma*W)),'all');% Regularize
 end
 
 function [Z] = cross_entropy(W,Y,T)
