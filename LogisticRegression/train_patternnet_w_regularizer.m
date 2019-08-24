@@ -2,6 +2,7 @@ function [Y,NErrors,W] = train_patternnet_w_regularizer(X, T, num_epochs)
     if nargin < 3; num_epochs=10000; end;
     min_eta = 1e-5;                     % Stop if learning rate drops below
     alpha = 1e-1;                       % Regularizer constant
+    gamma = 10;                         % Another regularizer constant
 
     assert(size(X,2) == size(T,2), ['Inconsistent number of samples in ' ...
                         'data and targets.']);
@@ -20,11 +21,11 @@ function [Y,NErrors,W] = train_patternnet_w_regularizer(X, T, num_epochs)
     Y = softmax(W * X);                 % Compute activations
     %% Update gradient
     E = T - Y;
-    DW = -E * X' - alpha * tanh(W);
+    DW = -E * X' - alpha * tanh(gamma*W);
 
     eta = 2*min_eta;          % Initial learning rate
     
-    G = loss(W,Y,T,alpha)              % Test on the original sample
+    G = loss(W,Y,T,alpha,gamma)         % Test on the original sample
     Gn = [G];
 
     LearningHandle = figure;
@@ -42,9 +43,9 @@ function [Y,NErrors,W] = train_patternnet_w_regularizer(X, T, num_epochs)
         DW_old = DW;
         Y = softmax(W * X);                % Compute activations
         E = T - Y;
-        DW = -E * X' - alpha * tanh(W);
+        DW = -E * X' - alpha * tanh(gamma*W);
 
-        G = loss(W,Y,T,alpha);          % Test on the original sample
+        G = loss(W,Y,T,alpha,gamma);          % Test on the original sample
         Gn = [Gn,G];
 
         % Adjust learning rate according to Barzilai-Borwein
@@ -91,9 +92,9 @@ function [Y,NErrors,W] = train_patternnet_w_regularizer(X, T, num_epochs)
     
 end
 
-function [G] = loss(W,Y,T,alpha)
+function [G] = loss(W,Y,T,alpha,gamma)
     G = cross_entropy(W,Y,T);
-    G = G + alpha * sum(log(exp(W)+exp(-W)),'all');% Regularize
+    G = G + (alpha/gamma) * sum(log(exp(gamma*W)+exp(-gamma*W)),'all');% Regularize
 end
 
 function [Z] = cross_entropy(W,Y,T)
