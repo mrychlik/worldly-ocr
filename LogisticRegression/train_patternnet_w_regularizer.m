@@ -2,7 +2,7 @@ function [Y,NErrors,W] = train_patternnet_w_regularizer(X, T, num_epochs)
     if nargin < 3; num_epochs=10000; end;
     min_eta = 1e-5;                     % Stop if learning rate drops below
     alpha = 1e-1;                       % Regularizer constant
-    gamma = 10;                         % Another regularizer constant
+    gamma = 3;                          % Another regularizer constant
 
     assert(size(X,2) == size(T,2), ['Inconsistent number of samples in ' ...
                         'data and targets.']);
