@@ -12,6 +12,8 @@ digit3 = 3;
 [C,~]=size(T);
 
 % Add regularizing sample
+% It assumes that a 1-pixel image can be
+% classified with equal probability to every class
 gamma=std(X(:));
 X1 = [X,gamma*eye(D)];
 T1 = [T,1/C*ones(C,D)];
