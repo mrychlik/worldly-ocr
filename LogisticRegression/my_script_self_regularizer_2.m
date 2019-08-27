@@ -14,7 +14,7 @@ digit3 = 3;
 % Add regularizing sample
 % It assumes that a 1-pixel image can be
 % classified with equal probability to every class
-epsilon = 1e-2;
+epsilon = 3e-3;
 T1 = (1-epsilon)*T+ epsilon*1/C*ones(C,N);
 
 % Straight from PATTERNNET help page
@@ -22,7 +22,7 @@ num_epochs = 5000;
 [Y, NErrors,W] = train_patternnet_no_regularizer(X,T1,num_epochs);
 
 figure;
-plotconfusion(T,Y);
+plotconfusion(T1,Y);
 NErrors
 
 
