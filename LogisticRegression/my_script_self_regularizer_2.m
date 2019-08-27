@@ -1,4 +1,4 @@
-% This script tests the new regularization method
+% This script uses regularization by occasionally selecting class at random
 
 digit0 = 0;
 digit1 = 1;
