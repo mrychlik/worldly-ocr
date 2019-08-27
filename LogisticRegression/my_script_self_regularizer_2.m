@@ -15,7 +15,7 @@ digit3 = 3;
 % It assumes that a 1-pixel image can be
 % classified with equal probability to every class
 epsilon = 1e-3;
-T = (1-epsilon)*T+ epsilon*1/C*ones(C,D);
+T = (1-epsilon)*T+ epsilon*1/C*ones(C,N);
 
 % Straight from PATTERNNET help page
 num_epochs = 5000;
