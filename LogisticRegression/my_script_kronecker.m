@@ -11,10 +11,12 @@ digit3 = 3;
 [D,N] = size(X);
 [C,~]=size(T);
 
-% The matrix A such that the stacked activations U are computed
+% The matrix S such that the stacked activations U are computed
 % by multiplying stacked input data:
 %
-%                   u = A * w
+%                   u = S * w
+%
+% The matrix S is called the "structure matrix"
 %
 % Note that the operator vec which stacks matrices is simply (W is a
 % C-by-D matrix):
@@ -24,14 +26,9 @@ digit3 = 3;
 %         u = vec(U) = U(:);
 %         U = vec^(-1)(u) = reshape(u,[D,N])
 %
-A=sparse(kron(X',eye(C)));
+S = sparse(kron(X,eye(C)) - kron(kron(ones(D,1),T).*kron(X,ones(C,1)),ones(1,C)));
 
-% Labels. L(n) is the index of the n-th label, n=1,2,...,N. L(n) is the
-% index of the digit (it follows that it is *not* the digit but an index
-% by 1 more than the digit.
-L=vec2ind(T);
-
-spy(A);
+%spy(A);
 
 % Straight from PATTERNNET help page
 num_epochs = 5000;
