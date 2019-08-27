@@ -21,6 +21,8 @@ T1 = (1-epsilon)*T+ epsilon*1/C*ones(C,N);
 num_epochs = 5000;
 [Y, NErrors,W] = train_patternnet_no_regularizer(X,T1,num_epochs);
 
+NErrors = length(find(round(Y)~=round(T)));
+
 figure;
 plotconfusion(T1,Y);
 NErrors
