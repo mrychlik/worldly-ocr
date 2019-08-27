@@ -19,7 +19,7 @@ T = (1-epsilon)*T+ epsilon*1/C*ones(C,N);
 
 % Straight from PATTERNNET help page
 num_epochs = 5000;
-[Y, NErrors,W] = train_patternnet_no_regularizer(X1,T1,num_epochs);
+[Y, NErrors,W] = train_patternnet_no_regularizer(X,T,num_epochs);
 
 % Drop part due to regularization
 figure;
