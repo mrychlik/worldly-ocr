@@ -12,9 +12,12 @@ digit3 = 3;
 [C,~]=size(T);
 
 L = vec2ind(T);
+M = linspace(0,1,10);                   % Centers of bins
+clf;
 for c=1:C
     for d=1:D
-        hist(X(d,L==c),20);
+        histogram(X(d,L==c),M,'Normalization','probability');
+        ylim([0,1]);
         title(sprintf('d=%d, c=%d',d,c));
         pause(.2);
     end
