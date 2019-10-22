@@ -66,7 +66,7 @@ Multiple algorithms are in consideration or in use for this project. Due to the 
 A different approach has been taken, compared to tesseract.  Algorithms include: a) convert image to binary; b) compute outline cycle for each blob; c) cubic spline interpolation; d) sample every cycle with a fixed number of points; e) cross-corelation to align cycles; f) calculate the distance between aligned outlines; g) dynamic time warping; f) Recurrent Neural Networks (RNN); g) repair missing parts etc.  
 
 # Examples
-
+Chinese OCR matching using segmentation box
 [![Traditional Chinese OCR](http://img.youtube.com/vi/2VHX5HnZHaY/0.jpg)]( https://www.youtube.com/embed/2VHX5HnZHaY "Traditional Chinese OCR")
 
 Matching English characters using outlines
