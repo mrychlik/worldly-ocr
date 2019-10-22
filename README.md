@@ -69,6 +69,13 @@ A different approach has been taken, compared to tesseract.  Algorithms include:
 
 [![Traditional Chinese OCR](http://img.youtube.com/vi/2VHX5HnZHaY/0.jpg)]( https://www.youtube.com/embed/2VHX5HnZHaY "Traditional Chinese OCR")
 
-[![Clustering English characters](http://img.youtube.com/vi/URzOuHpsN-g/0.jpg)](https://youtu.be/URzOuHpsN-g "Clustering English")
+Matching English characters using outlines
+[![Matching English characters](http://img.youtube.com/vi/URzOuHpsN-g/0.jpg)](https://youtu.be/URzOuHpsN-g "Matching English Characters")
 
-# Clustering Chinese characters (https://youtu.be/Qgn0aRDvD3o)
+Matching Chinese characters using outlines
+[![Matching Chinese characters](http://img.youtube.com/vi/Qgn0aRDvD3o/0.jpg)](https://youtu.be/Qgn0aRDvD3o "Matching Chinese Characters")
+
+
+Mapping one Font to another
+ 
+  [![Mapping font](http://img.youtube.com/vi/gEiHhoJ9HzU/0.jpg)](https://youtu.be/gEiHhoJ9HzU "Mapping font")
