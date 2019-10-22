@@ -69,6 +69,6 @@ A different approach has been taken, compared to tesseract.  Algorithms include:
 
 [![Traditional Chinese OCR](http://img.youtube.com/vi/2VHX5HnZHaY/0.jpg)]( https://www.youtube.com/embed/2VHX5HnZHaY "Traditional Chinese OCR")
 
-[![Clustering English characters](http://img.youtube.com/vi/URzOuHpsN-g/0.jpg)](https://youtu.be/URzOuHpsN-g " English")
+[![Clustering English characters](http://img.youtube.com/vi/URzOuHpsN-g/0.jpg)](https://youtu.be/URzOuHpsN-g "Clustering English")
 
 # Clustering Chinese characters (https://youtu.be/Qgn0aRDvD3o)
