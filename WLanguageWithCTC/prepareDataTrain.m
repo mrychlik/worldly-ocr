@@ -39,7 +39,7 @@ for j = 1:num_samples
 end
 
 
-% Padd to the oritinal length with periods ('certain endmark' symbols).
+% Padd to the original length with periods ('certain endmark' symbols).
 % NOTE: MATLAB does not allow targets to have variable length
 % as they are delivered to the classification layer as matrices
 % of the same size as inputs. Therefore, we padd all vectors to
