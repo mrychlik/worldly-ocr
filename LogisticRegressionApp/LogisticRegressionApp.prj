@@ -1,6 +1,6 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="3246110057" file="/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/LogisticRegressionApp.prj" location="/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp" name="LogisticRegressionApp" preferred-package-location="/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/LogisticRegressionApp/for_redistribution" preferred-package-type="package.type.install" target="target.ezdeploy.standalone" target-name="Application Compiler">
-    <param.appname>LogisticRegressionApp</param.appname>
+  <configuration build-checksum="115225734" file="/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/LogisticRegressionApp.prj" location="/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp" name="LogisticRegressionApp" preferred-package-location="/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/LogisticRegressionApp/for_redistribution" preferred-package-type="package.type.install" target="target.ezdeploy.standalone" target-name="Application Compiler">
+    <param.appname>MNISTDigitLearner</param.appname>
     <param.icon />
     <param.icons />
     <param.version>1.0</param.version>
@@ -11,24 +11,24 @@
     <param.description>This program learns how to recognize handwritten digits from the MNIST database.</param.description>
     <param.screenshot />
     <param.guid />
-    <param.installpath.string>/University_of_Arizona/LogisticRegressionApp/</param.installpath.string>
+    <param.installpath.string>/University_of_Arizona/MNISTDigitLearner/</param.installpath.string>
     <param.installpath.combo>option.installpath.user</param.installpath.combo>
     <param.logo />
     <param.install.notes />
-    <param.target.install.notes>In the following directions, replace MR/v95 by the directory on the target machine where MATLAB is installed, or MR by the directory where the MATLAB Runtime is installed.
+    <param.target.install.notes>In the following directions, replace MR/v97 by the directory on the target machine where MATLAB is installed, or MR by the directory where the MATLAB Runtime is installed.
 
 (1) Set the environment variable XAPPLRESDIR to this value:
 
-MR/v95/X11/app-defaults
+MR/v97/X11/app-defaults
 
 
 (2) If the environment variable LD_LIBRARY_PATH is undefined, set it to the following:
 
-MR/v95/runtime/glnxa64:MR/v95/bin/glnxa64:MR/v95/sys/os/glnxa64:MR/v95/sys/opengl/lib/glnxa64
+MR/v97/runtime/glnxa64:MR/v97/bin/glnxa64:MR/v97/sys/os/glnxa64:MR/v97/sys/opengl/lib/glnxa64
 
 If it is defined, set it to the following:
 
-${LD_LIBRARY_PATH}:MR/v95/runtime/glnxa64:MR/v95/bin/glnxa64:MR/v95/sys/os/glnxa64:MR/v95/sys/opengl/lib/glnxa64</param.target.install.notes>
+${LD_LIBRARY_PATH}:MR/v97/runtime/glnxa64:MR/v97/bin/glnxa64:MR/v97/sys/os/glnxa64:MR/v97/sys/opengl/lib/glnxa64</param.target.install.notes>
     <param.intermediate>${PROJECT_ROOT}/LogisticRegressionApp/for_testing</param.intermediate>
     <param.files.only>${PROJECT_ROOT}/LogisticRegressionApp/for_redistribution_files_only</param.files.only>
     <param.output>${PROJECT_ROOT}/LogisticRegressionApp/for_redistribution</param.output>
@@ -37,8 +37,8 @@ ${LD_LIBRARY_PATH}:MR/v95/runtime/glnxa64:MR/v95/bin/glnxa64:MR/v95/sys/os/glnxa
     <param.user.defined.mcr.options />
     <param.target.type>subtarget.standalone</param.target.type>
     <param.support.packages />
-    <param.web.mcr>true</param.web.mcr>
-    <param.package.mcr>false</param.package.mcr>
+    <param.web.mcr>false</param.web.mcr>
+    <param.package.mcr>true</param.package.mcr>
     <param.no.mcr>false</param.no.mcr>
     <param.web.mcr.name>MyAppInstaller_web</param.web.mcr.name>
     <param.package.mcr.name>MyAppInstaller_mcr</param.package.mcr.name>
@@ -49,7 +49,12 @@ ${LD_LIBRARY_PATH}:MR/v95/runtime/glnxa64:MR/v95/bin/glnxa64:MR/v95/sys/os/glnxa
     <param.native.matlab>false</param.native.matlab>
     <param.checkbox>false</param.checkbox>
     <param.example />
-    <param.help.text />
+    <param.help.text>Syntax 
+	  -? 
+	 
+ Input Arguments 
+	 -?  print help on how to use the application 
+	 input arguments</param.help.text>
     <unset>
       <param.icon />
       <param.icons />
@@ -68,8 +73,6 @@ ${LD_LIBRARY_PATH}:MR/v95/runtime/glnxa64:MR/v95/bin/glnxa64:MR/v95/sys/os/glnxa
       <param.user.defined.mcr.options />
       <param.target.type />
       <param.support.packages />
-      <param.web.mcr />
-      <param.package.mcr />
       <param.no.mcr />
       <param.web.mcr.name />
       <param.package.mcr.name />
@@ -80,7 +83,6 @@ ${LD_LIBRARY_PATH}:MR/v95/runtime/glnxa64:MR/v95/bin/glnxa64:MR/v95/sys/os/glnxa
       <param.native.matlab />
       <param.checkbox />
       <param.example />
-      <param.help.text />
     </unset>
     <fileset.main>
       <file>${PROJECT_ROOT}/LogisticRegressionApp.mlapp</file>
@@ -95,13 +97,13 @@ ${LD_LIBRARY_PATH}:MR/v95/runtime/glnxa64:MR/v95/bin/glnxa64:MR/v95/sys/os/glnxa
     </fileset.depfun>
     <build-deliverables>
       <file location="${PROJECT_ROOT}/LogisticRegressionApp/for_testing" name="readme.txt" optional="true">/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/LogisticRegressionApp/for_testing/readme.txt</file>
-      <file location="${PROJECT_ROOT}/LogisticRegressionApp/for_testing" name="LogisticRegressionApp" optional="false">/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/LogisticRegressionApp/for_testing/LogisticRegressionApp</file>
-      <file location="${PROJECT_ROOT}/LogisticRegressionApp/for_testing" name="run_LogisticRegressionApp.sh" optional="false">/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/LogisticRegressionApp/for_testing/run_LogisticRegressionApp.sh</file>
+      <file location="${PROJECT_ROOT}/LogisticRegressionApp/for_testing" name="MNISTDigitLearner" optional="false">/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/LogisticRegressionApp/for_testing/MNISTDigitLearner</file>
       <file location="${PROJECT_ROOT}/LogisticRegressionApp/for_testing" name="splash.png" optional="false">/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/LogisticRegressionApp/for_testing/splash.png</file>
+      <file location="${PROJECT_ROOT}/LogisticRegressionApp/for_testing" name="run_MNISTDigitLearner.sh" optional="false">/home/marek/Documents/MATLAB/worldly-ocr/LogisticRegressionApp/LogisticRegressionApp/for_testing/run_MNISTDigitLearner.sh</file>
     </build-deliverables>
     <workflow />
     <matlab>
-      <root>/usr/local/MATLAB/R2018b</root>
+      <root>/usr/local/MATLAB/R2019b</root>
       <toolboxes>
         <toolbox name="matlabcoder" />
         <toolbox name="neuralnetwork" />
@@ -126,7 +128,7 @@ ${LD_LIBRARY_PATH}:MR/v95/runtime/glnxa64:MR/v95/bin/glnxa64:MR/v95/sys/os/glnxa
       <vista>false</vista>
       <linux>true</linux>
       <solaris>false</solaris>
-      <osver>5.0.7-200.fc29.x86_64</osver>
+      <osver>5.3.6-200.fc30.x86_64</osver>
       <os32>false</os32>
       <os64>true</os64>
       <arch>glnxa64</arch>
