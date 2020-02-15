@@ -1,9 +1,24 @@
-function visualize_text(objects,lines,right_to_left,get_image, is_diacritical)
+function visualize_text(objects,lines,varargin)
+p=inputParser;
+p.addRequired('objects');
+p.addRequired('lines');
+p.addParameter('TextDirection','LeftToRight');
+get_image_default=@(obj)uint8(255.*obj.bwimage);
+p.addParameter('GetImageFunction',get_image_default);
+is_diacritical_default=@(obj)false;
+p.addParameter('IsDiacriticalFunction',is_diacritical_default);
+p.addParameter('Display',true,@islogical);
+p.parse(objects,lines,varargin{:});
+
+get_image=p.Results.GetImageFunction;
+is_diacritical=p.Results.IsDiacriticalFunction;
+draw_now=p.Results.Display==true;
+
 narginchk(2,5);
 if nargin < 5
-    is_diacritical=@(obj)false;
+
 elseif nargin < 4
-    get_image=@(obj)uint8(255.*obj.bwimage);
+
 elseif nargin < 3
     right_to_left=false;
 end
