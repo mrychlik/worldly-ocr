@@ -10,6 +10,7 @@
 file=fullfile('.','images', 'sinat-074.png');
 % Where to find pages of scanned text
 imagedir=fullfile('.','images');
+diacritical_marks='on';
 
 
 %% Build a cache of objects in the image
