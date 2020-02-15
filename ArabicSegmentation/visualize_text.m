@@ -21,7 +21,6 @@ switch p.Results.TextDirection,
     right_to_left=true;
 end
 
-
 disp('Visualizing lines of text.');
 l_cnt=size(lines,1);
 figure;
