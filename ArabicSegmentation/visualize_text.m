@@ -2,7 +2,7 @@ function visualize_text(objects,lines,varargin)
 p=inputParser;
 p.addRequired('objects');
 p.addRequired('lines');
-p.addParameter('TextDirection','LeftToRight'); % Unused
+p.addParameter('TextDirection','LeftToRight');
 get_image_default=@(obj)uint8(255.*obj.bwimage);
 p.addParameter('GetImageFunction',get_image_default);
 is_diacritical_default=@(obj)false;
@@ -13,16 +13,15 @@ p.parse(objects,lines,varargin{:});
 get_image=p.Results.GetImageFunction;
 is_diacritical=p.Results.IsDiacriticalFunction;
 draw_now=p.Results.Display==true;
-    
 
-narginchk(2,5);
-if nargin < 5
-
-elseif nargin < 4
-
-elseif nargin < 3
-    right_to_left=false;
+switch p.Results.TextDirection,
+  case 'LeftToRight',
+      right_to_left=false;
+  case 'RightToLeft',
+    right_to_left=true;
 end
+
+
 disp('Visualizing lines of text.');
 l_cnt=size(lines,1);
 figure;
