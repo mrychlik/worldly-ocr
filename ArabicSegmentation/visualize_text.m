@@ -28,7 +28,7 @@ clf;
 % Flip vertical axis upside down
 set(gca,'YDir','reverse');
 % Make background black
-%whitebg('black');
+whitebg('white');
 hold on;
 for l=1:l_cnt
     % Line objects
