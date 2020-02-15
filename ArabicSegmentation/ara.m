@@ -34,4 +34,6 @@ end
 get_image=@(obj)uint8(255.*obj.bwimage);
 is_diacritical=@(ob)ob.FilledArea<600;
 
-visualize_text(objects,lines,true, get_image, is_diacritical);
+visualize_text(objects,lines,'TextDirection','RightToLeft',...
+               'GetImageFunction',get_image, ...
+               'IsDiacriticalFunction',is_diacritical);
