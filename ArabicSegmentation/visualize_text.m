@@ -44,7 +44,9 @@ for l=1:l_cnt
         im = image([x,x+w],[y,y+h],K);
         im.AlphaData=0.5;               % Make image a bit transparent
         colormap hot;
-        %drawnow;
+        if draw_now
+            drawnow;
+        end
     end
 end
 hold off;
