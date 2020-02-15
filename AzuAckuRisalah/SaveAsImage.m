@@ -36,14 +36,13 @@ end
 
 
 function IMAGEBox=box(BW)
-            % it crop the image based on the black background
-            Margin=5;
-            [I,J]=find(BW);
-            BBox=[min(J)-Margin,min(I)-Margin,range(J)+2*Margin,range(I)+2*Margin];
-            IMAGEBox=imcrop(BW,BBox);
+% it crop the image based on the black background
+    Margin=5;
+    [I,J]=find(BW);
+    BBox=[min(J)-Margin,min(I)-Margin,range(J)+2*Margin,range(I)+2*Margin];
+    IMAGEBox=imcrop(BW,BBox);
 end
-        
-        
-        
-        
-        
+
+
+
+
