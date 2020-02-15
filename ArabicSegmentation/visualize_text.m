@@ -56,7 +56,7 @@ for l=1:l_cnt
         % Plot character bounding boxes only
         rectangle('Position',[x,y,w,h],'EdgeColor',bbox_color);
         im = image([x,x+w],[y,y+h],255*(~K));
-        im.AlphaData=0.5;               % Make image a bit transparent
+        im.AlphaData=0.1;               % Make image a bit transparent
         colormap hot;
         if draw_now
             drawnow;
