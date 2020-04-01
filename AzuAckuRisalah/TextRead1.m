@@ -11,7 +11,7 @@ Vexpansion = 0.0; %in percent
 Hexpansion = 0.2; %in percent
 %%
 %Reading the Image and Convert to Binarazid
-colorImage = imread('page-14.png');
+colorImage = imread(fullfile('Pages','page-14.png'));
 I=~BWThreshold(colorImage,BinzarazationType,BinzarazationThresh);
 I = ~bwareaopen(I,BigSizeThresh);     %removing the big connected region
 I = ~bwareaopen(I,SmallSizeThresh);        %removing the small connected regions
