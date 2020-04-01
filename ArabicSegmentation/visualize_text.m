@@ -50,7 +50,7 @@ for l=1:l_cnt
             bbox_color = 'red';
         else
             K = J;
-            bbox_color = 'green';
+            bbox_color = 'magenta';
         end
 
         % Plot character bounding boxes only
