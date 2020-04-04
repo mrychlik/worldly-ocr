@@ -39,19 +39,19 @@ title('Expanded Bounding Boxes Text')
 [bboxes]=OverLapFinder(expandedBBoxes,xmin,ymin,xmax,ymax);
 bboxesIntiial=bboxes;
 
- for i=1:2
-[xmin,ymin,xmax,ymax]=BoxConverter(bboxes(:,1),bboxes(:,2),bboxes(:,3),bboxes(:,4));
-[xmin,ymin,xmax,ymax]=BoxExpand(xmin,ymin,xmax,ymax,Vexpansion,Hexpansion,I);
-[bboxes]=OverLapFinder(bboxes,xmin,ymin,xmax,ymax);
- end
+for i=1:2
+    [xmin,ymin,xmax,ymax]=BoxConverter(bboxes(:,1),bboxes(:,2),bboxes(:,3),bboxes(:,4));
+    [xmin,ymin,xmax,ymax]=BoxExpand(xmin,ymin,xmax,ymax,Vexpansion,Hexpansion,I);
+    [bboxes]=OverLapFinder(bboxes,xmin,ymin,xmax,ymax);
+end
 
- for i=1:10
-[xmin,ymin,xmax,ymax]=BoxConverter(bboxes(:,1),bboxes(:,2),bboxes(:,3),bboxes(:,4));
-[xmin,ymin,xmax,ymax]=BoxExpand(xmin,ymin,xmax,ymax,0,0,I);
-[bboxes]=OverLapFinder(bboxes,xmin,ymin,xmax,ymax);
- end
+for i=1:10
+    [xmin,ymin,xmax,ymax]=BoxConverter(bboxes(:,1),bboxes(:,2),bboxes(:,3),bboxes(:,4));
+    [xmin,ymin,xmax,ymax]=BoxExpand(xmin,ymin,xmax,ymax,0,0,I);
+    [bboxes]=OverLapFinder(bboxes,xmin,ymin,xmax,ymax);
+end
 
- 
+
 % Show the final text detection result.
 %ITextRegion = insertShape(colorImage, 'Rectangle', bboxes,'LineWidth',4,'Color',{'green'});
 str      = sprintf('Box = %f', xmin);
@@ -113,46 +113,46 @@ results3 = ocr(I,'TextLayout','Block','Language','Arabic');
 
 
 function [xmin,ymin,xmax,ymax]=BoxConverter(xmin,ymin,width,height)
-xmax = xmin + width - 1;
-ymax = ymin + height- 1;
+    xmax = xmin + width - 1;
+    ymax = ymin + height- 1;
 end
 
 function [xmin,ymin,width,height]=InvBoxConverter(xmin,ymin,xmax,ymax)
-width=xmax-xmin+1 ;
-height=ymax-ymin+1;
+    width=xmax-xmin+1 ;
+    height=ymax-ymin+1;
 end
 
 function [xmin,ymin,xmax,ymax]=BoxExpand(xmin,ymin,xmax,ymax,Vexpansion,Hexpansion,Image)
-XExpand=(xmax-xmin)*Hexpansion/2;
-YExpand=(ymax-ymin)*Vexpansion/2;
-xmin =  xmin-XExpand;
-ymin =  ymin-YExpand;
-xmax =  xmax+XExpand;
-ymax =  ymax+YExpand;
+    XExpand=(xmax-xmin)*Hexpansion/2;
+    YExpand=(ymax-ymin)*Vexpansion/2;
+    xmin =  xmin-XExpand;
+    ymin =  ymin-YExpand;
+    xmax =  xmax+XExpand;
+    ymax =  ymax+YExpand;
 
-% Clip the bounding boxes to be within the image bounds
-xmin = max(xmin, 1);
-ymin = max(ymin, 1);
-xmax = min(xmax, size(Image,2));
-ymax = min(ymax, size(Image,1));
+    % Clip the bounding boxes to be within the image bounds
+    xmin = max(xmin, 1);
+    ymin = max(ymin, 1);
+    xmax = min(xmax, size(Image,2));
+    ymax = min(ymax, size(Image,1));
 end
 
 
 function [textBBoxes]=OverLapFinder(expandedBBoxes,xmin,ymin,xmax,ymax)
 % Compute the overlap ratio
-overlapRatio = bboxOverlapRatio(expandedBBoxes, expandedBBoxes);
-% Set the overlap ratio between a bounding box and itself to zero to simplify the graph representation.
-n = size(overlapRatio,1); 
-overlapRatio(1:n+1:n^2) = 0;
-% Create the graph
-g = graph(overlapRatio);
-% Find the connected text regions within the graph
-componentIndices = conncomp(g);
-% Merge the boxes based on the minimum and maximum dimensions.
-xmin = accumarray(componentIndices', xmin, [], @min);
-ymin = accumarray(componentIndices', ymin, [], @min);
-xmax = accumarray(componentIndices', xmax, [], @max);
-ymax = accumarray(componentIndices', ymax, [], @max);
-% Compose the merged bounding boxes using the [x y width height] format.
-[textBBoxes(:,1),textBBoxes(:,2),textBBoxes(:,3),textBBoxes(:,4)]=InvBoxConverter(xmin,ymin,xmax,ymax);
+    overlapRatio = bboxOverlapRatio(expandedBBoxes, expandedBBoxes);
+    % Set the overlap ratio between a bounding box and itself to zero to simplify the graph representation.
+    n = size(overlapRatio,1); 
+    overlapRatio(1:n+1:n^2) = 0;
+    % Create the graph
+    g = graph(overlapRatio);
+    % Find the connected text regions within the graph
+    componentIndices = conncomp(g);
+    % Merge the boxes based on the minimum and maximum dimensions.
+    xmin = accumarray(componentIndices', xmin, [], @min);
+    ymin = accumarray(componentIndices', ymin, [], @min);
+    xmax = accumarray(componentIndices', xmax, [], @max);
+    ymax = accumarray(componentIndices', ymax, [], @max);
+    % Compose the merged bounding boxes using the [x y width height] format.
+    [textBBoxes(:,1),textBBoxes(:,2),textBBoxes(:,3),textBBoxes(:,4)]=InvBoxConverter(xmin,ymin,xmax,ymax);
 end
