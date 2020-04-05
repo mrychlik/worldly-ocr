@@ -1,0 +1,79 @@
+classdef TesseractRecognizer
+%TESSERACTRECOGNIZER is a wrapper around the Tesseract OCR engine.
+    properties
+        % The meaning of the parameter '--psm' to Tesseract
+        %
+        %  0    Orientation and script detection (OSD) only.
+        %  1    Automatic page segmentation with OSD.
+        %  2    Automatic page segmentation, but no OSD, or OCR. (not implemented)
+        %  3    Fully automatic page segmentation, but no OSD. (Default)
+        %  4    Assume a single column of text of variable sizes.
+        %  5    Assume a single uniform block of vertically aligned text.
+        %  6    Assume a single uniform block of text.
+        %  7    Treat the image as a single text line.
+        %  8    Treat the image as a single word.
+        %  9    Treat the image as a single word in a circle.
+        % 10    Treat the image as a single character.
+        % 11    Sparse text. Find as much text as possible in no particular order.
+        % 12    Sparse text with OSD.
+        % 13    Raw line. Treat the image as a single text line,
+        %       bypassing hacks that are Tesseract-specific.
+        psm;
+        language;
+    end
+
+    methods
+        function this = TesseractRecognizer(psm, language)
+            if nargin < 1; psm = 7; end % Default is line
+            if nargin < 2; language = 'pus'; end % Default is Pashto
+            assert(psm >=0 && psm <= 13);
+            this.psm = psm;
+        end
+    end
+
+    methods(Static)
+        function [BWCropped,BBox]=bbox(BW)
+        %BBOX Extract the bounding box of a BW image and crop the image.
+        %  [BWCROPPED,BBOX] = BBOX(BW) accepts a black-and-white image
+        %  BW and it returns a cropped image BWCROPPED and the bounding
+        %  box BBBOX.
+
+        % Create a mask
+        % Idiom: convert a pixel list to mask
+            [I,J]=find(BW);
+            % Crop image to bounding box of object
+            BBox=[min(J),min(I),range(J),range(I)];
+            BWCropped=imcrop(BW,BBox);
+        end
+    end
+
+    methods
+        function [str, status] = recognize(this, BW)
+        %RECOGNIZE Perform OCR on a BW image.
+        % [STR, STATUS] = RECOGNIZE(THIS, BW) takes a binary image BW and
+        % performs OCR on it. Upon success, as string STR is returned
+        % and STATUS is set to 0.
+        % Upon failure, STATUS is non-zero.
+            fname = tempname;
+            imwrite(BW, fname, 'PNG');
+            base = fname;
+            cmd = sprintf('tesseract --psm %d -l pus %s %s', this.psm, ...
+                          fname, base);
+            [status,result] = system(cmd);
+            delete(fname);
+            if status == 0
+                txtfname=fullfile([base,'.txt']);
+                fh = fopen(txtfname,'r');
+                bytes = fread(fh, 'uint8')';
+                fclose(fh);
+                delete(txtfname);
+                try
+                    str = native2unicode(bytes,'UTF-8');
+                    disp(str);
+                catch ME
+                    rethrow(ME);
+                end
+            end
+        end
+    end
+end

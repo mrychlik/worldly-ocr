@@ -1,0 +1,76 @@
+#!/usr/bin/env php 
+<?php
+// This PHP script is a wrapper around libcurl and is derived from the
+// Google example of a Google Cloud API query for the Google Translator app.
+// In order for this script to work, one has to establish a Google Cloud account,
+// which  requires setting up billing with a valid credit card. Then one follows
+// the directions to obtain "Google API key". This requires these steps:
+//
+// 1. Setting up a project (with a name)
+// 2. Creating of a 'serivice account'
+// 3. Generating the API key (valid for all apps/websites; restrict access!)
+// 4. Downloading Google API SDK 
+// 5. Creating a project
+// 5. Enabling "Google Translator API for the project".
+//
+// Relevant links:
+//   https://console.cloud.google.com/apis/credentials/serviceaccountkey
+//   https://console.cloud.google.com/apis/credentials/serviceaccountkey
+//
+
+$help=<<<EOF
+Usage: Translate Pashto to English. Use cases:
+  1) $argv[0] 'Some text in Pashto'] - translate string from command line
+  2) $argv[0] -f filename            - translate text in a file
+  3) $argv[0] [-h | --help]          - print this message and exit
+EOF;
+
+if( $argc == 1 ) {
+    $txt = stream_get_contents(STDIN);
+} elseif ($argc == 2) {
+    if ( ( $argv[1] == '-h' ) or ( $argv[1] == '--help' ) ) {
+        print($help);
+        exit("Exiting...\n");
+    } else {
+        $txt = $argv[1];
+    }
+} elseif ($argc == 3 and $argv[1] == '-f') {
+    $txt = file_get_contents($argv[2]);
+} else {
+    print($help);
+    exit("Exiting...\n");
+}
+
+// Construct the name of the file where Google API Key is
+$home=getenv('HOME');
+$api_key_filename='.google-api-key';
+$api_key_filename=$home.DIRECTORY_SEPARATOR.$api_key_filename;
+
+$api_key=file_get_contents($api_key_filename);
+
+$handle = curl_init();
+
+if (FALSE === $handle)
+   throw new Exception('failed to initialize');
+
+curl_setopt($handle, CURLOPT_URL,'https://www.googleapis.com/language/translate/v2');
+curl_setopt($handle, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($handle, CURLOPT_POSTFIELDS,
+	    array('key'=> $api_key,
+		  'q' => $txt,
+		  'source' => 'pus',
+		  'target' => 'en')
+	    );
+/* curl_setopt($handle, CURLOPT_HTTPHEADER,
+	    array('X-HTTP-Method-Override: GET')
+	    ); */
+$response = curl_exec($handle);
+$arr = json_decode($response,FALSE);
+print $arr->data->translations[0]->translatedText;
+
+// Lines below are for the benefit of Emacs
+/* Local Variables:  */
+/* mode: php         */
+/* comment-column: 0 */
+/* End:              */
