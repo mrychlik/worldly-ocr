@@ -204,6 +204,7 @@ classdef LineBreaker
                     K(K==l)=0;
                 end
             end
+            K(K==0)=255;
             image(K);
             for l=lines
                 J = this.LabeledLines==l;
@@ -216,7 +217,7 @@ classdef LineBreaker
                     % errorbar(x,yhat,err,'-','Color','r',...
                     %          'LineWidth',0.01);
                     plot(x,yhat,'Color','r','LineWidth',0.01);
-                    plot(x,yhat + f.bounds(1),'Color','y','LineWidth',0.01);
+                    plot(x,yhat + f.bounds(1),'Color','b','LineWidth',0.01);
                     plot(x,yhat + f.bounds(2),'Color','g','LineWidth',0.01);                    
                 else
                     [y,x]=find(J);
