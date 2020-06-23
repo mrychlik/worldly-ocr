@@ -118,5 +118,5 @@ end
 
 if strcmp(Display,'on')
     % Show text images in their boxes
-    visualize_text(objects,lines,true);
+    visualize_text(objects,lines,'TextDirection','RightToLeft');
 end

@@ -16,7 +16,7 @@ pagedir='Pages';
 
 % Image holding stacked columns of all pages of the book
 % in the order a person reads the columns.
-book_strip_image = 'BookStrip.png';
+load('BookStrip.mat');
 
 %% Illustrate the method to determine the shift
 %% of an image in 2 dimensions, using FFT.

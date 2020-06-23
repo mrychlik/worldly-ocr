@@ -10,6 +10,7 @@
 file=fullfile('.','images', 'sinat-074.png');
 % Where to find pages of scanned text
 imagedir=fullfile('.','images');
+diacritical_marks='on';
 
 
 %% Build a cache of objects in the image
@@ -34,4 +35,7 @@ end
 get_image=@(obj)uint8(255.*obj.bwimage);
 is_diacritical=@(ob)ob.FilledArea<600;
 
-visualize_text(objects,lines,true, get_image, is_diacritical);
+visualize_text(objects,lines,'TextDirection','RightToLeft',...
+               'GetImageFunction',get_image, ...
+               'IsDiacriticalFunction',is_diacritical,...
+               'Display',false);

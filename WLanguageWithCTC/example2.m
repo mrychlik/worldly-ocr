@@ -1,9 +1,7 @@
 % An exploration of the Deep Learning framework.
 %
 % This script uses a custom classification layer
-% which shows data passed from the softmax layer.
-%
-% NOTE: The loss is set to 0, so nothing useful happens in regard to training.
+% incorporating Connectionist Temporal Classification (CTC)
 %
 [XTrain, YTrain] = prepareDataTrain(2048, 6, 2);
 
@@ -11,6 +9,7 @@ numFeatures = size(XTrain{1},1);
 numHiddenUnits = 16;
 numClasses = length(categories(YTrain{1}));
 
+% Our custom classification layer
 ctcLayer = CTCLayer;
 
 layers = [ ...

@@ -16,6 +16,7 @@ classdef LineBreaker
         Degree = 1;                     % The degree of polynomial fit.
         Recognizer;
     end
+    
     methods
         function this = LineBreaker(BW,psm,language)
         %LineBreaker Constructor
@@ -36,17 +37,17 @@ classdef LineBreaker
     end
 
     methods(Access=private)
-
-
         function this = line_breaks_by_shift(this)
         % Break up an image into lines of text.
+        % this.LabeledLines: this is the most important output of this
+        % fucntion. It assigend the line number to the each pixel (connected objects)
             se1 = strel('line',this.HorDistance,0);
             BW1 = imdilate(this.BW,se1);
             [L,N] = bwlabel(BW1,4);
-            Ymedian = zeros([1,N]);
-            for n=1:N
+            YMedians = zeros([1,N]);
+            for n=1:N   %N= total number of connected objects in dilated figure
                 [Y,X,~] = find(L==n);
-                YMedians(n) = median(Y);
+                YMedians(n) = median(Y);   %finding the median of the connected object n
             end
             % Sort lines by mean value of the y-coordinate
             [~,I] = sort(YMedians, 'descend');     
@@ -55,17 +56,16 @@ classdef LineBreaker
             [S,M] = bwlabel(this.BW, 4);   % Find objects in the original image
             this.LabeledLines = zeros(size(this.BW));
             this.PixelCounts = zeros([1,N]);
-            for m=1:M
+            for m=1:M   %M= total number of connected objects in original figure
                 [r,c] = find(S==m, 1, 'first');
-                l = L(r,c);
-                lab = J(l);
-                U = S==m;
-                this.LabeledLines(U) = lab;
-                this.PixelCounts(lab) = sum(sum(U));
+                l = L(r,c);    % connected object m in orignal figure, is the connected object l in dilated figure
+                lab = J(l);    % the connected object l in dilated figure is in line J(l) or lab
+                U = S==m;      % selecting all connected object m in orignal figure
+                this.LabeledLines(U) = lab;   % switching the number of connected object, m, in orignal figure with number of the line, lab
+                this.PixelCounts(lab) = sum(sum(U));  % total number of the pixel are involved in this porcess
             end
             this.NumLines = N;
         end
-
     end
 
     methods
@@ -82,9 +82,10 @@ classdef LineBreaker
             [y,x] = find(J);
             assert(length(x) > 1)
             [p,S,mu] = polyfit(x,y,this.Degree);
-            xhat = (x-mu(1))/mu(2);
+            xhat = (x-mu(1))/mu(2); % mu(1) is mean(x), and mu(2) is std(x)
             [yhat,delta] = polyval(p,xhat,S);
             [x_low,x_high] = bounds(x);
+            [y_low,y_high] = bounds(y);
 
             % Record the fit
             f = struct();
@@ -92,7 +93,9 @@ classdef LineBreaker
             f.S = S;
             f.mu = mu;
             f.x_low = x_low;
-            f.x_high = x_high;                    
+            f.x_high = x_high; 
+            f.y_low = y_low;
+            f.y_high = y_high;             
             f.yhat = yhat;
             f.delta = delta;
             [lo,hi]= bounds(y-yhat);
@@ -113,7 +116,7 @@ classdef LineBreaker
             this.BW(S==0)=0;
         end
 
-        function this = relabel(this);
+        function this = relabel(this)
         % Relabel image to a contiguous set of labels
             idx = find(this.PixelCounts>0); %New labels
             N = length(idx);
@@ -132,11 +135,16 @@ classdef LineBreaker
             x_low = cellfun(@(u)u.x_low, this.PolyFit);
             x_high = cellfun(@(u)u.x_high, this.PolyFit);
             x_dist = x_high-x_low;
-            shrt = find(x_dist < 2*this.HorDistance);
-            lng = find(x_dist >= 2*this.HorDistance);
+            y_low = cellfun(@(u)u.y_low, this.PolyFit);
+            y_high = cellfun(@(u)u.y_high, this.PolyFit);
+            y_dist = y_high-y_low;
+            
+            
+            shrt = find(x_dist < 2*this.HorDistance | y_dist  < 2*this.VertDistance);
+            lng = find(x_dist >= 2*this.HorDistance & y_dist >= 2*this.VertDistance);
         end
 
-        function lines = long_neighbors(this, s);
+        function lines = long_neighbors(this, s)
         % Find the long lines above and below of s
             [lng,~] = detect_short_lines(this);
             ys = this.PolyFit{s}.p(2);
@@ -236,8 +244,8 @@ classdef LineBreaker
                 K=zeros([size(this.BW),3]);
                 J=this.LabeledLines==s;
                 [y,x]=find(J);
-                ym = mean(y);
-                xm = mean(x);
+                ym = mean(y);    %the average location of the short line in y direction
+                xm = mean(x);    %the average location of the short line in x direction
                 K(:,:,1) = J;
                 nb=long_neighbors(this,s);
                 for j=1:length(nb)

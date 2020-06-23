@@ -11,6 +11,7 @@ classdef Page
         max_skew = 4;                   % Maximal skew in degrees
         bw_threshold = 0.3;             % Threshold for gray to be
                                         % considered black
+        top_margin_size = 150;          % Margin at the top without characters
     end
 
     properties(Access=public)
@@ -167,10 +168,8 @@ classdef Page
         % P     - The peaks of the Hough transform, hopefully related
         %         to the page dividers.
             BW=im2bw(obj.I,obj.bw_threshold);
-            % Whiten top and bottom
-            margin_sz=150;
-            BW(1:margin_sz,:)=0;
-            BW((end-margin_sz):end,:)=0;    
+            BW(1:obj.top_margin_size,:)=0;
+            BW((end-obj.top_margin_size):end,:)=0;    
             if strcmp(obj.Display,'on')
                 imshow(BW);
             end

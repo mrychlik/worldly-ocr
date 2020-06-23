@@ -3,11 +3,11 @@
 % Author: Marek Rychlik (rychlik@email.arizona.edu)
 % 
 % Script input: Book pages in directory 'Pages'
-% Script output: Image file BookStrip.png
+% Script output: BookStrip.mat with a variable book_strip_image
 %
 % This script converts lots of pages of the Chinese text to a single strip,
 % stacking columns one above the other.  While not perfect, this process
-% produces input (BookStrip.png) which could be processed through different
+% produces oubput (BookStrip.mat) which could be processed through different
 % algorithms (clustering, neural net, Tesseract) to decode the book, or
 % produce a significant 'ground truth' for traditional Chinese.
 %
@@ -49,4 +49,5 @@ for page=pages;
     B=[B;T];
     display(size(B));
 end
-imwrite(B,'BookStrip.png','PNG');
+book_strip_image=B;
+save('BookStrip.mat','book_strip_image');

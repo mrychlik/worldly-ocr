@@ -1,8 +1,8 @@
 function char_seq = partition_book_into_chars(book_strip_image)
 % CHAR_SEQ = PARTITION_BOOK_INTO_CHARS(BOOK_STRIP_IMAGE) takes the image
-% BOOK_STRIP_IMAGE which contains stacked columns of all pages of a book,
-% and it outputs the sequence CHAR_SEQ of characters contained in the
-% image.
+% BOOK_STRIP_IMAGE which is an array which, as an image, contains stacked
+% columns of all pages of a book, and it outputs the sequence CHAR_SEQ of
+% characters contained in the image.
 %
 % As this computation is rather expensive, we cache the result in directory
 % Cache, file CharSeq.mat. The user must wipe out this file manually if the
@@ -11,6 +11,7 @@ function char_seq = partition_book_into_chars(book_strip_image)
 nargchk(nargin, 1, 1);
 
 Display='off';
+Delay=0;
 
 savefile=fullfile('.','Cache','CharSeq.mat');
 
@@ -18,7 +19,7 @@ if exist(savefile,'file')
     warning('Using cached result');
     load(savefile);
 else 
-    B=imread(book_strip_image);
+    B=book_strip_image;
     P=sum(B,2)>.3.*max(B(:)).*size(B,2);
     Q=diff([0;P]);
     Up=Q==1;
@@ -27,7 +28,7 @@ else
     plot(Up(1:1000),'Color','red'),
     plot(Down(1:1000),'Color','blue'),
     hold off;
-    pause(2);
+    pause(Delay);
 
     cnt=1;
     for r=1:size(B,1)

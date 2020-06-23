@@ -22,12 +22,17 @@ classdef TesseractRecognizer
         language;
     end
 
+    properties(Access = private)
+        tesseract_path = 'tesseract';   % The path of Tesseract executable
+    end
+
     methods
         function this = TesseractRecognizer(psm, language)
             if nargin < 1; psm = 7; end % Default is line
             if nargin < 2; language = 'pus'; end % Default is Pashto
             assert(psm >=0 && psm <= 13);
             this.psm = psm;
+            TesseractRecognizer.locate_tesseract_exec;
         end
     end
 
@@ -45,6 +50,41 @@ classdef TesseractRecognizer
             BBox=[min(J),min(I),range(J),range(I)];
             BWCropped=imcrop(BW,BBox);
         end
+
+        function locate_tesseract_exec
+        % LOCATE_TESSERACT_EXEC sets the path of the Tesseract program             
+        % TODO: Implement this carefully.
+            if ismac
+                % Code to run on Mac platform
+                [status,result] = system('which tesseract');
+                if status == 0
+                    fprintf('Found tesseract executable: %s\n', result);
+                    this.tesseract_path = result;
+                else
+                    fprintf('Tesseract is not in the $PATH.');
+                end
+            elseif isunix
+                % Code to run on Linux platform
+                [status,result] = system('which tesseract');
+                if status == 0
+                    fprintf('Found tesseract executable: %s\n', result);
+                    this.tesseract_path = result;
+                else
+                    fprintf('Tesseract is not in the $PATH.');
+                end
+            elseif ispc
+                % Code to run on Windows platform
+                [status,result] = system('where tesseract');
+                if status == 0
+                    fprintf('Found tesseract: %s', result);
+                    this.tesseract_path = result;
+                else
+                    fprintf('Tesseract is not in the $PATH.');
+                end
+            else
+                disp('Platform not supported')
+            end
+        end
     end
 
     methods
@@ -57,8 +97,11 @@ classdef TesseractRecognizer
             fname = tempname;
             imwrite(BW, fname, 'PNG');
             base = fname;
-            cmd = sprintf('tesseract --psm %d -l pus %s %s', this.psm, ...
-                          fname, base);
+            cmd = sprintf('%s --psm %d -l pus %s %s', ...
+                          this.tesseract_path,...
+                          this.psm, ...
+                          fname, ...
+                          base);
             [status,result] = system(cmd);
             delete(fname);
             if status == 0
@@ -73,6 +116,8 @@ classdef TesseractRecognizer
                 catch ME
                     rethrow(ME);
                 end
+            else
+                error('A call to tesseract failed. Is it installed?');
             end
         end
     end

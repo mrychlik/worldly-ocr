@@ -1,12 +1,26 @@
-function visualize_text(objects,lines,right_to_left,get_image, is_diacritical)
-narginchk(2,5);
-if nargin < 5
-    is_diacritical=@(obj)false;
-elseif nargin < 4
-    get_image=@(obj)uint8(255.*obj.bwimage);
-elseif nargin < 3
-    right_to_left=false;
+function visualize_text(objects,lines,varargin)
+p=inputParser;
+p.addRequired('objects');
+p.addRequired('lines');
+p.addParameter('TextDirection','LeftToRight');
+get_image_default=@(obj)uint8(255.*obj.bwimage);
+p.addParameter('GetImageFunction',get_image_default);
+is_diacritical_default=@(obj)false;
+p.addParameter('IsDiacriticalFunction',is_diacritical_default);
+p.addParameter('Display',true,@islogical);
+p.parse(objects,lines,varargin{:});
+
+get_image=p.Results.GetImageFunction;
+is_diacritical=p.Results.IsDiacriticalFunction;
+draw_now=p.Results.Display==true;
+
+switch p.Results.TextDirection,
+  case 'LeftToRight',
+      right_to_left=false;
+  case 'RightToLeft',
+    right_to_left=true;
 end
+
 disp('Visualizing lines of text.');
 l_cnt=size(lines,1);
 figure;
@@ -14,7 +28,7 @@ clf;
 % Flip vertical axis upside down
 set(gca,'YDir','reverse');
 % Make background black
-whitebg('black');
+whitebg('white');
 hold on;
 for l=1:l_cnt
     % Line objects
@@ -41,10 +55,12 @@ for l=1:l_cnt
 
         % Plot character bounding boxes only
         rectangle('Position',[x,y,w,h],'EdgeColor',bbox_color);
-        im = image([x,x+w],[y,y+h],K);
-        im.AlphaData=0.5;               % Make image a bit transparent
-        drawnow;
+        im = image([x,x+w],[y,y+h],255*(~K));
+        im.AlphaData=0.8;               % Make image a bit transparent
         colormap hot;
+        if draw_now
+            drawnow;
+        end
     end
 end
 hold off;
